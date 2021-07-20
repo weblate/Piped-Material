@@ -1,22 +1,20 @@
 <template>
-    <h1 class="uk-text-bold uk-text-center">Trending</h1>
+  <v-container fluid>
+    <h3 class="display-1 justify-center">Trending</h3>
 
-    <hr />
-
-    <div class="uk-grid-xl" uk-grid="parallax: 0">
-        <div
-            :style="[{ background: backgroundColor }]"
-            class="uk-width-1-2 uk-width-1-3@s uk-width-1-4@m uk-width-1-5@l uk-width-1-6@xl"
-            v-bind:key="video.url"
-            v-for="video in videos"
-        >
-            <VideoItem :video="video" height="118" width="210" />
-        </div>
-    </div>
+    <v-row v-for="(row, rowId) in chunkedByFour" :key="rowId">
+      <v-col md="3" v-for="(video, videoId) in row" :key="videoId">
+        <VideoItem :video="video" />
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
+import { chunk as _chunk } from 'lodash-es'
+
 import VideoItem from '@/components/VideoItem.vue'
+import { LibPiped } from '@/tools/libpiped'
 
 export default {
   data () {
@@ -25,17 +23,23 @@ export default {
     }
   },
   mounted () {
-    document.title = 'Trending - Piped'
+    // Reimplement using vue-meta
+    // document.title = 'Trending - Piped'
 
-    const region = this.getPreferenceString('region', 'US')
+    const region = LibPiped.getPreferenceString('region', 'US')
 
     this.fetchTrending(region).then(videos => (this.videos = videos))
   },
   methods: {
     async fetchTrending (region) {
-      return await this.fetchJson(this.apiUrl() + '/trending', {
+      return LibPiped.fetchJson('/trending', {
         region: region || 'US'
       })
+    }
+  },
+  computed: {
+    chunkedByFour () {
+      return _chunk(this.videos, 4)
     }
   },
   components: {

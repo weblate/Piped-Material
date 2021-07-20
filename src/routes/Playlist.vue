@@ -1,7 +1,7 @@
 <template>
     <ErrorHandler v-if="playlist && playlist.error" :message="playlist.message" :error="playlist.error" />
 
-    <div v-if="playlist" v-show="!playlist.error">
+    <div v-else-if="playlist" v-show="!playlist.error">
         <h1 class="uk-text-center">
             <img v-bind:src="playlist.avatarUrl" height="48" width="48" loading="lazy" />
             {{ playlist.name }}

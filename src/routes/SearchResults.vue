@@ -1,69 +1,71 @@
 <template>
+  <v-container fluid>
     <h1 class="uk-text-center">
-        {{ $route.query.search_query }}
+      {{ $route.query.search_query }}
     </h1>
 
     <b>Filter: </b>
     <select
-        default="all"
-        class="uk-select uk-width-auto"
-        style="height: 100%"
-        v-model="selectedFilter"
-        @change="updateResults()"
+      default="all"
+      class="uk-select uk-width-auto"
+      style="height: 100%"
+      v-model="selectedFilter"
+      @change="updateResults()"
     >
-        <option v-bind:key="filter" v-for="filter in availableFilters" v-bind:value="filter">
-            {{ filter.replace("_", " ") }}
-        </option>
+      <option v-bind:key="filter" v-for="filter in availableFilters" v-bind:value="filter">
+        {{ filter.replace("_", " ") }}
+      </option>
     </select>
 
     <hr />
 
     <div v-if="results" class="uk-grid-xl" uk-grid="parallax: 0">
-        <div
-            :style="[{ background: backgroundColor }]"
-            class="uk-width-1-2 uk-width-1-3@s uk-width-1-4@m uk-width-1-5@l uk-width-1-6@xl"
-            v-bind:key="result.url"
-            v-for="result in results.items"
-        >
-            <div class="uk-text-secondary">
-                <router-link class="uk-text-emphasis" v-bind:to="result.url">
-                    <img style="width: 100%" v-bind:src="result.thumbnail" loading="lazy" />
-                    <p>
-                        {{ result.name }}&thinsp;<font-awesome-icon
-                            v-if="result.verified"
-                            icon="check"
-                        ></font-awesome-icon>
-                    </p>
-                </router-link>
-                <p v-if="result.description">{{ result.description }}</p>
-                <router-link class="uk-link-muted" v-if="result.uploaderUrl" v-bind:to="result.uploaderUrl">
-                    <p>
-                        {{ result.uploader }}&thinsp;<font-awesome-icon
-                            v-if="result.uploaderVerified"
-                            icon="check"
-                        ></font-awesome-icon>
-                    </p>
-                </router-link>
-                <b v-if="result.duration" class="uk-text-small uk-align-right uk-text-align-right">
-                    {{ timeFormat(result.duration) }}
-                </b>
+      <div
+        :style="[{ background: backgroundColor }]"
+        class="uk-width-1-2 uk-width-1-3@s uk-width-1-4@m uk-width-1-5@l uk-width-1-6@xl"
+        v-bind:key="result.url"
+        v-for="result in results.items"
+      >
+        <div class="uk-text-secondary">
+          <router-link class="uk-text-emphasis" v-bind:to="result.url">
+            <img style="width: 100%" v-bind:src="result.thumbnail" loading="lazy" />
+            <p>
+              {{ result.name }}&thinsp;<font-awesome-icon
+              v-if="result.verified"
+              icon="check"
+            ></font-awesome-icon>
+            </p>
+          </router-link>
+          <p v-if="result.description">{{ result.description }}</p>
+          <router-link class="uk-link-muted" v-if="result.uploaderUrl" v-bind:to="result.uploaderUrl">
+            <p>
+              {{ result.uploader }}&thinsp;<font-awesome-icon
+              v-if="result.uploaderVerified"
+              icon="check"
+            ></font-awesome-icon>
+            </p>
+          </router-link>
+          <b v-if="result.duration" class="uk-text-small uk-align-right uk-text-align-right">
+            {{ timeFormat(result.duration) }}
+          </b>
 
-                <b v-if="result.uploadDate">
-                    {{ result.uploadDate }}
-                </b>
+          <b v-if="result.uploadDate">
+            {{ result.uploadDate }}
+          </b>
 
-                <a v-if="result.uploaderName" class="uk-text-muted">{{ result.uploaderName }}</a>
-                <b v-if="result.videos >= 0"><br v-if="result.uploaderName" />{{ result.videos }} Videos</b>
+          <a v-if="result.uploaderName" class="uk-text-muted">{{ result.uploaderName }}</a>
+          <b v-if="result.videos >= 0"><br v-if="result.uploaderName" />{{ result.videos }} Videos</b>
 
-                <br />
+          <br />
 
-                <b v-if="result.views >= 0" class="uk-text-small">
-                    <font-awesome-icon icon="eye"></font-awesome-icon>
-                    {{ numberFormat(result.views) }} views
-                </b>
-            </div>
+          <b v-if="result.views >= 0" class="uk-text-small">
+            <font-awesome-icon icon="eye"></font-awesome-icon>
+            {{ numberFormat(result.views) }} views
+          </b>
         </div>
+      </div>
     </div>
+  </v-container>
 </template>
 
 <script>

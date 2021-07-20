@@ -1,4 +1,5 @@
 <template>
+  <v-container fluid>
     <h1 class="uk-text-bold uk-text-center">Preferences</h1>
     <hr />
     <h2>SponsorBlock</h2>
@@ -38,9 +39,9 @@
     <b>Theme</b>
     <br />
     <select class="uk-select uk-width-auto" v-model="selectedTheme" @change="onChange($event)">
-        <option value="auto">Auto</option>
-        <option value="dark">Dark</option>
-        <option value="light">Light</option>
+      <option value="auto">Auto</option>
+      <option value="dark">Dark</option>
+      <option value="light">Light</option>
     </select>
     <br />
     <b>Autoplay Video</b>
@@ -54,8 +55,8 @@
     <b>Default Quality</b>
     <br />
     <select class="uk-select uk-width-auto" v-model="defaultQuality" @change="onChange($event)">
-        <option value="0">Auto</option>
-        <option :key="resolution" v-for="resolution in resolutions" :value="resolution">{{ resolution }}p</option>
+      <option value="0">Auto</option>
+      <option :key="resolution" v-for="resolution in resolutions" :value="resolution">{{ resolution }}p</option>
     </select>
     <br />
     <b>Buffering Goal</b>
@@ -65,14 +66,14 @@
     <b>Country Selection</b>
     <br />
     <select class="uk-select uk-width-auto" v-model="country" @change="onChange($event)">
-        <option :key="country.code" v-for="country in countryMap" :value="country.code">{{ country.name }}</option>
+      <option :key="country.code" v-for="country in countryMap" :value="country.code">{{ country.name }}</option>
     </select>
     <br />
     <b>Default Homepage</b>
     <br />
     <select class="uk-select uk-width-auto" v-model="defaultHomepage" @change="onChange($event)">
-        <option value="trending">Trending</option>
-        <option value="feed">Feed</option>
+      <option value="trending">Trending</option>
+      <option value="feed">Feed</option>
     </select>
     <br />
     <b>Show Comments</b>
@@ -80,24 +81,24 @@
     <input class="uk-checkbox" v-model="showComments" @change="onChange($event)" type="checkbox" />
     <h2>Instances List</h2>
     <table class="uk-table">
-        <thead>
-            <tr>
-                <th>Instance Name</th>
-                <th>Instance Locations</th>
-                <th>Has CDN?</th>
-                <th>SSL Score</th>
-            </tr>
-        </thead>
-        <tbody v-bind:key="instance.name" v-for="instance in instances">
-            <tr>
-                <td>{{ instance.name }}</td>
-                <td>{{ instance.locations }}</td>
-                <td>{{ instance.cdn }}</td>
-                <td>
-                    <a :href="sslScore(instance.apiurl)" target="_blank">Click Here</a>
-                </td>
-            </tr>
-        </tbody>
+      <thead>
+      <tr>
+        <th>Instance Name</th>
+        <th>Instance Locations</th>
+        <th>Has CDN?</th>
+        <th>SSL Score</th>
+      </tr>
+      </thead>
+      <tbody v-bind:key="instance.name" v-for="instance in instances">
+      <tr>
+        <td>{{ instance.name }}</td>
+        <td>{{ instance.locations }}</td>
+        <td>{{ instance.cdn }}</td>
+        <td>
+          <a :href="sslScore(instance.apiurl)" target="_blank">Click Here</a>
+        </td>
+      </tr>
+      </tbody>
     </table>
 
     <hr />
@@ -105,10 +106,11 @@
     <b>Instance Selection:</b>
     <br />
     <select class="uk-select uk-width-auto" v-model="selectedInstance" @change="onChange($event)">
-        <option v-bind:key="instance.name" v-for="instance in instances" v-bind:value="instance.apiurl">
-            {{ instance.name }}
-        </option>
+      <option v-bind:key="instance.name" v-for="instance in instances" v-bind:value="instance.apiurl">
+        {{ instance.name }}
+      </option>
     </select>
+  </v-container>
 </template>
 
 <script>
