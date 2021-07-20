@@ -16,7 +16,6 @@
 import { chunk as _chunk } from 'lodash-es'
 
 import VideoItem from '@/components/VideoItem.vue'
-import { LibPiped } from '@/tools/libpiped'
 
 export default {
   data () {
@@ -28,14 +27,17 @@ export default {
     // Reimplement using vue-meta
     // document.title = 'Trending - Piped'
 
-    const region = LibPiped.getPreferenceString('region', 'US')
+    const region = this.$store.getters.getPreferenceString('region', 'US')
 
     this.fetchTrending(region).then(videos => (this.videos = videos))
   },
   methods: {
     async fetchTrending (region) {
-      return LibPiped.fetchJson('/trending', {
-        region: region || 'US'
+      return this.$store.dispatch('fetchJson', {
+        path: '/trending',
+        params: {
+          region: region || 'US'
+        }
       })
     }
   },

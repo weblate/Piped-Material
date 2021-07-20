@@ -106,8 +106,8 @@ const store = new Vuex.Store({
       return getters.getPreferenceString(['authToken', getters])
     },
 
-    apiUrl () {
-      return this.getPreferenceString('instance', 'https://pipedapi.kavin.rocks')
+    apiUrl (state, getters) {
+      return getters.getPreferenceString('instance', 'https://pipedapi.kavin.rocks')
     },
 
     authenticated (state, getters) {

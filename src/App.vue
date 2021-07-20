@@ -65,6 +65,11 @@ export default {
         id: 'feed',
         name: 'Feed',
         to: '/feed'
+      },
+      {
+        id: 'trending',
+        name: 'Trending',
+        to: '/'
       }
     ]
   })
