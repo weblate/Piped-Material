@@ -152,10 +152,10 @@ export default {
       this.$refs.videoPlayer.loadVideo()
     })
     this.getSponsors()
-    if (this.getPreferenceBoolean('comments', true)) this.getComments()
+    if (this.$store.getters.getPreferenceBoolean('comments', true)) this.getComments()
   },
   activated () {
-    this.selectedAutoPlay = this.getPreferenceBoolean('autoplay', true)
+    this.selectedAutoPlay = this.$store.getters.getPreferenceBoolean('autoplay', true)
     if (this.video.duration) this.$refs.videoPlayer.loadVideo()
     window.addEventListener('scroll', this.handleScroll)
   },
@@ -170,30 +170,44 @@ export default {
     }
   },
   methods: {
+    numberFormat (...args) {
+      return LibPiped.numberFormat(...args)
+    },
+
     addCommas (...args) {
       return LibPiped.addCommas(...args)
     },
 
     fetchVideo () {
-      return LibPiped.fetchJson('/streams/' + this.getVideoId())
+      return this.$store.dispatch('fetchJson', {
+        path: '/streams/' + this.getVideoId()
+      })
     },
 
     async fetchSponsors () {
-      return LibPiped.fetchJson('/sponsors/' + this.getVideoId(), {
-        category:
-                    '["' +
-                    LibPiped.getPreferenceString('selectedSkip', 'sponsor,interaction,selfpromo,music_offtopic').replaceAll(
-                      ',',
-                      '","'
-                    ) +
-                    '"]'
+      return this.$store.dispatch('fetchJson', {
+        path: '/sponsors/' + this.getVideoId(),
+        params: {
+          category:
+              '["' +
+              this.$store.getters.getPreferenceString('selectedSkip', 'sponsor,interaction,selfpromo,music_offtopic').replaceAll(
+                ',',
+                '","'
+              ) +
+              '"]'
+        }
       })
     },
     fetchComments () {
-      return LibPiped.fetchJson('/comments/' + this.getVideoId())
+      return this.$store.dispatch('fetchJson', {
+        path: '/comments/' + this.getVideoId()
+      })
     },
     onChange () {
-      LibPiped.setPreference('autoplay', this.selectedAutoPlay)
+      this.$store.commit('setPrefs', {
+        id: 'autoplay',
+        value: this.selectedAutoPlay
+      })
     },
     async getVideoData () {
       await this.fetchVideo()
@@ -206,7 +220,7 @@ export default {
             this.channelId = this.video.uploaderUrl.split('/')[2]
             this.fetchSubscribedStatus()
 
-            this.video.description = this.purifyHTML(
+            this.video.description = LibPiped.purifyHTML(
               this.video.description
                 .replaceAll('http://www.youtube.com', '')
                 .replaceAll('https://www.youtube.com', '')
@@ -216,7 +230,7 @@ export default {
         })
     },
     async getSponsors () {
-      if (LibPiped.getPreferenceBoolean('sponsorblock', true)) { this.fetchSponsors().then(data => (this.sponsors = data)) }
+      if (this.$store.getters.getPreferenceString('sponsorblock', true)) { this.fetchSponsors().then(data => (this.sponsors = data)) }
     },
     async getComments () {
       this.fetchComments().then(data => (this.comments = data))
@@ -224,29 +238,33 @@ export default {
     async fetchSubscribedStatus () {
       if (!this.channelId) return
 
-      LibPiped.fetchJson(
-        '/subscribed',
-        {
+      this.$store.dispatch('fetchJson', {
+        path: '/subscribed',
+        params: {
           channelId: this.channelId
-        }
-        /* {
+        },
+        options: {
           headers: {
-            Authorization: LibPiped.getAuthToken()
+            Authorization: this.$store.getters.getAuthToken
           }
-        } */
-      ).then(json => {
+        }
+      }).then(json => {
         this.subscribed = json.subscribed
       })
     },
     subscribeHandler () {
-      LibPiped.fetchJson((this.subscribed ? '/unsubscribe' : '/subscribe'), null, {
-        method: 'POST',
-        body: JSON.stringify({
-          channelId: this.channelId
-        }),
-        headers: {
-          /* Authorization: this.getAuthToken(), */
-          'Content-Type': 'application/json'
+      this.$store.dispatch('fetchJson', {
+        path: (this.subscribed ? '/unsubscribe' : '/subscribe'),
+        params: null,
+        options: {
+          method: 'POST',
+          body: JSON.stringify({
+            channelId: this.channelId
+          }),
+          headers: {
+            Authorization: this.$store.getters.getAuthToken,
+            'Content-Type': 'application/json'
+          }
         }
       })
       this.subscribed = !this.subscribed
@@ -255,8 +273,11 @@ export default {
       if (this.loading || !this.comments || !this.comments.nextpage) return
       if (window.innerHeight + window.scrollY >= this.$refs.comments.offsetHeight - window.innerHeight) {
         this.loading = true
-        this.fetchJson('/nextpage/comments/' + this.getVideoId(), {
-          url: this.comments.nextpage
+        this.$store.dispatch('fetchJson', {
+          path: '/nextpage/comments/' + this.getVideoId(),
+          options: {
+            url: this.comments.nextpage
+          }
         }).then(json => {
           this.comments.nextpage = json.nextpage
           this.loading = false

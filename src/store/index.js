@@ -43,10 +43,11 @@ const store = new Vuex.Store({
         for (const param of _keys(params)) {
           url.searchParams.set(param, params[param])
         }
-      }
-      const at = getters.getAuthToken
-      if (at) {
-        url.searchParams.set('authToken', at)
+
+        const at = getters.getAuthToken
+        if (at) {
+          url.searchParams.set('authToken', at)
+        }
       }
 
       return fetch(url.href, options).then(response => {
