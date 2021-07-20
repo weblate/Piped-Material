@@ -1,7 +1,7 @@
 <template>
     <ErrorHandler v-if="channel && channel.error" :message="channel.message" :error="channel.error" />
 
-    <div v-if="channel" v-show="!channel.error">
+    <div v-else-if="channel" v-show="!channel.error">
         <h1 class="uk-text-center"><img height="48" width="48" v-bind:src="channel.avatarUrl" />{{ channel.name }}</h1>
         <img v-if="channel.bannerUrl" v-bind:src="channel.bannerUrl" style="width: 100%" loading="lazy" />
         <p style="white-space: pre-wrap">{{ channel.description }}</p>
@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import ErrorHandler from '@/components/ErrorHandler.vue'
+import ErrorHandler from '@/components/ErrorHandler'
 import VideoItem from '@/components/VideoItem.vue'
 
 export default {

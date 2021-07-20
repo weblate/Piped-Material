@@ -112,7 +112,8 @@
 </template>
 
 <script>
-import CountryMap from '@/utils/CountryMap.js'
+import CountryMap from '@/tools/CountryMap'
+
 export default {
   data () {
     return {

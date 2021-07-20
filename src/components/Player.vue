@@ -19,7 +19,9 @@
 <script>
 import muxjs from 'mux.js'
 import shaka from 'shaka-player/dist/shaka-player.ui.js'
-import('shaka-player/dist/controls.css')
+import 'shaka-player/dist/controls.css'
+import { DashUtils } from '@/tools/DashUtils'
+
 window.muxjs = muxjs
 
 export default {
@@ -65,7 +67,7 @@ export default {
       if (this.video.livestream) {
         uri = this.video.hls
       } else if (this.video.audioStreams.length > 0 && MseSupport) {
-        const dash = require('@/utils/DashUtils.js').default.generate_dash_file_from_formats(
+        const dash = DashUtils.generate_dash_file_from_formats(
           streams,
           this.video.duration
         )

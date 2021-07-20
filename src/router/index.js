@@ -59,7 +59,7 @@ const routes = [
   },
   {
     path: '/:videoId([a-zA-Z0-9_-]{11})',
-    component: () => import('@/routes/VideoRedirect')
+    component: () => import('@/components/VideoRedirect')
   }
 ]
 
