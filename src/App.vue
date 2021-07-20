@@ -1,82 +1,60 @@
 <template>
-    <div
-        class="uk-container uk-container-expand uk-height-viewport"
-        :style="[{ background: backgroundColor, colour: foregroundColor }]"
-        :class="{ 'uk-light': darkMode }"
+  <v-app>
+    <v-app-bar
+      app
+      color="primary"
+      dark
     >
-        <Navigation />
-        <router-view v-slot="{ Component }">
-            <keep-alive :max="5">
-                <component :key="$route.fullPath" :is="Component" />
-            </keep-alive>
-        </router-view>
+      <div class="d-flex align-center">
+        <v-img
+          alt="Vuetify Logo"
+          class="shrink mr-2"
+          contain
+          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
+          transition="scale-transition"
+          width="40"
+        />
 
-        <div style="text-align: center">
-            <a aria-label="GitHub" href="https://github.com/TeamPiped/Piped">
-                <font-awesome-icon :icon="['fab', 'github']"></font-awesome-icon>
-            </a>
-            &nbsp;
-            <a href="https://github.com/TeamPiped/Piped#donations">
-                <font-awesome-icon :icon="['fab', 'bitcoin']"></font-awesome-icon>
-                Donations
-            </a>
-        </div>
-    </div>
+        <v-img
+          alt="Vuetify Name"
+          class="shrink mt-1 hidden-sm-and-down"
+          contain
+          min-width="100"
+          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
+          width="100"
+        />
+      </div>
+
+      <v-spacer></v-spacer>
+
+      <v-btn
+        href="https://github.com/vuetifyjs/vuetify/releases/latest"
+        target="_blank"
+        text
+      >
+        <span class="mr-2">Latest Release</span>
+        <v-icon>mdi-open-in-new</v-icon>
+      </v-btn>
+    </v-app-bar>
+
+    <v-main>
+      <HelloWorld/>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-import Navigation from '@/components/Navigation'
+import HelloWorld from './components/HelloWorld'
+
 export default {
+  name: 'App',
+
   components: {
-    Navigation
+    HelloWorld
   },
-  mounted () {
-    if (window.location.pathname === '/' || window.location.pathname.length == 0) {
-      switch (this.getPreferenceString('homepage', 'trending')) {
-        case 'trending':
-          break
-        case 'feed':
-          this.$router.replace('/feed')
-          break
-        default:
-          break
-      }
-    }
-  }
+
+  data: () => ({
+    //
+  })
 }
 </script>
-
-<style>
-h1,
-p,
-a,
-b {
-    unicode-bidi: plaintext;
-    text-align: start;
-}
-
-::-webkit-scrollbar {
-    background-color: #15191a;
-    color: #c5bcae;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: #4b4f52;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background-color: #5b6469;
-}
-
-::-webkit-scrollbar-thumb:active {
-    background-color: #485053;
-}
-
-::-webkit-scrollbar-corner {
-    background-color: #0b0e0f;
-}
-
-* {
-    scrollbar-color: #15191a #444a4e;
-}
-</style>
