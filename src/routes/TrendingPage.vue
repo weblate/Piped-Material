@@ -2,6 +2,8 @@
   <v-container fluid>
     <h3 class="display-1 justify-center">Trending</h3>
 
+    <v-divider class="my-4" />
+
     <v-row v-for="(row, rowId) in chunkedByFour" :key="rowId">
       <v-col md="3" v-for="(video, videoId) in row" :key="videoId">
         <VideoItem :video="video" />

@@ -41,7 +41,7 @@
                 </router-link>
                 <div class="uk-flex-1"></div>
                 <button
-                    v-if="authenticated"
+                    v-if="$store.state.isAuthenticated"
                     @click="subscribeHandler"
                     class="uk-button uk-button-small"
                     style="background: #222"
@@ -125,6 +125,8 @@
 </template>
 
 <script>
+import { LibPiped } from '@/tools/libpiped'
+
 import Player from '@/components/Player.vue'
 import VideoItem from '@/components/VideoItem.vue'
 import ErrorHandler from '@/components/ErrorHandler.vue'
@@ -168,14 +170,19 @@ export default {
     }
   },
   methods: {
-    fetchVideo () {
-      return this.fetchJson(this.apiUrl() + '/streams/' + this.getVideoId())
+    addCommas (...args) {
+      return LibPiped.addCommas(...args)
     },
+
+    fetchVideo () {
+      return LibPiped.fetchJson('/streams/' + this.getVideoId())
+    },
+
     async fetchSponsors () {
-      return await this.fetchJson(this.apiUrl() + '/sponsors/' + this.getVideoId(), {
+      return LibPiped.fetchJson('/sponsors/' + this.getVideoId(), {
         category:
                     '["' +
-                    this.getPreferenceString('selectedSkip', 'sponsor,interaction,selfpromo,music_offtopic').replaceAll(
+                    LibPiped.getPreferenceString('selectedSkip', 'sponsor,interaction,selfpromo,music_offtopic').replaceAll(
                       ',',
                       '","'
                     ) +
@@ -183,10 +190,10 @@ export default {
       })
     },
     fetchComments () {
-      return this.fetchJson(this.apiUrl() + '/comments/' + this.getVideoId())
+      return LibPiped.fetchJson('/comments/' + this.getVideoId())
     },
     onChange () {
-      this.setPreference('autoplay', this.selectedAutoPlay)
+      LibPiped.setPreference('autoplay', this.selectedAutoPlay)
     },
     async getVideoData () {
       await this.fetchVideo()
@@ -209,7 +216,7 @@ export default {
         })
     },
     async getSponsors () {
-      if (this.getPreferenceBoolean('sponsorblock', true)) { this.fetchSponsors().then(data => (this.sponsors = data)) }
+      if (LibPiped.getPreferenceBoolean('sponsorblock', true)) { this.fetchSponsors().then(data => (this.sponsors = data)) }
     },
     async getComments () {
       this.fetchComments().then(data => (this.comments = data))
@@ -217,28 +224,28 @@ export default {
     async fetchSubscribedStatus () {
       if (!this.channelId) return
 
-      this.fetchJson(
-        this.apiUrl() + '/subscribed',
+      LibPiped.fetchJson(
+        '/subscribed',
         {
           channelId: this.channelId
-        },
-        {
-          headers: {
-            Authorization: this.getAuthToken()
-          }
         }
+        /* {
+          headers: {
+            Authorization: LibPiped.getAuthToken()
+          }
+        } */
       ).then(json => {
         this.subscribed = json.subscribed
       })
     },
     subscribeHandler () {
-      this.fetchJson(this.apiUrl() + (this.subscribed ? '/unsubscribe' : '/subscribe'), null, {
+      LibPiped.fetchJson((this.subscribed ? '/unsubscribe' : '/subscribe'), null, {
         method: 'POST',
         body: JSON.stringify({
           channelId: this.channelId
         }),
         headers: {
-          Authorization: this.getAuthToken(),
+          /* Authorization: this.getAuthToken(), */
           'Content-Type': 'application/json'
         }
       })
@@ -248,7 +255,7 @@ export default {
       if (this.loading || !this.comments || !this.comments.nextpage) return
       if (window.innerHeight + window.scrollY >= this.$refs.comments.offsetHeight - window.innerHeight) {
         this.loading = true
-        this.fetchJson(this.apiUrl() + '/nextpage/comments/' + this.getVideoId(), {
+        this.fetchJson('/nextpage/comments/' + this.getVideoId(), {
           url: this.comments.nextpage
         }).then(json => {
           this.comments.nextpage = json.nextpage

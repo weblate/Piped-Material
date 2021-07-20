@@ -1,5 +1,4 @@
 import DOMPurify from 'dompurify'
-import { keys as _keys } from 'lodash-es'
 
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
@@ -50,94 +49,8 @@ class LibPiped {
     return num.toLocaleString('en-US')
   }
 
-  fetchJson (path, params, options) {
-    const url = new URL(this.apiUrl())
-
-    url.pathname = path
-    if (params) {
-      for (const param of _keys(params)) {
-        url.searchParams.set(param, params[param])
-      }
-    }
-    const at = this.getAuthToken()
-    if (at) {
-      url.searchParams.set('authToken', at)
-    }
-
-    return fetch(url.href, options).then(response => {
-      return response.json()
-    })
-  }
-
   purifyHTML (original) {
     return DOMPurify.sanitize(original)
-  }
-
-  setPreference (key, value) {
-    if (localStorage) localStorage.setItem(key, value)
-  }
-
-  getPreferenceBoolean ($route, key, defaultVal) {
-    let value
-    if (
-      (value = $route.query[key]) !== undefined ||
-      (localStorage && (value = localStorage.getItem(key)) !== null)
-    ) {
-      switch (String(value)) {
-        case 'true':
-        case '1':
-        case 'on':
-        case 'yes':
-          return true
-        default:
-          return false
-      }
-    } else return defaultVal
-  }
-
-  getPreferenceString (key, defaultVal) {
-    let value
-    if (
-      (localStorage && (value = localStorage.getItem(key)) !== null)
-    ) {
-      return value
-    } else return defaultVal
-  }
-
-  getPreferenceNumber (key, defaultVal) {
-    let value
-    if (
-      (localStorage && (value = localStorage.getItem(key)) !== null)
-    ) {
-      return Number(value)
-    } else return defaultVal
-  }
-
-  apiUrl () {
-    return this.getPreferenceString('instance', 'https://pipedapi.kavin.rocks')
-  }
-
-  getEffectiveTheme () {
-    let theme = this.getPreferenceString('theme', 'dark')
-    if (theme === 'auto') {
-      theme =
-        window.matchMedia &&
-        window.matchMedia('(prefers-color-scheme: dark)').matches
-          ? 'dark'
-          : 'light'
-    }
-    return theme
-  }
-
-  getAuthToken () {
-    return this.getPreferenceString('authToken' + this.hashCode(this.apiUrl()))
-  }
-
-  hashCode (s) {
-    return s.split('').reduce(function (a, b) {
-      a = (a << 5) - a + b.charCodeAt(0)
-      return a & a
-    }, 0)
   }
 
   timeAgo (time) {
