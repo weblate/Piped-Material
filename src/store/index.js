@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import { get as _get, keys as _keys, set as _set, isPlainObject, isString } from 'lodash-es'
+import { get as _get, keys as _keys, isPlainObject, isString } from 'lodash-es'
 
 Vue.use(Vuex)
 
@@ -18,7 +18,7 @@ const store = new Vuex.Store({
       id,
       value
     }) {
-      _set(state.prefs, id, value)
+      Vue.set(state.prefs, id, value)
     },
 
     replacePrefs (state, nextPrefs) {
