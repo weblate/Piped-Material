@@ -43,9 +43,9 @@ The documentation can be found at https://piped-docs.kavin.rocks (accessible via
 
 ## Screenshots
 
-![Screenshot 1](https://piped-ng-assets.১.net/screenshot1.png)
-![Screenshot 2](https://piped-ng-assets.১.net/screenshot2.png)
-![Screenshot 3](https://piped-ng-assets.১.net/screenshot3.png)
+![Screenshot 1](https://piped-ng-assets.xn--17b.net/screenshot1.png)
+![Screenshot 2](https://piped-ng-assets.xn--17b.net/screenshot2.png)
+![Screenshot 3](https://piped-ng-assets.xn--17b.net/screenshot3.png)
 
 ## Donations
 
