@@ -43,9 +43,9 @@ The documentation can be found at https://piped-docs.kavin.rocks (accessible via
 
 ## Screenshots
 
-![Screenshot 1](https://cloudflare-ipfs.com/ipfs/bafybeigafumvrgbfyufxjptvufobstrywrfv2kteyuuictfko6kvghjszu)
-![Screenshot 2](https://cloudflare-ipfs.com/ipfs/bafybeiaxhsog7jzydr7xb3xhlemxilqksceqg5fraaiuojzclhocsqrcvq)
-![Screenshot 3](https://cloudflare-ipfs.com/ipfs/bafybeiehs5xjqmmq34gmewxoqm3j3b2ze3pve4sdmanz7ukrxwgrcmxnry)
+![Screenshot 1](https://piped-ng-assets.১.net/screenshot1.png)
+![Screenshot 2](https://piped-ng-assets.১.net/screenshot2.png)
+![Screenshot 3](https://piped-ng-assets.১.net/screenshot3.png)
 
 ## Donations
 
