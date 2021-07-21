@@ -1,25 +1,25 @@
 <template>
-    <div class="uk-container-expand">
-        <div
-            data-shaka-player-container
-            style="width: 100%; height: 100%; max-height: 75vh; min-height: 250px; background: #000"
-            ref="container"
-        >
-            <video
-                data-shaka-player
-                class="uk-width-expand"
-                :autoplay="shouldAutoPlay"
-                :loop="selectedAutoLoop"
-                ref="videoEl"
-            ></video>
-        </div>
-    </div>
+  <div
+    data-shaka-player-container
+    style="width: 100%; height: 100%; max-height: 75vh; min-height: calc(100vh - 64px); background: #000"
+    ref="container"
+  >
+    <video
+      data-shaka-player
+      style="min-width: 100%;"
+      :autoplay="shouldAutoPlay"
+      :loop="selectedAutoLoop"
+      ref="videoEl"
+    ></video>
+  </div>
 </template>
 
 <script>
 import muxjs from 'mux.js'
 import shaka from 'shaka-player/dist/shaka-player.ui.js'
-import('shaka-player/dist/controls.css')
+import 'shaka-player/dist/controls.css'
+import { DashUtils } from '@/tools/DashUtils'
+
 window.muxjs = muxjs
 
 export default {
@@ -35,12 +35,9 @@ export default {
     }
   },
   computed: {
-    shouldAutoPlay: _this => {
-      return _this.getPreferenceBoolean('playerAutoPlay', true)
+    shouldAutoPlay () {
+      return this.$store.getters.getPreferenceBoolean('playerAutoPlay', true)
     }
-  },
-  mounted () {
-    if (!this.shaka) this.shakaPromise = shaka.then(shaka => shaka.default).then(shaka => (this.shaka = shaka))
   },
   methods: {
     loadVideo () {
@@ -65,7 +62,7 @@ export default {
       if (this.video.livestream) {
         uri = this.video.hls
       } else if (this.video.audioStreams.length > 0 && MseSupport) {
-        const dash = require('@/utils/DashUtils.js').default.generate_dash_file_from_formats(
+        const dash = DashUtils.generate_dash_file_from_formats(
           streams,
           this.video.duration
         )
@@ -76,29 +73,27 @@ export default {
       }
 
       if (noPrevPlayer) {
-        this.shakaPromise.then(() => {
-          this.shaka.polyfill.installAll()
+        shaka.polyfill.installAll()
 
-          const localPlayer = new this.shaka.Player(videoEl)
+        const localPlayer = new shaka.Player(videoEl)
 
-          localPlayer.getNetworkingEngine().registerRequestFilter((_type, request) => {
-            const uri = request.uris[0]
-            const url = new URL(uri)
-            if (url.host.endsWith('.googlevideo.com')) {
-              url.searchParams.set('host', url.host)
-              url.host = new URL(component.video.proxyUrl).host
-              request.uris[0] = url.toString()
-            }
-          })
-
-          localPlayer.configure(
-            'streaming.bufferingGoal',
-            Math.max(this.getPreferenceNumber('bufferGoal', 10), 10)
-          )
-
-          this.setPlayerAttrs(localPlayer, videoEl, uri, this.shaka)
+        localPlayer.getNetworkingEngine().registerRequestFilter((_type, request) => {
+          const uri = request.uris[0]
+          const url = new URL(uri)
+          if (url.host.endsWith('.googlevideo.com')) {
+            url.searchParams.set('host', url.host)
+            url.host = new URL(component.video.proxyUrl).host
+            request.uris[0] = url.toString()
+          }
         })
-      } else this.setPlayerAttrs(this.player, videoEl, uri, this.shaka)
+
+        localPlayer.configure(
+          'streaming.bufferingGoal',
+          Math.max(this.$store.getters.getPreferenceNumber('bufferGoal', 10), 10)
+        )
+
+        this.setPlayerAttrs(localPlayer, videoEl, uri, shaka)
+      } else this.setPlayerAttrs(this.player, videoEl, uri, shaka)
 
       if (noPrevPlayer) {
         videoEl.addEventListener('timeupdate', () => {
@@ -165,7 +160,7 @@ export default {
 
       this.player = player
 
-      const disableVideo = this.getPreferenceBoolean('listen', false) && !this.video.livestream
+      const disableVideo = this.$store.getters.getPreferenceBoolean('listen', false) && !this.video.livestream
 
       this.player.configure({
         preferredVideoCodecs: ['av01', 'vp9', 'avc1'],
@@ -175,7 +170,7 @@ export default {
         }
       })
 
-      const quality = this.getPreferenceNumber('quality', 0)
+      const quality = this.$store.getters.getPreferenceNumber('quality', 0)
       const qualityConds =
                 quality > 0 && (this.video.audioStreams.length > 0 || this.video.livestream) && !disableVideo
       if (qualityConds) this.player.configure('abr.enabled', false)
@@ -207,7 +202,7 @@ export default {
             subtitle.name
           )
         })
-        videoEl.volume = this.getPreferenceNumber('volume', 1)
+        videoEl.volume = this.$store.getters.getPreferenceNumber('volume', 1)
       })
     }
   },

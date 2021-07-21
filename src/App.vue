@@ -1,82 +1,60 @@
 <template>
-    <div
-        class="uk-container uk-container-expand uk-height-viewport"
-        :style="[{ background: backgroundColor, colour: foregroundColor }]"
-        :class="{ 'uk-light': darkMode }"
+  <v-app id="inspire">
+    <v-app-bar
+      app
+      color="primary"
+      dark
+      flat
     >
-        <Navigation />
-        <router-view v-slot="{ Component }">
-            <keep-alive :max="5">
-                <component :key="$route.fullPath" :is="Component" />
-            </keep-alive>
-        </router-view>
+      <v-container class="py-0 fill-height">
+        <v-btn
+          v-for="link in links"
+          :key="link.id"
+          text
+          link
+          :to="link.to"
+        >
+          {{ link.name }}
+        </v-btn>
 
-        <div style="text-align: center">
-            <a aria-label="GitHub" href="https://github.com/TeamPiped/Piped">
-                <font-awesome-icon :icon="['fab', 'github']"></font-awesome-icon>
-            </a>
-            &nbsp;
-            <a href="https://github.com/TeamPiped/Piped#donations">
-                <font-awesome-icon :icon="['fab', 'bitcoin']"></font-awesome-icon>
-                Donations
-            </a>
-        </div>
-    </div>
+        <v-spacer></v-spacer>
+
+        <v-responsive max-width="720">
+          <SearchMenu />
+        </v-responsive>
+      </v-container>
+    </v-app-bar>
+
+    <v-main class="grey lighten-3">
+      <router-view />
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-import Navigation from '@/components/Navigation'
+import SearchMenu from '@/routes/SearchMenu'
+
 export default {
+  name: 'App',
   components: {
-    Navigation
+    SearchMenu
   },
-  mounted () {
-    if (window.location.pathname === '/' || window.location.pathname.length == 0) {
-      switch (this.getPreferenceString('homepage', 'trending')) {
-        case 'trending':
-          break
-        case 'feed':
-          this.$router.replace('/feed')
-          break
-        default:
-          break
+  data: () => ({
+    links: [
+      {
+        id: 'prefs',
+        name: 'Preferences',
+        to: '/preferences'
+      },
+      {
+        id: 'trending',
+        name: 'Trending',
+        to: '/'
       }
-    }
+    ]
+  }),
+  created () {
+    this.$store.dispatch('loadState')
   }
 }
 </script>
-
-<style>
-h1,
-p,
-a,
-b {
-    unicode-bidi: plaintext;
-    text-align: start;
-}
-
-::-webkit-scrollbar {
-    background-color: #15191a;
-    color: #c5bcae;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: #4b4f52;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background-color: #5b6469;
-}
-
-::-webkit-scrollbar-thumb:active {
-    background-color: #485053;
-}
-
-::-webkit-scrollbar-corner {
-    background-color: #0b0e0f;
-}
-
-* {
-    scrollbar-color: #15191a #444a4e;
-}
-</style>

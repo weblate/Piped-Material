@@ -1,6 +1,6 @@
 // Based of https://github.com/GilgusMaximus/yt-dash-manifest-generator/blob/master/src/DashGenerator.js
 
-const xml = require('xml-js')
+import xml from 'xml-js'
 
 const DashUtils = {
   generate_dash_file_from_formats (VideoFormats, VideoLength) {
@@ -45,7 +45,7 @@ const DashUtils = {
     // sort the formats by mime types
     VideoFormatArray.forEach(videoFormat => {
       // the dual formats should not be used
-      if (videoFormat.mimeType.indexOf('video') != -1 && !videoFormat.videoOnly) {
+      if (videoFormat.mimeType.indexOf('video') !== -1 && !videoFormat.videoOnly) {
         return
       }
       // if these properties are not available, then we skip it because we cannot set these properties
@@ -185,4 +185,6 @@ const DashUtils = {
   }
 }
 
-export default DashUtils
+export {
+  DashUtils
+}
