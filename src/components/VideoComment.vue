@@ -8,13 +8,13 @@
       </v-col>
       <v-col md="11">
         <v-card-title class="subtitle-1">
-          <span v-if="comment.pinned"><v-icon>mdi-pin</v-icon> Pinned by {{ video.uploader }}</span>
+          <v-icon v-if="comment.pinned" class="mx-2">mdi-pin</v-icon>
           <router-link :to="comment.commentorUrl" class="text-decoration-none black--text">
             <b>{{ comment.author }}</b><v-icon v-if="comment.verified">mdi-account-check</v-icon>
           </router-link>
         </v-card-title>
         <v-card-text>
-          {{ comment.commentText }}
+          <div v-html="renderedCommentTxt" />
 
           <v-divider class="my-2" />
 
@@ -28,6 +28,7 @@
 
 <script>
 import { LibPiped } from '@/tools/libpiped'
+import marked from 'marked'
 
 export default {
   name: 'VideoComment',
@@ -35,6 +36,14 @@ export default {
   methods: {
     numberFormat (...args) {
       return LibPiped.numberFormat(...args)
+    }
+  },
+
+  computed: {
+    renderedCommentTxt () {
+      return LibPiped.purifyHTML(marked.parseInline(this.comment.commentText, {
+        breaks: true
+      }))
     }
   }
 }
