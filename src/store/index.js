@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import { get as _get, keys as _keys, set as _set } from 'lodash-es'
+import { get as _get, keys as _keys, set as _set, isPlainObject, isString } from 'lodash-es'
 
 Vue.use(Vuex)
 
@@ -28,8 +28,11 @@ const store = new Vuex.Store({
   actions: {
     loadState ({ commit }) {
       try {
-        const p = JSON.parse(window.localStorage.getItem('PREFERENCES'))
-        commit('replacePrefs', p)
+        const jv = window.localStorage.getItem('PREFERENCES')
+        if (isString(jv) && jv.length !== 0) {
+          const p = JSON.parse(jv)
+          commit('replacePrefs', p)
+        }
       } catch (e) {
         console.log('Error:', e)
       }
@@ -129,7 +132,9 @@ const store = new Vuex.Store({
 })
 
 store.watch(state => state.prefs, (nextPrefs) => {
-  window.localStorage.setItem('PREFERENCES', JSON.stringify(nextPrefs))
+  if (isPlainObject(nextPrefs)) {
+    window.localStorage.setItem('PREFERENCES', JSON.stringify(nextPrefs))
+  }
 })
 
 export default store
