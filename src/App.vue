@@ -32,11 +32,7 @@
     </v-app-bar>
 
     <v-main class="grey lighten-3">
-      <router-view v-slot="{ Component }">
-        <keep-alive :max="5">
-          <component :key="$route.fullPath" :is="Component" />
-        </keep-alive>
-      </router-view>
+      <router-view />
     </v-main>
   </v-app>
 </template>

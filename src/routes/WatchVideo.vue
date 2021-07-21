@@ -74,7 +74,7 @@
     <v-row>
       <v-col md="8" offset-md="1" v-if="comments && comments.comments">
         <h5 class="display-1 text-center my-4">Comments</h5>
-        <VideoComment v-for="comment in comments.comments" :key="comment.commentId" :comment="comment" />
+        <VideoComment v-for="comment in comments.comments" :key="comment.commentId" :comment="comment" :video="video" class="my-4" />
         <v-progress-linear indeterminate v-intersect="onCommentsProgressIntersect" v-if="comments.comments.length !== 0" />
       </v-col>
       <v-col md="2" v-if="video && video.relatedStreams">
@@ -100,7 +100,6 @@ export default {
       video: {
         title: 'Loading...'
       },
-      active: false,
       sponsors: null,
       selectedAutoLoop: false,
       showDesc: true,
@@ -110,20 +109,7 @@ export default {
     }
   },
   mounted () {
-    this.getVideoData().then(() => {
-      if (this.active) {
-        this.$refs.videoPlayer.loadVideo()
-      }
-    })
-    this.getSponsors()
-    if (this.$store.getters.getPreferenceBoolean('comments', true)) this.getComments()
-  },
-  activated () {
-    this.active = true
-    if (this.video.duration) this.$refs.videoPlayer.loadVideo()
-  },
-  deactivated () {
-    this.active = false
+    this.initialize()
   },
   watch: {
     '$route.query.v': function (v) {
@@ -133,6 +119,14 @@ export default {
     }
   },
   methods: {
+    initialize () {
+      this.getVideoData().then(() => {
+        this.$refs.videoPlayer.loadVideo()
+      })
+      this.getSponsors()
+      if (this.$store.getters.getPreferenceBoolean('comments', true)) this.getComments()
+    },
+
     numberFormat (...args) {
       return LibPiped.numberFormat(...args)
     },
