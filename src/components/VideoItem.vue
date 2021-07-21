@@ -25,8 +25,8 @@ import { LibPiped } from '@/tools/libpiped'
 export default {
   props: {
     video: Object,
-    height: String,
-    width: String,
+    height: Number,
+    width: Number,
     hideChannel: Boolean
   },
   methods: {

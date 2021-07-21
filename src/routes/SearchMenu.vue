@@ -33,11 +33,21 @@ export default {
       }
     },
 
-    select (val) {
-      this.$router.push({
-        name: 'SearchResults',
-        query: { search_query: val }
-      })
+    async select (val) {
+      if (val === '') {
+        return
+      }
+      try {
+        await this.$router.push({
+          name: 'SearchResults',
+          query: { search_query: val }
+        })
+      } catch (e) {
+        console.log('???', e)
+      } finally {
+        this.select = ''
+        this.searchText = ''
+      }
     }
   },
 

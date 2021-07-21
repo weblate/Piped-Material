@@ -25,7 +25,7 @@ export default {
   },
   mounted () {
     // Reimplement using vue-meta
-    // document.title = 'Trending - Piped'
+    document.title = 'Trending - Piped'
 
     const region = this.$store.getters.getPreferenceString('region', 'US')
 
