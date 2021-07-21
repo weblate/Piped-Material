@@ -62,63 +62,27 @@
             <div class="mt-4" v-if="showDesc && sponsors && sponsors.segments">
               Sponsors Segments: {{ sponsors.segments.length }}
             </div>
-            <v-checkbox :value="this.$store.getters.getPreferenceBoolean('autoplay')" @change="onAutoplayChg" label="Autoplay next video" />
-            <v-checkbox v-model="selectedAutoLoop" label="Loop this video" />
+            <div>
+              <v-checkbox dense :value="this.$store.getters.getPreferenceBoolean('autoplay')" @change="onAutoplayChg" label="Autoplay next video" />
+              <v-checkbox dense v-model="selectedAutoLoop" label="Loop this video" />
+            </div>
           </v-card-text>
         </v-card>
       </v-col>
     </v-row>
 
-        <div uk-grid>
-            <div class="uk-width-4-5@xl uk-width-3-4@l uk-width-1" v-if="comments" ref="comments">
-                <div
-                    class="uk-tile-default uk-align-left uk-width-expand"
-                    :style="[{ background: backgroundColor }]"
-                    v-bind:key="comment.commentId"
-                    v-for="comment in comments.comments"
-                >
-                    <div align="left">
-                        <div v-if="comment.pinned">
-                            <font-awesome-icon icon="thumbtack"></font-awesome-icon>&nbsp; Pinned by
-                            {{ video.uploader }}
-                        </div>
-                        <img
-                            :src="comment.thumbnail"
-                            style="width: 10vmin"
-                            height="176"
-                            width="176"
-                            loading="lazy"
-                            alt="avatar"
-                        />
-                        <br />
-                        <router-link class="uk-link-muted" v-bind:to="comment.commentorUrl">
-                            {{ comment.author }} </router-link
-                        >&thinsp;<font-awesome-icon v-if="comment.verified" icon="check"></font-awesome-icon>
-                    </div>
-                    <p style="white-space: pre-wrap">{{ comment.commentText }}</p>
-                    <div>
-                        <b>{{ numberFormat(comment.likeCount) }}</b>
-                        &nbsp;
-                        <font-awesome-icon icon="thumbs-up"></font-awesome-icon>
-                        &nbsp;
-                        <font-awesome-icon v-if="comment.hearted" icon="heart"></font-awesome-icon>
-                    </div>
-                    <hr />
-                </div>
-            </div>
-
-            <div class="uk-width-1-5@xl uk-width-1-4@l uk-width-1 uk-flex-last@l uk-flex-first" v-if="video">
-                <div
-                    class="uk-tile-default uk-width-auto"
-                    :style="[{ background: backgroundColor }]"
-                    v-bind:key="related.url"
-                    v-for="related in video.relatedStreams"
-                >
-                    <VideoItem :video="related" height="94" width="168" />
-                </div>
-            </div>
-        </div>
-    </div>
+    <v-row>
+      <v-col md="8" offset-md="1" v-if="comments && comments.comments">
+        <h5 class="display-1 text-center my-4">Comments</h5>
+        <VideoComment v-for="comment in comments.comments" :key="comment.commentId" :comment="comment" />
+        <v-progress-linear indeterminate v-intersect="onCommentsProgressIntersect" v-if="comments.comments.length !== 0" />
+      </v-col>
+      <v-col md="2" v-if="video && video.relatedStreams">
+        <h5 class="display-1 text-center my-4">Related Videos</h5>
+        <VideoItem class="my-4" v-for="related in video.relatedStreams" :video="related" :key="related.url" />
+      </v-col>
+    </v-row>
+  </div>
 </template>
 
 <script>
@@ -127,6 +91,7 @@ import { LibPiped } from '@/tools/libpiped'
 import Player from '@/components/Player.vue'
 import VideoItem from '@/components/VideoItem.vue'
 import ErrorHandler from '@/components/ErrorHandler.vue'
+import VideoComment from '@/components/VideoComment'
 
 export default {
   name: 'WatchVideo',
@@ -155,13 +120,10 @@ export default {
   },
   activated () {
     this.active = true
-    this.selectedAutoPlay = this.$store.getters.getPreferenceBoolean('autoplay', true)
     if (this.video.duration) this.$refs.videoPlayer.loadVideo()
-    window.addEventListener('scroll', this.handleScroll)
   },
   deactivated () {
     this.active = false
-    window.removeEventListener('scroll', this.handleScroll)
   },
   watch: {
     '$route.query.v': function (v) {
@@ -204,6 +166,25 @@ export default {
         path: '/comments/' + this.getVideoId()
       })
     },
+
+    onCommentsProgressIntersect (entries) {
+      if (entries[0].isIntersecting) {
+        this.fetchMoreComments()
+      }
+    },
+
+    fetchMoreComments () {
+      this.$store.dispatch('fetchJson', {
+        path: '/nextpage/comments/' + this.getVideoId(),
+        params: {
+          url: this.comments.nextpage
+        }
+      }).then(json => {
+        this.comments.nextpage = json.nextpage
+        this.comments.comments = this.comments.comments.concat(json.comments)
+      })
+    },
+
     onAutoplayChg (ev) {
       this.$store.commit('setPrefs', {
         id: 'autoplay',
@@ -271,27 +252,13 @@ export default {
       })
       this.subscribed = !this.subscribed
     },
-    handleScroll () {
-      if (this.loading || !this.comments || !this.comments.nextpage) return
-      if (window.innerHeight + window.scrollY >= this.$refs.comments.offsetHeight - window.innerHeight) {
-        this.loading = true
-        this.$store.dispatch('fetchJson', {
-          path: '/nextpage/comments/' + this.getVideoId(),
-          options: {
-            url: this.comments.nextpage
-          }
-        }).then(json => {
-          this.comments.nextpage = json.nextpage
-          this.loading = false
-          json.comments.map(comment => this.comments.comments.push(comment))
-        })
-      }
-    },
+
     getVideoId () {
       return this.$route.query.v || this.$route.params.v
     }
   },
   components: {
+    VideoComment,
     Player,
     VideoItem,
     ErrorHandler
