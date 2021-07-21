@@ -1,76 +1,73 @@
 <template>
-    <div class="uk-container uk-container-xlarge" v-if="video">
-        <ErrorHandler v-if="video && video.error" :message="video.message" :error="video.error" />
+  <ErrorHandler v-if="video && video.error" :message="video.message" :error="video.error" />
+  <div v-else>
+    <Player
+      ref="videoPlayer"
+      :video="video"
+      :sponsors="sponsors"
+      :selectedAutoPlay="this.$store.getters.getPreferenceBoolean('autoplay')"
+      :selectedAutoLoop="selectedAutoLoop"
+    />
 
-        <div v-show="!video.error">
-            <Player
-                ref="videoPlayer"
-                :video="video"
-                :sponsors="sponsors"
-                :selectedAutoPlay="selectedAutoPlay"
-                :selectedAutoLoop="selectedAutoLoop"
-            />
-            <div class="uk-text-bold uk-margin-small-top uk-text-large uk-text-emphasis">{{ video.title }}</div>
-
-            <div class="uk-flex uk-flex-middle">
-                <div class="uk-margin-small-right">{{ addCommas(video.views) }} views</div>
-                <div class="uk-margin-small-right">{{ video.uploadDate }}</div>
-                <div class="uk-flex-1"></div>
-                <div class="uk-margin-small-left">
-                    <font-awesome-icon class="uk-margin-small-right" icon="thumbs-up"></font-awesome-icon>
-                    <b>{{ addCommas(video.likes) }}</b>
+    <v-row dense class="my-2">
+      <v-col md="10" offset-md="1">
+        <v-card outlined>
+          <v-card-title class="text-h5">{{ video.title }}</v-card-title>
+          <v-card-subtitle class="subtitle-1">
+            <v-row>
+              <v-col md="4" align-self="start">
+                {{ addCommas(video.views) }} views
+                •
+                {{ video.uploadDate }}
+              </v-col>
+              <v-col offset-md="6" md="2" align-self="end">
+                <v-icon>mdi-thumb-up</v-icon>
+                <b class="ml-2">{{ addCommas(video.likes) }}</b>
+                <v-icon class="ml-2">mdi-thumb-down</v-icon>
+                <b class="ml-2">{{ addCommas(video.dislikes) }}</b>
+                <v-btn icon class="ml-2" link :href="'https://youtu.be/' + getVideoId()" target="_blank">
+                  <v-icon large>
+                    mdi-youtube
+                  </v-icon>
+                </v-btn>
+              </v-col>
+            </v-row>
+          </v-card-subtitle>
+          <v-divider />
+          <v-card-text>
+            <router-link v-if="video.uploaderUrl" :to="video.uploaderUrl" custom v-slot="{ navigate }">
+              <div
+                style="justify-items: center; align-items: center; vertical-align: center; display: flex; cursor: pointer"
+                @click="navigate" @keypress.enter="navigate" role="link"
+              >
+                <div>
+                  <v-img :src="video.uploaderAvatar" height="48" width="48" class="rounded-circle" />
                 </div>
-                <div class="uk-margin-small-left">
-                    <font-awesome-icon class="uk-margin-small-right" icon="thumbs-down"></font-awesome-icon>
-                    <b>{{ addCommas(video.dislikes) }}</b>
+                <div class="text-h5 ml-4">
+                  {{ video.uploader }}
                 </div>
-                <a
-                    :href="'https://youtu.be/' + getVideoId()"
-                    class="uk-margin-small-left uk-button uk-button-small"
-                    style="background: #222"
-                >
-                    <font-awesome-icon class="uk-margin-small-right" :icon="['fab', 'youtube']"></font-awesome-icon>
-                    <b>Watch on</b>
-                </a>
-            </div>
-
-            <div class="uk-flex uk-flex-middle uk-margin-small-top">
-                <img :src="video.uploaderAvatar" loading="lazy" />
-                <router-link class="uk-text-bold uk-margin-small-left" v-if="video.uploaderUrl" :to="video.uploaderUrl">
-                    <a>{{ video.uploader }}</a>
-                </router-link>
-                <div class="uk-flex-1"></div>
-                <button
+                <div class="ml-4">
+                  <v-btn
                     v-if="$store.state.isAuthenticated"
                     @click="subscribeHandler"
-                    class="uk-button uk-button-small"
-                    style="background: #222"
-                    type="button"
-                >
+                    color="primary"
+                  >
                     {{ subscribed ? "Unsubscribe" : "Subscribe" }}
-                </button>
+                  </v-btn>
+                </div>
+              </div>
+            </router-link>
+            <div class="mt-4" v-html="video.description" />
+            <v-divider class="my-4" />
+            <div class="mt-4" v-if="showDesc && sponsors && sponsors.segments">
+              Sponsors Segments: {{ sponsors.segments.length }}
             </div>
-
-            <hr />
-
-            <a class="uk-button uk-button-small" style="background: #222" @click="showDesc = !showDesc">
-                {{ showDesc ? "Minimize Description" : "Show Description" }}
-            </a>
-            <p v-show="showDesc" :style="[{ colour: foregroundColor }]" v-html="video.description"></p>
-            <div v-if="showDesc && sponsors && sponsors.segments">
-                Sponsors Segments: {{ sponsors.segments.length }}
-            </div>
-        </div>
-
-        <hr />
-
-        <b>Loop this Video:</b>&nbsp;
-        <input class="uk-checkbox" v-model="selectedAutoLoop" @change="onChange($event)" type="checkbox" />
-        <br />
-        <b>Auto Play next Video:</b>&nbsp;
-        <input class="uk-checkbox" v-model="selectedAutoPlay" @change="onChange($event)" type="checkbox" />
-
-        <hr />
+            <v-checkbox :value="this.$store.getters.getPreferenceBoolean('autoplay')" @change="onAutoplayChg" label="Autoplay next video" />
+            <v-checkbox v-model="selectedAutoLoop" label="Loop this video" />
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
 
         <div uk-grid>
             <div class="uk-width-4-5@xl uk-width-3-4@l uk-width-1" v-if="comments" ref="comments">
@@ -132,7 +129,7 @@ import VideoItem from '@/components/VideoItem.vue'
 import ErrorHandler from '@/components/ErrorHandler.vue'
 
 export default {
-  name: 'App',
+  name: 'WatchVideo',
   data () {
     return {
       video: {
@@ -140,7 +137,6 @@ export default {
       },
       sponsors: null,
       selectedAutoLoop: false,
-      selectedAutoPlay: null,
       showDesc: true,
       comments: null,
       subscribed: false,
@@ -203,12 +199,13 @@ export default {
         path: '/comments/' + this.getVideoId()
       })
     },
-    onChange () {
+    onAutoplayChg (ev) {
       this.$store.commit('setPrefs', {
         id: 'autoplay',
-        value: this.selectedAutoPlay
+        value: ev
       })
     },
+
     async getVideoData () {
       await this.fetchVideo()
         .then(data => {

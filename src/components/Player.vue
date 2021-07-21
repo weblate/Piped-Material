@@ -1,19 +1,17 @@
 <template>
-    <div class="uk-container-expand">
-        <div
-            data-shaka-player-container
-            style="width: 100%; height: 100%; max-height: 75vh; min-height: 250px; background: #000"
-            ref="container"
-        >
-            <video
-                data-shaka-player
-                class="uk-width-expand"
-                :autoplay="shouldAutoPlay"
-                :loop="selectedAutoLoop"
-                ref="videoEl"
-            ></video>
-        </div>
-    </div>
+  <div
+    data-shaka-player-container
+    style="width: 100%; height: 100%; max-height: 75vh; min-height: calc(100vh - 64px); background: #000"
+    ref="container"
+  >
+    <video
+      data-shaka-player
+      style="min-width: 100%;"
+      :autoplay="shouldAutoPlay"
+      :loop="selectedAutoLoop"
+      ref="videoEl"
+    ></video>
+  </div>
 </template>
 
 <script>
