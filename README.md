@@ -1,27 +1,19 @@
-# Piped
+# Piped-redesign
 
-[![Matrix](https://img.shields.io/matrix/piped:matrix.org)](https://matrix.to/#/#piped:matrix.org)
-[![IPFS Build](https://github.com/TeamPiped/Piped/actions/workflows/build.yml/badge.svg)](https://piped-ipfs.kavin.rocks/)
-[![GitHub Repo stars](https://img.shields.io/github/stars/TeamPiped/Piped-Frontend?style=social)](https://github.com/TeamPiped/Piped/stargazers)
-[![GitHub last commit](https://img.shields.io/github/last-commit/TeamPiped/Piped-Frontend)](https://github.com/TeamPiped/Piped/commits)
+[![GitHub Repo stars](https://img.shields.io/github/stars/mmjee/Piped-redesign?style=social)](https://github.com/mmjee/Piped-redesign/stargazers)
+[![GitHub last commit](https://img.shields.io/github/last-commit/mmjee/Piped-redesign)](https://github.com/mmjee/Piped-redesign/commits)
 
-An alternative YouTube frontend which is efficient by design.
+An alternative to an alternative YouTube frontend which is efficient by design.
 
-# The Problem
+Piped-redesign is an attempt to redesign Piped to be more space-efficient, rational and good-looking.
 
-YouTube has an extremely invasive privacy policy which relies on using user data in unethical ways. You give them a lot of data - ranging from ideas, music taste, content, political opinions, and much more than you think.
-
-By using Piped, you can freely watch and listen to content freely without the fear of prying eyes watching everything you are doing.
+As a byproduct, the code is also much cleaner, dysfunctional patterns and paradigms have been replaced with clean, beautiful code :).
 
 ## Features:
 
 -   [x] No Ads
 -   [x] No Tracking
 -   [x] Infinite Scrolling
--   [x] Login
--   [x] Feeds
--   [x] Integration with SponsorBlock
--   [x] Integration with LBRY
 -   [x] 4K support
 -   [x] No connections to Google's servers
 -   [x] Playing just audio
@@ -30,7 +22,6 @@ By using Piped, you can freely watch and listen to content freely without the fe
 -   [x] Captions support
 -   [x] Search Suggestions
 -   [x] Livestreams support with a quality selector
--   [x] PWA support
 -   [x] Support for IOS
 -   [x] Preferences saved locally
 -   [x] Multi-region loadbalancing
@@ -40,6 +31,11 @@ By using Piped, you can freely watch and listen to content freely without the fe
 
 -   [ ] 8K support
 -   [ ] Improving UI
+-   [ ] Login
+-   [ ] Feeds
+-   [ ] Integration with SponsorBlock
+-   [ ] Integration with LBRY
+-   [ ] PWA support
 
 ## Documentation
 
