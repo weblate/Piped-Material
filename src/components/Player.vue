@@ -37,6 +37,14 @@ export default {
   computed: {
     shouldAutoPlay () {
       return this.$store.getters.getPreferenceBoolean('playerAutoPlay', true)
+    },
+
+    preferredVideoCodecs () {
+      const preferredVideoCodecs = []
+      if (this.$refs.videoEl.canPlayType('video/mp4; codecs="av01.0.08M.08"') !== '') { preferredVideoCodecs.push('av01') }
+      if (this.$refs.videoEl.canPlayType('video/webm; codecs="vp9"') !== '') preferredVideoCodecs.push('vp9')
+      if (this.$refs.videoEl.canPlayType('video/mp4; codecs="avc1.4d401f"') !== '') { preferredVideoCodecs.push('avc1') }
+      return preferredVideoCodecs
     }
   },
   methods: {
@@ -163,7 +171,7 @@ export default {
       const disableVideo = this.$store.getters.getPreferenceBoolean('listen', false) && !this.video.livestream
 
       this.player.configure({
-        preferredVideoCodecs: ['av01', 'vp9', 'avc1'],
+        preferredVideoCodecs: this.preferredVideoCodecs,
         preferredAudioCodecs: ['opus', 'mp4a'],
         manifest: {
           disableVideo: disableVideo
