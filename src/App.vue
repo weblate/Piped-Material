@@ -20,13 +20,7 @@
         <v-spacer></v-spacer>
 
         <v-responsive max-width="720">
-          <v-text-field
-            dense
-            flat
-            hide-details
-            rounded
-            solo-inverted
-          ></v-text-field>
+          <SearchMenu />
         </v-responsive>
       </v-container>
     </v-app-bar>
@@ -38,29 +32,19 @@
 </template>
 
 <script>
+import SearchMenu from '@/routes/SearchMenu'
+
 export default {
   name: 'App',
+  components: {
+    SearchMenu
+  },
   data: () => ({
     links: [
       {
         id: 'prefs',
         name: 'Preferences',
         to: '/preferences'
-      },
-      {
-        id: 'login',
-        name: 'Login',
-        to: '/login'
-      },
-      {
-        id: 'register',
-        name: 'Register',
-        to: '/register'
-      },
-      {
-        id: 'feed',
-        name: 'Feed',
-        to: '/feed'
       },
       {
         id: 'trending',

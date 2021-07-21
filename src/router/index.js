@@ -38,26 +38,6 @@ const routes = [
     component: () => import('@/routes/Channel')
   },
   {
-    path: '/login',
-    name: 'Login',
-    component: () => import('@/routes/LoginPage')
-  },
-  {
-    path: '/register',
-    name: 'Register',
-    component: () => import('@/routes/RegisterPage')
-  },
-  {
-    path: '/feed',
-    name: 'Feed',
-    component: () => import('@/routes/FeedPage')
-  },
-  {
-    path: '/import',
-    name: 'Import',
-    component: () => import('@/routes/ImportPage')
-  },
-  {
     path: '/:videoId([a-zA-Z0-9_-]{11})',
     component: () => import('@/components/VideoRedirect')
   }

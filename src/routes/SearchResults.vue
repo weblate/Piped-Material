@@ -97,7 +97,7 @@ export default {
   },
   methods: {
     async fetchResults () {
-      return await await this.fetchJson(this.apiUrl() + '/search', {
+      return this.fetchJson(this.apiUrl() + '/search', {
         q: this.$route.query.search_query,
         filter: this.selectedFilter
       })
