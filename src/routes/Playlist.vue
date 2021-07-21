@@ -114,20 +114,6 @@ export default {
       this.fetchPlaylist()
         .then(data => (this.playlist = data))
         .then(() => (document.title = this.playlist.name + ' - Piped'))
-    },
-    handleScroll () {
-      if (this.loading || !this.playlist || !this.playlist.nextpage) return
-      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - window.innerHeight) {
-        this.loading = true
-        this.fetchJson(this.apiUrl() + '/nextpage/playlists/' + this.$route.query.list, {
-          nextpage: this.playlist.nextpage
-        }).then(json => {
-          this.playlist.relatedStreams.concat(json.relatedStreams)
-          this.playlist.nextpage = json.nextpage
-          this.loading = false
-          json.relatedStreams.map(stream => this.playlist.relatedStreams.push(stream))
-        })
-      }
     }
   },
   components: {
