@@ -19,13 +19,17 @@ const store = new Vuex.Store({
       value
     }) {
       _set(state.prefs, id, value)
+    },
+
+    replacePrefs (state, nextPrefs) {
+      state.prefs = nextPrefs
     }
   },
   actions: {
     loadState ({ commit }) {
       try {
         const p = JSON.parse(window.localStorage.getItem('PREFERENCES'))
-        commit('setPrefs', p)
+        commit('replacePrefs', p)
       } catch (e) {
         console.log('Error:', e)
       }
@@ -76,10 +80,15 @@ const store = new Vuex.Store({
       }
     },
 
-    getPreferenceNumber: (_, getters) => (...args) => {
-      const v = getters.getPreferenceString(...args)
+    getPreferenceNumber: (_, getters) => (id, default_) => {
+      const v = getters.getPreferenceString(id, default_)
 
-      return Number(v)
+      const n = Number(v)
+      if (!Number.isFinite(n)) {
+        return default_
+      } else {
+        return n
+      }
     },
 
     getEffectiveTheme (state, getters) {

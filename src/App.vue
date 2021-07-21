@@ -68,6 +68,9 @@ export default {
         to: '/'
       }
     ]
-  })
+  }),
+  created () {
+    this.$store.dispatch('loadState')
+  }
 }
 </script>
