@@ -135,6 +135,7 @@ export default {
       video: {
         title: 'Loading...'
       },
+      active: false,
       sponsors: null,
       selectedAutoLoop: false,
       showDesc: true,
@@ -145,17 +146,21 @@ export default {
   },
   mounted () {
     this.getVideoData().then(() => {
-      this.$refs.videoPlayer.loadVideo()
+      if (this.active) {
+        this.$refs.videoPlayer.loadVideo()
+      }
     })
     this.getSponsors()
     if (this.$store.getters.getPreferenceBoolean('comments', true)) this.getComments()
   },
   activated () {
+    this.active = true
     this.selectedAutoPlay = this.$store.getters.getPreferenceBoolean('autoplay', true)
     if (this.video.duration) this.$refs.videoPlayer.loadVideo()
     window.addEventListener('scroll', this.handleScroll)
   },
   deactivated () {
+    this.active = false
     window.removeEventListener('scroll', this.handleScroll)
   },
   watch: {
