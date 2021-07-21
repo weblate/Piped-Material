@@ -1,36 +1,32 @@
 <template>
     <ErrorHandler v-if="channel && channel.error" :message="channel.message" :error="channel.error" />
     <v-container fluid v-else-if="channel">
-      <v-row>
-        <v-col md="8" offset-md="2">
-          <v-card class="pa-4">
-            <div
-              style="justify-items: center; align-items: center; vertical-align: center; display: flex;"
-            >
-              <div>
-                <v-img :src="channel.avatarUrl" height="48" width="48" class="rounded-circle" />
-              </div>
-              <div class="text-h5 ml-4">
-                {{ channel.name }}
-              </div>
-            </div>
-            <v-card-text>
-              <div v-html="renderedDescription" />
-            </v-card-text>
-          </v-card>
-
-          <v-divider class="my-4" />
-
-          <div v-if="this.channel && this.channel.relatedStreams">
-            <v-row v-for="(row, rowId) in chunkedByFour" :key="rowId">
-              <v-col md="3" v-for="(video, videoId) in row" :key="videoId">
-                <VideoItem :height="270" :width="480" :video="video" />
-              </v-col>
-            </v-row>
-            <v-progress-linear indeterminate v-intersect="onRelatedStreamsEndIntersect" />
+      <v-card class="pa-4">
+        <div
+          style="justify-items: center; align-items: center; vertical-align: center; display: flex;"
+        >
+          <div>
+            <v-img :src="channel.avatarUrl" height="48" width="48" class="rounded-circle" />
           </div>
-        </v-col>
-      </v-row>
+          <div class="text-h5 ml-4">
+            {{ channel.name }}
+          </div>
+        </div>
+        <v-card-text>
+          <div v-html="renderedDescription" />
+        </v-card-text>
+      </v-card>
+
+      <v-divider class="my-4" />
+
+      <div v-if="this.channel && this.channel.relatedStreams">
+        <v-row v-for="(row, rowId) in chunkedByFour" :key="rowId">
+          <v-col md="3" v-for="(video, videoId) in row" :key="videoId">
+            <VideoItem :height="270" :width="480" :video="video" />
+          </v-col>
+        </v-row>
+        <v-progress-linear indeterminate v-intersect="onRelatedStreamsEndIntersect" />
+      </div>
     </v-container>
 </template>
 
