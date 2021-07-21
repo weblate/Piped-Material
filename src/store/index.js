@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import { get as _get, keys as _keys, isPlainObject, isString } from 'lodash-es'
+import { get as _get, keys as _keys, set as _set, cloneDeep as _cloneDeep, isPlainObject, isString } from 'lodash-es'
 
 Vue.use(Vuex)
 
@@ -18,7 +18,9 @@ const store = new Vuex.Store({
       id,
       value
     }) {
-      Vue.set(state.prefs, id, value)
+      const clonedPrefs = _cloneDeep(state.prefs)
+      _set(clonedPrefs, id, value)
+      state.prefs = clonedPrefs
     },
 
     replacePrefs (state, nextPrefs) {
