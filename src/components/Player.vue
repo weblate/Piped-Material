@@ -14,6 +14,15 @@
   </div>
 </template>
 
+<style scoped>
+.shaka-text-container > div {
+  height: auto !important;
+  width: auto !important;
+  top: auto !important;
+  left: auto !important;
+}
+</style>
+
 <script>
 import muxjs from 'mux.js'
 import shaka from 'shaka-player/dist/shaka-player.ui.js'
