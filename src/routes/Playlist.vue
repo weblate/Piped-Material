@@ -92,6 +92,10 @@ export default {
       playlist: null
     }
   },
+  metaInfo () {
+    return { title: this.playlist ? this.playlist.name : 'Loading' }
+  },
+
   mounted () {
     this.getPlaylistData()
   },
@@ -113,7 +117,6 @@ export default {
     async getPlaylistData () {
       this.fetchPlaylist()
         .then(data => (this.playlist = data))
-        .then(() => (document.title = this.playlist.name + ' - Piped'))
     }
   },
   components: {

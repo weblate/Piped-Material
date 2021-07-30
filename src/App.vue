@@ -39,6 +39,12 @@ export default {
   components: {
     SearchMenu
   },
+  metaInfo: {
+    title: 'Homepage',
+    // all titles will be injected into this template
+    titleTemplate: '%s - Piped'
+  },
+
   data: () => ({
     links: [
       {

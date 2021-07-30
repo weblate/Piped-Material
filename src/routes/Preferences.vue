@@ -162,6 +162,10 @@ export default {
       ]
     }
   },
+  metaInfo: {
+    title: 'Preferences'
+  },
+
   mounted () {
     if (Object.keys(this.$route.query).length > 0) this.$router.replace({ query: {} })
 

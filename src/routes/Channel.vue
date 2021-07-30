@@ -46,6 +46,10 @@ export default {
       subscribed: false
     }
   },
+  metaInfo () {
+    return { title: this.channel ? this.channel.name : 'Loading' }
+  },
+
   mounted () {
     this.getChannelData()
   },
@@ -58,11 +62,6 @@ export default {
     async getChannelData () {
       this.fetchChannel()
         .then(data => (this.channel = data))
-        .then(() => {
-          if (!this.channel.error) {
-            document.title = this.channel.name + ' - Piped'
-          }
-        })
     },
 
     onRelatedStreamsEndIntersect (entries) {

@@ -46,6 +46,12 @@ export default {
       selectedFilter: 'all'
     }
   },
+  metaInfo () {
+    return {
+      title: this.$route.query.search_query
+    }
+  },
+
   mounted () {
     this.updateResults()
   },
@@ -88,7 +94,6 @@ export default {
       return LibPiped.timeFormat(...args)
     },
     async updateResults () {
-      document.title = this.$route.query.search_query + ' - Piped'
       this.results = this.fetchResults().then(json => {
         json.items = json.items.map(this.rationalizeSearchResult)
         this.results = json

@@ -23,10 +23,12 @@ export default {
       videos: []
     }
   },
-  mounted () {
-    // Reimplement using vue-meta
-    document.title = 'Trending - Piped'
 
+  metaInfo: {
+    title: 'Trending'
+  },
+
+  mounted () {
     const region = this.$store.getters.getPreferenceString('region', 'US')
 
     this.fetchTrending(region).then(videos => (this.videos = videos))

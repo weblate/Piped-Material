@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import VueMeta from 'vue-meta'
 
 import TrendingPage from '@/routes/TrendingPage'
 import Preferences from '@/routes/Preferences'
 
+Vue.use(VueMeta)
 Vue.use(VueRouter)
 
 const routes = [

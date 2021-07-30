@@ -98,7 +98,7 @@ export default {
   data () {
     return {
       video: {
-        title: 'Loading...'
+        title: 'Loading ...'
       },
       sponsors: null,
       selectedAutoLoop: false,
@@ -108,6 +108,12 @@ export default {
       channelId: null
     }
   },
+  metaInfo () {
+    return {
+      title: this.video.title
+    }
+  },
+
   mounted () {
     this.initialize()
   },
@@ -194,7 +200,6 @@ export default {
         })
         .then(() => {
           if (!this.video.error) {
-            document.title = this.video.title + ' - Piped'
             this.channelId = this.video.uploaderUrl.split('/')[2]
             this.fetchSubscribedStatus()
 
