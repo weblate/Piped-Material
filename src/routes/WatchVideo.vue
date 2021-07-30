@@ -172,7 +172,7 @@ export default {
       this.$store.dispatch('fetchJson', {
         path: '/nextpage/comments/' + this.getVideoId(),
         params: {
-          url: this.comments.nextpage
+          nextpage: this.comments.nextpage
         }
       }).then(json => {
         this.comments.nextpage = json.nextpage
