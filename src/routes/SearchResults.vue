@@ -14,7 +14,8 @@
     <div v-if="results && results.items">
       <v-row v-for="(row, rowId) in chunkedByFour" :key="rowId">
         <v-col md="3" v-for="(video, videoId) in row" :key="videoId">
-          <VideoItem :height="270" :width="480" :video="video" />
+          <VideoItem :height="270" :width="480" :video="video" v-if="video.type === 'VIDEO'" />
+          <GenericDisplayItem :height="270" :width="480" :item="video" v-else />
         </v-col>
       </v-row>
       <v-progress-linear indeterminate v-intersect="onSearchResultsEndIntersect" />
@@ -27,9 +28,10 @@ import { chunk as _chunk } from 'lodash-es'
 
 import { LibPiped } from '@/tools/libpiped'
 import VideoItem from '@/components/VideoItem'
+import GenericDisplayItem from '@/components/GenericDisplayItem'
 
 export default {
-  components: { VideoItem },
+  components: { GenericDisplayItem, VideoItem },
   data () {
     return {
       results: null,
@@ -63,13 +65,32 @@ export default {
   watch: {
     selectedFilter () {
       this.updateResults()
+    },
+
+    // For history navigation
+    '$route.query.search_query' () {
+      this.updateResults()
     }
   },
 
   methods: {
     rationalizeSearchResult (sr) {
+      let type
+      // This seriously can't be the best solution
+      if (sr.url.startsWith('/watch')) {
+        type = 'VIDEO'
+      } else if (sr.url.startsWith('/playlist')) {
+        type = 'PLAYLIST'
+      } else if (sr.url.startsWith('/channel')) {
+        type = 'CHANNEL'
+      } else {
+        console.warn('WARNING: UNKNOWN VIDEO URL TYPE FOUND:', sr.url)
+        type = 'VIDEO'
+      }
+
       return {
         title: sr.name,
+        type,
         uploaderName: sr.uploader,
         uploadedDate: sr.uploadDate,
         ...sr
