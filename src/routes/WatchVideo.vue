@@ -20,7 +20,7 @@
                 •
                 {{ video.uploadDate }}
               </v-col>
-              <v-col offset-md="6" md="2" align-self="end">
+              <v-col offset-md="5" md="3" align-self="end">
                 <v-icon>mdi-thumb-up</v-icon>
                 <b class="ml-2">{{ addCommas(video.likes) }}</b>
                 <v-icon class="ml-2">mdi-thumb-down</v-icon>
@@ -29,6 +29,9 @@
                   <v-icon large>
                     mdi-youtube
                   </v-icon>
+                </v-btn>
+                <v-btn class="ml-2" link :href="'https://odysee.com/' + video.lbryId" v-if="video.lbryId" target="_blank" outlined>
+                  LBRY
                 </v-btn>
               </v-col>
             </v-row>
