@@ -84,12 +84,15 @@ export default {
       if (this.video.livestream) {
         uri = this.video.hls
       } else if (this.video.audioStreams.length > 0 && MseSupport) {
-        const dash = DashUtils.generate_dash_file_from_formats(
-          streams,
-          this.video.duration
-        )
-
-        uri = 'data:application/dash+xml;charset=utf-8;base64,' + btoa(dash)
+        if (!this.video.dash) {
+          const dash = DashUtils.generate_dash_file_from_formats(
+            streams,
+            this.video.duration
+          )
+          uri = 'data:application/dash+xml;charset=utf-8;base64,' + btoa(dash)
+        } else {
+          uri = this.video.dash
+        }
       } else {
         uri = this.video.videoStreams.filter(stream => stream.codec == null).slice(-1)[0].url
       }
@@ -197,7 +200,7 @@ export default {
                 quality > 0 && (this.video.audioStreams.length > 0 || this.video.livestream) && !disableVideo
       if (qualityConds) this.player.configure('abr.enabled', false)
 
-      player.load(uri, 0, uri.indexOf('dash+xml') >= 0 ? 'application/dash+xml' : 'video/mp4').then(() => {
+      player.load(uri, 0, uri.indexOf('dash') >= 0 ? 'application/dash+xml' : 'video/mp4').then(() => {
         if (qualityConds) {
           let leastDiff = Number.MAX_VALUE
           let bestStream = null
