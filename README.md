@@ -26,6 +26,7 @@ As a byproduct, the code is also much cleaner, dysfunctional patterns and paradi
 -   [x] Preferences saved locally
 -   [x] Multi-region loadbalancing
 -   [x] Performant by design, designed to handle 1000s of users concurrently
+-   [x] PWA support
 
 ## WIP
 
@@ -35,7 +36,6 @@ As a byproduct, the code is also much cleaner, dysfunctional patterns and paradi
 -   [ ] Feeds
 -   [ ] Integration with SponsorBlock
 -   [ ] Integration with LBRY
--   [ ] PWA support
 
 ## Documentation
 
