@@ -1,0 +1,47 @@
+{
+    "titles": {
+        "trending": "Tendances",
+        "login": "Se connecter",
+        "register": "S'inscrire",
+        "feed": "Abonnements",
+        "preferences": "Préférences",
+        "history": "Historique"
+    },
+    "actions": {
+        "subscribe": "S'abonner",
+        "unsubscribe": "Se désabonner",
+        "buffering_goal": "Objectif de mise en mémoire tampon (en secondes)",
+        "skip_non_music": "Ignorer la musique : section non musicale",
+        "skip_self_promo": "Ignorer la promotion non rémunérée / l'autopromotion",
+        "skip_interaction": "Ignorer les rappels d'interaction (S'abonner)",
+        "skip_preview": "Ignorer l'aperçu / le récapitulatif",
+        "skip_outro": "Ignorer les crédits de fin",
+        "skip_intro": "Ignorer l'animation de l'entracte/Intro",
+        "skip_sponsors": "Ignorer les sponsors",
+        "instances_list": "Liste des instances",
+        "language_selection": "Sélection de la langue",
+        "store_watch_history": "Conserver l'historique de visionnage",
+        "minimize_description": "Minimiser la description par défaut",
+        "show_comments": "Afficher les commentaires",
+        "light": "Clair",
+        "dark": "Sombre",
+        "auto": "Auto",
+        "theme": "Thème",
+        "enable_sponsorblock": "Activer Sponsorblock",
+        "channel_name_desc": "Nom de la chaîne (Z-A)",
+        "view_subscriptions": "Voir les abonnements",
+        "back": "Retour",
+        "uses_api_from": "Utilise l'API de ",
+        "sort_by": "Trier par :",
+        "channel_name_asc": "Nom de la chaîne (A-Z)",
+        "least_recent": "Le moins récent",
+        "most_recent": "Le plus récent"
+    },
+    "preferences": {
+        "homepage": "Page d'accueil par défaut",
+        "region": "Sélection du pays",
+        "playerAutoplay": "Lire automatique la vidéo",
+        "quality": "Qualité par défaut",
+        "listen": "Audio seulement"
+    }
+}

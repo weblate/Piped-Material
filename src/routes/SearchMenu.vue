@@ -7,9 +7,10 @@
     cache-items
     class="mx-4"
     flat
+    dense
     hide-no-data
     hide-details
-    label="What are you looking for?"
+    :label="$t('misc.searchBarLabel')"
     solo-inverted
   ></v-autocomplete>
 </template>
