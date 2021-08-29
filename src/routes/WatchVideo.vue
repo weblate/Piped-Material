@@ -3,7 +3,7 @@
   <div v-else>
     <Player
       :video="video"
-      :skip-to-time="'t' in $route.query ? $route.query.t : null"
+      :skip-to-time="'t' in $route.query ? Number($route.query.t) : null"
       :sponsors="sponsors"
       :selectedAutoPlay="this.$store.getters.getPreferenceBoolean('autoplay')"
       :selectedAutoLoop="selectedAutoLoop"
@@ -140,9 +140,12 @@ export default {
 
     videoEnded () {
       if (!this.selectedAutoLoop && this.isAutoplayEnabled && this.video.relatedStreams[0]) {
-        this.$route.query.v = LibPiped.determineVideoIdFromPath(this.video.relatedStreams[0].url)
-        delete this.$route.query.t
-        this.initialize()
+        this.$router.push({
+          name: 'WatchVideo',
+          query: {
+            v: LibPiped.determineVideoIdFromPath(this.video.relatedStreams[0].url)
+          }
+        })
       }
     },
 
