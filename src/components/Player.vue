@@ -153,24 +153,7 @@ export default {
         })
 
         videoEl.addEventListener('ended', () => {
-          if (!this.selectedAutoLoop && this.selectedAutoPlay && this.video.relatedStreams.length > 0) {
-            const params = this.$route.query
-            let url = this.video.relatedStreams[0].url
-            const searchParams = new URLSearchParams()
-            for (const param in params) {
-              switch (param) {
-                case 'v':
-                case 't':
-                  break
-                default:
-                  searchParams.set(param, params[param])
-                  break
-              }
-            }
-            const paramStr = searchParams.toString()
-            if (paramStr.length > 0) url += '&' + paramStr
-            this.$router.push(url)
-          }
+          this.$emit('videoEnded')
         })
       }
 
