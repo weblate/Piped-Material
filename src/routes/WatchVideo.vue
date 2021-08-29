@@ -2,11 +2,12 @@
   <ErrorHandler v-if="video && video.error" :message="video.message" :error="video.error" />
   <div v-else>
     <Player
-      ref="videoPlayer"
       :video="video"
+      :skip-to-time="'t' in $route.query ? $route.query.t : null"
       :sponsors="sponsors"
       :selectedAutoPlay="this.$store.getters.getPreferenceBoolean('autoplay')"
       :selectedAutoLoop="selectedAutoLoop"
+      @videoEnded="videoEnded"
     />
 
     <v-row dense class="my-2">
@@ -67,7 +68,7 @@
             </div>
             <div>
               <!-- TODO translate -->
-              <v-checkbox dense :value="this.$store.getters.getPreferenceBoolean('autoplay')" @change="onAutoplayChg" label="Autoplay next video" />
+              <v-checkbox dense :value="isAutoplayEnabled" @change="onAutoplayChg" label="Autoplay next video" />
               <v-checkbox dense v-model="selectedAutoLoop" label="Loop this video" />
             </div>
           </v-card-text>
@@ -132,11 +133,17 @@ export default {
   },
   methods: {
     initialize () {
-      this.getVideoData().then(() => {
-        this.$refs.videoPlayer.loadVideo()
-      })
+      this.getVideoData()
       this.getSponsors()
       if (this.$store.getters.getPreferenceBoolean('comments', true)) this.getComments()
+    },
+
+    videoEnded () {
+      if (!this.selectedAutoLoop && this.isAutoplayEnabled && this.video.relatedStreams[0]) {
+        this.$route.query.v = LibPiped.determineVideoIdFromPath(this.video.relatedStreams[0].url)
+        delete this.$route.query.t
+        this.initialize()
+      }
     },
 
     numberFormat (...args) {
@@ -201,6 +208,7 @@ export default {
     getVideoData () {
       return this.fetchVideo()
         .then(data => {
+          data.videoId = this.getVideoId()
           this.video = data
         })
         .then(() => {
@@ -262,6 +270,11 @@ export default {
 
     getVideoId () {
       return this.$route.query.v || this.$route.params.v
+    }
+  },
+  computed: {
+    isAutoplayEnabled () {
+      return this.$store.getters.getPreferenceBoolean('autoplay')
     }
   },
   components: {

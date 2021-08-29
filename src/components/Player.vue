@@ -1,7 +1,7 @@
 <template>
   <div
     data-shaka-player-container
-    style="width: 100%; height: 100%; max-height: 75vh; min-height: calc(100vh - 64px); background: #000"
+    style="width: 100%; height: calc(100vh - 64px); background: #000"
     ref="container"
   >
     <video
@@ -40,6 +40,7 @@ export default {
   props: {
     video: Object,
     sponsors: Object,
+    skipToTime: Number,
     selectedAutoPlay: Boolean,
     selectedAutoLoop: Boolean
   },
@@ -68,7 +69,7 @@ export default {
 
       videoEl.setAttribute('poster', this.video.thumbnailUrl)
 
-      if (this.$route.query.t) videoEl.currentTime = this.$route.query.t
+      if (this.skipToTime != null) videoEl.currentTime = this.skipToTime
 
       const noPrevPlayer = !this.player
 
@@ -225,6 +226,13 @@ export default {
       })
     }
   },
+
+  watch: {
+    'video.videoId' () {
+      this.loadVideo()
+    }
+  },
+
   activated () {
     import('hotkeys-js')
       .then(mod => mod.default)
@@ -276,7 +284,9 @@ export default {
           }
         })
       })
+    this.loadVideo()
   },
+
   deactivated () {
     if (this.ui) {
       this.ui.destroy()
