@@ -12,11 +12,4 @@
   }
 }
 
-.bengali {
-  @include addFonts('Baloo Da 2');
-}
-/*
-.latin {
-  @include addFonts('Some Font');
-}
-*/
+@include addFonts('Hind Siliguri');

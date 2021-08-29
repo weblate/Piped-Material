@@ -32,7 +32,7 @@ async function syncStylesPerLanguage (locale) {
       break
     // Bengali script
     case 'bn_beng':
-      await import('@fontsource/baloo-da-2/bengali.css')
+      await import('@fontsource/hind-siliguri/bengali.css')
       document.body.classList.remove(...document.body.classList)
       document.body.classList.add('bengali')
       break
