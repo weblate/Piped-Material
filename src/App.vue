@@ -5,26 +5,36 @@
       color="primary"
       dark
     >
-      <v-btn
-        text
-        link
-        v-for="link in links"
-        :key="link.id"
-        :to="link.to"
-        class="mr-1"
-      >
-        {{ $t(link.name) }}
-      </v-btn>
-      <v-select
-        dense
-        :items="languageOptions"
-        label="Language"
-        :value="$i18n.locale"
-        @input="changeLocale"
-        outlined
-        class="mt-6"
-      />
-      <SearchMenu />
+      <!-- Someone help me fix this horrid design -->
+      <v-container class="py-2 fill-height">
+        <v-row>
+          <v-col md="6">
+            <v-btn
+              text
+              link
+              v-for="link in links"
+              :key="link.id"
+              :to="link.to"
+              class="mr-1"
+            >
+              {{ $t(link.name) }}
+            </v-btn>
+          </v-col>
+          <v-col md="1">
+            <v-select
+              dense
+              :items="languageOptions"
+              label="Language"
+              :value="$i18n.locale"
+              @input="changeLocale"
+              outlined
+            />
+          </v-col>
+          <v-col md="5">
+            <SearchMenu />
+          </v-col>
+        </v-row>
+      </v-container>
     </v-app-bar>
 
     <v-main class="grey lighten-3">
