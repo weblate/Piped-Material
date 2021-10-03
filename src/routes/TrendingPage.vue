@@ -5,7 +5,7 @@
     <v-divider class="my-4" />
 
     <v-row v-for="(row, rowId) in chunkedByFour" :key="rowId">
-      <v-col md="3" v-for="(video, videoId) in row" :key="videoId">
+      <v-col md="2" v-for="(video, videoId) in row" :key="videoId">
         <VideoItem :video="video" />
       </v-col>
     </v-row>
@@ -47,7 +47,7 @@ export default {
   },
   computed: {
     chunkedByFour () {
-      return _chunk(this.videos, 4)
+      return _chunk(this.videos, 6)
     }
   },
   components: {

@@ -13,8 +13,10 @@ export const WatchedVideosDB = new PouchDB('WatchedVideosDB', {
 export async function addWatchedVideo (videoObj, currentUrl) {
   return WatchedVideosDB.put({
     _id: generateRandomID(),
-    video: videoObj,
-    url: currentUrl,
+    video: {
+      ...videoObj,
+      url: currentUrl
+    },
     timestamp: new Date()
   })
 }
