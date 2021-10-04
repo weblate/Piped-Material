@@ -22,6 +22,10 @@
   left: auto !important;
 }
 
+.shaka-video-container:-webkit-full-screen {
+    max-height: none !important;
+}
+
 .shaka-text-container * {
   background-color: rgba(8, 8, 8, 0.75) !important;
   color: white !important;
@@ -167,6 +171,13 @@ export default {
           })
         })
 
+        videoEl.addEventListener('ratechange', () => {
+          this.$store.commit('setPrefs', {
+            id: 'rate',
+            value: videoEl.playbackRate
+          })
+        })
+
         videoEl.addEventListener('ended', () => {
           if (!this.selectedAutoLoop && this.selectedAutoPlay && this.video.relatedStreams.length > 0) {
             const params = this.$route.query
@@ -254,6 +265,7 @@ export default {
           )
         })
         videoEl.volume = this.$store.getters.getPreferenceNumber('volume', 1)
+        videoEl.playbackRate = this.$store.getters.getPreferenceNumber('rate', 1)
       })
     }
   },
