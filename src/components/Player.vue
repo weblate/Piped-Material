@@ -22,6 +22,10 @@
   left: auto !important;
 }
 
+.shaka-video-container:-webkit-full-screen {
+    max-height: none !important;
+}
+
 .shaka-text-container * {
   background-color: rgba(8, 8, 8, 0.75) !important;
   color: white !important;
@@ -63,7 +67,7 @@ export default {
     }
   },
   methods: {
-    loadVideo () {
+    async loadVideo () {
       const component = this
       const videoEl = this.$refs.videoEl
 
@@ -79,12 +83,14 @@ export default {
       streams.push(...this.video.videoStreams)
 
       const MseSupport = window.MediaSource !== undefined
+      const lbry = this.video.videoStreams.filter(stream => stream.quality === 'LBRY')[0]
 
-      let uri
+      let uri, mime
 
       if (this.video.livestream) {
         uri = this.video.hls
-      } else if (this.video.audioStreams.length > 0 && MseSupport) {
+        mime = 'application/x-mpegURL'
+      } else if (this.video.audioStreams.length > 0 && !lbry && MseSupport) {
         if (!this.video.dash) {
           const dash = DashUtils.generate_dash_file_from_formats(
             streams,
@@ -94,6 +100,14 @@ export default {
         } else {
           uri = this.video.dash
         }
+        mime = 'application/dash+xml'
+      } else if (lbry) {
+        const contentType = await fetch(uri, {
+          method: 'HEAD'
+        }).then(response => response.headers.get('Content-Type'))
+
+        mime = contentType
+        uri = lbry.uri
       } else {
         uri = this.video.videoStreams.filter(stream => stream.codec == null).slice(-1)[0].url
       }
@@ -102,17 +116,22 @@ export default {
         shaka.polyfill.installAll()
 
         const localPlayer = new shaka.Player(videoEl)
+        const proxyHost = new URL(component.video.proxyUrl).host
 
         localPlayer.getNetworkingEngine().registerRequestFilter((_type, request) => {
           const uri = request.uris[0]
           const url = new URL(uri)
-          if (url.host.endsWith('.googlevideo.com')) {
+          const headers = request.headers
+          if (
+            url.host.endsWith('.googlevideo.com') ||
+            (url.host.endsWith('.lbryplayer.xyz') && headers.Range)
+          ) {
             url.searchParams.set('host', url.host)
-            url.host = new URL(component.video.proxyUrl).host
+            url.host = proxyHost
             request.uris[0] = url.toString()
           }
+
           if (url.pathname === '/videoplayback') {
-            const headers = request.headers
             if (headers.Range) {
               url.searchParams.set('range', headers.Range.split('=')[1])
               request.headers = {}
@@ -126,8 +145,8 @@ export default {
           Math.max(this.$store.getters.getPreferenceNumber('bufferGoal', 10), 10)
         )
 
-        this.setPlayerAttrs(localPlayer, videoEl, uri, shaka)
-      } else this.setPlayerAttrs(this.player, videoEl, uri, shaka)
+        this.setPlayerAttrs(localPlayer, videoEl, uri, mime, shaka)
+      } else this.setPlayerAttrs(this.player, videoEl, uri, mime, shaka)
 
       if (noPrevPlayer) {
         videoEl.addEventListener('timeupdate', () => {
@@ -153,6 +172,13 @@ export default {
           })
         })
 
+        videoEl.addEventListener('ratechange', () => {
+          this.$store.commit('setPrefs', {
+            id: 'rate',
+            value: videoEl.playbackRate
+          })
+        })
+
         videoEl.addEventListener('ended', () => {
           this.$emit('videoEnded')
         })
@@ -160,7 +186,7 @@ export default {
 
       // TODO: Add sponsors on seekbar: https://github.com/ajayyy/SponsorBlock/blob/e39de9fd852adb9196e0358ed827ad38d9933e29/src/js-components/previewBar.ts#L12
     },
-    setPlayerAttrs (localPlayer, videoEl, uri, shaka) {
+    setPlayerAttrs (localPlayer, videoEl, uri, mime, shaka) {
       if (!this.ui) {
         this.ui = new shaka.ui.Overlay(localPlayer, this.$refs.container, videoEl)
 
@@ -195,7 +221,7 @@ export default {
                 quality > 0 && (this.video.audioStreams.length > 0 || this.video.livestream) && !disableVideo
       if (qualityConds) this.player.configure('abr.enabled', false)
 
-      player.load(uri, 0, uri.indexOf('dash') >= 0 ? 'application/dash+xml' : 'video/mp4').then(() => {
+      player.load(uri, 0, mime).then(() => {
         if (qualityConds) {
           let leastDiff = Number.MAX_VALUE
           let bestStream = null
@@ -223,6 +249,7 @@ export default {
           )
         })
         videoEl.volume = this.$store.getters.getPreferenceNumber('volume', 1)
+        videoEl.playbackRate = this.$store.getters.getPreferenceNumber('rate', 1)
       })
     }
   },
