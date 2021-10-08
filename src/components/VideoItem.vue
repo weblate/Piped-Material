@@ -1,5 +1,5 @@
 <template>
-    <v-card link :to="video.url">
+    <v-card link :to="video.url" outlined :height="maxHeight ? '100%' : undefined">
       <v-img
         :height="height"
         :width="width"
@@ -28,7 +28,8 @@ export default {
     video: Object,
     height: Number,
     width: Number,
-    hideChannel: Boolean
+    hideChannel: Boolean,
+    maxHeight: Boolean
   },
   methods: {
     numberFormat (...args) {
