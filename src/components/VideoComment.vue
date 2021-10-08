@@ -1,5 +1,5 @@
 <template>
-  <v-card class="pa-1" outlined>
+  <v-card class="pa-1" elevation="2" outlined>
     <v-row align="center" justify="center">
       <v-col md="1">
         <v-avatar size="96" class="mx-3">
