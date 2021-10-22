@@ -4,10 +4,9 @@
       app
       color="primary"
       dark
-      class="pt-3"
       v-if="$vuetify.breakpoint.mdAndUp"
     >
-      <v-row dense>
+      <v-row dense align="center" justify="center">
         <v-col md="1" v-for="link in links" :key="link.id">
           <v-btn
             text
@@ -18,8 +17,9 @@
             {{ $t(link.name) }}
           </v-btn>
         </v-col>
-        <v-col md="2">
+        <v-col md="2" class="mx-3">
           <v-select
+            class="mt-6"
             dense
             :items="languageOptions"
             label="Language"
