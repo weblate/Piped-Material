@@ -65,6 +65,11 @@ class LibPiped {
   timeAgo (time) {
     return timeAgo.format(time)
   }
+
+  determineVideoIdFromPath (path) {
+    const loc = new URL('http://localhost' + path)
+    return loc.searchParams.get('v')
+  }
 }
 
 const lp = new LibPiped()

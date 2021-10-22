@@ -1,43 +1,73 @@
 <template>
-  <v-app id="inspire">
+  <v-app>
     <v-app-bar
       app
       color="primary"
       dark
+      class="pt-3"
+      v-if="$vuetify.breakpoint.mdAndUp"
     >
-      <!-- Someone help me fix this horrid design -->
-      <v-container class="py-2 fill-height">
-        <v-row>
-          <v-col md="6">
-            <v-btn
-              text
-              link
-              v-for="link in links"
-              :key="link.id"
-              :to="link.to"
-              class="mr-1"
-            >
-              {{ $t(link.name) }}
-            </v-btn>
-          </v-col>
-          <v-col md="1">
-            <v-select
-              dense
-              :items="languageOptions"
-              label="Language"
-              :value="$i18n.locale"
-              @input="changeLocale"
-              outlined
-            />
-          </v-col>
-          <v-col md="5">
-            <SearchMenu />
-          </v-col>
-        </v-row>
-      </v-container>
+      <v-row dense>
+        <v-col md="1" v-for="link in links" :key="link.id">
+          <v-btn
+            text
+            link
+            min-width="100%"
+            :to="link.to"
+          >
+            {{ $t(link.name) }}
+          </v-btn>
+        </v-col>
+        <v-col md="2">
+          <v-select
+            dense
+            :items="languageOptions"
+            label="Language"
+            :value="$i18n.locale"
+            @input="changeLocale"
+            outlined
+          />
+        </v-col>
+        <v-col>
+          <SearchMenu />
+        </v-col>
+      </v-row>
     </v-app-bar>
+    <div v-else>
+      <v-navigation-drawer
+        v-model="drawer"
+        app
+      >
+        <v-list nav>
+          <v-list-item
+            v-for="link in links"
+            :key="link.id"
+            link
+            :to="link.to"
+          >
+            {{ $t(link.name) }}
+          </v-list-item>
+        </v-list>
+        <v-select
+          dense
+          :items="languageOptions"
+          label="Language"
+          :value="$i18n.locale"
+          @input="changeLocale"
+          outlined
+          class="mx-2"
+        />
+        <SearchMenu class="mx-2" />
+      </v-navigation-drawer>
 
-    <v-main class="grey lighten-3">
+      <v-app-bar app color="primary" dark>
+        <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+
+        <v-toolbar-title>Piped Material</v-toolbar-title>
+      </v-app-bar>
+    </div>
+
+    <v-main>
       <router-view />
     </v-main>
   </v-app>
@@ -93,7 +123,8 @@ export default {
       /* { value: 'bn_latn', text: 'Bengali (Latin)' }, */
     ].sort((a, b) => {
       return a.text.localeCompare(b.text)
-    })
+    }),
+    drawer: false
   }),
 
   methods: {

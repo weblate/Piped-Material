@@ -5,7 +5,6 @@
     :items="searchSuggestions"
     :search-input.sync="searchText"
     cache-items
-    class="mx-4"
     flat
     dense
     hide-no-data
