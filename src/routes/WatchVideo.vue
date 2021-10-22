@@ -47,9 +47,9 @@
                 <div>
                   <v-img :src="video.uploaderAvatar" height="48" width="48" class="rounded-circle" />
                 </div>
-                <div class="text-h5 ml-4">
+                <a :href="video.uploaderUrl" class="text-h5 ml-4 text-decoration-none">
                   {{ video.uploader }}
-                </div>
+                </a>
                 <div class="ml-4">
                   <v-btn
                     v-if="$store.state['auth/isAuthenticated']"
