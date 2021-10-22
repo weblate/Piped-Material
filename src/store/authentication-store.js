@@ -34,7 +34,12 @@ const AuthenticationStore = {
         baseURL: rootGetters['prefs/apiUrl'],
         method,
         url: path,
-        params
+        params,
+        headers: state.isAuthenticated
+          ? {
+              Authorization: state.authToken
+            }
+          : undefined
       })
 
       return resp

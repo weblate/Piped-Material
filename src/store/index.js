@@ -14,7 +14,7 @@ const store = new Vuex.Store({
   }
 })
 
-store.watch(state => state.prefs.prefs, (nextPrefs) => {
+store.watch(state => state['prefs/prefs'], (nextPrefs) => {
   if (isPlainObject(nextPrefs)) {
     window.localStorage.setItem('PREFERENCES', JSON.stringify(nextPrefs))
   }

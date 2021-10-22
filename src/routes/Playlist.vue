@@ -61,7 +61,7 @@ export default {
   },
   computed: {
     getRssUrl () {
-      return this.$store.getters.apiUrl + '/rss/playlists/' + this.$route.query.list
+      return this.$store.getters['prefs/apiUrl'] + '/rss/playlists/' + this.$route.query.list
     },
 
     chunkedByFour () {
@@ -70,7 +70,7 @@ export default {
   },
   methods: {
     async fetchPlaylist () {
-      return this.$store.dispatch('fetchJson', {
+      return this.$store.dispatch('auth/makeRequest', {
         path: '/playlists/' + this.$route.query.list
       })
     },

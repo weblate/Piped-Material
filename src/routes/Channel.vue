@@ -55,7 +55,7 @@ export default {
   },
   methods: {
     async fetchChannel () {
-      return this.$store.dispatch('fetchJson', {
+      return this.$store.dispatch('auth/makeRequest', {
         path: '/' + this.$route.params.path + '/' + this.$route.params.channelId
       })
     },
@@ -71,7 +71,7 @@ export default {
     },
 
     fetchMoreVideos () {
-      this.$store.dispatch('fetchJson', {
+      this.$store.dispatch('auth/makeRequest', {
         path: '/nextpage/channel/' + this.channel.id,
         params: {
           nextpage: this.channel.nextpage
