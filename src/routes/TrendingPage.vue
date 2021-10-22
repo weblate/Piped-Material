@@ -31,7 +31,7 @@ export default {
   },
 
   mounted () {
-    const region = this.$store.getters.getPreferenceString('region', 'US')
+    const region = this.$store.getters.getPreference('region', 'US')
 
     this.fetchTrending(region).then(videos => (this.videos = videos))
   },

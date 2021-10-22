@@ -55,7 +55,7 @@ export default {
   },
   computed: {
     shouldAutoPlay () {
-      return this.$store.getters.getPreferenceBoolean('playerAutoPlay', true)
+      return this.$store.getters['prefs/getPreferenceBoolean']('playerAutoPlay', true)
     },
 
     preferredVideoCodecs () {

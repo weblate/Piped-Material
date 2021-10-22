@@ -5,7 +5,7 @@
       :video="video"
       :skip-to-time="'t' in $route.query ? Number($route.query.t) : null"
       :sponsors="sponsors"
-      :selectedAutoPlay="this.$store.getters.getPreferenceBoolean('autoplay')"
+      :selectedAutoPlay="$store.getters['prefs/getPreferenceBoolean']('autoplay')"
       :selectedAutoLoop="selectedAutoLoop"
       @videoEnded="videoEnded"
     />
@@ -135,7 +135,7 @@ export default {
     initialize () {
       this.getVideoData()
       this.getSponsors()
-      if (this.$store.getters.getPreferenceBoolean('comments', true)) this.getComments()
+      if (this.$store.getters['prefs/getPreferenceBoolean']('comments', true)) this.getComments()
     },
 
     videoEnded () {
@@ -158,18 +158,19 @@ export default {
     },
 
     fetchVideo () {
-      return this.$store.dispatch('fetchJson', {
+      return this.$store.dispatch('auth/makeRequest', {
+        method: 'GET',
         path: '/streams/' + this.getVideoId()
       })
     },
 
     async fetchSponsors () {
-      return this.$store.dispatch('fetchJson', {
+      return this.$store.dispatch('auth/makeRequest', {
         path: '/sponsors/' + this.getVideoId(),
         params: {
           category:
               '["' +
-              this.$store.getters.getPreferenceString('selectedSkip', 'sponsor,interaction,selfpromo,music_offtopic').replaceAll(
+              this.$store.getters.getPreference('selectedSkip', 'sponsor,interaction,selfpromo,music_offtopic').replaceAll(
                 ',',
                 '","'
               ) +
@@ -231,7 +232,7 @@ export default {
         })
     },
     async getSponsors () {
-      if (this.$store.getters.getPreferenceString('sponsorblock', true)) { this.fetchSponsors().then(data => (this.sponsors = data)) }
+      if (this.$store.getters.getPreference('sponsorblock', true)) { this.fetchSponsors().then(data => (this.sponsors = data)) }
     },
     async getComments () {
       this.fetchComments().then(data => (this.comments = data))

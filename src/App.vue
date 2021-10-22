@@ -133,7 +133,7 @@ export default {
     }
   },
   created () {
-    this.$store.dispatch('loadState')
+    this.$store.dispatch('prefs/loadState')
   }
 }
 </script>
