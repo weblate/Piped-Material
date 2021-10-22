@@ -5,11 +5,25 @@ const AuthenticationStore = {
   namespaced: true,
 
   state: () => ({
-    isAuthenticated: true,
+    isAuthenticated: false,
     authToken: null
   }),
 
+  mutations: {
+    replaceAuth (state, data) {
+      state.isAuthenticated = data.isAuthenticated ?? state.isAuthenticated
+      state.authToken = data.authToken ?? state.authToken
+    }
+  },
+
   actions: {
+    initializeAuth ({ commit }) {
+      const data = window.localStorage.getItem('AUTH')
+      if (data != null) {
+        commit('replaceAuth', data)
+      }
+    },
+
     async makeRequest ({
       commit,
       state,

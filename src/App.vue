@@ -134,6 +134,7 @@ export default {
   },
   created () {
     this.$store.dispatch('prefs/loadState')
+    this.$store.dispatch('auth/initializeAuth')
   }
 }
 </script>

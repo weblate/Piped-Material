@@ -12,4 +12,10 @@
   }
 }
 
-@include addFonts('Hind Siliguri');
+.latin {
+  @include addFonts('Helvetica Neue');
+}
+
+.bengali {
+  @include addFonts('Hind Silliguri')
+}

@@ -238,7 +238,7 @@ export default {
       this.fetchComments().then(data => (this.comments = data))
     },
     async fetchSubscribedStatus () {
-      if (!this.channelId) return
+      if (!this.channelId || !this.$store.state['auth/isAuthenticated']) return
 
       this.$store.dispatch('auth/makeRequest', {
         path: '/subscribed',
