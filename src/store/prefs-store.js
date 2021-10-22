@@ -1,4 +1,4 @@
-import { cloneDeep as _cloneDeep, get as _get, isString, set as _set } from 'lodash-es'
+import { get as _get, isString, set as _set } from 'lodash-es'
 
 const PrefsStore = {
   namespaced: true,
@@ -10,9 +10,8 @@ const PrefsStore = {
       id,
       value
     }) {
-      const clonedPrefs = _cloneDeep(state.prefs)
-      _set(clonedPrefs, id, value)
-      state.prefs = clonedPrefs
+      _set(state.prefs, id, value)
+      window.localStorage.setItem('PREFERENCES', JSON.stringify(state.prefs))
     },
 
     replacePrefs (state, nextPrefs) {

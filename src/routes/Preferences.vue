@@ -3,8 +3,17 @@
     <h1 class="text-h4 text-center">{{ $t('titles.preferences') }}</h1>
     <v-divider class="ma-4" />
     <div style="display: flex;" v-for="(opt, optId) in options" :key="optId">
-      <v-simple-checkbox v-if="opt.type === 'bool'" :value="$store.getters['prefs/getPreferenceBoolean'](opt.id, opt.default)" @input="setValue(opt.id, $event)" />
-      <v-select v-else-if="opt.type === 'select'" :label="$t('preferences.' + opt.id)" :value="$store.getters['prefs/getPreference'](opt.id, opt.default)" @input="setValue(opt.id, $event)" :items="opt.options" />
+      <v-simple-checkbox
+        v-if="opt.type === 'bool'"
+        :value="$store.getters['prefs/getPreferenceBoolean'](opt.id, opt.default)"
+        @input="setValue(opt.id, $event)"
+      />
+      <v-select
+        v-else-if="opt.type === 'select'"
+        :label="$t('preferences.' + opt.id)"
+        :value="$store.getters['prefs/getPreference'](opt.id, opt.default)"
+        @input="setValue(opt.id, $event)" :items="opt.options"
+      />
       <p v-if="opt.type === 'bool'">{{ $t('preferences.' + opt.id) }}</p><br />
     </div>
     <h5 class="text-h5">{{ $t('actions.instances_list') }}</h5>
