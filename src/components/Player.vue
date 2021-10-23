@@ -249,7 +249,7 @@ export default {
           )
         })
         videoEl.volume = this.$store.getters.getPreferenceNumber('volume', 1)
-        videoEl.playbackRate = this.$store.getters.getPreferenceNumber('rate', 1)
+        videoEl.playbackRate = videoEl.defaultPlaybackRate = this.$store.getters.getPreferenceNumber('rate', 1)
       })
     }
   },
