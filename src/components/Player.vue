@@ -142,7 +142,7 @@ export default {
 
         localPlayer.configure(
           'streaming.bufferingGoal',
-          Math.max(this.$store.getters['prefs/getPreferenceNumber']('bufferGoal', 10), 10)
+          this.$store.getters['prefs/getPreferenceNumber']('bufferGoal', 10)
         )
 
         this.setPlayerAttrs(localPlayer, videoEl, uri, mime, shaka)

@@ -8,6 +8,13 @@
         :value="$store.getters['prefs/getPreferenceBoolean'](opt.id, opt.default)"
         @input="setValue(opt.id, $event)"
       />
+      <v-text-field
+        v-else-if="opt.type === 'number'"
+        type="number"
+        :label="$t('preferences.' + opt.id)"
+        :value="$store.getters['prefs/getPreferenceNumber'](opt.id, opt.default)"
+        @input="setValue(opt.id, Number($event))"
+      />
       <v-select
         v-else-if="opt.type === 'select'"
         :label="$t('preferences.' + opt.id)"
@@ -55,6 +62,11 @@ export default {
               value: i
             })))
           ]
+        },
+        {
+          id: 'bufferGoal',
+          type: 'number',
+          default: 10
         },
         {
           id: 'region',
