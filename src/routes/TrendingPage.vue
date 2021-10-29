@@ -31,16 +31,16 @@ export default {
   },
 
   mounted () {
-    const region = this.$store.getters.getPreferenceString('region', 'US')
+    const region = this.$store.getters['prefs/getPreference']('region', 'US')
 
     this.fetchTrending(region).then(videos => (this.videos = videos))
   },
   methods: {
     async fetchTrending (region) {
-      return this.$store.dispatch('fetchJson', {
+      return this.$store.dispatch('auth/makeRequest', {
         path: '/trending',
         params: {
-          region: region || 'US'
+          region: region
         }
       })
     }

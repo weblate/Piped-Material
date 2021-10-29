@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 
-import '@fontsource/hind-siliguri/latin.css'
+import '@mdi/font/css/materialdesignicons.min.css'
 import '@/styles/main.scss'
 
 import { i18n } from '@/plugins/i18n'

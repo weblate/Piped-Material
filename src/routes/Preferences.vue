@@ -3,8 +3,24 @@
     <h1 class="text-h4 text-center">{{ $t('titles.preferences') }}</h1>
     <v-divider class="ma-4" />
     <div style="display: flex;" v-for="(opt, optId) in options" :key="optId">
-      <v-simple-checkbox v-if="opt.type === 'bool'" :value="$store.getters.getPreferenceBoolean(opt.id, opt.default)" @input="setValue(opt.id, $event)" />
-      <v-select v-else-if="opt.type === 'select'" :label="$t('preferences.' + opt.id)" :value="$store.getters.getPreferenceString(opt.id, opt.default)" @input="setValue(opt.id, $event)" :items="opt.options" />
+      <v-simple-checkbox
+        v-if="opt.type === 'bool'"
+        :value="$store.getters['prefs/getPreferenceBoolean'](opt.id, opt.default)"
+        @input="setValue(opt.id, $event)"
+      />
+      <v-text-field
+        v-else-if="opt.type === 'number'"
+        type="number"
+        :label="$t('preferences.' + opt.id)"
+        :value="$store.getters['prefs/getPreferenceNumber'](opt.id, opt.default)"
+        @input="setValue(opt.id, Number($event))"
+      />
+      <v-select
+        v-else-if="opt.type === 'select'"
+        :label="$t('preferences.' + opt.id)"
+        :value="$store.getters['prefs/getPreference'](opt.id, opt.default)"
+        @input="setValue(opt.id, $event)" :items="opt.options"
+      />
       <p v-if="opt.type === 'bool'">{{ $t('preferences.' + opt.id) }}</p><br />
     </div>
     <h5 class="text-h5">{{ $t('actions.instances_list') }}</h5>
@@ -46,6 +62,11 @@ export default {
               value: i
             })))
           ]
+        },
+        {
+          id: 'bufferGoal',
+          type: 'number',
+          default: 10
         },
         {
           id: 'region',
@@ -139,7 +160,7 @@ export default {
   },
   methods: {
     setValue (k, v) {
-      this.$store.commit('setPrefs', {
+      this.$store.commit('prefs/setPrefs', {
         id: k,
         value: v
       })

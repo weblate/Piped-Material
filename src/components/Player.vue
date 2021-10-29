@@ -55,7 +55,7 @@ export default {
   },
   computed: {
     shouldAutoPlay () {
-      return this.$store.getters.getPreferenceBoolean('playerAutoPlay', true)
+      return this.$store.getters['prefs/getPreferenceBoolean']('playerAutoPlay', true)
     },
 
     preferredVideoCodecs () {
@@ -142,7 +142,7 @@ export default {
 
         localPlayer.configure(
           'streaming.bufferingGoal',
-          Math.max(this.$store.getters.getPreferenceNumber('bufferGoal', 10), 10)
+          this.$store.getters['prefs/getPreferenceNumber']('bufferGoal', 10)
         )
 
         this.setPlayerAttrs(localPlayer, videoEl, uri, mime, shaka)
@@ -166,14 +166,14 @@ export default {
         })
 
         videoEl.addEventListener('volumechange', () => {
-          this.$store.commit('setPrefs', {
+          this.$store.commit('prefs/setPrefs', {
             id: 'volume',
             value: videoEl.volume
           })
         })
 
         videoEl.addEventListener('ratechange', () => {
-          this.$store.commit('setPrefs', {
+          this.$store.commit('prefs/setPrefs', {
             id: 'rate',
             value: videoEl.playbackRate
           })
@@ -206,7 +206,7 @@ export default {
 
       this.player = player
 
-      const disableVideo = this.$store.getters.getPreferenceBoolean('listen', false) && !this.video.livestream
+      const disableVideo = this.$store.getters['prefs/getPreferenceBoolean']('listen', false) && !this.video.livestream
 
       this.player.configure({
         preferredVideoCodecs: this.preferredVideoCodecs,
@@ -216,9 +216,8 @@ export default {
         }
       })
 
-      const quality = this.$store.getters.getPreferenceNumber('quality', 0)
-      const qualityConds =
-                quality > 0 && (this.video.audioStreams.length > 0 || this.video.livestream) && !disableVideo
+      const quality = this.$store.getters['prefs/getPreferenceNumber']('quality', 0)
+      const qualityConds = quality > 0 && (this.video.audioStreams.length > 0 || this.video.livestream) && !disableVideo
       if (qualityConds) this.player.configure('abr.enabled', false)
 
       player.load(uri, 0, mime).then(() => {
@@ -248,8 +247,8 @@ export default {
             subtitle.name
           )
         })
-        videoEl.volume = this.$store.getters.getPreferenceNumber('volume', 1)
-        videoEl.playbackRate = videoEl.defaultPlaybackRate = this.$store.getters.getPreferenceNumber('rate', 1)
+        videoEl.volume = this.$store.getters['prefs/getPreferenceNumber']('volume', 1)
+        videoEl.playbackRate = videoEl.defaultPlaybackRate = this.$store.getters['prefs/getPreferenceNumber']('rate', 1)
       })
     }
   },

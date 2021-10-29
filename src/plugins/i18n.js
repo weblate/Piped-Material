@@ -65,10 +65,12 @@ export async function changeLocale (lang) {
 }
 
 function initializeLocalLocale () {
-  const lang = window.localStorage.getItem('LOCALE')
-  if (lang != null) {
-    changeLocale(lang).catch(e => console.error(e))
+  let lang = window.localStorage.getItem('LOCALE')
+  if (lang == null) {
+    // Default language
+    lang = 'en'
   }
+  changeLocale(lang).catch(e => console.error(e))
 }
 
 initializeLocalLocale()

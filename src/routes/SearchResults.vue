@@ -98,7 +98,7 @@ export default {
     },
 
     async fetchResults () {
-      return this.$store.dispatch('fetchJson', {
+      return this.$store.dispatch('auth/makeRequest', {
         path: 'search',
         params: {
           q: this.$route.query.search_query,
@@ -127,7 +127,7 @@ export default {
     },
 
     fetchMoreResults () {
-      this.$store.dispatch('fetchJson', {
+      this.$store.dispatch('auth/makeRequest', {
         path: '/nextpage/search',
         params: {
           nextpage: this.results.nextpage,

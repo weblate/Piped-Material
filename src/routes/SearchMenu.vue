@@ -54,7 +54,7 @@ export default {
   methods: {
     async refreshSuggestions () {
       this.requestInProgress = true
-      this.searchSuggestions = await this.$store.dispatch('fetchJson', {
+      this.searchSuggestions = await this.$store.dispatch('auth/makeRequest', {
         path: '/suggestions',
         params: {
           query: this.searchText

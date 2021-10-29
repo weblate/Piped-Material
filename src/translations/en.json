@@ -48,6 +48,7 @@
     },
     "preferences": {
         "playerAutoplay": "Autoplay Video",
+        "bufferGoal": "Buffering Goal",
         "listen": "Audio Only",
         "quality": "Default Quality",
         "region": "Country Selection",

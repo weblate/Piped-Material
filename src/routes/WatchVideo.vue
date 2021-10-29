@@ -5,7 +5,7 @@
       :video="video"
       :skip-to-time="'t' in $route.query ? Number($route.query.t) : null"
       :sponsors="sponsors"
-      :selectedAutoPlay="this.$store.getters.getPreferenceBoolean('autoplay')"
+      :selectedAutoPlay="$store.getters['prefs/getPreferenceBoolean']('autoplay')"
       :selectedAutoLoop="selectedAutoLoop"
       @videoEnded="videoEnded"
     />
@@ -47,12 +47,12 @@
                 <div>
                   <v-img :src="video.uploaderAvatar" height="48" width="48" class="rounded-circle" />
                 </div>
-                <div class="text-h5 ml-4">
+                <a :href="video.uploaderUrl" class="text-h5 ml-4 text-decoration-none">
                   {{ video.uploader }}
-                </div>
+                </a>
                 <div class="ml-4">
                   <v-btn
-                    v-if="$store.state.isAuthenticated"
+                    v-if="$store.state['auth/isAuthenticated']"
                     @click="subscribeHandler"
                     color="primary"
                   >
@@ -135,7 +135,7 @@ export default {
     initialize () {
       this.getVideoData()
       this.getSponsors()
-      if (this.$store.getters.getPreferenceBoolean('comments', true)) this.getComments()
+      if (this.$store.getters['prefs/getPreferenceBoolean']('comments', true)) this.getComments()
     },
 
     videoEnded () {
@@ -158,18 +158,19 @@ export default {
     },
 
     fetchVideo () {
-      return this.$store.dispatch('fetchJson', {
+      return this.$store.dispatch('auth/makeRequest', {
+        method: 'GET',
         path: '/streams/' + this.getVideoId()
       })
     },
 
     async fetchSponsors () {
-      return this.$store.dispatch('fetchJson', {
+      return this.$store.dispatch('auth/makeRequest', {
         path: '/sponsors/' + this.getVideoId(),
         params: {
           category:
               '["' +
-              this.$store.getters.getPreferenceString('selectedSkip', 'sponsor,interaction,selfpromo,music_offtopic').replaceAll(
+              this.$store.getters['prefs/getPreference']('selectedSkip', 'sponsor,interaction,selfpromo,music_offtopic').replaceAll(
                 ',',
                 '","'
               ) +
@@ -178,7 +179,7 @@ export default {
       })
     },
     fetchComments () {
-      return this.$store.dispatch('fetchJson', {
+      return this.$store.dispatch('auth/makeRequest', {
         path: '/comments/' + this.getVideoId()
       })
     },
@@ -190,7 +191,7 @@ export default {
     },
 
     fetchMoreComments () {
-      this.$store.dispatch('fetchJson', {
+      this.$store.dispatch('auth/makeRequest', {
         path: '/nextpage/comments/' + this.getVideoId(),
         params: {
           nextpage: this.comments.nextpage
@@ -202,7 +203,7 @@ export default {
     },
 
     onAutoplayChg (ev) {
-      this.$store.commit('setPrefs', {
+      this.$store.commit('prefs/setPrefs', {
         id: 'autoplay',
         value: ev
       })
@@ -231,41 +232,29 @@ export default {
         })
     },
     async getSponsors () {
-      if (this.$store.getters.getPreferenceString('sponsorblock', true)) { this.fetchSponsors().then(data => (this.sponsors = data)) }
+      if (this.$store.getters['prefs/getPreference']('sponsorblock', true)) { this.fetchSponsors().then(data => (this.sponsors = data)) }
     },
     async getComments () {
       this.fetchComments().then(data => (this.comments = data))
     },
     async fetchSubscribedStatus () {
-      if (!this.channelId) return
+      if (!this.channelId || !this.$store.state['auth/isAuthenticated']) return
 
-      this.$store.dispatch('fetchJson', {
+      this.$store.dispatch('auth/makeRequest', {
         path: '/subscribed',
         params: {
           channelId: this.channelId
-        },
-        options: {
-          headers: {
-            Authorization: this.$store.getters.getAuthToken
-          }
         }
       }).then(json => {
         this.subscribed = json.subscribed
       })
     },
     subscribeHandler () {
-      this.$store.dispatch('fetchJson', {
+      this.$store.dispatch('auth/makeRequest', {
+        method: 'POST',
         path: (this.subscribed ? '/unsubscribe' : '/subscribe'),
-        params: null,
-        options: {
-          method: 'POST',
-          body: JSON.stringify({
-            channelId: this.channelId
-          }),
-          headers: {
-            Authorization: this.$store.getters.getAuthToken,
-            'Content-Type': 'application/json'
-          }
+        data: {
+          channelId: this.channelId
         }
       })
       this.subscribed = !this.subscribed
@@ -277,7 +266,7 @@ export default {
   },
   computed: {
     isAutoplayEnabled () {
-      return this.$store.getters.getPreferenceBoolean('autoplay')
+      return this.$store.getters['prefs/getPreferenceBoolean']('autoplay')
     }
   },
   components: {
