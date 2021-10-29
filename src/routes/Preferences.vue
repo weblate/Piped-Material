@@ -29,13 +29,12 @@
 </template>
 
 <script>
-import CountryMap from '@/tools/CountryMap'
+import WorldCountries from 'world-countries'
 
 export default {
   data () {
     return {
       instances: [],
-      countryMap: CountryMap.COUNTRIES,
 
       options: [
         {
@@ -73,12 +72,10 @@ export default {
           type: 'select',
           label: 'Country',
           default: 'US',
-          options: CountryMap.COUNTRIES.map(co => ({
-            text: co.name,
-            value: co.code
-          })).sort((a, b) => {
-            return a.text.localeCompare(b.text)
-          })
+          options: WorldCountries.map(co => ({
+            text: co.name.common,
+            value: co.cca2
+          }))
         },
         {
           id: 'homepage',
