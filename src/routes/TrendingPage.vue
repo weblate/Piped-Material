@@ -4,6 +4,10 @@
 
     <v-divider class="my-4" />
 
+    <v-alert v-if="error" color="error" prominent text>
+      <span v-if="!errorIsJSON">{{ $t(error) }}</span>
+      <JSONViewer v-else :value="error" />
+    </v-alert>
     <v-row v-for="(row, rowId) in chunkedByFour" :key="rowId">
       <v-col md="3" v-for="(video, videoId) in row" :key="videoId">
         <VideoItem :video="video" max-height />
@@ -20,7 +24,9 @@ import VideoItem from '@/components/VideoItem.vue'
 export default {
   data () {
     return {
-      videos: []
+      videos: [],
+      error: null,
+      errorIsJSON: false
     }
   },
 
@@ -31,18 +37,33 @@ export default {
   },
 
   mounted () {
-    const region = this.$store.getters['prefs/getPreference']('region', 'US')
-
-    this.fetchTrending(region).then(videos => (this.videos = videos))
+    this.fetchTrending()
   },
   methods: {
-    async fetchTrending (region) {
-      return this.$store.dispatch('auth/makeRequest', {
-        path: '/trending',
-        params: {
-          region: region
+    async fetchTrending () {
+      const region = this.$store.getters['prefs/getPreference']('region', 'US')
+
+      try {
+        this.error = null
+        this.videos = await this.$store.dispatch('auth/makeRequest', {
+          path: '/trending',
+          params: {
+            region: region
+          }
+        })
+      } catch (e) {
+        if (e.isAxiosError) {
+          const rData = e.response.data
+          if (rData.message === 'Could not get Trending name') {
+            this.error = 'errors.trendingFetchError'
+          } else {
+            this.error = rData
+            this.errorIsJSON = true
+          }
+        } else {
+          throw e
         }
-      })
+      }
     }
   },
   computed: {
@@ -51,7 +72,8 @@ export default {
     }
   },
   components: {
-    VideoItem
+    VideoItem,
+    JSONViewer: () => import('vue-json-viewer')
   }
 }
 </script>

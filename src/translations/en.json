@@ -12,6 +12,9 @@
         "videos": "No videos | One Video | {count} Videos",
         "views": "No views | One view | {n} views"
     },
+    "errors": {
+        "trendingFetchError": "Could not fetch trending videos. Check whether your country is supported by YouTube"
+    },
     "misc": {
         "searchBarLabel": "What are you looking for?"
     },
