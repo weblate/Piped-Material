@@ -5,23 +5,23 @@
       v-if="!$store.getters['auth/isCurrentlyAuthenticated']"
     >
       <template v-slot:activator="{ on, attrs }">
-        <v-btn
-          text
-          v-bind="attrs"
-          v-on="on"
-          min-width="100%"
-          class="mx-2"
-          v-if="listMode === false"
-        >
-          Log In/Sign Up
-        </v-btn>
         <v-list-item
-          v-else
+          v-if="listMode === true"
           v-bind="attrs"
           v-on="on"
         >
           Log In/Sign Up
         </v-list-item>
+        <v-btn
+          v-else
+          text
+          v-bind="attrs"
+          v-on="on"
+          min-width="100%"
+          class="mx-2"
+        >
+          Log In/Sign Up
+        </v-btn>
       </template>
       <v-card>
         <v-card-title>Authentication</v-card-title>
