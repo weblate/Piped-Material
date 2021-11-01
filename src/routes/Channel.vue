@@ -11,6 +11,12 @@
           <div class="text-h5 ml-4">
             {{ channel.name }}
           </div>
+          <v-btn
+            v-if="subscribed != null" outlined color="primary" @click="subscribeHandler"
+            class="ml-2"
+          >
+            {{ subscribed === false ? 'Unsubscribe' : 'Subscribe' }}
+          </v-btn>
         </div>
         <v-card-text>
           <div v-html="renderedDescription" />
@@ -22,7 +28,7 @@
       <div v-if="this.channel && this.channel.relatedStreams">
         <v-row v-for="(row, rowId) in chunkedByFour" :key="rowId">
           <v-col md="3" v-for="(video, videoId) in row" :key="videoId">
-            <VideoItem :height="270" :width="480" :video="video" />
+            <VideoItem :height="270" :width="480" :video="video" max-height />
           </v-col>
         </v-row>
         <v-progress-linear v-if="channel.nextpage != null" indeterminate v-intersect="onRelatedStreamsEndIntersect" />
@@ -43,7 +49,7 @@ export default {
   data () {
     return {
       channel: null,
-      subscribed: false
+      subscribed: null
     }
   },
   metaInfo () {
@@ -55,13 +61,43 @@ export default {
   },
   methods: {
     async fetchChannel () {
-      return this.$store.dispatch('auth/makeRequest', {
+      this.channel = await this.$store.dispatch('auth/makeRequest', {
         path: '/' + this.$route.params.path + '/' + this.$route.params.channelId
       })
     },
+
+    async fetchSubscribedStatus () {
+      const { channelId } = this.$route.params
+      if (!(channelId && this.$store.getters['auth/isCurrentlyAuthenticated'])) {
+        return
+      }
+
+      const resp = await this.$store.dispatch('auth/makeRequest', {
+        path: '/subscribed',
+        params: {
+          channelId
+        }
+      })
+
+      this.subscribed = resp.subscribed
+    },
+
+    async subscribeHandler () {
+      await this.$store.dispatch('auth/makeRequest', {
+        method: 'POST',
+        path: (this.subscribed ? '/unsubscribe' : '/subscribe'),
+        data: {
+          channelId: this.channelId
+        }
+      })
+      this.subscribed = !this.subscribed
+    },
+
     async getChannelData () {
-      this.fetchChannel()
-        .then(data => (this.channel = data))
+      return Promise.all([
+        this.fetchChannel(),
+        this.fetchSubscribedStatus()
+      ])
     },
 
     onRelatedStreamsEndIntersect (entries) {
