@@ -11,9 +11,17 @@
           v-on="on"
           min-width="100%"
           class="mx-2"
+          v-if="listMode === false"
         >
           Log In/Sign Up
         </v-btn>
+        <v-list-item
+          v-else
+          v-bind="attrs"
+          v-on="on"
+        >
+          Log In/Sign Up
+        </v-list-item>
       </template>
       <v-card>
         <v-card-title>Authentication</v-card-title>
@@ -26,7 +34,13 @@
         </v-card-text>
       </v-card>
     </v-dialog>
-    <v-btn text min-width="100%" class="mx-2" @click="logOut" v-else>Log Out</v-btn>
+  <v-list-item
+    v-else-if="listMode === true"
+    @click="logOut"
+  >
+    Log Out
+  </v-list-item>
+  <v-btn text min-width="100%" class="mx-2" @click="logOut" v-else>Log Out</v-btn>
 </template>
 
 <script>
@@ -34,6 +48,7 @@ import { AuthenticationError } from '@/store/authentication-store'
 
 export default {
   name: 'AuthenticationModal',
+  props: ['listMode'],
   data: () => ({
     error: null,
     requestInProgress: false,

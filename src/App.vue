@@ -50,6 +50,7 @@
           >
             {{ $t(link.name) }}
           </v-list-item>
+          <AuthenticationModal :list-mode="true" />
         </v-list>
         <v-select
           dense
@@ -117,7 +118,7 @@ export default {
 
   computed: {
     links () {
-      return [
+      const links = [
         {
           id: 'prefs',
           name: 'titles.preferences',
@@ -125,8 +126,8 @@ export default {
         },
         {
           id: 'trending',
-          name: 'titles.' + this.$store.getters['prefs/getPreference']('homepage', 'trending'),
-          to: '/'
+          name: 'titles.trending',
+          to: '/trending'
         },
         {
           id: 'watch-history',
@@ -134,6 +135,16 @@ export default {
           to: '/watch-history'
         }
       ]
+
+      if (this.$store.getters['auth/isCurrentlyAuthenticated']) {
+        links.splice(2, 0, {
+          id: 'feed',
+          name: 'titles.feed',
+          to: '/feed'
+        })
+      }
+
+      return links
     }
   },
 
