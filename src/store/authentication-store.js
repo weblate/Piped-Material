@@ -1,18 +1,34 @@
 import axios from 'axios'
-import { isPlainObject } from 'lodash-es'
+import { isPlainObject as _isPlainObject, set as _set } from 'lodash-es'
+
+export class AuthenticationError extends Error {
+  constructor (message) {
+    super()
+    this.message = message
+  }
+}
 
 const AuthenticationStore = {
   namespaced: true,
 
   state: () => ({
-    isAuthenticated: false,
-    authToken: null
+    authStateByInstance: {
+      // isAuthenticated: Boolean
+      // authToken: String?
+    }
   }),
 
   mutations: {
     replaceAuth (state, data) {
-      state.isAuthenticated = data.isAuthenticated ?? state.isAuthenticated
-      state.authToken = data.authToken ?? state.authToken
+      state.authStateByInstance = data
+    },
+
+    setAuthToken (state, { apiURL, token }) {
+      _set(state.authStateByInstance, [apiURL], {
+        isAuthenticated: true,
+        authToken: token
+      })
+      window.localStorage.setItem('AUTH', JSON.stringify(state.authStateByInstance))
     }
   },
 
@@ -20,8 +36,30 @@ const AuthenticationStore = {
     initializeAuth ({ commit }) {
       const data = window.localStorage.getItem('AUTH')
       if (data != null) {
-        commit('replaceAuth', data)
+        commit('replaceAuth', JSON.parse(data))
       }
+    },
+
+    async loginOrRegister ({ commit, rootGetters }, { path, username, password }) {
+      const apiURL = rootGetters['prefs/apiUrl']
+      const { data: resp } = await axios({
+        method: 'POST',
+        baseURL: apiURL,
+        url: '/' + path,
+        data: {
+          username,
+          password
+        }
+      })
+
+      if ('error' in resp) {
+        throw new AuthenticationError(resp.error)
+      }
+
+      commit('setAuthToken', {
+        apiURL,
+        token: resp.token
+      })
     },
 
     async makeRequest ({
@@ -34,24 +72,28 @@ const AuthenticationStore = {
       data,
       params
     }) {
-      if (state.isAuthenticated) {
-        if (isPlainObject(params)) {
-          params.authToken = state.authToken
+      const APIURL = rootGetters['prefs/apiUrl']
+      const AuthState = state.authStateByInstance[APIURL] ?? {}
+
+      if (AuthState.isAuthenticated) {
+        if (_isPlainObject(params)) {
+          params.authToken = AuthState.authToken
         } else {
           params = {
-            authToken: state.authToken
+            authToken: AuthState.authToken
           }
         }
       }
 
       const { data: resp } = await axios({
-        baseURL: rootGetters['prefs/apiUrl'],
+        baseURL: APIURL,
         method,
         url: path,
         params,
-        headers: state.isAuthenticated
+        data,
+        headers: AuthState.isAuthenticated
           ? {
-              Authorization: state.authToken
+              Authorization: AuthState.authToken
             }
           : undefined
       })

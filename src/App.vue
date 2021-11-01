@@ -17,7 +17,10 @@
             {{ $t(link.name) }}
           </v-btn>
         </v-col>
-        <v-col md="2" class="mx-3">
+        <v-col md="1">
+          <AuthenticationModal />
+        </v-col>
+        <v-col md="2" class="mx-4">
           <v-select
             class="mt-6"
             dense
@@ -76,10 +79,12 @@
 <script>
 import SearchMenu from '@/routes/SearchMenu'
 import { changeLocale } from '@/plugins/i18n'
+import AuthenticationModal from '@/components/AuthenticationModal'
 
 export default {
   name: 'App',
   components: {
+    AuthenticationModal,
     SearchMenu
   },
   metaInfo () {

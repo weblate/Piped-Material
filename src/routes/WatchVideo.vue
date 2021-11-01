@@ -216,17 +216,18 @@ export default {
           this.video = data
         })
         .then(() => {
-          if (!this.video.error) {
-            this.channelId = this.video.uploaderUrl.split('/')[2]
-            this.fetchSubscribedStatus()
-
-            this.video.description = LibPiped.purifyHTML(
-              this.video.description
-                .replaceAll('http://www.youtube.com', '')
-                .replaceAll('https://www.youtube.com', '')
-                .replaceAll('\n', '<br>')
-            )
+          if (this.video.error) {
+            return
           }
+          this.channelId = this.video.uploaderUrl.split('/')[2]
+          this.fetchSubscribedStatus()
+
+          this.video.description = LibPiped.purifyHTML(
+            this.video.description
+              .replaceAll('http://www.youtube.com', '')
+              .replaceAll('https://www.youtube.com', '')
+              .replaceAll('\n', '<br>')
+          )
         }).then(() => {
           return addWatchedVideo(this.video, this.$route.fullPath)
         })
