@@ -48,6 +48,22 @@ export default {
           default: false
         },
         {
+          id: 'homepage',
+          type: 'select',
+          label: 'Default Homepage',
+          default: 'trending',
+          options: [
+            {
+              text: 'Trending',
+              value: 'trending'
+            },
+            {
+              text: 'Feed',
+              value: 'feed'
+            }
+          ]
+        },
+        {
           id: 'quality',
           type: 'select',
           default: 0,
@@ -76,24 +92,8 @@ export default {
             text: co.name.common,
             value: co.cca2
           }))
-        },
-        {
-          id: 'homepage',
-          type: 'select',
-          label: 'Default Homepage',
-          options: [
-            {
-              text: 'Trending',
-              value: 'trending'
-            },
-            {
-              text: 'Feed',
-              value: 'feed'
-            }
-          ]
         }
       ],
-
       tableHeaders: [
         {
           text: 'Name',

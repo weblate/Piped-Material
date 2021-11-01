@@ -96,23 +96,6 @@ export default {
   },
 
   data: () => ({
-    links: [
-      {
-        id: 'prefs',
-        name: 'titles.preferences',
-        to: '/preferences'
-      },
-      {
-        id: 'trending',
-        name: 'titles.trending',
-        to: '/'
-      },
-      {
-        id: 'watch-history',
-        name: 'titles.history',
-        to: '/watch-history'
-      }
-    ],
     languageOptions: [
       { value: 'zh_Hant', text: 'Chinese (Traditional)' },
       { value: 'en', text: 'English' },
@@ -132,11 +115,34 @@ export default {
     drawer: false
   }),
 
+  computed: {
+    links () {
+      return [
+        {
+          id: 'prefs',
+          name: 'titles.preferences',
+          to: '/preferences'
+        },
+        {
+          id: 'trending',
+          name: 'titles.' + this.$store.getters['prefs/getPreference']('homepage', 'trending'),
+          to: '/'
+        },
+        {
+          id: 'watch-history',
+          name: 'titles.history',
+          to: '/watch-history'
+        }
+      ]
+    }
+  },
+
   methods: {
     changeLocale (lang) {
       return changeLocale(lang)
     }
   },
+
   created () {
     this.$store.dispatch('prefs/loadState')
     this.$store.dispatch('auth/initializeAuth')

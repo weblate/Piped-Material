@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-    <h3 class="text-h4 justify-center">{{ $t('titles.trending') }}</h3>
+    <h3 class="text-h4 justify-center">{{ $t('titles.' + feedName) }}</h3>
 
     <v-divider class="my-4" />
 
@@ -24,6 +24,7 @@ import VideoItem from '@/components/VideoItem.vue'
 export default {
   data () {
     return {
+      feedName: 'trending',
       videos: [],
       error: null,
       errorIsJSON: false
@@ -32,27 +33,39 @@ export default {
 
   metaInfo () {
     return {
-      title: this.$t('titles.trending')
+      title: this.$t('titles.' + this.feedName)
     }
   },
 
+  watch: {
+    '$route.path': 'fetchData'
+  },
   mounted () {
-    this.fetchTrending()
+    this.fetchData()
   },
   methods: {
-    async fetchTrending () {
+    async fetchData () {
       const region = this.$store.getters['prefs/getPreference']('region', 'US')
+      const selectedHomepage = this.$store.getters['prefs/getPreference']('homepage', 'trending')
       let path
 
       switch (this.$route.path) {
         case '/':
-          path = '/trending'
+          if (selectedHomepage === 'trending') {
+            path = '/trending'
+            this.feedName = 'trending'
+          } else {
+            path = '/feed'
+            this.feedName = 'feed'
+          }
           break
         case '/trending':
           path = '/trending'
+          this.feedName = 'trending'
           break
         case '/feed':
           path = '/feed'
+          this.feedName = 'feed'
           break
       }
 
