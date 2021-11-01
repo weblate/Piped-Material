@@ -14,7 +14,7 @@
   </div>
 </template>
 
-<style scoped>
+<style>
 .shaka-text-container > div {
   height: auto !important;
   width: auto !important;
@@ -22,13 +22,13 @@
   left: auto !important;
 }
 
-.shaka-video-container:-webkit-full-screen {
-    max-height: none !important;
-}
-
 .shaka-text-container * {
   background-color: rgba(8, 8, 8, 0.75) !important;
   color: white !important;
+}
+
+.shaka-video-container:-webkit-full-screen {
+  max-height: none !important;
 }
 </style>
 
