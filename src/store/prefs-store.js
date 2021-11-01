@@ -3,7 +3,11 @@ import { get as _get, isString, set as _set } from 'lodash-es'
 const PrefsStore = {
   namespaced: true,
   state: () => ({
-    prefs: {}
+    // Declaring boolean values here because v-simple-checkbox has a bug (???) which renders it unable to have internal state
+    prefs: {
+      playerAutoplay: true,
+      audioOnly: false
+    }
   }),
   mutations: {
     setPrefs (state, {
