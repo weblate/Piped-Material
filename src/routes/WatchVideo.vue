@@ -117,7 +117,41 @@ export default {
   },
   metaInfo () {
     return {
-      title: this.video.title
+      title: this.video.title,
+      meta: [
+        {
+          name: 'twitter:title',
+          content: this.video.title
+        },
+        {
+          name: 'twitter:description',
+          content: this.video.description
+        },
+        {
+          property: 'og:type',
+          content: 'video'
+        },
+        {
+          property: 'og:title',
+          content: this.video.title
+        },
+        {
+          property: 'og:description',
+          content: this.video.description
+        },
+        {
+          name: 'description',
+          content: this.video.description
+        },
+        {
+          property: 'og:image',
+          content: this.video.thumbnailUrl
+        },
+        {
+          name: 'twitter:image',
+          content: this.video.thumbnailUrl
+        }
+      ]
     }
   },
 

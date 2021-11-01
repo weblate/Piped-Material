@@ -53,7 +53,49 @@ export default {
     }
   },
   metaInfo () {
-    return { title: this.channel ? this.channel.name : 'Loading' }
+    const title = this.channel ? this.channel.name : 'Loading'
+
+    return {
+      title,
+      meta: this.channel && [
+        {
+          name: 'twitter:title',
+          content: this.channel.name
+        },
+        {
+          name: 'twitter:description',
+          content: this.channel.description
+        },
+        {
+          property: 'og:type',
+          content: 'profile'
+        },
+        {
+          property: 'og:title',
+          content: this.channel.name
+        },
+        {
+          property: 'og:profile:username',
+          content: this.channel.name
+        },
+        {
+          property: 'og:description',
+          content: this.channel.description
+        },
+        {
+          name: 'description',
+          content: this.channel.description
+        },
+        {
+          property: 'og:image',
+          content: this.channel.bannerUrl
+        },
+        {
+          name: 'twitter:image',
+          content: this.channel.bannerUrl
+        }
+      ]
+    }
   },
 
   mounted () {
