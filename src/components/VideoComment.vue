@@ -1,11 +1,11 @@
 <template>
   <v-row align="center" justify="center" no-gutters>
-    <v-col cols="1">
+    <v-col cols="4" md="1">
       <v-avatar size="90%" class="mx-3">
         <v-img :src="comment.thumbnail" />
       </v-avatar>
     </v-col>
-    <v-col cols="11">
+    <v-col cols="12" md="11">
       <v-card-text>
         <v-icon v-if="comment.pinned" class="mx-2">mdi-pin</v-icon>
         <router-link :to="comment.commentorUrl" class="text-decoration-none black--text">
