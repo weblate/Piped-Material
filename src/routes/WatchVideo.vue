@@ -52,9 +52,10 @@
                 </a>
                 <div class="ml-4">
                   <v-btn
-                    v-if="$store.state['auth/isAuthenticated']"
-                    @click="subscribeHandler"
+                    v-if="$store.getters['auth/isCurrentlyAuthenticated'] && subscribed != null"
+                    @click.prevent="subscribeHandler"
                     color="primary"
+                    outlined
                   >
                     {{ subscribed ? "Unsubscribe" : "Subscribe" }}
                   </v-btn>
@@ -110,7 +111,7 @@ export default {
       selectedAutoLoop: false,
       showDesc: true,
       comments: null,
-      subscribed: false,
+      subscribed: null,
       channelId: null
     }
   },
@@ -235,11 +236,12 @@ export default {
     async getSponsors () {
       if (this.$store.getters['prefs/getPreference']('sponsorblock', true)) { this.fetchSponsors().then(data => (this.sponsors = data)) }
     },
-    async getComments () {
+    getComments () {
       this.fetchComments().then(data => (this.comments = data))
     },
+
     async fetchSubscribedStatus () {
-      if (!this.channelId || !this.$store.state['auth/isAuthenticated']) return
+      if (!this.channelId || !this.$store.getters['auth/isCurrentlyAuthenticated']) return
 
       this.$store.dispatch('auth/makeRequest', {
         path: '/subscribed',
@@ -250,8 +252,8 @@ export default {
         this.subscribed = json.subscribed
       })
     },
-    subscribeHandler () {
-      this.$store.dispatch('auth/makeRequest', {
+    async subscribeHandler () {
+      await this.$store.dispatch('auth/makeRequest', {
         method: 'POST',
         path: (this.subscribed ? '/unsubscribe' : '/subscribe'),
         data: {

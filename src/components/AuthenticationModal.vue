@@ -2,6 +2,7 @@
     <v-dialog
       v-model="dialogOpen"
       max-width="768"
+      v-if="!$store.getters['auth/isCurrentlyAuthenticated']"
     >
       <template v-slot:activator="{ on, attrs }">
         <v-btn
@@ -25,6 +26,7 @@
         </v-card-text>
       </v-card>
     </v-dialog>
+    <v-btn text min-width="100%" class="mx-2" @click="logOut" v-else>Log Out</v-btn>
 </template>
 
 <script>
@@ -49,6 +51,7 @@ export default {
           username: this.username,
           password: this.password
         })
+        this.dialogOpen = false
       } catch (e) {
         if (!(e instanceof AuthenticationError)) {
           throw e
@@ -58,6 +61,12 @@ export default {
       } finally {
         this.requestInProgress = false
       }
+    },
+
+    logOut () {
+      this.$store.commit('auth/deleteAuthToken', {
+        apiURL: this.$store.getters['prefs/apiUrl']
+      })
     },
 
     login () {

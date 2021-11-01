@@ -42,14 +42,28 @@ export default {
   methods: {
     async fetchTrending () {
       const region = this.$store.getters['prefs/getPreference']('region', 'US')
+      let path
+
+      switch (this.$route.path) {
+        case '/':
+          path = '/trending'
+          break
+        case '/trending':
+          path = '/trending'
+          break
+        case '/feed':
+          path = '/feed'
+          break
+      }
 
       try {
         this.error = null
         this.videos = await this.$store.dispatch('auth/makeRequest', {
-          path: '/trending',
+          path,
           params: {
             region: region
-          }
+          },
+          tokenInParams: true
         })
       } catch (e) {
         if (e.isAxiosError) {

@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VueMeta from 'vue-meta'
 
-import TrendingPage from '@/routes/TrendingPage'
+import FeedPage from '@/routes/FeedPage'
 import Preferences from '@/routes/Preferences'
 
 Vue.use(VueMeta)
@@ -11,8 +11,18 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
+    name: 'Homepage',
+    component: FeedPage
+  },
+  {
+    path: '/trending',
     name: 'Trending',
-    component: TrendingPage
+    component: FeedPage
+  },
+  {
+    path: '/feed',
+    name: 'Feed',
+    component: FeedPage
   },
   {
     path: '/preferences',

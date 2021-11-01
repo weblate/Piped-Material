@@ -29,6 +29,19 @@ const AuthenticationStore = {
         authToken: token
       })
       window.localStorage.setItem('AUTH', JSON.stringify(state.authStateByInstance))
+    },
+
+    deleteAuthToken (state, { apiURL }) {
+      _set(state.authStateByInstance, [apiURL], {
+        isAuthenticated: false
+      })
+      window.localStorage.setItem('AUTH', JSON.stringify(state.authStateByInstance))
+    }
+  },
+
+  getters: {
+    isCurrentlyAuthenticated (state, getters, rootState, rootGetters) {
+      return state.authStateByInstance[rootGetters['prefs/apiUrl']]?.isAuthenticated
     }
   },
 
@@ -70,12 +83,13 @@ const AuthenticationStore = {
       path,
       method,
       data,
-      params
+      params,
+      tokenInParams = false
     }) {
       const APIURL = rootGetters['prefs/apiUrl']
       const AuthState = state.authStateByInstance[APIURL] ?? {}
 
-      if (AuthState.isAuthenticated) {
+      if (AuthState.isAuthenticated && tokenInParams) {
         if (_isPlainObject(params)) {
           params.authToken = AuthState.authToken
         } else {
