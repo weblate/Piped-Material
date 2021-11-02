@@ -18,6 +18,14 @@
 
         <v-icon>mdi-thumb-up</v-icon> {{ numberFormat(comment.likeCount) }}
         <v-icon v-if="comment.hearted" class="ml-4">mdi-heart</v-icon>
+        <br />
+        <v-btn class="mt-1" text :loading="requestInProgress" :disabled="requestInProgress" @click="loadReplies" v-if="!subComment && childComments.length === 0">Load Replies</v-btn>
+        <div v-else-if="!subComment">
+          <v-btn text @click="showChildComments = !showChildComments">{{ showChildComments ? 'Hide' : 'Show' }} Replies</v-btn>
+        </div>
+        <div v-if="childComments.length !== 0 && showChildComments">
+          <video-comment :comment="childComment" :video="video" :sub-comment="true" v-for="(childComment) in childComments" :key="childComment.commentId" />
+        </div>
       </v-card-text>
     </v-col>
   </v-row>
@@ -29,10 +37,37 @@ import marked from 'marked'
 
 export default {
   name: 'VideoComment',
-  props: ['comment', 'video'],
+  props: ['comment', 'video', 'subComment'],
+  data: () => ({
+    requestInProgress: false,
+    showChildComments: true,
+    childComments: []
+  }),
   methods: {
     numberFormat (...args) {
       return LibPiped.numberFormat(...args)
+    },
+    async loadReplies () {
+      let nextpage = null
+      this.requestInProgress = true
+
+      while (true) {
+        const replies = await this.$store.dispatch('auth/makeRequest', {
+          method: 'GET',
+          path: '/nextpage/comments/' + this.video.videoId,
+          params: {
+            nextpage: nextpage || this.comment.repliesPage
+          }
+        })
+
+        this.childComments = this.childComments.concat(replies.comments)
+        if (replies.nextpage) {
+          nextpage = replies.nextpage
+        } else {
+          break
+        }
+      }
+      this.requestInProgress = false
     }
   },
 
