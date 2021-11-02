@@ -30,6 +30,10 @@ const routes = [
     component: Preferences
   },
   {
+    path: '/subscriptions',
+    component: () => import('@/routes/Subscriptions')
+  },
+  {
     path: '/results',
     name: 'SearchResults',
     component: () => import('@/routes/SearchResults')

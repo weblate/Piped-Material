@@ -15,7 +15,7 @@
             v-if="subscribed != null" outlined color="primary" @click="subscribeHandler"
             class="ml-2"
           >
-            {{ subscribed === false ? 'Unsubscribe' : 'Subscribe' }}
+            {{ subscribed ? 'Unsubscribe' : 'Subscribe' }}
           </v-btn>
         </div>
         <v-card-text>
