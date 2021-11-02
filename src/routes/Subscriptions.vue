@@ -3,7 +3,7 @@
   <v-container fluid v-else>
     <v-row v-for="(chunk, chunkId) in data" :key="chunkId">
       <v-col md="2" v-for="channel in chunk" :key="channel.name">
-        <v-card outlined link :to="channel.url">
+        <v-card min-height="100%" outlined link :to="channel.url">
           <v-img :src="channel.avatar" />
           <v-card-title>{{ channel.name }}</v-card-title>
           <v-card-actions>
