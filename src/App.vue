@@ -120,14 +120,14 @@ export default {
     links () {
       const links = [
         {
-          id: 'prefs',
-          name: 'titles.preferences',
-          to: '/preferences'
-        },
-        {
           id: 'trending',
           name: 'titles.trending',
           to: '/trending'
+        },
+        {
+          id: 'prefs',
+          name: 'titles.preferences',
+          to: '/preferences'
         },
         {
           id: 'watch-history',
@@ -137,7 +137,7 @@ export default {
       ]
 
       if (this.$store.getters['auth/isCurrentlyAuthenticated']) {
-        links.splice(2, 0, {
+        links.splice(0, 0, {
           id: 'feed',
           name: 'titles.feed',
           to: '/feed'
