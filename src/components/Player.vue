@@ -68,6 +68,7 @@ export default {
   },
   methods: {
     async loadVideo () {
+      console.log('PIPED | LOADING VIDEO')
       const component = this
       const videoEl = this.$refs.videoEl
 
@@ -259,7 +260,8 @@ export default {
     }
   },
 
-  activated () {
+  mounted () {
+    this.loadVideo()
     import('hotkeys-js')
       .then(mod => mod.default)
       .then(hotkeys => {
@@ -310,10 +312,9 @@ export default {
           }
         })
       })
-    this.loadVideo()
   },
 
-  deactivated () {
+  beforeDestroy () {
     if (this.ui) {
       this.ui.destroy()
       this.ui = undefined
