@@ -1,8 +1,8 @@
 <template>
   <ErrorHandler v-if="video && video.error" :message="video.message" :error="video.error" />
+  <v-progress-linear v-else-if="!loaded" />
   <div v-else>
     <Player
-      v-if="loaded"
       :video="video"
       :skip-to-time="'t' in $route.query ? Number($route.query.t) : null"
       :sponsors="sponsors"
