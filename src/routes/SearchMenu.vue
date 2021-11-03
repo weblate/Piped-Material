@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import tinykeys from 'tinykeys'
+import { setupKeybindings } from '@/plugins/keybindings'
 
 export default {
   name: 'SearchMenu',
@@ -70,7 +70,7 @@ export default {
   },
 
   mounted () {
-    this.unsubToKeybindings = tinykeys(window, {
+    this.unsubToKeybindings = setupKeybindings(window, {
       '/': (e) => {
         this.$refs.searchMenu.focus()
         e.preventDefault()

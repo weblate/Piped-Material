@@ -34,10 +34,11 @@
 
 <script>
 import muxjs from 'mux.js'
-import tinykeys from 'tinykeys'
 import shaka from 'shaka-player/dist/shaka-player.ui.js'
 import 'shaka-player/dist/controls.css'
 import { DashUtils } from '@/tools/DashUtils'
+
+import { setupKeybindings } from '@/plugins/keybindings'
 
 window.muxjs = muxjs
 
@@ -271,7 +272,7 @@ export default {
       e.preventDefault()
     }
 
-    this.unsubToKeybindings = tinykeys(window, {
+    this.unsubToKeybindings = setupKeybindings(window, {
       f (e) {
         if (document.fullscreenElement) document.exitFullscreen()
         else self.$refs.container.requestFullscreen()
