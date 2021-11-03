@@ -29,7 +29,9 @@
 </template>
 
 <script>
-import WorldCountries from 'world-countries'
+import Countries from 'i18n-iso-countries'
+import EnglishNames from 'i18n-iso-countries/langs/en.json'
+Countries.registerLocale(EnglishNames)
 
 export default {
   data () {
@@ -88,9 +90,9 @@ export default {
           type: 'select',
           label: 'Country',
           default: 'US',
-          options: WorldCountries.map(co => ({
-            text: co.name.common,
-            value: co.cca2
+          options: Object.entries(Countries.getNames('en', { select: 'official' })).map(([code, name]) => ({
+            text: name,
+            value: code
           }))
         }
       ],

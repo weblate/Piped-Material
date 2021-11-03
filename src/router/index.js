@@ -3,7 +3,6 @@ import VueRouter from 'vue-router'
 import VueMeta from 'vue-meta'
 
 import FeedPage from '@/routes/FeedPage'
-import Preferences from '@/routes/Preferences'
 
 Vue.use(VueMeta)
 Vue.use(VueRouter)
@@ -27,7 +26,7 @@ const routes = [
   {
     path: '/preferences',
     name: 'Preferences',
-    component: Preferences
+    component: () => import('@/routes/Preferences')
   },
   {
     path: '/subscriptions',
