@@ -1,6 +1,6 @@
 <template>
   <ErrorHandler v-if="video && video.error" :message="video.message" :error="video.error" />
-  <v-progress-linear v-else-if="!loaded" />
+  <v-progress-linear indeterminate v-else-if="!loaded" />
   <div v-else>
     <Player
       :video="video"
