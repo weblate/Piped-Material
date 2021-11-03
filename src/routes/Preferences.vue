@@ -146,7 +146,7 @@ export default {
         this.options.push({
           id: 'instance',
           type: 'select',
-          default: 'https://pipedapi.kavin.rocks',
+          default: this.$store.getters['prefs/apiUrl'],
           label: 'Instance',
           options: this.instances.map(i => ({
             text: i.name,
