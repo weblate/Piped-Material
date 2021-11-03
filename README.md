@@ -11,31 +11,32 @@ As a byproduct, the code is also much cleaner, dysfunctional patterns and paradi
 
 ## Features:
 
--   [x] No Ads
--   [x] No Tracking
--   [x] Infinite Scrolling
--   [x] 4K support
--   [x] No connections to Google's servers
--   [x] Playing just audio
--   [x] Comments
--   [x] Playlist support
--   [x] Captions support
--   [x] Search Suggestions
--   [x] Livestreams support with a quality selector
--   [x] Support for IOS
--   [x] Preferences saved locally
--   [x] Multi-region loadbalancing
--   [x] Performant by design, designed to handle 1000s of users concurrently
--   [x] PWA support
+- [x] No Ads
+- [x] No Tracking
+- [x] Infinite Scrolling
+- [x] 4K support
+- [x] No connections to Google's servers
+- [x] Playing just audio
+- [x] Comments
+- [x] Playlist support
+- [x] Captions support
+- [x] Search Suggestions
+- [x] Livestreams support with a quality selector
+- [x] Support for IOS
+- [x] Preferences saved locally
+- [x] Multi-region loadbalancing
+- [x] Performant by design, designed to handle 1000s of users concurrently
+- [x] PWA support
+- [x] Improving UI
+- [x] Login
+- [x] Feeds
 
 ## WIP
 
--   [ ] 8K support
--   [ ] Improving UI
--   [ ] Login
--   [ ] Feeds
--   [ ] Integration with SponsorBlock
--   [ ] Integration with LBRY
+- [ ] 8K support
+- [ ] Integration with SponsorBlock
+- [ ] Integration with LBRY
+- [ ] Update screenshots
 
 ## Documentation
 
