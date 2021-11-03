@@ -2,6 +2,7 @@
   <ErrorHandler v-if="video && video.error" :message="video.message" :error="video.error" />
   <div v-else>
     <Player
+      v-if="loaded"
       :video="video"
       :skip-to-time="'t' in $route.query ? Number($route.query.t) : null"
       :sponsors="sponsors"
@@ -104,6 +105,7 @@ export default {
   name: 'WatchVideo',
   data () {
     return {
+      loaded: false,
       video: {
         title: 'Loading ...'
       },
@@ -249,6 +251,7 @@ export default {
         .then(data => {
           data.videoId = this.getVideoId()
           this.video = data
+          this.loaded = true
         })
         .then(() => {
           if (this.video.error) {
