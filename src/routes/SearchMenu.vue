@@ -8,11 +8,12 @@
     cache-items
     flat
     dense
+    auto-select-first
     hide-no-data
     hide-details
     :label="$t('misc.searchBarLabel')"
     solo-inverted
-  ></v-autocomplete>
+  />
 </template>
 
 <script>
