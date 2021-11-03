@@ -42,6 +42,11 @@ const AuthenticationStore = {
   getters: {
     isCurrentlyAuthenticated (state, getters, rootState, rootGetters) {
       return state.authStateByInstance[rootGetters['prefs/apiUrl']]?.isAuthenticated
+    },
+
+    authToken (state, getters, rootState, rootGetters) {
+      const authState = state.authStateByInstance[rootGetters['prefs/apiUrl']] ?? {}
+      return authState.authToken
     }
   },
 

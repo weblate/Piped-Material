@@ -1,7 +1,14 @@
 <template>
   <v-container fluid>
     <h3 class="text-h4 justify-center">{{ $t('titles.' + feedName) }}</h3>
-    <v-btn outlined color="primary" class="mt-2" v-if="$store.getters['auth/isCurrentlyAuthenticated']" link to="/subscriptions">Subscriptions</v-btn>
+    <v-btn outlined color="primary" class="mt-2" v-if="$store.getters['auth/isCurrentlyAuthenticated']" link to="/subscriptions">Your Subscriptions</v-btn>
+    <v-btn
+      outlined color="primary" class="mt-2 ml-2"
+      v-if="$store.getters['auth/isCurrentlyAuthenticated']"
+      link :href="$store.getters['prefs/apiUrl'] + '/feed/rss?authToken=' + $store.getters['auth/authToken']"
+    >
+      <v-icon>mdi-rss</v-icon> RSS of Your Subscriptions
+    </v-btn>
 
     <v-divider class="my-4" />
 
