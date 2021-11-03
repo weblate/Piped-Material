@@ -1,5 +1,6 @@
 <template>
   <v-autocomplete
+    ref="searchMenu"
     v-model="select"
     :loading="requestInProgress"
     :items="searchSuggestions"
@@ -15,6 +16,8 @@
 </template>
 
 <script>
+import tinykeys from 'tinykeys'
+
 export default {
   name: 'SearchMenu',
   data () {
@@ -63,6 +66,19 @@ export default {
       this.searchSuggestions.unshift(this.searchText)
       this.requestInProgress = false
     }
+  },
+
+  mounted () {
+    this.unsubToKeybindings = tinykeys(window, {
+      '/': (e) => {
+        this.$refs.searchMenu.focus()
+        e.preventDefault()
+      }
+    })
+  },
+
+  beforeDestroy () {
+    this.unsubToKeybindings()
   }
 }
 </script>

@@ -34,6 +34,7 @@
 
 <script>
 import muxjs from 'mux.js'
+import tinykeys from 'tinykeys'
 import shaka from 'shaka-player/dist/shaka-player.ui.js'
 import 'shaka-player/dist/controls.css'
 import { DashUtils } from '@/tools/DashUtils'
@@ -262,56 +263,51 @@ export default {
 
   mounted () {
     this.loadVideo()
-    import('hotkeys-js')
-      .then(mod => mod.default)
-      .then(hotkeys => {
-        this.hotkeys = hotkeys
-        const self = this
-        hotkeys('f,m,j,k,l,space,up,down,left,right', function (e, handler) {
-          const videoEl = self.$refs.videoEl
-          switch (handler.key) {
-            case 'f':
-              if (document.fullscreenElement) document.exitFullscreen()
-              else self.$refs.container.requestFullscreen()
-              e.preventDefault()
-              break
-            case 'm':
-              videoEl.muted = !videoEl.muted
-              e.preventDefault()
-              break
-            case 'j':
-              videoEl.currentTime = Math.max(videoEl.currentTime - 15, 0)
-              e.preventDefault()
-              break
-            case 'l':
-              videoEl.currentTime = videoEl.currentTime + 15
-              e.preventDefault()
-              break
-            case 'k':
-            case 'space':
-              if (videoEl.paused) videoEl.play()
-              else videoEl.pause()
-              e.preventDefault()
-              break
-            case 'up':
-              videoEl.volume = Math.min(videoEl.volume + 0.05, 1)
-              e.preventDefault()
-              break
-            case 'down':
-              videoEl.volume = Math.max(videoEl.volume - 0.05, 0)
-              e.preventDefault()
-              break
-            case 'left':
-              videoEl.currentTime = Math.max(videoEl.currentTime - 5, 0)
-              e.preventDefault()
-              break
-            case 'right':
-              videoEl.currentTime = videoEl.currentTime + 5
-              e.preventDefault()
-              break
-          }
-        })
-      })
+    const self = this
+    const videoEl = self.$refs.videoEl
+    const onSpace = (e) => {
+      if (videoEl.paused) videoEl.play()
+      else videoEl.pause()
+      e.preventDefault()
+    }
+
+    this.unsubToKeybindings = tinykeys(window, {
+      f (e) {
+        if (document.fullscreenElement) document.exitFullscreen()
+        else self.$refs.container.requestFullscreen()
+        e.preventDefault()
+      },
+      m (e) {
+        videoEl.muted = !videoEl.muted
+        e.preventDefault()
+      },
+      j (e) {
+        videoEl.currentTime = Math.max(videoEl.currentTime - 15, 0)
+        e.preventDefault()
+      },
+      l (e) {
+        videoEl.currentTime = videoEl.currentTime + 15
+        e.preventDefault()
+      },
+      Space: onSpace,
+      k: onSpace,
+      ArrowUp (e) {
+        videoEl.volume = Math.min(videoEl.volume + 0.05, 1)
+        e.preventDefault()
+      },
+      ArrowDown (e) {
+        videoEl.volume = Math.max(videoEl.volume - 0.05, 0)
+        e.preventDefault()
+      },
+      ArrowLeft (e) {
+        videoEl.currentTime = Math.max(videoEl.currentTime - 5, 0)
+        e.preventDefault()
+      },
+      ArrowRight (e) {
+        videoEl.currentTime = videoEl.currentTime + 5
+        e.preventDefault()
+      }
+    })
   },
 
   beforeDestroy () {
@@ -324,7 +320,7 @@ export default {
       this.player.destroy()
       this.player = undefined
     }
-    if (this.hotkeys) this.hotkeys.unbind()
+    this.unsubToKeybindings()
     this.$refs.container.querySelectorAll('div').forEach(node => node.remove())
   }
 }
