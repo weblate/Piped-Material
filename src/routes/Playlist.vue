@@ -32,7 +32,7 @@
 
           <v-row v-for="(chunk, chunkId) in chunkedByFour" :key="chunkId" class="mt-4">
             <v-col md="3" v-for="video in chunk" :key="video.url">
-              <VideoItem :video="video" />
+              <VideoItem :video="video" max-height />
             </v-col>
           </v-row>
         </v-col>
