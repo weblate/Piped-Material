@@ -7,9 +7,9 @@
         alt="thumbnail"
         loading="lazy"
       />
-      <v-card-title class="subtitle-1">{{ video.title }}</v-card-title>
+      <v-card-title class="text-subtitle-1">{{ video.title }}</v-card-title>
       <v-card-text>
-        <router-link :to="video.uploaderUrl" class="subtitle-1 text-decoration-none" v-if="video.uploaderUrl && (video.uploaderName || video.uploader) && !hideChannel" custom v-slot="{ navigate }">
+        <router-link :to="video.uploaderUrl" class="text-subtitle-1 text-decoration-none" v-if="video.uploaderUrl && (video.uploaderName || video.uploader) && !hideChannel" custom v-slot="{ navigate }">
           <h5 @click="navigate" @keypress.enter="navigate" role="link">{{ video.uploaderName || video.uploader }}</h5>
         </router-link>
         <slot />
