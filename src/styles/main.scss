@@ -17,23 +17,23 @@
 }
 
 .bengali {
-  @include addFonts('Hind Silliguri')
+  @include addFonts('Hind Siliguri');
 }
 
 .traditional-chinese {
-  @include addFonts('Noto Sans TC')
+  @include addFonts('Noto Sans TC');
 }
 
 .simplified-chinese {
-  @include addFonts('Noto Sans SC')
+  @include addFonts('Noto Sans SC');
 }
 
 .japanese {
-  @include addFonts('Noto Sans JP')
+  @include addFonts('Noto Sans JP');
 }
 
 .korean {
-  @include addFonts('Noto Sans KR')
+  @include addFonts('Noto Sans KR');
 }
 
 .cyrillic {
