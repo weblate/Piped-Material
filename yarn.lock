@@ -946,6 +946,31 @@
   resolved "https://registry.yarnpkg.com/@fontsource/hind-siliguri/-/hind-siliguri-4.5.0.tgz#e5489447c309484e9f48b2a75ee54a3f6cc40b31"
   integrity sha512-kt7rXU/+G5oQeCFNibg5lKPv5zJnZSQe2jx52RDPthKnNDbt2z5z5eLdXLjueTjtZC/dVwnGijAWSPAmlIv5ow==
 
+"@fontsource/noto-sans-jp@^4.5.2":
+  version "4.5.2"
+  resolved "https://registry.yarnpkg.com/@fontsource/noto-sans-jp/-/noto-sans-jp-4.5.2.tgz#f0072160a90ec2ede01a9c6039d74e7e57844767"
+  integrity sha512-CWvI1kXjswI8BKdGLwFZ9CfNLQBsaFi1oBF8cjv45TcYZXSaNKDuY/eziijGnn6so8TzU4bc+88izwQjb0PCmQ==
+
+"@fontsource/noto-sans-kr@^4.5.2":
+  version "4.5.2"
+  resolved "https://registry.yarnpkg.com/@fontsource/noto-sans-kr/-/noto-sans-kr-4.5.2.tgz#1f529275e2cef4ae9d8bdeae132852b57ec33528"
+  integrity sha512-EQnXIYq5jGYkiUIX3FunMExzimMpFXWQu7U0vJ5PJO/8Gss7v31L2TOFmPzIaONevt4cxfnTr3U+0jRiHULy/w==
+
+"@fontsource/noto-sans-sc@^4.5.2":
+  version "4.5.2"
+  resolved "https://registry.yarnpkg.com/@fontsource/noto-sans-sc/-/noto-sans-sc-4.5.2.tgz#a6f57793a223a08a2eab0e2b1c57e2471d57b818"
+  integrity sha512-q9a61ND72RZdb4S1SG3w0c8POLS7s7QtfMMbfFG/jlsKxidsBnUS66jAE+h+OhaQCl8FeQrY8yMnHOff/4paFw==
+
+"@fontsource/noto-sans-tc@^4.5.2":
+  version "4.5.2"
+  resolved "https://registry.yarnpkg.com/@fontsource/noto-sans-tc/-/noto-sans-tc-4.5.2.tgz#e584b7a79c7e5446a03d56c3a2714a6c533faa5d"
+  integrity sha512-K7c/1Uh7SlBdxRBNsYONtC/oPG/6wJ4xsbnYY4Q+XqpwggJkKYB9dmAgdC1XTDHcY9dZX8AO+oH+wyB4rvdI/w==
+
+"@fontsource/nunito-sans@^4.5.1":
+  version "4.5.1"
+  resolved "https://registry.yarnpkg.com/@fontsource/nunito-sans/-/nunito-sans-4.5.1.tgz#ef625d7615112c96306c805323ef32b9ae9f7cb5"
+  integrity sha512-sOqaGHmT9dQ8sQ95uLjZecmhtw7ivZNOb7Nd6khT1x0pKcgHQa93kzzg+UI3/0HjO80Dn+/87kgwaU2IIZDZuA==
+
 "@hapi/address@2.x.x":
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/@hapi/address/-/address-2.1.4.tgz#5d67ed43f3fd41a69d4b9ff7b56e7c0d1d0a81e5"

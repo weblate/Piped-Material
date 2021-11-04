@@ -9,6 +9,11 @@
   "dependencies": {
     "@babel/eslint-parser": "^7.15.0",
     "@fontsource/hind-siliguri": "^4.5.0",
+    "@fontsource/noto-sans-jp": "^4.5.2",
+    "@fontsource/noto-sans-kr": "^4.5.2",
+    "@fontsource/noto-sans-sc": "^4.5.2",
+    "@fontsource/noto-sans-tc": "^4.5.2",
+    "@fontsource/nunito-sans": "^4.5.1",
     "@mdi/font": "^6.4.95",
     "axios": "^0.23.0",
     "core-js": "^3.16.1",

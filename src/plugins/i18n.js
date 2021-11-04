@@ -36,11 +36,33 @@ async function syncStylesPerLanguage (locale) {
       document.body.classList.remove(...document.body.classList)
       document.body.classList.add('bengali')
       break
-    // Chinese languages
+    // Other languages
+    // NOTE: if you are a native speaker & want to see a different font, just email me or join the channel
     case 'zh_Hant':
-      // NOTE: if you are Chinese and want to see a different font, just email me
+      await import('@fontsource/noto-sans-tc/chinese-traditional.css')
       document.body.classList.remove(...document.body.classList)
-      document.body.classList.add('chinese')
+      document.body.classList.add('traditional-chinese')
+      break
+    case 'zh_Hans':
+      await import('@fontsource/noto-sans-sc/chinese-simplified.css')
+      document.body.classList.remove(...document.body.classList)
+      document.body.classList.add('simplified-chinese')
+      break
+    case 'jp':
+      await import('@fontsource/noto-sans-jp/japanese.css')
+      document.body.classList.remove(...document.body.classList)
+      document.body.classList.add('japanese')
+      break
+    case 'kr':
+      await import('@fontsource/noto-sans-kr/korean.css')
+      document.body.classList.remove(...document.body.classList)
+      document.body.classList.add('korean')
+      break
+    case 'cyrl':
+      await import('@fontsource/nunito-sans/cyrillic.css')
+      document.body.classList.remove(...document.body.classList)
+      document.body.classList.add('cyrillic')
+      break
   }
 }
 

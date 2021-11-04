@@ -2,13 +2,13 @@
   .v-application {
     [class*='text-'],[class*='body-'] {
       color: #36405a;
-      font-family: $font-primary, sans-serif !important;
+      font-family: $font-primary, Helvetica Neue, sans-serif !important;
     }
     .headline, .title {
-      font-family: $font-primary, sans-serif !important;
+      font-family: $font-primary, Helvetica Neue, sans-serif !important;
     }
 
-    font-family: $font-primary, sans-serif !important;
+    font-family: $font-primary, Helvetica Neue, sans-serif !important;
   }
 }
 
@@ -18,4 +18,24 @@
 
 .bengali {
   @include addFonts('Hind Silliguri')
+}
+
+.traditional-chinese {
+  @include addFonts('Noto Sans TC')
+}
+
+.simplified-chinese {
+  @include addFonts('Noto Sans SC')
+}
+
+.japanese {
+  @include addFonts('Noto Sans JP')
+}
+
+.korean {
+  @include addFonts('Noto Sans KR')
+}
+
+.cyrillic {
+  @include addFonts('Nunito Sans')
 }
