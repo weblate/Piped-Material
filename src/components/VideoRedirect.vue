@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  activated () {
+  mounted () {
     const videoId = this.$route.params.videoId
     if (videoId) {
       this.$router.push({
