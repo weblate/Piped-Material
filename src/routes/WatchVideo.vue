@@ -3,6 +3,7 @@
   <v-progress-linear indeterminate v-else-if="!loaded" />
   <div v-else>
     <Player
+      ref="player"
       :video="video"
       :skip-to-time="'t' in $route.query ? Number($route.query.t) : null"
       :sponsors="sponsors"
@@ -27,7 +28,7 @@
                 <b class="ml-2">{{ addCommas(video.likes) }}</b>
                 <v-icon class="ml-2">mdi-thumb-down</v-icon>
                 <b class="ml-2">{{ addCommas(video.dislikes) }}</b>
-                <v-btn icon class="ml-2" link :href="'https://youtu.be/' + getVideoId()" target="_blank">
+                <v-btn icon class="ml-2" link :href="'https://youtu.be/' + getVideoId()" @click.prevent="onYTClick" target="_blank">
                   <v-icon large>
                     mdi-youtube
                   </v-icon>
@@ -184,6 +185,17 @@ export default {
           }
         })
       }
+    },
+
+    onYTClick () {
+      const time = this.$refs.player.getCurrentTime()
+
+      const url = new URL('https://youtube.com/watch')
+      url.searchParams.set('v', this.getVideoId())
+      if (Number.isFinite(time)) {
+        url.searchParams.set('t', time.toFixed(0))
+      }
+      window.location.href = url.href
     },
 
     numberFormat (...args) {

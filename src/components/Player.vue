@@ -69,6 +69,11 @@ export default {
     }
   },
   methods: {
+    getCurrentTime () {
+      // UNCLEAN
+      return this.$refs.videoEl?.currentTime
+    },
+
     async loadVideo () {
       console.log('PIPED | LOADING VIDEO')
       const component = this
