@@ -36,21 +36,7 @@ export default {
   },
   data: () => ({
     loaded: false,
-    data: null,
-    headers: [
-      {
-        text: 'Title',
-        value: 'video.title'
-      },
-      {
-        text: 'Date & Time',
-        value: 'timestamp'
-      },
-      {
-        text: 'URL',
-        value: 'url'
-      }
-    ]
+    data: null
   }),
 
   metaInfo () {

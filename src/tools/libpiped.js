@@ -67,7 +67,7 @@ class LibPiped {
   }
 
   determineVideoIdFromPath (path) {
-    const loc = new URL('http://localhost' + path)
+    const loc = new URL(path, 'http://localhost')
     return loc.searchParams.get('v')
   }
 }

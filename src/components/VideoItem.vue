@@ -7,6 +7,7 @@
         alt="thumbnail"
         loading="lazy"
       />
+      <v-progress-linear value="100" v-if="alreadyWatched" />
       <v-card-title class="text-subtitle-1">{{ video.title }}</v-card-title>
       <v-card-text>
         <router-link :to="video.uploaderUrl" class="text-subtitle-1 text-decoration-none" v-if="video.uploaderUrl && (video.uploaderName || video.uploader) && !hideChannel" custom v-slot="{ navigate }">
@@ -22,8 +23,10 @@
 
 <script>
 import { LibPiped } from '@/tools/libpiped'
+import { isVideoWatched } from '@/store/watched-videos-db'
 
 export default {
+  name: 'VideoItem',
   props: {
     video: Object,
     height: Number,
@@ -31,7 +34,31 @@ export default {
     hideChannel: Boolean,
     maxHeight: Boolean
   },
+  data: () => ({
+    alreadyWatched: false
+  }),
+  mounted () {
+    this.findIfVideoWatched()
+  },
+  watch: {
+    'video.videoId': 'findIfVideoWatched',
+    'video.url': 'findIfVideoWatched'
+  },
+
   methods: {
+    async findIfVideoWatched () {
+      let videoId
+      if (this.video.videoId) {
+        videoId = this.video.videoId
+      } else {
+        videoId = LibPiped.determineVideoIdFromPath(this.video.url)
+      }
+
+      if (videoId) {
+        this.alreadyWatched = await isVideoWatched(videoId)
+      }
+    },
+
     numberFormat (...args) {
       return LibPiped.numberFormat(...args)
     },

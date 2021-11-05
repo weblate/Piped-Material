@@ -258,29 +258,29 @@ export default {
       })
     },
 
-    getVideoData () {
-      return this.fetchVideo()
-        .then(data => {
-          data.videoId = this.getVideoId()
-          this.video = data
-          this.loaded = true
-        })
-        .then(() => {
-          if (this.video.error) {
-            return
-          }
-          this.channelId = this.video.uploaderUrl.split('/')[2]
-          this.fetchSubscribedStatus()
+    async getVideoData () {
+      const video = await this.fetchVideo()
+      video.videoId = this.getVideoId()
+      video.url = this.$route.fullPath
+      this.video = video
+      this.loaded = true
 
-          this.video.description = LibPiped.purifyHTML(
-            this.video.description
-              .replaceAll('http://www.youtube.com', '')
-              .replaceAll('https://www.youtube.com', '')
-              .replaceAll('\n', '<br>')
-          )
-        }).then(() => {
-          return addWatchedVideo(this.video, this.$route.fullPath)
-        })
+      if (this.video.error) {
+        return
+      }
+      this.channelId = this.video.uploaderUrl.split('/')[2]
+
+      this.video.description = LibPiped.purifyHTML(
+        this.video.description
+          .replaceAll('http://www.youtube.com', '')
+          .replaceAll('https://www.youtube.com', '')
+          .replaceAll('\n', '<br>')
+      )
+
+      await Promise.all([
+        this.fetchSubscribedStatus(),
+        addWatchedVideo(this.video)
+      ])
     },
     async getSponsors () {
       if (this.$store.getters['prefs/getPreference']('sponsorblock', true)) { this.fetchSponsors().then(data => (this.sponsors = data)) }
