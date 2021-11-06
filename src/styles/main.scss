@@ -39,3 +39,8 @@
 .cyrillic {
   @include addFonts('Nunito Sans')
 }
+
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
