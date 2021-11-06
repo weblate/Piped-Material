@@ -19,8 +19,8 @@
         <v-icon>mdi-thumb-up</v-icon> {{ numberFormat(comment.likeCount) }}
         <v-icon v-if="comment.hearted" class="ml-4">mdi-heart</v-icon>
         <br />
-        <v-btn class="mt-1" text :loading="requestInProgress" :disabled="requestInProgress" @click="loadReplies" v-if="!subComment && childComments.length === 0">Load Replies</v-btn>
-        <div v-else-if="!subComment">
+        <v-btn class="mt-1" text :loading="requestInProgress" :disabled="requestInProgress" @click="loadReplies" v-if="!subComment && childComments.length === 0 && comment.repliesPage != null">Load Replies</v-btn>
+        <div v-else-if="!subComment && childComments.length !== 0">
           <v-btn text @click="showChildComments = !showChildComments">{{ showChildComments ? 'Hide' : 'Show' }} Replies</v-btn>
         </div>
         <div v-if="childComments.length !== 0 && showChildComments">
