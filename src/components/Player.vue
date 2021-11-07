@@ -52,7 +52,8 @@ export default {
   },
   data () {
     return {
-      player: null
+      $player: null,
+      $ui: null
     }
   },
   computed: {
@@ -83,7 +84,7 @@ export default {
 
       if (this.skipToTime != null) videoEl.currentTime = this.skipToTime
 
-      const noPrevPlayer = !this.player
+      const noPrevPlayer = !this.$player
 
       const streams = []
 
@@ -116,6 +117,9 @@ export default {
 
         mime = contentType
         uri = lbry.uri
+      } else if (this.video.hls) {
+        uri = this.video.hls
+        mime = 'application/x-mpegURL'
       } else {
         uri = this.video.videoStreams.filter(stream => stream.codec == null).slice(-1)[0].url
       }
@@ -154,7 +158,7 @@ export default {
         )
 
         this.setPlayerAttrs(localPlayer, videoEl, uri, mime, shaka)
-      } else this.setPlayerAttrs(this.player, videoEl, uri, mime, shaka)
+      } else this.setPlayerAttrs(this.$player, videoEl, uri, mime, shaka)
 
       if (noPrevPlayer) {
         videoEl.addEventListener('timeupdate', () => {
@@ -195,8 +199,8 @@ export default {
       // TODO: Add sponsors on seekbar: https://github.com/ajayyy/SponsorBlock/blob/e39de9fd852adb9196e0358ed827ad38d9933e29/src/js-components/previewBar.ts#L12
     },
     setPlayerAttrs (localPlayer, videoEl, uri, mime, shaka) {
-      if (!this.ui) {
-        this.ui = new shaka.ui.Overlay(localPlayer, this.$refs.container, videoEl)
+      if (!this.$ui) {
+        this.$ui = new shaka.ui.Overlay(localPlayer, this.$refs.container, videoEl)
 
         const config = {
           overflowMenuButtons: ['quality', 'captions', 'picture_in_picture', 'playback_rate'],
@@ -207,26 +211,32 @@ export default {
           }
         }
 
-        this.ui.configure(config)
+        this.$ui.configure(config)
       }
 
-      const player = this.ui.getControls().getPlayer()
+      const player = this.$ui.getControls().getPlayer()
 
-      this.player = player
+      this.$player = player
 
       const disableVideo = this.$store.getters['prefs/getPreferenceBoolean']('listen', false) && !this.video.livestream
 
-      this.player.configure({
+      this.$player.configure({
         preferredVideoCodecs: this.preferredVideoCodecs,
         preferredAudioCodecs: ['opus', 'mp4a'],
         manifest: {
-          disableVideo: disableVideo
+          disableVideo: disableVideo,
+          hls: {
+            useFullSegmentsForStartTime: true
+          }
+        },
+        streaming: {
+          useNativeHlsOnSafari: false
         }
       })
 
       const quality = this.$store.getters['prefs/getPreferenceNumber']('quality', 0)
       const qualityConds = quality > 0 && (this.video.audioStreams.length > 0 || this.video.livestream) && !disableVideo
-      if (qualityConds) this.player.configure('abr.enabled', false)
+      if (qualityConds) this.$player.configure('abr.enabled', false)
 
       player.load(uri, 0, mime).then(() => {
         if (qualityConds) {
@@ -256,7 +266,7 @@ export default {
           )
         })
         videoEl.volume = this.$store.getters['prefs/getPreferenceNumber']('volume', 1)
-        videoEl.playbackRate = videoEl.defaultPlaybackRate = this.$store.getters['prefs/getPreferenceNumber']('rate', 1)
+        player.trickPlay(this.$store.getters['prefs/getPreferenceNumber']('rate', 1))
       })
     }
   },
@@ -317,14 +327,14 @@ export default {
   },
 
   beforeDestroy () {
-    if (this.ui) {
-      this.ui.destroy()
-      this.ui = undefined
-      this.player = undefined
+    if (this.$ui) {
+      this.$ui.destroy()
+      this.$ui = undefined
+      this.$player = undefined
     }
-    if (this.player) {
-      this.player.destroy()
-      this.player = undefined
+    if (this.$player) {
+      this.$player.destroy()
+      this.$player = undefined
     }
     this.unsubToKeybindings()
     this.$refs.container.querySelectorAll('div').forEach(node => node.remove())

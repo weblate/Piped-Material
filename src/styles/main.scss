@@ -37,7 +37,7 @@
 }
 
 .cyrillic {
-  @include addFonts('Nunito Sans')
+  @include addFonts('Nunito Sans');
 }
 
 .v-application {
