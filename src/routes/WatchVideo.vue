@@ -7,7 +7,6 @@
       :video="video"
       :skip-to-time="'t' in $route.query ? Number($route.query.t) : null"
       :sponsors="sponsors"
-      :selectedAutoPlay="isAutoplayEnabled"
       :selectedAutoLoop="selectedAutoLoop"
       @videoEnded="videoEnded"
     />
@@ -71,7 +70,7 @@
             </div>
             <div>
               <!-- TODO translate -->
-              <v-checkbox dense :value="isAutoplayEnabled" @change="onAutoplayChg" label="Autoplay Next Video" />
+              <v-checkbox dense :input-value="isAutoplayEnabled" @change="onAutoplayChg" label="Autoplay Next Video" />
               <v-checkbox dense v-model="selectedAutoLoop" label="Loop this video" />
             </div>
           </v-card-text>

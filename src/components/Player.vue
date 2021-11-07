@@ -47,7 +47,6 @@ export default {
     video: Object,
     sponsors: Object,
     skipToTime: Number,
-    selectedAutoPlay: Boolean,
     selectedAutoLoop: Boolean
   },
   data () {

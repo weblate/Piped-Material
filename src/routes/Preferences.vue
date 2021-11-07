@@ -2,11 +2,13 @@
   <v-container fluid>
     <h1 class="text-h4 text-center">{{ $t('titles.preferences') }}</h1>
     <v-divider class="ma-4" />
-    <div style="display: flex;" v-for="(opt, optId) in options" :key="optId">
-      <v-simple-checkbox
+    <div v-for="(opt, optId) in options" :key="optId">
+      <v-checkbox
         v-if="opt.type === 'bool'"
-        :value="$store.getters['prefs/getPreferenceBoolean'](opt.id, opt.default)"
-        @input="setValue(opt.id, $event)"
+        dense
+        :label="$t('preferences.' + opt.id)"
+        :input-value="$store.getters['prefs/getPreferenceBoolean'](opt.id, opt.default)"
+        @change="setValue(opt.id, $event)"
       />
       <v-text-field
         v-else-if="opt.type === 'number'"
@@ -21,7 +23,6 @@
         :value="$store.getters['prefs/getPreference'](opt.id, opt.default)"
         @input="setValue(opt.id, $event)" :items="opt.options"
       />
-      <p v-if="opt.type === 'bool'">{{ $t('preferences.' + opt.id) }}</p><br />
     </div>
     <h5 class="text-h5">{{ $t('actions.instances_list') }}</h5>
     <v-data-table :headers="tableHeaders" :items="instances" />
