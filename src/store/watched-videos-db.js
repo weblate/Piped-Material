@@ -20,7 +20,7 @@ export async function isVideoWatched (videoId) {
 }
 
 export async function getWatchedVideos () {
-  return PMDB.watchedVideos.orderBy('timestamp').reversed().toArray()
+  return PMDB.watchedVideos.orderBy('timestamp').reverse().toArray()
 }
 
 export async function deleteWatchedVideos () {
