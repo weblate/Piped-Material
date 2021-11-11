@@ -7,7 +7,8 @@ const PrefsStore = {
     prefs: {
       playerAutoplay: true,
       autoplay: false,
-      listen: false
+      listen: false,
+      proxyLBRY: true
     }
   }),
   mutations: {

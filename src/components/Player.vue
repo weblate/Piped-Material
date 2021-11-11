@@ -110,12 +110,16 @@ export default {
         }
         mime = 'application/dash+xml'
       } else if (lbry) {
-        const contentType = await fetch(uri, {
+        uri = lbry.url
+        if (this.$store.getters['prefs/getPreferenceBoolean']('proxyLBRY', true)) {
+          const url = new URL(uri)
+          url.searchParams.set('host', url.host)
+          url.host = new URL(this.video.proxyUrl).host
+          uri = url.toString()
+        }
+        mime = await fetch(uri, {
           method: 'HEAD'
         }).then(response => response.headers.get('Content-Type'))
-
-        mime = contentType
-        uri = lbry.uri
       } else if (this.video.hls) {
         uri = this.video.hls
         mime = 'application/x-mpegURL'

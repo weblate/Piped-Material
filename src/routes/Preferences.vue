@@ -51,6 +51,11 @@ export default {
           default: false
         },
         {
+          id: 'proxyLBRY',
+          type: 'bool',
+          default: true
+        },
+        {
           id: 'homepage',
           type: 'select',
           label: 'Default Homepage',
