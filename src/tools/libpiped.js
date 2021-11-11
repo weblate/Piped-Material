@@ -70,6 +70,11 @@ class LibPiped {
     const loc = new URL(path, 'http://localhost')
     return loc.searchParams.get('v')
   }
+
+  determineVideoIdFromChannelURL (path) {
+    const pathParts = path.split('/')
+    return pathParts[2]
+  }
 }
 
 const lp = new LibPiped()

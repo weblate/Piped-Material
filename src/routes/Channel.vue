@@ -11,12 +11,7 @@
           <div class="text-h5 ml-4">
             {{ channel.name }}
           </div>
-          <v-btn
-            v-if="subscribed != null" outlined color="primary" @click="subscribeHandler"
-            class="ml-2"
-          >
-            {{ subscribed ? 'Unsubscribe' : 'Subscribe' }}
-          </v-btn>
+          <SubscriptionButton :channel-id="this.channel.id" />
         </div>
         <v-card-text>
           <div v-html="renderedDescription" />
@@ -42,14 +37,14 @@ import { chunk as _chunk } from 'lodash-es'
 
 import ErrorHandler from '@/components/ErrorHandler'
 import VideoItem from '@/components/VideoItem.vue'
+import SubscriptionButton from '@/components/SubscriptionButton'
 
 import { LibPiped } from '@/tools/libpiped'
 
 export default {
   data () {
     return {
-      channel: null,
-      subscribed: null
+      channel: null
     }
   },
   metaInfo () {
@@ -99,47 +94,16 @@ export default {
   },
 
   mounted () {
-    this.getChannelData()
+    this.fetchChannel()
+  },
+  watch: {
+    '$route.params.channelId': 'fetchChannel'
   },
   methods: {
     async fetchChannel () {
       this.channel = await this.$store.dispatch('auth/makeRequest', {
         path: '/' + this.$route.params.path + '/' + this.$route.params.channelId
       })
-    },
-
-    async fetchSubscribedStatus () {
-      const { channelId } = this.$route.params
-      if (!(channelId && this.$store.getters['auth/isCurrentlyAuthenticated'])) {
-        return
-      }
-
-      const resp = await this.$store.dispatch('auth/makeRequest', {
-        path: '/subscribed',
-        params: {
-          channelId
-        }
-      })
-
-      this.subscribed = resp.subscribed
-    },
-
-    async subscribeHandler () {
-      await this.$store.dispatch('auth/makeRequest', {
-        method: 'POST',
-        path: (this.subscribed ? '/unsubscribe' : '/subscribe'),
-        data: {
-          channelId: this.channelId
-        }
-      })
-      this.subscribed = !this.subscribed
-    },
-
-    async getChannelData () {
-      return Promise.all([
-        this.fetchChannel(),
-        this.fetchSubscribedStatus()
-      ])
     },
 
     onRelatedStreamsEndIntersect (entries) {
@@ -172,6 +136,7 @@ export default {
     }
   },
   components: {
+    SubscriptionButton,
     ErrorHandler,
     VideoItem
   }

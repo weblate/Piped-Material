@@ -8,12 +8,7 @@
           <v-card-title>{{ channel.name }}</v-card-title>
           <v-card-actions>
             <!-- Encapsulate into own item -->
-            <v-btn
-             outlined color="primary" @click.prevent="channel.subOrUnsub"
-             class="ml-2"
-            >
-              {{ channel.subscribed ? 'Unsubscribe' : 'Subscribe' }}
-            </v-btn>
+            <SubscriptionButton :channel-id="channel.id" />
           </v-card-actions>
         </v-card>
       </v-col>
@@ -24,8 +19,12 @@
 <script>
 import { chunk as _chunk } from 'lodash-es'
 
+import SubscriptionButton from '@/components/SubscriptionButton'
+import { LibPiped } from '@/tools/libpiped'
+
 export default {
   name: 'Subscriptions',
+  components: { SubscriptionButton },
   data: () => ({
     loaded: false,
     data: null
@@ -43,20 +42,9 @@ export default {
         path: '/subscriptions'
       })
       this.loaded = true
-      this.data = _chunk(resp.map(itm => {
-        itm.subscribed = true
-        itm.subOrUnsub = async () => {
-          await this.$store.dispatch('auth/makeRequest', {
-            method: 'POST',
-            path: (itm.subscribed ? '/unsubscribe' : '/subscribe'),
-            data: {
-              // this is horrible
-              channelId: itm.url.split('/')[2]
-            }
-          })
-          itm.subscribed = !itm.subscribed
-        }
-        return itm
+      this.data = _chunk(resp.map(r => {
+        r.id = LibPiped.determineVideoIdFromChannelURL(r.url)
+        return r
       }), 6)
     }
   },

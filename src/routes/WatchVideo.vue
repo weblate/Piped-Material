@@ -52,14 +52,7 @@
                   {{ video.uploader }}
                 </a>
                 <div class="ml-4">
-                  <v-btn
-                    v-if="$store.getters['auth/isCurrentlyAuthenticated'] && subscribed != null"
-                    @click.prevent="subscribeHandler"
-                    color="primary"
-                    outlined
-                  >
-                    {{ subscribed ? "Unsubscribe" : "Subscribe" }}
-                  </v-btn>
+                  <SubscriptionButton :channel-id="channelId" />
                 </div>
               </div>
             </router-link>
@@ -100,6 +93,7 @@ import VideoItem from '@/components/VideoItem.vue'
 import ErrorHandler from '@/components/ErrorHandler.vue'
 import VideoComment from '@/components/VideoComment'
 import { addWatchedVideo } from '@/store/watched-videos-db'
+import SubscriptionButton from '@/components/SubscriptionButton'
 
 export default {
   name: 'WatchVideo',
@@ -113,7 +107,6 @@ export default {
       selectedAutoLoop: false,
       showDesc: true,
       comments: null,
-      subscribed: null,
       channelId: null
     }
   },
@@ -277,7 +270,6 @@ export default {
       )
 
       await Promise.all([
-        this.fetchSubscribedStatus(),
         addWatchedVideo(this.video)
       ])
     },
@@ -286,29 +278,6 @@ export default {
     },
     getComments () {
       this.fetchComments().then(data => (this.comments = data))
-    },
-
-    async fetchSubscribedStatus () {
-      if (!this.channelId || !this.$store.getters['auth/isCurrentlyAuthenticated']) return
-
-      this.$store.dispatch('auth/makeRequest', {
-        path: '/subscribed',
-        params: {
-          channelId: this.channelId
-        }
-      }).then(json => {
-        this.subscribed = json.subscribed
-      })
-    },
-    async subscribeHandler () {
-      await this.$store.dispatch('auth/makeRequest', {
-        method: 'POST',
-        path: (this.subscribed ? '/unsubscribe' : '/subscribe'),
-        data: {
-          channelId: this.channelId
-        }
-      })
-      this.subscribed = !this.subscribed
     },
 
     getVideoId () {
@@ -321,6 +290,7 @@ export default {
     }
   },
   components: {
+    SubscriptionButton,
     VideoComment,
     Player,
     VideoItem,
