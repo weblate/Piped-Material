@@ -139,7 +139,7 @@ export default {
           const headers = request.headers
           if (
             url.host.endsWith('.googlevideo.com') ||
-            (url.host.endsWith('.lbryplayer.xyz') && headers.Range)
+            (url.host.endsWith('.lbryplayer.xyz') && (this.$store.getters['prefs/getPreferenceBoolean']('proxyLBRY', true) || headers.Range))
           ) {
             url.searchParams.set('host', url.host)
             url.host = proxyHost
