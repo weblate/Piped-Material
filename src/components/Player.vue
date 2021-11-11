@@ -91,8 +91,9 @@ export default {
       streams.push(...this.video.videoStreams)
 
       const MseSupport = window.MediaSource !== undefined
-      const lbry = this.video.videoStreams.filter(stream => stream.quality === 'LBRY')[0]
-
+      const lbry = this.$store.getters['prefs/getPreferenceBoolean']('disableLBRY', false)
+        ? null
+        : this.video.videoStreams.filter(stream => stream.quality === 'LBRY')[0]
       let uri, mime
 
       if (this.video.livestream) {

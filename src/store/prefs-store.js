@@ -8,6 +8,7 @@ const PrefsStore = {
       playerAutoplay: true,
       autoplay: false,
       listen: false,
+      disableLBRY: false,
       proxyLBRY: true
     }
   }),

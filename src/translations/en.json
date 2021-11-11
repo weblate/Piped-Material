@@ -50,6 +50,7 @@
         "enabled_codecs": "Enabled Codecs (Multiple)"
     },
     "preferences": {
+        "disableLBRY": "Disable LBRY",
         "proxyLBRY": "Proxy LBRY videos",
         "playerAutoplay": "Autoplay Video",
         "bufferGoal": "Buffering Goal",
