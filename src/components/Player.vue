@@ -165,7 +165,7 @@ export default {
       } else this.setPlayerAttrs(this.$player, videoEl, uri, mime, shaka)
 
       if (noPrevPlayer) {
-        videoEl.addEventListener('timeupdate', () => {
+        videoEl.addEventListener('timeupdate', (ev) => {
           if (this.sponsors && this.sponsors.segments) {
             const time = videoEl.currentTime
             this.sponsors.segments.forEach(segment => {
@@ -179,6 +179,7 @@ export default {
               }
             })
           }
+          this.$emit('timeupdate', ev)
         })
 
         videoEl.addEventListener('volumechange', () => {

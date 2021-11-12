@@ -50,6 +50,8 @@
         "enabled_codecs": "Enabled Codecs (Multiple)"
     },
     "preferences": {
+        "sponsorblock": "Enable Sponsorblock",
+        "selectedSkip": "Segments to Skip",
         "disableLBRY": "Disable LBRY",
         "proxyLBRY": "Proxy LBRY videos",
         "playerAutoplay": "Autoplay Video",

@@ -9,7 +9,8 @@ const PrefsStore = {
       autoplay: false,
       listen: false,
       disableLBRY: false,
-      proxyLBRY: true
+      proxyLBRY: true,
+      sponsorblock: true
     }
   }),
   mutations: {

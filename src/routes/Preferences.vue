@@ -21,6 +21,9 @@
         v-else-if="opt.type === 'select'"
         :label="$t('preferences.' + opt.id)"
         :value="$store.getters['prefs/getPreference'](opt.id, opt.default)"
+        :attach="opt.multi"
+        :chips="opt.multi"
+        :multiple="opt.multi"
         @input="setValue(opt.id, $event)" :items="opt.options"
       />
     </div>
@@ -95,6 +98,27 @@ export default {
           id: 'bufferGoal',
           type: 'number',
           default: 10
+        },
+        {
+          id: 'sponsorblock',
+          type: 'bool',
+          default: true
+        },
+        {
+          id: 'selectedSkip',
+          type: 'select',
+          label: 'Selected Segments to Skip',
+          multi: true,
+          default: ['sponsor', 'interaction', 'selfpromo', 'music_offtopic'],
+          options: [
+            { text: 'Sponsor Segments ', value: 'sponsors' },
+            { text: 'Intermission/Intro Animation Segments', value: 'intro' },
+            { text: 'Endcards/Credits Segments', value: 'outro' },
+            { text: 'Preview/Recap Segments', value: 'preview' },
+            { text: 'Interaction Reminder (Subscribe) Segments', value: 'interaction' },
+            { text: 'Unpaid/Self Promotion Segments', value: 'selfpromo' },
+            { text: 'Music: Non-Music Segments', value: 'music_offtopic' }
+          ]
         },
         {
           id: 'region',

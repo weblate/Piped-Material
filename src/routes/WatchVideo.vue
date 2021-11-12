@@ -205,17 +205,14 @@ export default {
       })
     },
 
-    async fetchSponsors () {
-      return this.$store.dispatch('auth/makeRequest', {
+    async getSponsors () {
+      if (!this.$store.getters['prefs/getPreference']('sponsorblock', true)) {
+        return
+      }
+      this.sponsors = await this.$store.dispatch('auth/makeRequest', {
         path: '/sponsors/' + this.getVideoId(),
         params: {
-          category:
-              '["' +
-              this.$store.getters['prefs/getPreference']('selectedSkip', 'sponsor,interaction,selfpromo,music_offtopic').replaceAll(
-                ',',
-                '","'
-              ) +
-              '"]'
+          category: JSON.stringify(this.$store.getters['prefs/getPreference']('selectedSkip', ['sponsor', 'interaction', 'selfpromo', 'music_offtopic']))
         }
       })
     },
@@ -272,9 +269,6 @@ export default {
       await Promise.all([
         addWatchedVideo(this.video)
       ])
-    },
-    async getSponsors () {
-      if (this.$store.getters['prefs/getPreference']('sponsorblock', true)) { this.fetchSponsors().then(data => (this.sponsors = data)) }
     },
     getComments () {
       this.fetchComments().then(data => (this.comments = data))
