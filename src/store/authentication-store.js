@@ -122,6 +122,15 @@ const AuthenticationStore = {
   }
 }
 
+function initializeAuthEvents (store) {
+  window.addEventListener('storage', (storageEv) => {
+    if (storageEv.key === 'AUTH') {
+      store.commit('auth/replaceAuth', JSON.parse(storageEv.newValue))
+    }
+  })
+}
+
 export {
-  AuthenticationStore
+  AuthenticationStore,
+  initializeAuthEvents
 }

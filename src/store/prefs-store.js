@@ -77,6 +77,15 @@ const PrefsStore = {
   }
 }
 
+function initializePrefEvents (store) {
+  window.addEventListener('storage', (storageEv) => {
+    if (storageEv.key === 'PREFERENCES') {
+      store.commit('prefs/replacePrefs', JSON.parse(storageEv.newValue))
+    }
+  })
+}
+
 export {
-  PrefsStore
+  PrefsStore,
+  initializePrefEvents
 }
