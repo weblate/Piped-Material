@@ -4,7 +4,7 @@
       app
       color="primary"
       dark
-      v-if="$vuetify.breakpoint.mdAndUp"
+      v-if="$vuetify.breakpoint.width > 1675"
     >
       <v-row dense align="center" justify="center">
         <v-col md="1" v-for="link in links" :key="link.id">
