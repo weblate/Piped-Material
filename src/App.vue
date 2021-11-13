@@ -6,6 +6,8 @@
       dark
       v-if="$vuetify.breakpoint.width > 1675"
     >
+      <!-- ^^^ The above breakpoint is manually determined to be the minimum sustainable width where everything works w/o overlapping -->
+      <!-- Might need changing when buttons change -->
       <v-row dense align="center" justify="center">
         <v-col md="1" v-for="link in links" :key="link.id">
           <v-btn
