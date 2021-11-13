@@ -94,8 +94,8 @@ export default {
               value: 5
             },
             {
-              text: '5 columns',
-              value: 5
+              text: '6 columns',
+              value: 6
             }
           ]
         },
