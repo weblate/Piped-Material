@@ -16,11 +16,9 @@
       <span v-if="!errorIsJSON">{{ $t(error) }}</span>
       <JSONViewer v-else :value="error" />
     </v-alert>
-    <v-row v-for="(row, rowId) in splitIntoRows" :key="rowId">
-      <v-col v-for="(video, videoId) in row" :key="videoId">
-        <VideoItem :video="video" max-height />
-      </v-col>
-    </v-row>
+    <div v-for="(row, rowId) in splitIntoRows" :key="rowId" :class="$vuetify.breakpoint.mdAndUp ? 'grid' : undefined">
+      <VideoItem :video="video" v-for="(video, videoId) in row" :key="videoId" :class="columnClass" />
+    </div>
   </v-container>
 </template>
 
@@ -106,6 +104,13 @@ export default {
       return this.$store.getters['prefs/getPreferenceNumber']('feedColumns', 4)
     },
 
+    columnClass () {
+      if (!this.$vuetify.breakpoint.mdAndUp) {
+        return
+      }
+      return 'span-col-' + (60 / this.rowSize) + ' mb-4'
+    },
+
     splitIntoRows () {
       return _chunk(this.videos, this.rowSize)
     }
@@ -116,3 +121,20 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+/* A 60-point grid generated for this page and this page only */
+/* Why, one might ask, when you have the Vuetify grid? */
+/* The reason being that Vuetify grid is 12-point, therefore 5 column layouts don't work */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(60, 1fr);
+  grid-gap: 16px;
+}
+
+.span-col-12{grid-column: span 12 / auto;}
+
+.span-col-15{grid-column: span 15 / auto;}
+
+.span-col-10{grid-column: span 10 / auto;}
+</style>
