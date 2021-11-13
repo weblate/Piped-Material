@@ -38,9 +38,13 @@ As a byproduct, the code is also much cleaner, dysfunctional patterns and paradi
 - [ ] Integration with LBRY
 - [ ] Update screenshots
 
+## Help
+
+Join the Libera Chat channel #piped-material via [IRC](ircs://irc.libera.chat:6697/#piped-material) or [Matrix](https://matrix.to/#/#piped-material:libera.chat).
+
 ## Documentation
 
-The documentation can be found at https://piped-docs.kavin.rocks (accessible via IPNS as well)
+The original parent repository documentation can be found at https://piped-docs.kavin.rocks (accessible via IPNS as well).
 
 ## Screenshots
 
