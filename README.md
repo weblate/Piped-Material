@@ -30,12 +30,12 @@ As a byproduct, the code is also much cleaner, dysfunctional patterns and paradi
 - [x] Improving UI
 - [x] Login
 - [x] Feeds
+- [x] Integration with SponsorBlock
+- [x] Integration with LBRY
 
 ## WIP
 
 - [ ] 8K support
-- [ ] Integration with SponsorBlock
-- [ ] Integration with LBRY
 - [ ] Update screenshots
 
 ## Help
