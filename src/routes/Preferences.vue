@@ -80,6 +80,26 @@ export default {
           ]
         },
         {
+          id: 'feedColumns',
+          type: 'select',
+          label: 'Amount of Columns on Feed Pages',
+          default: 4,
+          options: [
+            {
+              text: '4 columns',
+              value: 4
+            },
+            {
+              text: '5 columns',
+              value: 5
+            },
+            {
+              text: '5 columns',
+              value: 5
+            }
+          ]
+        },
+        {
           id: 'quality',
           type: 'select',
           default: 0,

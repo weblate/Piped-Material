@@ -50,6 +50,7 @@
         "enabled_codecs": "Enabled Codecs (Multiple)"
     },
     "preferences": {
+        "feedColumns": "Count of Columns in Feed Pages",
         "sponsorblock": "Enable Sponsorblock",
         "selectedSkip": "Segments to Skip",
         "disableLBRY": "Disable LBRY",

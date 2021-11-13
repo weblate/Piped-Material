@@ -16,8 +16,8 @@
       <span v-if="!errorIsJSON">{{ $t(error) }}</span>
       <JSONViewer v-else :value="error" />
     </v-alert>
-    <v-row v-for="(row, rowId) in chunkedBySix" :key="rowId">
-      <v-col md="2" v-for="(video, videoId) in row" :key="videoId">
+    <v-row v-for="(row, rowId) in splitIntoRows" :key="rowId">
+      <v-col v-for="(video, videoId) in row" :key="videoId">
         <VideoItem :video="video" max-height />
       </v-col>
     </v-row>
@@ -102,8 +102,12 @@ export default {
     }
   },
   computed: {
-    chunkedBySix () {
-      return _chunk(this.videos, 6)
+    rowSize () {
+      return this.$store.getters['prefs/getPreferenceNumber']('feedColumns', 4)
+    },
+
+    splitIntoRows () {
+      return _chunk(this.videos, this.rowSize)
     }
   },
   components: {
