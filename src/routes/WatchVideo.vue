@@ -9,6 +9,7 @@
       :sponsors="sponsors"
       :selectedAutoLoop="selectedAutoLoop"
       @videoEnded="videoEnded"
+      @timeupdate="onTimeUpdate"
     />
 
     <v-row dense class="my-2">
@@ -86,13 +87,14 @@
 </template>
 
 <script>
+import { debounce } from 'lodash-es'
 import { LibPiped } from '@/tools/libpiped'
 
 import Player from '@/components/Player.vue'
 import VideoItem from '@/components/VideoItem.vue'
 import ErrorHandler from '@/components/ErrorHandler.vue'
 import VideoComment from '@/components/VideoComment'
-import { addWatchedVideo } from '@/store/watched-videos-db'
+import { addWatchedVideo, updateWatchedVideoProgress } from '@/store/watched-videos-db'
 import SubscriptionButton from '@/components/SubscriptionButton'
 
 export default {
@@ -107,7 +109,9 @@ export default {
       selectedAutoLoop: false,
       showDesc: true,
       comments: null,
-      channelId: null
+      channelId: null,
+
+      dbID: null
     }
   },
   metaInfo () {
@@ -265,10 +269,7 @@ export default {
           .replaceAll('https://www.youtube.com', '')
           .replaceAll('\n', '<br>')
       )
-
-      await Promise.all([
-        addWatchedVideo(this.video)
-      ])
+      this.dbID = await addWatchedVideo(this.video)
     },
     getComments () {
       this.fetchComments().then(data => (this.comments = data))
@@ -276,7 +277,14 @@ export default {
 
     getVideoId () {
       return this.$route.query.v || this.$route.params.v
-    }
+    },
+
+    onTimeUpdate: debounce(function onTimeUpdate (e) {
+      if (this.dbID == null || !this.$refs.player) {
+        return
+      }
+      return updateWatchedVideoProgress(this.dbID, this.$refs.player.getCurrentTime())
+    }, 500)
   },
   computed: {
     isAutoplayEnabled () {
