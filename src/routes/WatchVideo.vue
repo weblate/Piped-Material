@@ -18,7 +18,7 @@
           <v-card-title class="text-h5">{{ video.title }}</v-card-title>
           <v-card-subtitle class="text-subtitle-1">
             <v-row>
-              <v-col md="4" align-self="start">
+              <v-col md="5" align-self="start">
                 {{ $tc('counts.views', video.views, { n: addCommas(video.views) }) }}
                 •
                 {{ video.uploadDate }}
@@ -29,7 +29,7 @@
                   <ExpandableDate :date="lastWatch.timestamp" />
                 </span>
               </v-col>
-              <v-col offset-md="5" md="3" align-self="end">
+              <v-col offset-md="4" md="3" align-self="end">
                 <v-icon>mdi-thumb-up</v-icon>
                 <b class="ml-2">{{ addCommas(video.likes) }}</b>
                 <v-icon class="ml-2">mdi-thumb-down</v-icon>
