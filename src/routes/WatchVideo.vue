@@ -260,7 +260,11 @@ export default {
     },
 
     async getVideoData () {
-      this.lastWatch = await findLastWatch(this.videoId)
+      try {
+        this.lastWatch = await findLastWatch(this.videoId)
+      } catch (e) {
+        console.error('Errored while finding last watched', e)
+      }
 
       const video = await this.fetchVideo()
       video.videoId = this.videoId
