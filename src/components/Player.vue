@@ -310,6 +310,10 @@ export default {
         videoEl.currentTime = videoEl.currentTime + 15
         e.preventDefault()
       },
+      c (e) {
+        self.$player.setTextTrackVisibility(!self.$player.isTextTrackVisible())
+        e.preventDefault()
+      },
       Space: onSpace,
       k: onSpace,
       ArrowUp (e) {
