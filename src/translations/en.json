@@ -53,6 +53,7 @@
         "feedColumns": "Count of Columns in Feed Pages",
         "sponsorblock": "Enable Sponsorblock",
         "selectedSkip": "Segments to Skip",
+        "skipToLastPoint": "Skip to the last watched point when encountering a video already seen",
         "disableLBRY": "Disable LBRY",
         "proxyLBRY": "Proxy LBRY videos",
         "playerAutoplay": "Autoplay Video",

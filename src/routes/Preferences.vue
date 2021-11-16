@@ -64,6 +64,11 @@ export default {
           default: true
         },
         {
+          id: 'skipToLastPoint',
+          type: 'bool',
+          default: true
+        },
+        {
           id: 'homepage',
           type: 'select',
           label: 'Default Homepage',

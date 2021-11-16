@@ -8,7 +8,7 @@
     </v-row>
     <v-row v-for="(chunk, chunkId) in chunkedByFour" :key="chunkId">
       <v-col md="3" v-for="doc in chunk" :key="doc._id">
-        <VideoItem :video="doc.video" :src-progress="doc.progress">
+        <VideoItem :video="doc.video" :src-progress="doc.progress" max-height>
           <ExpandableDate :date="doc.timestamp">
             Watched
           </ExpandableDate>
