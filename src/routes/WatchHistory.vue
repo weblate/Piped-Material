@@ -8,15 +8,11 @@
     </v-row>
     <v-row v-for="(chunk, chunkId) in chunkedByFour" :key="chunkId">
       <v-col md="3" v-for="doc in chunk" :key="doc._id">
-        <VideoItem :video="doc.video">
-          <v-tooltip bottom>
-            <template v-slot:activator="{ on, attrs }">
-              <span v-bind="attrs" v-on="on">
-                Watched {{ doc.timeAgo }}
-              </span>
-            </template>
-            <span>{{ doc.formattedDate }}</span>
-          </v-tooltip><br />
+        <VideoItem :video="doc.video" :src-progress="doc.progress">
+          <ExpandableDate :date="doc.timestamp">
+            Watched
+          </ExpandableDate>
+          <br />
         </VideoItem>
       </v-col>
     </v-row>
@@ -27,11 +23,12 @@
 import _chunk from 'lodash-es/chunk'
 
 import { deleteWatchedVideos, getWatchedVideos } from '@/store/watched-videos-db'
-import { LibPiped } from '@/tools/libpiped'
 import VideoItem from '@/components/VideoItem'
+import ExpandableDate from '@/components/ExpandableDate'
 
 export default {
   components: {
+    ExpandableDate,
     VideoItem
   },
   data: () => ({
@@ -47,11 +44,7 @@ export default {
 
   methods: {
     async loadData () {
-      this.data = (await getWatchedVideos()).map(doc => {
-        doc.timeAgo = LibPiped.timeAgo(doc.timestamp)
-        doc.formattedDate = LibPiped.formatFullDate(doc.timestamp)
-        return doc
-      })
+      this.data = await getWatchedVideos()
       this.loaded = true
     },
 

@@ -32,7 +32,8 @@ export default {
     height: Number,
     width: Number,
     hideChannel: Boolean,
-    maxHeight: Boolean
+    maxHeight: Boolean,
+    srcProgress: Number
   },
   data: () => ({
     alreadyWatched: false,
@@ -43,11 +44,23 @@ export default {
   },
   watch: {
     'video.videoId': 'findIfVideoWatched',
-    'video.url': 'findIfVideoWatched'
+    'video.url': 'findIfVideoWatched',
+    srcProgress: 'findIfVideoWatched'
   },
 
   methods: {
+    calcProgress (prog, dur) {
+      return Math.min((prog / dur) * 100, 100)
+    },
+
     async findIfVideoWatched () {
+      // if it has source progress, it's already seen
+      if (this.srcProgress) {
+        this.alreadyWatched = true
+        this.progress = this.calcProgress(this.srcProgress, this.video.duration)
+        return
+      }
+
       let videoId
       if (this.video.videoId) {
         videoId = this.video.videoId
@@ -59,7 +72,7 @@ export default {
         const lastVideo = await findLastWatch(videoId)
         if (lastVideo != null) {
           this.alreadyWatched = true
-          this.progress = lastVideo.progress != null ? Math.min((lastVideo.progress / lastVideo.video.duration) * 100, 100) : 100
+          this.progress = lastVideo.progress != null ? this.calcProgress(lastVideo.progress, lastVideo.video.duration) : 100
         }
       }
     },

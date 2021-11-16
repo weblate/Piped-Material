@@ -5,7 +5,7 @@
     <Player
       ref="player"
       :video="video"
-      :skip-to-time="'t' in $route.query ? Number($route.query.t) : null"
+      :skip-to-time="skipToTime"
       :sponsors="sponsors"
       :selectedAutoLoop="selectedAutoLoop"
       @videoEnded="videoEnded"
@@ -22,13 +22,19 @@
                 {{ $tc('counts.views', video.views, { n: addCommas(video.views) }) }}
                 •
                 {{ video.uploadDate }}
+                <!-- TODO make translatable -->
+                <span v-if="lastWatch">
+                  •
+                  Last watched till {{ lastWatchDurationH }}
+                  <ExpandableDate :date="lastWatch.timestamp" />
+                </span>
               </v-col>
               <v-col offset-md="5" md="3" align-self="end">
                 <v-icon>mdi-thumb-up</v-icon>
                 <b class="ml-2">{{ addCommas(video.likes) }}</b>
                 <v-icon class="ml-2">mdi-thumb-down</v-icon>
                 <b class="ml-2">{{ addCommas(video.dislikes) }}</b>
-                <v-btn icon class="ml-2" link :href="'https://youtu.be/' + getVideoId()" @click.prevent="onYTClick" target="_blank">
+                <v-btn icon class="ml-2" link :href="'https://youtu.be/' + videoId" @click.prevent="onYTClick" target="_blank">
                   <v-icon large>
                     mdi-youtube
                   </v-icon>
@@ -94,8 +100,9 @@ import Player from '@/components/Player.vue'
 import VideoItem from '@/components/VideoItem.vue'
 import ErrorHandler from '@/components/ErrorHandler.vue'
 import VideoComment from '@/components/VideoComment'
-import { addWatchedVideo, updateWatchedVideoProgress } from '@/store/watched-videos-db'
+import { addWatchedVideo, updateWatchedVideoProgress, findLastWatch } from '@/store/watched-videos-db'
 import SubscriptionButton from '@/components/SubscriptionButton'
+import ExpandableDate from '@/components/ExpandableDate'
 
 export default {
   name: 'WatchVideo',
@@ -111,7 +118,8 @@ export default {
       comments: null,
       channelId: null,
 
-      dbID: null
+      dbID: null,
+      lastWatch: null
     }
   },
   metaInfo () {
@@ -187,7 +195,7 @@ export default {
       const time = this.$refs.player.getCurrentTime()
 
       const url = new URL('https://youtube.com/watch')
-      url.searchParams.set('v', this.getVideoId())
+      url.searchParams.set('v', this.videoId)
       if (Number.isFinite(time)) {
         url.searchParams.set('t', time.toFixed(0))
       }
@@ -205,7 +213,7 @@ export default {
     fetchVideo () {
       return this.$store.dispatch('auth/makeRequest', {
         method: 'GET',
-        path: '/streams/' + this.getVideoId()
+        path: '/streams/' + this.videoId
       })
     },
 
@@ -214,7 +222,7 @@ export default {
         return
       }
       this.sponsors = await this.$store.dispatch('auth/makeRequest', {
-        path: '/sponsors/' + this.getVideoId(),
+        path: '/sponsors/' + this.videoId,
         params: {
           category: JSON.stringify(this.$store.getters['prefs/getPreference']('selectedSkip', ['sponsor', 'interaction', 'selfpromo', 'music_offtopic']))
         }
@@ -222,7 +230,7 @@ export default {
     },
     fetchComments () {
       return this.$store.dispatch('auth/makeRequest', {
-        path: '/comments/' + this.getVideoId()
+        path: '/comments/' + this.videoId
       })
     },
 
@@ -234,7 +242,7 @@ export default {
 
     fetchMoreComments () {
       this.$store.dispatch('auth/makeRequest', {
-        path: '/nextpage/comments/' + this.getVideoId(),
+        path: '/nextpage/comments/' + this.videoId,
         params: {
           nextpage: this.comments.nextpage
         }
@@ -252,8 +260,10 @@ export default {
     },
 
     async getVideoData () {
+      this.lastWatch = await findLastWatch(this.videoId)
+
       const video = await this.fetchVideo()
-      video.videoId = this.getVideoId()
+      video.videoId = this.videoId
       video.url = this.$route.fullPath
       this.video = video
       this.loaded = true
@@ -269,14 +279,10 @@ export default {
           .replaceAll('https://www.youtube.com', '')
           .replaceAll('\n', '<br>')
       )
-      this.dbID = await addWatchedVideo(this.video)
+      this.dbID = await addWatchedVideo(video)
     },
     getComments () {
       this.fetchComments().then(data => (this.comments = data))
-    },
-
-    getVideoId () {
-      return this.$route.query.v || this.$route.params.v
     },
 
     onTimeUpdate: debounce(function onTimeUpdate (e) {
@@ -289,9 +295,29 @@ export default {
   computed: {
     isAutoplayEnabled () {
       return this.$store.getters['prefs/getPreferenceBoolean']('autoplay', false)
+    },
+    videoId () {
+      return this.$route.query.v || this.$route.params.v
+    },
+    skipToTime () {
+      // 't' in $route.query ? Number($route.query.t) : (lastWatch.progress ? lastWatch.progress : undefined)
+      // 1st Priority - t in query
+      // 2nd Priority - Last Watched Progress, if enabled
+      if ('t' in this.$route.query) {
+        return Number(this.$route.query.t)
+      } else if (this.lastWatch && this.lastWatch.progress != null && this.lastWatch.progress !== 0 && this.$store.getters['prefs/getPreferenceBoolean']('skipToLastPoint', true)) {
+        return this.lastWatch.progress
+      } else {
+        return undefined
+      }
+    },
+
+    lastWatchDurationH () {
+      return LibPiped.timeFormat(this.lastWatch.progress)
     }
   },
   components: {
+    ExpandableDate,
     SubscriptionButton,
     VideoComment,
     Player,

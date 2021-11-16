@@ -10,7 +10,8 @@ const PrefsStore = {
       listen: false,
       disableLBRY: false,
       proxyLBRY: true,
-      sponsorblock: true
+      sponsorblock: true,
+      skipToLastPoint: true
     }
   }),
   mutations: {

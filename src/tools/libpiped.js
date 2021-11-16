@@ -12,11 +12,11 @@ class LibPiped {
     timeStyle: 'full'
   })
 
-  timeFormat (duration) {
-    const pad = function (num, size) {
-      return ('000' + num).slice(size * -1)
-    }
+  pad (num, size) {
+    return ('000' + num).slice(size * -1)
+  }
 
+  timeFormat (duration) {
     const time = parseFloat(duration).toFixed(3)
     const hours = Math.floor(time / 60 / 60)
     const minutes = Math.floor(time / 60) % 60
@@ -26,7 +26,7 @@ class LibPiped {
 
     if (hours > 0) str += hours + ':'
 
-    str += pad(minutes, 2) + ':' + pad(seconds, 2)
+    str += this.pad(minutes, 2) + ':' + this.pad(seconds, 2)
 
     return str
   }
