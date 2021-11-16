@@ -59,7 +59,7 @@ export default {
         const lastVideo = await findLastWatch(videoId)
         if (lastVideo != null) {
           this.alreadyWatched = true
-          this.progress = Math.min((lastVideo.progress / lastVideo.video.duration) * 100, 100)
+          this.progress = lastVideo.progress != null ? Math.min((lastVideo.progress / lastVideo.video.duration) * 100, 100) : 100
         }
       }
     },
