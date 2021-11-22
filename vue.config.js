@@ -3,6 +3,12 @@ module.exports = {
     'vuetify'
   ],
   pwa: {
+    name: 'Piped Material',
+    themeColor: '#458588',
+    msTileColor: '',
+    appleMobileWebAppCapable: 'yes',
+    appleMobileWebAppStatusBarStyle: 'black',
+
     workboxOptions: {
       navigateFallback: 'index.html',
       skipWaiting: true,

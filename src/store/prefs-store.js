@@ -5,6 +5,7 @@ const PrefsStore = {
   state: () => ({
     // Declaring boolean values here because v-simple-checkbox has a bug (???) which renders it unable to have internal state
     prefs: {
+      darkMode: false,
       playerAutoplay: true,
       autoplay: false,
       listen: false,
