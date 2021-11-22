@@ -8,7 +8,7 @@
     <v-col cols="12" md="11">
       <v-card-text>
         <v-icon v-if="comment.pinned" class="mx-2">mdi-pin</v-icon>
-        <router-link :to="comment.commentorUrl" class="text-decoration-none black--text">
+        <router-link :to="comment.commentorUrl" class="text-decoration-none primary--text">
           <b>{{ comment.author }}</b><v-icon v-if="comment.verified">mdi-account-check</v-icon>
         </router-link>
 
