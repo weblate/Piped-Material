@@ -14,7 +14,7 @@
     <div v-if="results && results.items">
       <v-row v-for="(row, rowId) in chunkedByFour" :key="rowId">
         <v-col md="3" v-for="(video, videoId) in row" :key="videoId">
-          <VideoItem :height="270" :width="480" :video="video" v-if="video.type === 'VIDEO'" />
+          <VideoItem :height="270" :width="480" :video="video" max-height v-if="video.type === 'VIDEO'" />
           <GenericDisplayItem :height="270" :width="480" :item="video" v-else />
         </v-col>
       </v-row>
