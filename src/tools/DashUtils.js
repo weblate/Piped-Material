@@ -8,7 +8,7 @@ const DashUtils = {
     return xml.json2xml(generatedJSON)
   },
   generate_xmljs_json_from_data (VideoFormatArray, VideoLength) {
-    const convertJSON = {
+    return {
       declaration: {
         attributes: {
           version: '1.0',
@@ -36,7 +36,6 @@ const DashUtils = {
         }
       ]
     }
-    return convertJSON
   },
   generate_adaptation_set (VideoFormatArray) {
     const adaptationSets = []
@@ -92,7 +91,7 @@ const DashUtils = {
     return adaptationSets
   },
   generate_representation_audio (Format) {
-    const representation = {
+    return {
       type: 'element',
       name: 'Representation',
       attributes: {
@@ -137,10 +136,9 @@ const DashUtils = {
         }
       ]
     }
-    return representation
   },
   generate_representation_video (Format) {
-    const representation = {
+    return {
       type: 'element',
       name: 'Representation',
       attributes: {
@@ -181,7 +179,6 @@ const DashUtils = {
         }
       ]
     }
-    return representation
   }
 }
 
