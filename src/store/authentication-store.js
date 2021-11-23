@@ -41,11 +41,12 @@ const AuthenticationStore = {
 
   getters: {
     isCurrentlyAuthenticated (state, getters, rootState, rootGetters) {
-      return state.authStateByInstance[rootGetters['prefs/apiUrl']]?.isAuthenticated === true
+      const s = state.authStateByInstance[rootGetters['prefs/apiUrl']]
+      return s ? (s.isAuthenticated === true) : false
     },
 
     authToken (state, getters, rootState, rootGetters) {
-      const authState = state.authStateByInstance[rootGetters['prefs/apiUrl']] ?? {}
+      const authState = state.authStateByInstance[rootGetters['prefs/apiUrl']] || {}
       return authState.authToken
     }
   },
@@ -92,7 +93,7 @@ const AuthenticationStore = {
       tokenInParams = false
     }) {
       const APIURL = rootGetters['prefs/apiUrl']
-      const AuthState = state.authStateByInstance[APIURL] ?? {}
+      const AuthState = state.authStateByInstance[APIURL] || {}
 
       if (AuthState.isAuthenticated && tokenInParams) {
         if (_isPlainObject(params)) {

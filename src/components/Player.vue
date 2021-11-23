@@ -71,7 +71,7 @@ export default {
   methods: {
     getCurrentTime () {
       // UNCLEAN
-      return this.$refs.videoEl?.currentTime
+      return this.$refs.videoEl ? this.$refs.videoEl.currentTime : undefined
     },
 
     async loadVideo () {
