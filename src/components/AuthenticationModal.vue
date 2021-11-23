@@ -1,7 +1,7 @@
 <template>
     <v-dialog
       v-model="dialogOpen"
-      max-width="768"
+      :width="768"
       v-if="!$store.getters['auth/isCurrentlyAuthenticated']"
     >
       <template v-slot:activator="{ on, attrs }">
