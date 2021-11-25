@@ -38,6 +38,10 @@ import shaka from 'shaka-player/dist/shaka-player.ui.js'
 import 'shaka-player/dist/controls.css'
 import { DashUtils } from '@/tools/DashUtils'
 
+// Fonts for Shaka
+import '@fontsource/material-icons-rounded/index.css'
+import '@fontsource/roboto/latin.css'
+
 import { setupKeybindings } from 'psychic-tiny-keys'
 
 window.muxjs = muxjs

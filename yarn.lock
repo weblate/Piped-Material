@@ -946,6 +946,11 @@
   resolved "https://registry.yarnpkg.com/@fontsource/hind-siliguri/-/hind-siliguri-4.5.0.tgz#e5489447c309484e9f48b2a75ee54a3f6cc40b31"
   integrity sha512-kt7rXU/+G5oQeCFNibg5lKPv5zJnZSQe2jx52RDPthKnNDbt2z5z5eLdXLjueTjtZC/dVwnGijAWSPAmlIv5ow==
 
+"@fontsource/material-icons-rounded@^4.5.0":
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/@fontsource/material-icons-rounded/-/material-icons-rounded-4.5.0.tgz#1605ba5a8a0aeac3b9ae3d3955dd60249356e394"
+  integrity sha512-5IqqgYjI2gs3zryb0UTk0US9deA+5J2R1A/G4jMRdlY0eopWoHtmcX9OLlssPkCrITcyj+bwpDbsFm9nrw65JA==
+
 "@fontsource/noto-sans-jp@^4.5.2":
   version "4.5.2"
   resolved "https://registry.yarnpkg.com/@fontsource/noto-sans-jp/-/noto-sans-jp-4.5.2.tgz#f0072160a90ec2ede01a9c6039d74e7e57844767"
@@ -970,6 +975,11 @@
   version "4.5.1"
   resolved "https://registry.yarnpkg.com/@fontsource/nunito-sans/-/nunito-sans-4.5.1.tgz#ef625d7615112c96306c805323ef32b9ae9f7cb5"
   integrity sha512-sOqaGHmT9dQ8sQ95uLjZecmhtw7ivZNOb7Nd6khT1x0pKcgHQa93kzzg+UI3/0HjO80Dn+/87kgwaU2IIZDZuA==
+
+"@fontsource/roboto@^4.5.1":
+  version "4.5.1"
+  resolved "https://registry.yarnpkg.com/@fontsource/roboto/-/roboto-4.5.1.tgz#63f7b783f755d8f6727eb60198627e7e1be3ac20"
+  integrity sha512-3mhfL+eNPG/woMNqwD/OHaW5qMpeGEBsDwzmhFmjB1yUV+M+M9P0NhP/AyHvnGz3DrqkvZ7CPzNMa+UkVLeELg==
 
 "@hapi/address@2.x.x":
   version "2.1.4"
@@ -8067,10 +8077,9 @@ sha.js@^2.4.0, sha.js@^2.4.8:
     inherits "^2.0.1"
     safe-buffer "^5.0.1"
 
-shaka-player@^3.2.1:
+"shaka-player@https://dweb.link/ipfs/QmWS2iXiGyq1pmzCPviLsuNLtcNqaSjbAwjsnaLBcxq5xt?filename=shaka-321.tar":
   version "3.2.1"
-  resolved "https://registry.yarnpkg.com/shaka-player/-/shaka-player-3.2.1.tgz#bc7a3c3400eb8204c4aa2c61bc42ffa1b08b228f"
-  integrity sha512-Iq+0PWJ46TR5myT56ubnTgPFChKizr42oaju2799r44yaQVki16Enp6sCBVFYK9TobvgnKs7GFBkTkWAW31V2Q==
+  resolved "https://dweb.link/ipfs/QmWS2iXiGyq1pmzCPviLsuNLtcNqaSjbAwjsnaLBcxq5xt?filename=shaka-321.tar#22eea3cb2666246002d29b2d855568dea3f29fec"
   dependencies:
     eme-encryption-scheme-polyfill "^2.0.3"
 
