@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app :style="bgStyles">
     <v-app-bar
       app
       color="primary"
@@ -22,7 +22,10 @@
         <v-col md="1">
           <AuthenticationModal />
         </v-col>
-        <v-col md="2" class="mx-4">
+        <v-col cols="auto" class="ml-2">
+          <v-btn icon @click="toggleDarkMode"><v-icon>mdi-brightness-6</v-icon></v-btn>
+        </v-col>
+        <v-col md="2">
           <v-select
             class="mt-6"
             dense
@@ -54,6 +57,13 @@
           </v-list-item>
           <AuthenticationModal :list-mode="true" />
         </v-list>
+        <v-switch
+          dense
+          class="mx-2 mt-0 pt-0"
+          :input-value="$store.getters['prefs/getPreferenceBoolean']('darkMode', false)"
+          @change="toggleDarkMode"
+          label="Dark Mode"
+        />
         <v-select
           dense
           :items="languageOptions"
@@ -123,6 +133,12 @@ export default {
   }),
 
   computed: {
+    bgStyles () {
+      return {
+        backgroundColor: this.$vuetify.theme.dark ? '#282828' : '#fbf1c7'
+      }
+    },
+
     links () {
       const links = [
         {
@@ -154,9 +170,23 @@ export default {
     }
   },
 
+  watch: {
+    '$store.state.prefs.prefs.darkMode' (newVal) {
+      this.$vuetify.theme.dark = newVal
+    }
+  },
+
   methods: {
     changeLocale (lang) {
       return changeLocale(lang)
+    },
+
+    toggleDarkMode () {
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark
+      this.$store.commit('prefs/setPrefs', {
+        id: 'darkMode',
+        value: this.$vuetify.theme.dark
+      })
     }
   },
 

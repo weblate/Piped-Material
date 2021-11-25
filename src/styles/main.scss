@@ -1,7 +1,6 @@
 @mixin addFonts ($font-primary) {
   .v-application {
     [class*='text-'],[class*='body-'] {
-      color: #36405a;
       font-family: $font-primary, Helvetica Neue, sans-serif !important;
     }
     .headline, .title {

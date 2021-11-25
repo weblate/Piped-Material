@@ -1,5 +1,5 @@
 <template>
-    <v-card link :to="video.url" outlined :height="maxHeight ? '100%' : undefined">
+    <v-card link :to="video.url" outlined :height="maxHeight ? '100%' : undefined" color="bgTwo">
       <v-img
         :height="height"
         :width="width"
