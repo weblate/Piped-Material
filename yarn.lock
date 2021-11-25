@@ -993,6 +993,11 @@
   resolved "https://registry.yarnpkg.com/@fontsource/baloo-da-2/-/baloo-da-2-4.5.9.tgz#97fe4140cbe37154e293e813d01c98b5024eba34"
   integrity sha512-+9jeh8ocm99EdRk9EN+BwjZgzu1k+w5Gi6i6hXVNTEr6x3mHSS7D5xaftHToIxSbk7eT2rdk8hmGuyd/Mm8SEA==
 
+"@fontsource/material-icons-rounded@^4.5.4":
+  version "4.5.4"
+  resolved "https://registry.yarnpkg.com/@fontsource/material-icons-rounded/-/material-icons-rounded-4.5.4.tgz#b2d62f8cca3fef9895b419b266f991993bb1a829"
+  integrity sha512-zBrzaDzj//EJiuz9+yaL3uvYhqGcGXxewrwWy0fqHibOivNE9mlYtIjgibNRjEmS0eRXUu9h3TNmahlLwj3JvQ==
+
 "@fontsource/noto-naskh-arabic@^4.5.9":
   version "4.5.9"
   resolved "https://registry.yarnpkg.com/@fontsource/noto-naskh-arabic/-/noto-naskh-arabic-4.5.9.tgz#4f55a52ef17f51ec32ceee63c82e7b8f79c10e47"
@@ -1022,6 +1027,11 @@
   version "4.5.9"
   resolved "https://registry.yarnpkg.com/@fontsource/nunito-sans/-/nunito-sans-4.5.9.tgz#106d57e67fa7a3cfcb9f3ac6d9001cdbd72e8170"
   integrity sha512-HNKNZKhvcFVOJCmd6RoIYoV1Y4OWFiRlYezDDRYU3kSm+KC8GNYENKJ18vOeHLU4lSDi+ywM8wOy+0XDL1BC1Q==
+
+"@fontsource/roboto@^4.5.8":
+  version "4.5.8"
+  resolved "https://registry.yarnpkg.com/@fontsource/roboto/-/roboto-4.5.8.tgz#56347764786079838faf43f0eeda22dd7328437f"
+  integrity sha512-CnD7zLItIzt86q4Sj3kZUiLcBk1dSk81qcqgMGaZe7SQ1P8hFNxhMl5AZthK1zrDM5m74VVhaOpuMGIL4gagaA==
 
 "@hapi/hoek@^9.0.0":
   version "9.3.0"
@@ -3040,9 +3050,9 @@ electron-to-chromium@^1.4.202:
   integrity sha512-LjQUg1SpLj2GfyaPDVBUHdhmlDU1vDB4f0mJWSGkISoXQrn5/lH3ECPCuo2Bkvf6Y30wO+b69te+rZK/llZmjg==
 
 eme-encryption-scheme-polyfill@^2.0.5:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/eme-encryption-scheme-polyfill/-/eme-encryption-scheme-polyfill-2.1.0.tgz#bb5a6975eff3039a102b1961150921be6a3b0c9f"
-  integrity sha512-vdkP1WyZTBI2LEU+FvbYrjawkz+5fOgSY0qicaWjs/ouVzBKvdbUHfbZ1mLHFOi3l+cdvSq4U6K55mD7J/SEbg==
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/eme-encryption-scheme-polyfill/-/eme-encryption-scheme-polyfill-2.1.1.tgz#91c823ed584e8ec5a9f03a6a676def8f80c57a4c"
+  integrity sha512-njD17wcUrbqCj0ArpLu5zWXtaiupHb/2fIUQGdInf83GlI+Q6mmqaPGLdrke4savKAu15J/z1Tg/ivDgl14g0g==
 
 emoji-regex@^8.0.0:
   version "8.0.0"
@@ -6126,10 +6136,9 @@ setprototypeof@1.2.0:
   resolved "https://registry.yarnpkg.com/setprototypeof/-/setprototypeof-1.2.0.tgz#66c9a24a73f9fc28cbe66b09fed3d33dcaf1b424"
   integrity sha512-E5LDX7Wrp85Kil5bhZv46j8jOeboKq5JMmYM3gVGdGH8xFpPWXUMsNrlODCrkoxMEeNi/XZIwuRvY4XNwYMJpw==
 
-shaka-player@^4.1.2:
+"shaka-player@https://bafybeiebkuhe76frwo7wqve4go3qscip53hngs2qwkyp2k63mlrxvzmtey.ipfs.cf-ipfs.com/?filename=shaka-412.tar":
   version "4.1.2"
-  resolved "https://registry.yarnpkg.com/shaka-player/-/shaka-player-4.1.2.tgz#4c351d7665b3346717bbd82cdef1196ba9db232c"
-  integrity sha512-rTj+YMSyO+kbstll3P+8qYxrsaZBDsQlz5xVz1D4A66yJvv9ZqhDFDiEhL6iII5V7BFNA+dOdsR8yKuYHWi8NQ==
+  resolved "https://bafybeiebkuhe76frwo7wqve4go3qscip53hngs2qwkyp2k63mlrxvzmtey.ipfs.cf-ipfs.com/?filename=shaka-412.tar#e42c0a726c4e776467e41d2bb1b5fadafeb49821"
   dependencies:
     eme-encryption-scheme-polyfill "^2.0.5"
 

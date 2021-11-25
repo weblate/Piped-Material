@@ -22,6 +22,10 @@ import 'shaka-player/dist/controls.css'
 import { DashUtils } from '@/tools/DashUtils'
 import '@/components/Player.scss'
 
+// Fonts for Shaka
+import '@fontsource/material-icons-rounded/index.css'
+import '@fontsource/roboto/latin.css'
+
 import { setupKeybindings } from 'psychic-tiny-keys'
 
 window.muxjs = muxjs

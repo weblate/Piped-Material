@@ -1,3 +1,19 @@
 .shaka-video-container:-webkit-full-screen {
 	max-height: none !important;
 }
+
+.shaka-settings-menu {
+	button {
+		line-height: 1;
+	}
+
+	i {
+		font-style: normal;
+	}
+}
+
+.shaka-overflow-menu {
+	i {
+		font-style: normal;
+	}
+}
