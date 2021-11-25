@@ -56,7 +56,7 @@ export default {
         {
           id: 'disableLBRY',
           type: 'bool',
-          default: false
+          default: true
         },
         {
           id: 'proxyLBRY',

@@ -9,7 +9,7 @@ const PrefsStore = {
       playerAutoplay: true,
       autoplay: false,
       listen: false,
-      disableLBRY: false,
+      disableLBRY: true,
       proxyLBRY: true,
       sponsorblock: true,
       skipToLastPoint: true
