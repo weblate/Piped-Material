@@ -73,6 +73,8 @@ export default {
         if (lastVideo != null) {
           this.alreadyWatched = true
           this.progress = lastVideo.progress != null ? this.calcProgress(lastVideo.progress, lastVideo.video.duration) : 100
+        } else {
+          this.alreadyWatched = false
         }
       }
     },
