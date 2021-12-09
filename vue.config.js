@@ -8,6 +8,9 @@ module.exports = {
     msTileColor: '',
     appleMobileWebAppCapable: 'yes',
     appleMobileWebAppStatusBarStyle: 'black',
+    manifestOptions: {
+      display: 'fullscreen'
+    },
 
     workboxOptions: {
       navigateFallback: 'index.html',
