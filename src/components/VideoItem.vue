@@ -49,15 +49,11 @@ export default {
   },
 
   methods: {
-    calcProgress (prog, dur) {
-      return Math.min((prog / dur) * 100, 100)
-    },
-
     async findIfVideoWatched () {
       // if it has source progress, it's already seen
       if (this.srcProgress) {
         this.alreadyWatched = true
-        this.progress = this.calcProgress(this.srcProgress, this.video.duration)
+        this.progress = this.srcProgress
         return
       }
 
@@ -72,7 +68,7 @@ export default {
         const lastVideo = await findLastWatch(videoId)
         if (lastVideo != null) {
           this.alreadyWatched = true
-          this.progress = lastVideo.progress != null ? this.calcProgress(lastVideo.progress, lastVideo.video.duration) : 100
+          this.progress = lastVideo.progressPcnt
         } else {
           this.alreadyWatched = false
         }

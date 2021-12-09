@@ -293,7 +293,7 @@ export default {
       if (this.dbID == null || !this.$refs.player) {
         return
       }
-      return updateWatchedVideoProgress(this.dbID, this.$refs.player.getCurrentTime())
+      return updateWatchedVideoProgress(this.dbID, this.$refs.player.getCurrentTime(), this.video.duration)
     }, 500)
   },
   computed: {
