@@ -11,6 +11,7 @@
         <router-link :to="comment.commentorUrl" class="text-decoration-none primary--text">
           <b>{{ comment.author }}</b><v-icon v-if="comment.verified">mdi-account-check</v-icon>
         </router-link>
+        {{ comment.commentedTime }}
 
         <div v-html="renderedCommentTxt" />
 
