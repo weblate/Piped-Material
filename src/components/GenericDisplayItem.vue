@@ -22,16 +22,16 @@
 import { isNumber } from 'lodash-es'
 
 export default {
-  props: {
-    item: Object,
-    height: Number,
-    width: Number,
-    hideChannel: Boolean
-  },
-  methods: {
-    isNumber (...args) {
-      return isNumber(...args)
-    }
-  }
+	props: {
+		item: Object,
+		height: Number,
+		width: Number,
+		hideChannel: Boolean
+	},
+	methods: {
+		isNumber (...args) {
+			return isNumber(...args)
+		}
+	}
 }
 </script>

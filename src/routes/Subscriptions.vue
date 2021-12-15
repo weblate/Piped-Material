@@ -23,33 +23,33 @@ import SubscriptionButton from '@/components/SubscriptionButton'
 import { LibPiped } from '@/tools/libpiped'
 
 export default {
-  name: 'Subscriptions',
-  components: { SubscriptionButton },
-  data: () => ({
-    loaded: false,
-    data: null
-  }),
-  methods: {
-    async loadData () {
-      if (!this.$store.getters['auth/isCurrentlyAuthenticated']) {
-        await this.$router.replace({
-          path: '/'
-        })
-        return
-      }
-      const resp = await this.$store.dispatch('auth/makeRequest', {
-        method: 'GET',
-        path: '/subscriptions'
-      })
-      this.loaded = true
-      this.data = _chunk(resp.map(r => {
-        r.id = LibPiped.determineVideoIdFromChannelURL(r.url)
-        return r
-      }), 6)
-    }
-  },
-  mounted () {
-    this.loadData()
-  }
+	name: 'Subscriptions',
+	components: { SubscriptionButton },
+	data: () => ({
+		loaded: false,
+		data: null
+	}),
+	methods: {
+		async loadData () {
+			if (!this.$store.getters['auth/isCurrentlyAuthenticated']) {
+				await this.$router.replace({
+					path: '/'
+				})
+				return
+			}
+			const resp = await this.$store.dispatch('auth/makeRequest', {
+				method: 'GET',
+				path: '/subscriptions'
+			})
+			this.loaded = true
+			this.data = _chunk(resp.map(r => {
+				r.id = LibPiped.determineVideoIdFromChannelURL(r.url)
+				return r
+			}), 6)
+		}
+	},
+	mounted () {
+		this.loadData()
+	}
 }
 </script>

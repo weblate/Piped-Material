@@ -30,52 +30,52 @@ import VideoItem from '@/components/VideoItem'
 import ExpandableDate from '@/components/ExpandableDate'
 
 export default {
-  components: {
-    ExpandableDate,
-    VideoItem
-  },
-  data: () => ({
-    loaded: false,
-    data: null,
-    unfinishedVideosSwitch: false
-  }),
+	components: {
+		ExpandableDate,
+		VideoItem
+	},
+	data: () => ({
+		loaded: false,
+		data: null,
+		unfinishedVideosSwitch: false
+	}),
 
-  metaInfo () {
-    return {
-      title: this.$t('titles.history')
-    }
-  },
+	metaInfo () {
+		return {
+			title: this.$t('titles.history')
+		}
+	},
 
-  methods: {
-    async loadData (onlyUnfinished = false) {
-      if (!onlyUnfinished) {
-        this.data = await getWatchedVideos()
-      } else {
-        this.data = await getUnfinishedVideos()
-      }
-      this.loaded = true
-    },
+	methods: {
+		async loadData (onlyUnfinished = false) {
+			if (!onlyUnfinished) {
+				this.data = await getWatchedVideos()
+			} else {
+				this.data = await getUnfinishedVideos()
+			}
+			this.loaded = true
+		},
 
-    async deleteWatchHistory () {
-      await deleteWatchedVideos()
-      await this.loadData()
-    }
-  },
+		async deleteWatchHistory () {
+			await deleteWatchedVideos()
+			await this.loadData()
+		}
+	},
 
-  watch: {
-    unfinishedVideosSwitch () {
-      this.loadData(this.unfinishedVideosSwitch)
-    }
-  },
+	watch: {
+		unfinishedVideosSwitch () {
+			this.loadData(this.unfinishedVideosSwitch)
+		}
+	},
 
-  computed: {
-    chunkedByFour () {
-      return _chunk(this.data, 4)
-    }
-  },
+	computed: {
+		chunkedByFour () {
+			return _chunk(this.data, 4)
+		}
+	},
 
-  mounted () {
-    this.loadData().catch(e => console.error(e))
-  }
+	mounted () {
+		this.loadData().catch(e => console.error(e))
+	}
 }
 </script>

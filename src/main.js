@@ -14,9 +14,9 @@ import './registerServiceWorker'
 Vue.config.productionTip = false
 
 new Vue({
-  vuetify,
-  i18n,
-  store,
-  router,
-  render: h => h(App)
+	vuetify,
+	i18n,
+	store,
+	router,
+	render: h => h(App)
 }).$mount('#app')

@@ -37,47 +37,47 @@ import { LibPiped } from '@/tools/libpiped'
 import marked from 'marked'
 
 export default {
-  name: 'VideoComment',
-  props: ['comment', 'video', 'subComment'],
-  data: () => ({
-    requestInProgress: false,
-    showChildComments: true,
-    childComments: []
-  }),
-  methods: {
-    numberFormat (...args) {
-      return LibPiped.numberFormat(...args)
-    },
-    async loadReplies () {
-      let nextpage = null
-      this.requestInProgress = true
+	name: 'VideoComment',
+	props: ['comment', 'video', 'subComment'],
+	data: () => ({
+		requestInProgress: false,
+		showChildComments: true,
+		childComments: []
+	}),
+	methods: {
+		numberFormat (...args) {
+			return LibPiped.numberFormat(...args)
+		},
+		async loadReplies () {
+			let nextpage = null
+			this.requestInProgress = true
 
-      while (true) {
-        const replies = await this.$store.dispatch('auth/makeRequest', {
-          method: 'GET',
-          path: '/nextpage/comments/' + this.video.videoId,
-          params: {
-            nextpage: nextpage || this.comment.repliesPage
-          }
-        })
+			while (true) {
+				const replies = await this.$store.dispatch('auth/makeRequest', {
+					method: 'GET',
+					path: '/nextpage/comments/' + this.video.videoId,
+					params: {
+						nextpage: nextpage || this.comment.repliesPage
+					}
+				})
 
-        this.childComments = this.childComments.concat(replies.comments)
-        if (replies.nextpage) {
-          nextpage = replies.nextpage
-        } else {
-          break
-        }
-      }
-      this.requestInProgress = false
-    }
-  },
+				this.childComments = this.childComments.concat(replies.comments)
+				if (replies.nextpage) {
+					nextpage = replies.nextpage
+				} else {
+					break
+				}
+			}
+			this.requestInProgress = false
+		}
+	},
 
-  computed: {
-    renderedCommentTxt () {
-      return LibPiped.purifyHTML(marked.parseInline(this.comment.commentText, {
-        breaks: true
-      }))
-    }
-  }
+	computed: {
+		renderedCommentTxt () {
+			return LibPiped.purifyHTML(marked.parseInline(this.comment.commentText, {
+				breaks: true
+			}))
+		}
+	}
 }
 </script>

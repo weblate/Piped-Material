@@ -7,10 +7,10 @@ import { AuthenticationStore, initializeAuthEvents } from '@/store/authenticatio
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
-  modules: {
-    prefs: PrefsStore,
-    auth: AuthenticationStore
-  }
+	modules: {
+		prefs: PrefsStore,
+		auth: AuthenticationStore
+	}
 })
 
 initializePrefEvents(store)

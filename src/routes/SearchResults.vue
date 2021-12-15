@@ -31,115 +31,115 @@ import VideoItem from '@/components/VideoItem'
 import GenericDisplayItem from '@/components/GenericDisplayItem'
 
 export default {
-  components: { GenericDisplayItem, VideoItem },
-  data () {
-    return {
-      results: null,
-      availableFilters: [
-        'all',
-        'videos',
-        'channels',
-        'playlists',
-        'music_songs',
-        'music_videos',
-        'music_albums',
-        'music_playlists'
-      ],
-      selectedFilter: 'all'
-    }
-  },
-  metaInfo () {
-    return {
-      title: this.$route.query.search_query
-    }
-  },
+	components: { GenericDisplayItem, VideoItem },
+	data () {
+		return {
+			results: null,
+			availableFilters: [
+				'all',
+				'videos',
+				'channels',
+				'playlists',
+				'music_songs',
+				'music_videos',
+				'music_albums',
+				'music_playlists'
+			],
+			selectedFilter: 'all'
+		}
+	},
+	metaInfo () {
+		return {
+			title: this.$route.query.search_query
+		}
+	},
 
-  mounted () {
-    this.updateResults()
-  },
-  computed: {
-    chunkedByFour () {
-      return _chunk(this.results.items, 4)
-    }
-  },
-  watch: {
-    selectedFilter () {
-      this.updateResults()
-    },
+	mounted () {
+		this.updateResults()
+	},
+	computed: {
+		chunkedByFour () {
+			return _chunk(this.results.items, 4)
+		}
+	},
+	watch: {
+		selectedFilter () {
+			this.updateResults()
+		},
 
-    // For history navigation
-    '$route.query.search_query' () {
-      this.updateResults()
-    }
-  },
+		// For history navigation
+		'$route.query.search_query' () {
+			this.updateResults()
+		}
+	},
 
-  methods: {
-    rationalizeSearchResult (sr) {
-      let type
-      // This seriously can't be the best solution
-      if (sr.url.startsWith('/watch')) {
-        type = 'VIDEO'
-      } else if (sr.url.startsWith('/playlist')) {
-        type = 'PLAYLIST'
-      } else if (sr.url.startsWith('/channel')) {
-        type = 'CHANNEL'
-      } else {
-        console.warn('WARNING: UNKNOWN VIDEO URL TYPE FOUND:', sr.url)
-        type = 'VIDEO'
-      }
+	methods: {
+		rationalizeSearchResult (sr) {
+			let type
+			// This seriously can't be the best solution
+			if (sr.url.startsWith('/watch')) {
+				type = 'VIDEO'
+			} else if (sr.url.startsWith('/playlist')) {
+				type = 'PLAYLIST'
+			} else if (sr.url.startsWith('/channel')) {
+				type = 'CHANNEL'
+			} else {
+				console.warn('WARNING: UNKNOWN VIDEO URL TYPE FOUND:', sr.url)
+				type = 'VIDEO'
+			}
 
-      return {
-        title: sr.name,
-        type,
-        uploaderName: sr.uploader,
-        uploadedDate: sr.uploadDate,
-        ...sr
-      }
-    },
+			return {
+				title: sr.name,
+				type,
+				uploaderName: sr.uploader,
+				uploadedDate: sr.uploadDate,
+				...sr
+			}
+		},
 
-    async fetchResults () {
-      return this.$store.dispatch('auth/makeRequest', {
-        path: 'search',
-        params: {
-          q: this.$route.query.search_query,
-          filter: this.selectedFilter
-        }
-      })
-    },
+		async fetchResults () {
+			return this.$store.dispatch('auth/makeRequest', {
+				path: 'search',
+				params: {
+					q: this.$route.query.search_query,
+					filter: this.selectedFilter
+				}
+			})
+		},
 
-    numberFormat (...args) {
-      return LibPiped.numberFormat(...args)
-    },
+		numberFormat (...args) {
+			return LibPiped.numberFormat(...args)
+		},
 
-    timeFormat (...args) {
-      return LibPiped.timeFormat(...args)
-    },
-    async updateResults () {
-      this.results = this.fetchResults().then(json => {
-        json.items = json.items.map(this.rationalizeSearchResult)
-        this.results = json
-      })
-    },
-    onSearchResultsEndIntersect (entries) {
-      if (entries[0].isIntersecting) {
-        this.fetchMoreResults()
-      }
-    },
+		timeFormat (...args) {
+			return LibPiped.timeFormat(...args)
+		},
+		async updateResults () {
+			this.results = this.fetchResults().then(json => {
+				json.items = json.items.map(this.rationalizeSearchResult)
+				this.results = json
+			})
+		},
+		onSearchResultsEndIntersect (entries) {
+			if (entries[0].isIntersecting) {
+				this.fetchMoreResults()
+			}
+		},
 
-    fetchMoreResults () {
-      this.$store.dispatch('auth/makeRequest', {
-        path: '/nextpage/search',
-        params: {
-          nextpage: this.results.nextpage,
-          q: this.$route.query.search_query,
-          filter: this.selectedFilter
-        }
-      }).then(json => {
-        this.results.nextpage = json.nextpage
-        this.results.id = json.id
-        this.results.items = this.results.items.concat(json.items.map(this.rationalizeSearchResult))
-      })
-    }
-  }
+		fetchMoreResults () {
+			this.$store.dispatch('auth/makeRequest', {
+				path: '/nextpage/search',
+				params: {
+					nextpage: this.results.nextpage,
+					q: this.$route.query.search_query,
+					filter: this.selectedFilter
+				}
+			}).then(json => {
+				this.results.nextpage = json.nextpage
+				this.results.id = json.id
+				this.results.items = this.results.items.concat(json.items.map(this.rationalizeSearchResult))
+			})
+		}
+	}
 }
 </script>

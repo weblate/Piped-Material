@@ -47,41 +47,41 @@ import VideoItem from '@/components/VideoItem.vue'
 import { chunk as _chunk } from 'lodash-es'
 
 export default {
-  data () {
-    return {
-      playlist: null
-    }
-  },
-  metaInfo () {
-    return { title: this.playlist ? this.playlist.name : 'Loading' }
-  },
+	data () {
+		return {
+			playlist: null
+		}
+	},
+	metaInfo () {
+		return { title: this.playlist ? this.playlist.name : 'Loading' }
+	},
 
-  mounted () {
-    this.getPlaylistData()
-  },
-  computed: {
-    getRssUrl () {
-      return this.$store.getters['prefs/apiUrl'] + '/rss/playlists/' + this.$route.query.list
-    },
+	mounted () {
+		this.getPlaylistData()
+	},
+	computed: {
+		getRssUrl () {
+			return this.$store.getters['prefs/apiUrl'] + '/rss/playlists/' + this.$route.query.list
+		},
 
-    chunkedByFour () {
-      return _chunk(this.playlist.relatedStreams, 4)
-    }
-  },
-  methods: {
-    async fetchPlaylist () {
-      return this.$store.dispatch('auth/makeRequest', {
-        path: '/playlists/' + this.$route.query.list
-      })
-    },
-    async getPlaylistData () {
-      this.fetchPlaylist()
-        .then(data => (this.playlist = data))
-    }
-  },
-  components: {
-    ErrorHandler,
-    VideoItem
-  }
+		chunkedByFour () {
+			return _chunk(this.playlist.relatedStreams, 4)
+		}
+	},
+	methods: {
+		async fetchPlaylist () {
+			return this.$store.dispatch('auth/makeRequest', {
+				path: '/playlists/' + this.$route.query.list
+			})
+		},
+		async getPlaylistData () {
+			this.fetchPlaylist()
+				.then(data => (this.playlist = data))
+		}
+	},
+	components: {
+		ErrorHandler,
+		VideoItem
+	}
 }
 </script>

@@ -13,16 +13,16 @@
 import { LibPiped } from '@/tools/libpiped'
 
 export default {
-  name: 'ExpandableDate',
-  props: ['date'],
-  computed: {
-    timeAgo () {
-      return LibPiped.timeAgo(this.date)
-    },
+	name: 'ExpandableDate',
+	props: ['date'],
+	computed: {
+		timeAgo () {
+			return LibPiped.timeAgo(this.date)
+		},
 
-    formattedDate () {
-      return LibPiped.formatFullDate(this.date)
-    }
-  }
+		formattedDate () {
+			return LibPiped.formatFullDate(this.date)
+		}
+	}
 }
 </script>

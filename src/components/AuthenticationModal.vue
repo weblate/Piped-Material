@@ -47,50 +47,50 @@
 import { AuthenticationError } from '@/store/authentication-store'
 
 export default {
-  name: 'AuthenticationModal',
-  props: ['listMode'],
-  data: () => ({
-    error: null,
-    requestInProgress: false,
-    dialogOpen: false,
-    username: '',
-    password: ''
-  }),
-  methods: {
-    async doCall (path) {
-      this.error = null
-      try {
-        this.requestInProgress = true
-        await this.$store.dispatch('auth/loginOrRegister', {
-          path,
-          username: this.username,
-          password: this.password
-        })
-        this.dialogOpen = false
-      } catch (e) {
-        if (!(e instanceof AuthenticationError)) {
-          throw e
-        }
+	name: 'AuthenticationModal',
+	props: ['listMode'],
+	data: () => ({
+		error: null,
+		requestInProgress: false,
+		dialogOpen: false,
+		username: '',
+		password: ''
+	}),
+	methods: {
+		async doCall (path) {
+			this.error = null
+			try {
+				this.requestInProgress = true
+				await this.$store.dispatch('auth/loginOrRegister', {
+					path,
+					username: this.username,
+					password: this.password
+				})
+				this.dialogOpen = false
+			} catch (e) {
+				if (!(e instanceof AuthenticationError)) {
+					throw e
+				}
 
-        this.error = e.message
-      } finally {
-        this.requestInProgress = false
-      }
-    },
+				this.error = e.message
+			} finally {
+				this.requestInProgress = false
+			}
+		},
 
-    logOut () {
-      this.$store.commit('auth/deleteAuthToken', {
-        apiURL: this.$store.getters['prefs/apiUrl']
-      })
-    },
+		logOut () {
+			this.$store.commit('auth/deleteAuthToken', {
+				apiURL: this.$store.getters['prefs/apiUrl']
+			})
+		},
 
-    login () {
-      return this.doCall('login')
-    },
+		login () {
+			return this.doCall('login')
+		},
 
-    register () {
-      return this.doCall('register')
-    }
-  }
+		register () {
+			return this.doCall('register')
+		}
+	}
 }
 </script>

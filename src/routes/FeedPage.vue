@@ -28,97 +28,97 @@ import { chunk as _chunk } from 'lodash-es'
 import VideoItem from '@/components/VideoItem.vue'
 
 export default {
-  data () {
-    return {
-      feedName: 'trending',
-      videos: [],
-      error: null,
-      errorIsJSON: false
-    }
-  },
+	data () {
+		return {
+			feedName: 'trending',
+			videos: [],
+			error: null,
+			errorIsJSON: false
+		}
+	},
 
-  metaInfo () {
-    return {
-      title: this.$t('titles.' + this.feedName)
-    }
-  },
+	metaInfo () {
+		return {
+			title: this.$t('titles.' + this.feedName)
+		}
+	},
 
-  watch: {
-    '$route.path': 'fetchData'
-  },
-  mounted () {
-    this.fetchData()
-  },
-  methods: {
-    async fetchData () {
-      const region = this.$store.getters['prefs/getPreference']('region', 'US')
-      const selectedHomepage = this.$store.getters['prefs/getPreference']('homepage', 'trending')
-      let path
+	watch: {
+		'$route.path': 'fetchData'
+	},
+	mounted () {
+		this.fetchData()
+	},
+	methods: {
+		async fetchData () {
+			const region = this.$store.getters['prefs/getPreference']('region', 'US')
+			const selectedHomepage = this.$store.getters['prefs/getPreference']('homepage', 'trending')
+			let path
 
-      switch (this.$route.path) {
-        case '/':
-          if (selectedHomepage === 'trending') {
-            path = '/trending'
-            this.feedName = 'trending'
-          } else {
-            path = '/feed'
-            this.feedName = 'feed'
-          }
-          break
-        case '/trending':
-          path = '/trending'
-          this.feedName = 'trending'
-          break
-        case '/feed':
-          path = '/feed'
-          this.feedName = 'feed'
-          break
-      }
+			switch (this.$route.path) {
+				case '/':
+					if (selectedHomepage === 'trending') {
+						path = '/trending'
+						this.feedName = 'trending'
+					} else {
+						path = '/feed'
+						this.feedName = 'feed'
+					}
+					break
+				case '/trending':
+					path = '/trending'
+					this.feedName = 'trending'
+					break
+				case '/feed':
+					path = '/feed'
+					this.feedName = 'feed'
+					break
+			}
 
-      try {
-        this.error = null
-        this.videos = await this.$store.dispatch('auth/makeRequest', {
-          path,
-          params: {
-            region: region
-          },
-          tokenInParams: true
-        })
-      } catch (e) {
-        if (e.isAxiosError) {
-          const rData = e.response.data
-          if (rData.message === 'Could not get Trending name') {
-            this.error = 'errors.trendingFetchError'
-          } else {
-            this.error = rData
-            this.errorIsJSON = true
-          }
-        } else {
-          throw e
-        }
-      }
-    }
-  },
-  computed: {
-    rowSize () {
-      return this.$store.getters['prefs/getPreferenceNumber']('feedColumns', 4)
-    },
+			try {
+				this.error = null
+				this.videos = await this.$store.dispatch('auth/makeRequest', {
+					path,
+					params: {
+						region: region
+					},
+					tokenInParams: true
+				})
+			} catch (e) {
+				if (e.isAxiosError) {
+					const rData = e.response.data
+					if (rData.message === 'Could not get Trending name') {
+						this.error = 'errors.trendingFetchError'
+					} else {
+						this.error = rData
+						this.errorIsJSON = true
+					}
+				} else {
+					throw e
+				}
+			}
+		}
+	},
+	computed: {
+		rowSize () {
+			return this.$store.getters['prefs/getPreferenceNumber']('feedColumns', 4)
+		},
 
-    columnClass () {
-      if (!this.$vuetify.breakpoint.mdAndUp) {
-        return
-      }
-      return 'span-col-' + (60 / this.rowSize) + ' mb-4'
-    },
+		columnClass () {
+			if (!this.$vuetify.breakpoint.mdAndUp) {
+				return
+			}
+			return 'span-col-' + (60 / this.rowSize) + ' mb-4'
+		},
 
-    splitIntoRows () {
-      return _chunk(this.videos, this.rowSize)
-    }
-  },
-  components: {
-    VideoItem,
-    JSONViewer: () => import('vue-json-viewer')
-  }
+		splitIntoRows () {
+			return _chunk(this.videos, this.rowSize)
+		}
+	},
+	components: {
+		VideoItem,
+		JSONViewer: () => import('vue-json-viewer')
+	}
 }
 </script>
 

@@ -95,104 +95,104 @@ import { changeLocale } from '@/plugins/i18n'
 import AuthenticationModal from '@/components/AuthenticationModal'
 
 export default {
-  name: 'App',
-  components: {
-    AuthenticationModal,
-    SearchMenu
-  },
-  metaInfo () {
-    return {
-      title: this.$t('titles.homepage'),
-      // all titles will be injected into this template
-      titleTemplate: '%s - Piped'
-    }
-  },
+	name: 'App',
+	components: {
+		AuthenticationModal,
+		SearchMenu
+	},
+	metaInfo () {
+		return {
+			title: this.$t('titles.homepage'),
+			// all titles will be injected into this template
+			titleTemplate: '%s - Piped'
+		}
+	},
 
-  data: () => ({
-    languageOptions: [
-      { value: 'zh_Hant', text: 'Chinese (Traditional)' },
-      { value: 'en', text: 'English' },
-      { value: 'fr', text: 'French' },
-      { value: 'de', text: 'German' },
-      { value: 'el', text: 'Greek' },
-      { value: 'zh_Hans', text: 'Chinese (Simplified, only loads the font)' },
-      { value: 'jp', text: 'Japanese (only loads fonts)' },
-      { value: 'kr', text: 'Korean (only loads fonts)' },
-      { value: 'cyrl', text: 'Cyrillic Languages (fonts)' },
-      { value: 'lt', text: 'Lithuanian' },
-      { value: 'ml', text: 'Malayalam' },
-      { value: 'nb_NO', text: 'Norwegian Bokmål' },
-      { value: 'tr', text: 'Turkish' },
-      { value: 'bn_beng', text: 'Bengali (বাংলা)' }
-      // Incomplete, DO NOT USE
-      /* { value: 'bn_latn', text: 'Bengali (Latin)' }, */
-    ].sort((a, b) => {
-      return a.text.localeCompare(b.text)
-    }),
-    drawer: false
-  }),
+	data: () => ({
+		languageOptions: [
+			{ value: 'zh_Hant', text: 'Chinese (Traditional)' },
+			{ value: 'en', text: 'English' },
+			{ value: 'fr', text: 'French' },
+			{ value: 'de', text: 'German' },
+			{ value: 'el', text: 'Greek' },
+			{ value: 'zh_Hans', text: 'Chinese (Simplified, only loads the font)' },
+			{ value: 'jp', text: 'Japanese (only loads fonts)' },
+			{ value: 'kr', text: 'Korean (only loads fonts)' },
+			{ value: 'cyrl', text: 'Cyrillic Languages (fonts)' },
+			{ value: 'lt', text: 'Lithuanian' },
+			{ value: 'ml', text: 'Malayalam' },
+			{ value: 'nb_NO', text: 'Norwegian Bokmål' },
+			{ value: 'tr', text: 'Turkish' },
+			{ value: 'bn_beng', text: 'Bengali (বাংলা)' }
+			// Incomplete, DO NOT USE
+			/* { value: 'bn_latn', text: 'Bengali (Latin)' }, */
+		].sort((a, b) => {
+			return a.text.localeCompare(b.text)
+		}),
+		drawer: false
+	}),
 
-  computed: {
-    bgStyles () {
-      return {
-        backgroundColor: this.$vuetify.theme.dark ? '#282828' : '#fbf1c7'
-      }
-    },
+	computed: {
+		bgStyles () {
+			return {
+				backgroundColor: this.$vuetify.theme.dark ? '#282828' : '#fbf1c7'
+			}
+		},
 
-    links () {
-      const links = [
-        {
-          id: 'trending',
-          name: 'titles.trending',
-          to: '/trending'
-        },
-        {
-          id: 'prefs',
-          name: 'titles.preferences',
-          to: '/preferences'
-        },
-        {
-          id: 'watch-history',
-          name: 'titles.history',
-          to: '/watch-history'
-        }
-      ]
+		links () {
+			const links = [
+				{
+					id: 'trending',
+					name: 'titles.trending',
+					to: '/trending'
+				},
+				{
+					id: 'prefs',
+					name: 'titles.preferences',
+					to: '/preferences'
+				},
+				{
+					id: 'watch-history',
+					name: 'titles.history',
+					to: '/watch-history'
+				}
+			]
 
-      if (this.$store.getters['auth/isCurrentlyAuthenticated']) {
-        links.splice(0, 0, {
-          id: 'feed',
-          name: 'titles.feed',
-          to: '/feed'
-        })
-      }
+			if (this.$store.getters['auth/isCurrentlyAuthenticated']) {
+				links.splice(0, 0, {
+					id: 'feed',
+					name: 'titles.feed',
+					to: '/feed'
+				})
+			}
 
-      return links
-    }
-  },
+			return links
+		}
+	},
 
-  watch: {
-    '$store.state.prefs.prefs.darkMode' (newVal) {
-      this.$vuetify.theme.dark = newVal
-    }
-  },
+	watch: {
+		'$store.state.prefs.prefs.darkMode' (newVal) {
+			this.$vuetify.theme.dark = newVal
+		}
+	},
 
-  methods: {
-    changeLocale (lang) {
-      return changeLocale(lang)
-    },
+	methods: {
+		changeLocale (lang) {
+			return changeLocale(lang)
+		},
 
-    toggleDarkMode () {
-      this.$vuetify.theme.dark = !this.$vuetify.theme.dark
-      this.$store.commit('prefs/setPrefs', {
-        id: 'darkMode',
-        value: this.$vuetify.theme.dark
-      })
-    }
-  },
+		toggleDarkMode () {
+			this.$vuetify.theme.dark = !this.$vuetify.theme.dark
+			this.$store.commit('prefs/setPrefs', {
+				id: 'darkMode',
+				value: this.$vuetify.theme.dark
+			})
+		}
+	},
 
-  created () {
-    this.$store.dispatch('prefs/loadState')
-    this.$store.dispatch('auth/initializeAuth')
-  }
+	created () {
+		this.$store.dispatch('prefs/loadState')
+		this.$store.dispatch('auth/initializeAuth')
+	}
 }
 </script>

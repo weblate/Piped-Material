@@ -8,12 +8,12 @@
 
 <script>
 export default {
-  props: {
-    error: String,
-    message: String
-  },
-  data: () => ({
-    showStacktrace: false
-  })
+	props: {
+		error: String,
+		message: String
+	},
+	data: () => ({
+		showStacktrace: false
+	})
 }
 </script>

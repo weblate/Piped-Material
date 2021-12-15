@@ -105,228 +105,228 @@ import SubscriptionButton from '@/components/SubscriptionButton'
 import ExpandableDate from '@/components/ExpandableDate'
 
 export default {
-  name: 'WatchVideo',
-  data () {
-    return {
-      loaded: false,
-      video: {
-        title: 'Loading ...'
-      },
-      sponsors: null,
-      selectedAutoLoop: false,
-      showDesc: true,
-      comments: null,
-      channelId: null,
+	name: 'WatchVideo',
+	data () {
+		return {
+			loaded: false,
+			video: {
+				title: 'Loading ...'
+			},
+			sponsors: null,
+			selectedAutoLoop: false,
+			showDesc: true,
+			comments: null,
+			channelId: null,
 
-      dbID: null,
-      lastWatch: null
-    }
-  },
-  metaInfo () {
-    return {
-      title: this.video.title,
-      meta: [
-        {
-          name: 'twitter:title',
-          content: this.video.title
-        },
-        {
-          name: 'twitter:description',
-          content: this.video.description
-        },
-        {
-          property: 'og:type',
-          content: 'video'
-        },
-        {
-          property: 'og:title',
-          content: this.video.title
-        },
-        {
-          property: 'og:description',
-          content: this.video.description
-        },
-        {
-          name: 'description',
-          content: this.video.description
-        },
-        {
-          property: 'og:image',
-          content: this.video.thumbnailUrl
-        },
-        {
-          name: 'twitter:image',
-          content: this.video.thumbnailUrl
-        }
-      ]
-    }
-  },
+			dbID: null,
+			lastWatch: null
+		}
+	},
+	metaInfo () {
+		return {
+			title: this.video.title,
+			meta: [
+				{
+					name: 'twitter:title',
+					content: this.video.title
+				},
+				{
+					name: 'twitter:description',
+					content: this.video.description
+				},
+				{
+					property: 'og:type',
+					content: 'video'
+				},
+				{
+					property: 'og:title',
+					content: this.video.title
+				},
+				{
+					property: 'og:description',
+					content: this.video.description
+				},
+				{
+					name: 'description',
+					content: this.video.description
+				},
+				{
+					property: 'og:image',
+					content: this.video.thumbnailUrl
+				},
+				{
+					name: 'twitter:image',
+					content: this.video.thumbnailUrl
+				}
+			]
+		}
+	},
 
-  mounted () {
-    this.initialize()
-  },
-  watch: {
-    '$route.query.v': function (v) {
-      if (v) {
-        window.scrollTo(0, 0)
-      }
-      this.initialize()
-    }
-  },
-  methods: {
-    initialize () {
-      this.getVideoData()
-      this.getSponsors()
-      if (this.$store.getters['prefs/getPreferenceBoolean']('comments', true)) this.getComments()
-    },
+	mounted () {
+		this.initialize()
+	},
+	watch: {
+		'$route.query.v': function (v) {
+			if (v) {
+				window.scrollTo(0, 0)
+			}
+			this.initialize()
+		}
+	},
+	methods: {
+		initialize () {
+			this.getVideoData()
+			this.getSponsors()
+			if (this.$store.getters['prefs/getPreferenceBoolean']('comments', true)) this.getComments()
+		},
 
-    videoEnded () {
-      if (!this.selectedAutoLoop && this.isAutoplayEnabled && this.video.relatedStreams[0]) {
-        this.$router.push({
-          name: 'WatchVideo',
-          query: {
-            v: LibPiped.determineVideoIdFromPath(this.video.relatedStreams[0].url)
-          }
-        })
-      }
-    },
+		videoEnded () {
+			if (!this.selectedAutoLoop && this.isAutoplayEnabled && this.video.relatedStreams[0]) {
+				this.$router.push({
+					name: 'WatchVideo',
+					query: {
+						v: LibPiped.determineVideoIdFromPath(this.video.relatedStreams[0].url)
+					}
+				})
+			}
+		},
 
-    onYTClick () {
-      const time = this.$refs.player.getCurrentTime()
+		onYTClick () {
+			const time = this.$refs.player.getCurrentTime()
 
-      const url = new URL('https://youtube.com/watch')
-      url.searchParams.set('v', this.videoId)
-      if (Number.isFinite(time)) {
-        url.searchParams.set('t', time.toFixed(0))
-      }
-      window.location.href = url.href
-    },
+			const url = new URL('https://youtube.com/watch')
+			url.searchParams.set('v', this.videoId)
+			if (Number.isFinite(time)) {
+				url.searchParams.set('t', time.toFixed(0))
+			}
+			window.location.href = url.href
+		},
 
-    numberFormat (...args) {
-      return LibPiped.numberFormat(...args)
-    },
+		numberFormat (...args) {
+			return LibPiped.numberFormat(...args)
+		},
 
-    addCommas (...args) {
-      return LibPiped.addCommas(...args)
-    },
+		addCommas (...args) {
+			return LibPiped.addCommas(...args)
+		},
 
-    fetchVideo () {
-      return this.$store.dispatch('auth/makeRequest', {
-        method: 'GET',
-        path: '/streams/' + this.videoId
-      })
-    },
+		fetchVideo () {
+			return this.$store.dispatch('auth/makeRequest', {
+				method: 'GET',
+				path: '/streams/' + this.videoId
+			})
+		},
 
-    async getSponsors () {
-      if (!this.$store.getters['prefs/getPreference']('sponsorblock', true)) {
-        return
-      }
-      this.sponsors = await this.$store.dispatch('auth/makeRequest', {
-        path: '/sponsors/' + this.videoId,
-        params: {
-          category: JSON.stringify(this.$store.getters['prefs/getPreference']('selectedSkip', ['sponsor', 'interaction', 'selfpromo', 'music_offtopic']))
-        }
-      })
-    },
-    fetchComments () {
-      return this.$store.dispatch('auth/makeRequest', {
-        path: '/comments/' + this.videoId
-      })
-    },
+		async getSponsors () {
+			if (!this.$store.getters['prefs/getPreference']('sponsorblock', true)) {
+				return
+			}
+			this.sponsors = await this.$store.dispatch('auth/makeRequest', {
+				path: '/sponsors/' + this.videoId,
+				params: {
+					category: JSON.stringify(this.$store.getters['prefs/getPreference']('selectedSkip', ['sponsor', 'interaction', 'selfpromo', 'music_offtopic']))
+				}
+			})
+		},
+		fetchComments () {
+			return this.$store.dispatch('auth/makeRequest', {
+				path: '/comments/' + this.videoId
+			})
+		},
 
-    onCommentsProgressIntersect (entries) {
-      if (entries[0].isIntersecting) {
-        this.fetchMoreComments()
-      }
-    },
+		onCommentsProgressIntersect (entries) {
+			if (entries[0].isIntersecting) {
+				this.fetchMoreComments()
+			}
+		},
 
-    fetchMoreComments () {
-      this.$store.dispatch('auth/makeRequest', {
-        path: '/nextpage/comments/' + this.videoId,
-        params: {
-          nextpage: this.comments.nextpage
-        }
-      }).then(json => {
-        this.comments.nextpage = json.nextpage
-        this.comments.comments = this.comments.comments.concat(json.comments)
-      })
-    },
+		fetchMoreComments () {
+			this.$store.dispatch('auth/makeRequest', {
+				path: '/nextpage/comments/' + this.videoId,
+				params: {
+					nextpage: this.comments.nextpage
+				}
+			}).then(json => {
+				this.comments.nextpage = json.nextpage
+				this.comments.comments = this.comments.comments.concat(json.comments)
+			})
+		},
 
-    onAutoplayChg (ev) {
-      this.$store.commit('prefs/setPrefs', {
-        id: 'autoplay',
-        value: ev
-      })
-    },
+		onAutoplayChg (ev) {
+			this.$store.commit('prefs/setPrefs', {
+				id: 'autoplay',
+				value: ev
+			})
+		},
 
-    async getVideoData () {
-      try {
-        this.lastWatch = await findLastWatch(this.videoId)
-      } catch (e) {
-        console.error('Errored while finding last watched', e)
-      }
+		async getVideoData () {
+			try {
+				this.lastWatch = await findLastWatch(this.videoId)
+			} catch (e) {
+				console.error('Errored while finding last watched', e)
+			}
 
-      const video = await this.fetchVideo()
-      video.videoId = this.videoId
-      video.url = this.$route.fullPath
-      this.video = video
-      this.loaded = true
+			const video = await this.fetchVideo()
+			video.videoId = this.videoId
+			video.url = this.$route.fullPath
+			this.video = video
+			this.loaded = true
 
-      if (this.video.error) {
-        return
-      }
-      this.channelId = this.video.uploaderUrl.split('/')[2]
+			if (this.video.error) {
+				return
+			}
+			this.channelId = this.video.uploaderUrl.split('/')[2]
 
-      this.video.description = LibPiped.purifyHTML(
-        this.video.description
-          .replaceAll('http://www.youtube.com', '')
-          .replaceAll('https://www.youtube.com', '')
-          .replaceAll('\n', '<br>')
-      )
-      this.dbID = await addWatchedVideo(video)
-    },
-    getComments () {
-      this.fetchComments().then(data => (this.comments = data))
-    },
+			this.video.description = LibPiped.purifyHTML(
+				this.video.description
+					.replaceAll('http://www.youtube.com', '')
+					.replaceAll('https://www.youtube.com', '')
+					.replaceAll('\n', '<br>')
+			)
+			this.dbID = await addWatchedVideo(video)
+		},
+		getComments () {
+			this.fetchComments().then(data => (this.comments = data))
+		},
 
-    onTimeUpdate: debounce(function onTimeUpdate (e) {
-      if (this.dbID == null || !this.$refs.player) {
-        return
-      }
-      return updateWatchedVideoProgress(this.dbID, this.$refs.player.getCurrentTime(), this.video.duration)
-    }, 500)
-  },
-  computed: {
-    isAutoplayEnabled () {
-      return this.$store.getters['prefs/getPreferenceBoolean']('autoplay', false)
-    },
-    videoId () {
-      return this.$route.query.v || this.$route.params.v
-    },
-    skipToTime () {
-      // 't' in $route.query ? Number($route.query.t) : (lastWatch.progress ? lastWatch.progress : undefined)
-      // 1st Priority - t in query
-      // 2nd Priority - Last Watched Progress, if enabled
-      if ('t' in this.$route.query) {
-        return Number(this.$route.query.t)
-      } else if (this.lastWatch && this.lastWatch.progress != null && this.lastWatch.progress !== 0 && this.$store.getters['prefs/getPreferenceBoolean']('skipToLastPoint', true)) {
-        return this.lastWatch.progress
-      } else {
-        return undefined
-      }
-    },
+		onTimeUpdate: debounce(function onTimeUpdate (e) {
+			if (this.dbID == null || !this.$refs.player) {
+				return
+			}
+			return updateWatchedVideoProgress(this.dbID, this.$refs.player.getCurrentTime(), this.video.duration)
+		}, 500)
+	},
+	computed: {
+		isAutoplayEnabled () {
+			return this.$store.getters['prefs/getPreferenceBoolean']('autoplay', false)
+		},
+		videoId () {
+			return this.$route.query.v || this.$route.params.v
+		},
+		skipToTime () {
+			// 't' in $route.query ? Number($route.query.t) : (lastWatch.progress ? lastWatch.progress : undefined)
+			// 1st Priority - t in query
+			// 2nd Priority - Last Watched Progress, if enabled
+			if ('t' in this.$route.query) {
+				return Number(this.$route.query.t)
+			} else if (this.lastWatch && this.lastWatch.progress != null && this.lastWatch.progress !== 0 && this.$store.getters['prefs/getPreferenceBoolean']('skipToLastPoint', true)) {
+				return this.lastWatch.progress
+			} else {
+				return undefined
+			}
+		},
 
-    lastWatchDurationH () {
-      return LibPiped.timeFormat(this.lastWatch.progress)
-    }
-  },
-  components: {
-    ExpandableDate,
-    SubscriptionButton,
-    VideoComment,
-    Player,
-    VideoItem,
-    ErrorHandler
-  }
+		lastWatchDurationH () {
+			return LibPiped.timeFormat(this.lastWatch.progress)
+		}
+	},
+	components: {
+		ExpandableDate,
+		SubscriptionButton,
+		VideoComment,
+		Player,
+		VideoItem,
+		ErrorHandler
+	}
 }
 </script>

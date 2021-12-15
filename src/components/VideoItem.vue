@@ -26,62 +26,62 @@ import { LibPiped } from '@/tools/libpiped'
 import { findLastWatch } from '@/store/watched-videos-db'
 
 export default {
-  name: 'VideoItem',
-  props: {
-    video: Object,
-    height: Number,
-    width: Number,
-    hideChannel: Boolean,
-    maxHeight: Boolean,
-    srcProgress: Number
-  },
-  data: () => ({
-    alreadyWatched: false,
-    progress: 0
-  }),
-  mounted () {
-    this.findIfVideoWatched()
-  },
-  watch: {
-    'video.videoId': 'findIfVideoWatched',
-    'video.url': 'findIfVideoWatched',
-    srcProgress: 'findIfVideoWatched'
-  },
+	name: 'VideoItem',
+	props: {
+		video: Object,
+		height: Number,
+		width: Number,
+		hideChannel: Boolean,
+		maxHeight: Boolean,
+		srcProgress: Number
+	},
+	data: () => ({
+		alreadyWatched: false,
+		progress: 0
+	}),
+	mounted () {
+		this.findIfVideoWatched()
+	},
+	watch: {
+		'video.videoId': 'findIfVideoWatched',
+		'video.url': 'findIfVideoWatched',
+		srcProgress: 'findIfVideoWatched'
+	},
 
-  methods: {
-    async findIfVideoWatched () {
-      // if it has source progress, it's already seen
-      if (this.srcProgress) {
-        this.alreadyWatched = true
-        this.progress = this.srcProgress
-        return
-      }
+	methods: {
+		async findIfVideoWatched () {
+			// if it has source progress, it's already seen
+			if (this.srcProgress) {
+				this.alreadyWatched = true
+				this.progress = this.srcProgress
+				return
+			}
 
-      let videoId
-      if (this.video.videoId) {
-        videoId = this.video.videoId
-      } else {
-        videoId = LibPiped.determineVideoIdFromPath(this.video.url)
-      }
+			let videoId
+			if (this.video.videoId) {
+				videoId = this.video.videoId
+			} else {
+				videoId = LibPiped.determineVideoIdFromPath(this.video.url)
+			}
 
-      if (videoId) {
-        const lastVideo = await findLastWatch(videoId)
-        if (lastVideo != null) {
-          this.alreadyWatched = true
-          this.progress = lastVideo.progressPcnt
-        } else {
-          this.alreadyWatched = false
-        }
-      }
-    },
+			if (videoId) {
+				const lastVideo = await findLastWatch(videoId)
+				if (lastVideo != null) {
+					this.alreadyWatched = true
+					this.progress = lastVideo.progressPcnt
+				} else {
+					this.alreadyWatched = false
+				}
+			}
+		},
 
-    numberFormat (...args) {
-      return LibPiped.numberFormat(...args)
-    },
+		numberFormat (...args) {
+			return LibPiped.numberFormat(...args)
+		},
 
-    timeFormat (...args) {
-      return LibPiped.timeFormat(...args)
-    }
-  }
+		timeFormat (...args) {
+			return LibPiped.timeFormat(...args)
+		}
+	}
 }
 </script>

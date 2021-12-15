@@ -42,103 +42,103 @@ import SubscriptionButton from '@/components/SubscriptionButton'
 import { LibPiped } from '@/tools/libpiped'
 
 export default {
-  data () {
-    return {
-      channel: null
-    }
-  },
-  metaInfo () {
-    const title = this.channel ? this.channel.name : 'Loading'
+	data () {
+		return {
+			channel: null
+		}
+	},
+	metaInfo () {
+		const title = this.channel ? this.channel.name : 'Loading'
 
-    return {
-      title,
-      meta: this.channel && [
-        {
-          name: 'twitter:title',
-          content: this.channel.name
-        },
-        {
-          name: 'twitter:description',
-          content: this.channel.description
-        },
-        {
-          property: 'og:type',
-          content: 'profile'
-        },
-        {
-          property: 'og:title',
-          content: this.channel.name
-        },
-        {
-          property: 'og:profile:username',
-          content: this.channel.name
-        },
-        {
-          property: 'og:description',
-          content: this.channel.description
-        },
-        {
-          name: 'description',
-          content: this.channel.description
-        },
-        {
-          property: 'og:image',
-          content: this.channel.bannerUrl
-        },
-        {
-          name: 'twitter:image',
-          content: this.channel.bannerUrl
-        }
-      ]
-    }
-  },
+		return {
+			title,
+			meta: this.channel && [
+				{
+					name: 'twitter:title',
+					content: this.channel.name
+				},
+				{
+					name: 'twitter:description',
+					content: this.channel.description
+				},
+				{
+					property: 'og:type',
+					content: 'profile'
+				},
+				{
+					property: 'og:title',
+					content: this.channel.name
+				},
+				{
+					property: 'og:profile:username',
+					content: this.channel.name
+				},
+				{
+					property: 'og:description',
+					content: this.channel.description
+				},
+				{
+					name: 'description',
+					content: this.channel.description
+				},
+				{
+					property: 'og:image',
+					content: this.channel.bannerUrl
+				},
+				{
+					name: 'twitter:image',
+					content: this.channel.bannerUrl
+				}
+			]
+		}
+	},
 
-  mounted () {
-    this.fetchChannel()
-  },
-  watch: {
-    '$route.params.channelId': 'fetchChannel'
-  },
-  methods: {
-    async fetchChannel () {
-      this.channel = await this.$store.dispatch('auth/makeRequest', {
-        path: '/' + this.$route.params.path + '/' + this.$route.params.channelId
-      })
-    },
+	mounted () {
+		this.fetchChannel()
+	},
+	watch: {
+		'$route.params.channelId': 'fetchChannel'
+	},
+	methods: {
+		async fetchChannel () {
+			this.channel = await this.$store.dispatch('auth/makeRequest', {
+				path: '/' + this.$route.params.path + '/' + this.$route.params.channelId
+			})
+		},
 
-    onRelatedStreamsEndIntersect (entries) {
-      if (entries[0].isIntersecting) {
-        this.fetchMoreVideos()
-      }
-    },
+		onRelatedStreamsEndIntersect (entries) {
+			if (entries[0].isIntersecting) {
+				this.fetchMoreVideos()
+			}
+		},
 
-    fetchMoreVideos () {
-      this.$store.dispatch('auth/makeRequest', {
-        path: '/nextpage/channel/' + this.channel.id,
-        params: {
-          nextpage: this.channel.nextpage
-        }
-      }).then(j => {
-        this.channel.relatedStreams = this.channel.relatedStreams.concat(j.relatedStreams)
-        this.channel.nextpage = j.nextpage
-      })
-    }
-  },
-  computed: {
-    renderedDescription () {
-      return LibPiped.purifyHTML(marked.parseInline(this.channel.description, {
-        breaks: true
-      }))
-    },
+		fetchMoreVideos () {
+			this.$store.dispatch('auth/makeRequest', {
+				path: '/nextpage/channel/' + this.channel.id,
+				params: {
+					nextpage: this.channel.nextpage
+				}
+			}).then(j => {
+				this.channel.relatedStreams = this.channel.relatedStreams.concat(j.relatedStreams)
+				this.channel.nextpage = j.nextpage
+			})
+		}
+	},
+	computed: {
+		renderedDescription () {
+			return LibPiped.purifyHTML(marked.parseInline(this.channel.description, {
+				breaks: true
+			}))
+		},
 
-    chunkedByFour () {
-      return _chunk(this.channel.relatedStreams, 4)
-    }
-  },
-  components: {
-    SubscriptionButton,
-    ErrorHandler,
-    VideoItem
-  }
+		chunkedByFour () {
+			return _chunk(this.channel.relatedStreams, 4)
+		}
+	},
+	components: {
+		SubscriptionButton,
+		ErrorHandler,
+		VideoItem
+	}
 }
 </script>
