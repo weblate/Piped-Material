@@ -24,8 +24,11 @@
 
 <script>
 import { chunk as _chunk } from 'lodash-es'
+import axios from 'axios'
 
 import VideoItem from '@/components/VideoItem.vue'
+
+let lastAbortController = new AbortController()
 
 export default {
 	data () {
@@ -74,11 +77,14 @@ export default {
 					this.feedName = 'feed'
 					break
 			}
+			lastAbortController.abort()
+			lastAbortController = new AbortController()
 
 			try {
 				this.error = null
 				this.videos = await this.$store.dispatch('auth/makeRequest', {
 					path,
+					signal: lastAbortController.signal,
 					params: {
 						region: region
 					},
@@ -93,6 +99,8 @@ export default {
 						this.error = rData
 						this.errorIsJSON = true
 					}
+				} else if (e instanceof axios.Cancel) {
+					return null
 				} else {
 					throw e
 				}

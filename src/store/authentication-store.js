@@ -90,6 +90,7 @@ const AuthenticationStore = {
 			method,
 			data,
 			params,
+			signal,
 			tokenInParams = false
 		}) {
 			const APIURL = rootGetters['prefs/apiUrl']
@@ -111,6 +112,7 @@ const AuthenticationStore = {
 				url: path,
 				params,
 				data,
+				signal,
 				headers: AuthState.isAuthenticated
 					? {
 							Authorization: AuthState.authToken
