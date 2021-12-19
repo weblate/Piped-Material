@@ -12,10 +12,7 @@
 
     <v-divider class="my-4" />
 
-    <v-alert v-if="error" color="error" prominent text>
-      <span v-if="!errorIsJSON">{{ $t(error) }}</span>
-      <JSONViewer v-else :value="error" />
-    </v-alert>
+    <NGErrorHandler :error="error" :errorIsJSON="errorIsJSON" />
     <div v-for="(row, rowId) in splitIntoRows" :key="rowId" :class="$vuetify.breakpoint.mdAndUp ? 'grid' : undefined">
       <VideoItem :video="video" v-for="(video, videoId) in row" :key="videoId" :class="columnClass" />
     </div>
@@ -27,6 +24,7 @@ import { chunk as _chunk } from 'lodash-es'
 import axios from 'axios'
 
 import VideoItem from '@/components/VideoItem.vue'
+import NGErrorHandler from '@/components/NGErrorHandler'
 
 let lastAbortController = new AbortController()
 
@@ -124,8 +122,8 @@ export default {
 		}
 	},
 	components: {
-		VideoItem,
-		JSONViewer: () => import('vue-json-viewer')
+		NGErrorHandler,
+		VideoItem
 	}
 }
 </script>

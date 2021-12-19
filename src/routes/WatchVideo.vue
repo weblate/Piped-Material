@@ -1,5 +1,5 @@
 <template>
-  <ErrorHandler v-if="video && video.error" :message="video.message" :error="video.error" />
+  <NGErrorHandler :error="error" v-if="error != null" />
   <v-progress-linear indeterminate v-else-if="!loaded" />
   <div v-else>
     <Player
@@ -98,7 +98,7 @@ import { LibPiped } from '@/tools/libpiped'
 
 import Player from '@/components/Player.vue'
 import VideoItem from '@/components/VideoItem.vue'
-import ErrorHandler from '@/components/ErrorHandler.vue'
+import NGErrorHandler from '@/components/NGErrorHandler'
 import VideoComment from '@/components/VideoComment'
 import { addWatchedVideo, updateWatchedVideoProgress, findLastWatch } from '@/store/watched-videos-db'
 import SubscriptionButton from '@/components/SubscriptionButton'
@@ -112,6 +112,7 @@ export default {
 			video: {
 				title: 'Loading ...'
 			},
+			error: null,
 			sponsors: null,
 			selectedAutoLoop: false,
 			showDesc: true,
@@ -210,11 +211,19 @@ export default {
 			return LibPiped.addCommas(...args)
 		},
 
-		fetchVideo () {
-			return this.$store.dispatch('auth/makeRequest', {
-				method: 'GET',
-				path: '/streams/' + this.videoId
-			})
+		async fetchVideo () {
+			try {
+				return await this.$store.dispatch('auth/makeRequest', {
+					method: 'GET',
+					path: '/streams/' + this.videoId
+				})
+			} catch (e) {
+				if (e.isAxiosError) {
+					this.error = e.response.data
+				} else {
+					throw e
+				}
+			}
 		},
 
 		async getSponsors () {
@@ -326,7 +335,7 @@ export default {
 		VideoComment,
 		Player,
 		VideoItem,
-		ErrorHandler
+		NGErrorHandler
 	}
 }
 </script>
