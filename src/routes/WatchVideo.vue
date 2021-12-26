@@ -81,7 +81,7 @@
     <v-row>
       <v-col md="8" offset-md="1" v-if="comments && comments.comments">
         <h5 class="text-h4 text-center my-4">Comments</h5>
-        <VideoComment v-for="comment in comments.comments" :key="comment.commentId" :comment="comment" :video="video" class="my-4" />
+        <VideoComment v-for="comment in comments.comments" :key="comment.commentId" :comment="comment" :video="video" />
         <v-progress-linear indeterminate v-intersect="onCommentsProgressIntersect" v-if="comments.comments.length !== 0 && comments.nextpage != null" />
       </v-col>
       <v-col md="2" v-if="video && video.relatedStreams">

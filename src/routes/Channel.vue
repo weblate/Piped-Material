@@ -1,43 +1,45 @@
 <template>
     <ErrorHandler v-if="channel && channel.error" :message="channel.message" :error="channel.error" />
     <v-container fluid v-else-if="channel">
-      <v-card class="pa-4">
-        <div
-          style="justify-items: center; align-items: center; vertical-align: center; display: flex;"
-        >
-          <div>
-            <v-img :src="channel.avatarUrl" height="48" width="48" class="rounded-circle" />
-          </div>
-          <div class="text-h5 ml-4">
-            {{ channel.name }}
-          </div>
-          <SubscriptionButton :channel-id="this.channel.id" />
+        <v-card class="pa-4">
+            <div
+                style="justify-items: center; align-items: center; vertical-align: center; display: flex;"
+            >
+                <div>
+                    <v-img :src="channel.avatarUrl" height="48" width="48" class="rounded-circle" />
+                </div>
+                <div class="text-h5 ml-4">
+                    {{ channel.name }}
+                </div>
+                <SubscriptionButton :channel-id="channel.id" />
+            </div>
+            <v-card-text>
+                <div v-html="renderedDescription" />
+            </v-card-text>
+        </v-card>
+
+        <v-divider class="my-4" />
+
+        <div v-if="channel && channel.relatedStreams">
+            <GridRow>
+                <GridCol v-for="(video, videoId) in channel.relatedStreams" :key="videoId">
+                    <VideoItem :height="270" :width="480" :video="video" max-height />
+                </GridCol>
+            </GridRow>
+            <v-progress-linear v-if="channel.nextpage != null" indeterminate
+                               v-intersect="onRelatedStreamsEndIntersect" />
         </div>
-        <v-card-text>
-          <div v-html="renderedDescription" />
-        </v-card-text>
-      </v-card>
-
-      <v-divider class="my-4" />
-
-      <div v-if="this.channel && this.channel.relatedStreams">
-        <v-row v-for="(row, rowId) in chunkedByFour" :key="rowId">
-          <v-col md="3" v-for="(video, videoId) in row" :key="videoId">
-            <VideoItem :height="270" :width="480" :video="video" max-height />
-          </v-col>
-        </v-row>
-        <v-progress-linear v-if="channel.nextpage != null" indeterminate v-intersect="onRelatedStreamsEndIntersect" />
-      </div>
     </v-container>
 </template>
 
 <script>
 import marked from 'marked'
-import { chunk as _chunk } from 'lodash-es'
 
 import ErrorHandler from '@/components/ErrorHandler'
 import VideoItem from '@/components/VideoItem.vue'
 import SubscriptionButton from '@/components/SubscriptionButton'
+import GridRow from '@/components/Grid/GridRow'
+import GridCol from '@/components/Grid/GridCol'
 
 import { LibPiped } from '@/tools/libpiped'
 
@@ -129,13 +131,11 @@ export default {
 			return LibPiped.purifyHTML(marked.parseInline(this.channel.description, {
 				breaks: true
 			}))
-		},
-
-		chunkedByFour () {
-			return _chunk(this.channel.relatedStreams, 4)
 		}
 	},
 	components: {
+		GridRow,
+		GridCol,
 		SubscriptionButton,
 		ErrorHandler,
 		VideoItem

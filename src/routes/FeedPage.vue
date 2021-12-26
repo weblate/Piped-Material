@@ -1,30 +1,36 @@
 <template>
-  <v-container fluid>
-    <h3 class="text-h4 justify-center">{{ $t('titles.' + feedName) }}</h3>
-    <v-btn outlined color="primary" class="mt-2" v-if="$store.getters['auth/isCurrentlyAuthenticated']" link to="/subscriptions">Your Subscriptions</v-btn>
-    <v-btn
-      outlined color="primary" class="mt-2 ml-2"
-      v-if="$store.getters['auth/isCurrentlyAuthenticated']"
-      link :href="$store.getters['prefs/apiUrl'] + '/feed/rss?authToken=' + $store.getters['auth/authToken']"
-    >
-      <v-icon>mdi-rss</v-icon> RSS of Your Subscriptions
-    </v-btn>
+    <v-container fluid>
+        <h3 class="text-h4 justify-center">{{ $t('titles.' + feedName) }}</h3>
+        <v-btn outlined color="primary" class="mt-2" v-if="$store.getters['auth/isCurrentlyAuthenticated']" link
+               to="/subscriptions">Your Subscriptions
+        </v-btn>
+        <v-btn
+            outlined color="primary" class="mt-2 ml-2"
+            v-if="$store.getters['auth/isCurrentlyAuthenticated']"
+            link :href="$store.getters['prefs/apiUrl'] + '/feed/rss?authToken=' + $store.getters['auth/authToken']"
+        >
+            <v-icon>mdi-rss</v-icon>
+            RSS of Your Subscriptions
+        </v-btn>
 
-    <v-divider class="my-4" />
+        <v-divider class="my-4" />
 
-    <NGErrorHandler :error="error" :errorIsJSON="errorIsJSON" />
-    <div v-for="(row, rowId) in splitIntoRows" :key="rowId" :class="$vuetify.breakpoint.mdAndUp ? 'grid' : undefined">
-      <VideoItem :video="video" v-for="(video, videoId) in row" :key="videoId" :class="columnClass" />
-    </div>
-  </v-container>
+        <NGErrorHandler :error="error" :errorIsJSON="errorIsJSON" />
+        <GridRow>
+            <GridCol v-for="video in videos" :key="video.url">
+                <VideoItem :video="video" max-height />
+            </GridCol>
+        </GridRow>
+    </v-container>
 </template>
 
 <script>
-import { chunk as _chunk } from 'lodash-es'
 import axios from 'axios'
 
 import VideoItem from '@/components/VideoItem.vue'
 import NGErrorHandler from '@/components/NGErrorHandler'
+import GridRow from '@/components/Grid/GridRow'
+import GridCol from '@/components/Grid/GridCol'
 
 let lastAbortController = new AbortController()
 
@@ -105,42 +111,11 @@ export default {
 			}
 		}
 	},
-	computed: {
-		rowSize () {
-			return this.$store.getters['prefs/getPreferenceNumber']('feedColumns', 4)
-		},
-
-		columnClass () {
-			if (!this.$vuetify.breakpoint.mdAndUp) {
-				return
-			}
-			return 'span-col-' + (60 / this.rowSize) + ' mb-4'
-		},
-
-		splitIntoRows () {
-			return _chunk(this.videos, this.rowSize)
-		}
-	},
 	components: {
+		GridRow,
+		GridCol,
 		NGErrorHandler,
 		VideoItem
 	}
 }
 </script>
-
-<style scoped>
-/* A 60-point grid generated for this page and this page only */
-/* Why, one might ask, when you have the Vuetify grid? */
-/* The reason being that Vuetify grid is 12-point, therefore 5 column layouts don't work */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(60, 1fr);
-  grid-gap: 16px;
-}
-
-.span-col-12{grid-column: span 12 / auto;}
-
-.span-col-15{grid-column: span 15 / auto;}
-
-.span-col-10{grid-column: span 10 / auto;}
-</style>

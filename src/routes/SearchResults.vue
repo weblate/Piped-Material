@@ -1,37 +1,46 @@
 <template>
-  <v-container fluid>
-    <h5 class="text-h5 text-center">
-      {{ $route.query.search_query }}
-    </h5>
+    <v-container fluid>
+        <h5 class="text-h5 text-center">
+            {{ $route.query.search_query }}
+        </h5>
 
-    <v-select
-      label="Filter videos"
-      v-model="selectedFilter"
-      :items="availableFilters"
-    />
-    <v-divider class="my-4" />
+        <v-select
+            label="Filter videos"
+            v-model="selectedFilter"
+            :items="availableFilters"
+        />
+        <v-divider class="my-4" />
 
-    <div v-if="results && results.items">
-      <v-row v-for="(row, rowId) in chunkedByFour" :key="rowId">
-        <v-col md="3" v-for="(video, videoId) in row" :key="videoId">
-          <VideoItem :height="270" :width="480" :video="video" max-height v-if="video.type === 'VIDEO'" />
-          <GenericDisplayItem :height="270" :width="480" :item="video" v-else />
-        </v-col>
-      </v-row>
-      <v-progress-linear indeterminate v-intersect="onSearchResultsEndIntersect" v-if="results.nextpage != null" />
-    </div>
-  </v-container>
+        <div v-if="results && results.items">
+            <GridRow>
+                <GridCol v-for="(video, videoId) in results.items" :key="videoId">
+                    <VideoItem :height="270" :width="480" :video="video" max-height v-if="video.type === 'VIDEO'" />
+                    <GenericDisplayItem :height="270" :width="480" :item="video" v-else />
+                </GridCol>
+            </GridRow>
+            <v-progress-linear
+                indeterminate
+                v-intersect="onSearchResultsEndIntersect"
+                v-if="results.nextpage != null"
+            />
+        </div>
+    </v-container>
 </template>
 
 <script>
-import { chunk as _chunk } from 'lodash-es'
-
 import { LibPiped } from '@/tools/libpiped'
 import VideoItem from '@/components/VideoItem'
 import GenericDisplayItem from '@/components/GenericDisplayItem'
+import GridRow from '@/components/Grid/GridRow'
+import GridCol from '@/components/Grid/GridCol'
 
 export default {
-	components: { GenericDisplayItem, VideoItem },
+	components: {
+		GridRow,
+		GridCol,
+		GenericDisplayItem,
+		VideoItem
+	},
 	data () {
 		return {
 			results: null,
@@ -56,11 +65,6 @@ export default {
 
 	mounted () {
 		this.updateResults()
-	},
-	computed: {
-		chunkedByFour () {
-			return _chunk(this.results.items, 4)
-		}
 	},
 	watch: {
 		selectedFilter () {
