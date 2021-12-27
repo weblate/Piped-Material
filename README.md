@@ -18,8 +18,7 @@ As a byproduct, the code is also much cleaner, dysfunctional patterns and paradi
 | https://piped-staging.ftp.sh  | Staging     |               | Kavin            |
 | https://ui.piped.১.net        | Staging     | IPv6-only     | mmjee            |
 
-Production instances are updated infrequently, and do not includes features that are introduced recently without extensive testing.
-
+Production instances are updated infrequently, and do not include features that are introduced recently without extensive testing.
 ## Backlog
 
 - [ ] Playing videos continuously in a playlist
