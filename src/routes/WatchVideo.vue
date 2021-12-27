@@ -1,95 +1,114 @@
 <template>
-  <NGErrorHandler :error="error" v-if="error != null" />
-  <v-progress-linear indeterminate v-else-if="!loaded" />
-  <div v-else>
-    <Player
-      ref="player"
-      :video="video"
-      :skip-to-time="skipToTime"
-      :sponsors="sponsors"
-      :selectedAutoLoop="selectedAutoLoop"
-      @videoEnded="videoEnded"
-      @timeupdate="onTimeUpdate"
-    />
+    <NGErrorHandler :error="error" v-if="error != null" />
+    <v-progress-linear indeterminate v-else-if="!loaded" />
+    <div v-else>
+        <Player
+            ref="player"
+            :video="video"
+            :skip-to-time="skipToTime"
+            :sponsors="sponsors"
+            :selectedAutoLoop="selectedAutoLoop"
+            @videoEnded="videoEnded"
+            @timeupdate="onTimeUpdate"
+        />
 
-    <v-row dense class="mb-2">
-      <v-col md="10" offset-md="1">
-        <v-card outlined color="bgTwo">
-          <v-card-title class="text-h5">{{ video.title }}</v-card-title>
-          <v-card-subtitle class="text-subtitle-1">
-            <v-row>
-              <v-col md="5" align-self="start">
-                {{ $tc('counts.views', video.views, { n: addCommas(video.views) }) }}
-                •
-                {{ video.uploadDate }}
-                <!-- TODO make translatable -->
-                <span v-if="lastWatch">
-                  •
-                  Last watched till {{ lastWatchDurationH }}
-                  <ExpandableDate :date="lastWatch.timestamp" />
-                </span>
-              </v-col>
-              <v-col offset-md="4" md="3" align-self="end">
-                <v-icon>mdi-thumb-up</v-icon>
-                <b class="ml-2">{{ addCommas(video.likes) }}</b>
-                <v-icon class="ml-2">mdi-thumb-down</v-icon>
-                <b class="ml-2">{{ addCommas(video.dislikes) }}</b>
-                <v-btn icon class="ml-2" link :href="'https://youtu.be/' + videoId" @click.prevent="onYTClick" target="_blank">
-                  <v-icon large>
-                    mdi-youtube
-                  </v-icon>
-                </v-btn>
-                <v-btn class="ml-2" link :href="'https://odysee.com/' + video.lbryId" v-if="video.lbryId" target="_blank" outlined>
-                  LBRY
-                </v-btn>
-              </v-col>
-            </v-row>
-          </v-card-subtitle>
-          <v-divider />
-          <v-card-text>
-            <router-link v-if="video.uploaderUrl" :to="video.uploaderUrl" custom v-slot="{ navigate }">
-              <div
-                style="justify-items: center; align-items: center; vertical-align: center; display: flex; cursor: pointer"
-                @click="navigate" @keypress.enter="navigate" role="link"
-              >
-                <div>
-                  <v-img :src="video.uploaderAvatar" height="48" width="48" class="rounded-circle" />
-                </div>
-                <a :href="video.uploaderUrl" class="text-h5 ml-4 text-decoration-none">
-                  {{ video.uploader }}
-                </a>
-                <div class="ml-4">
-                  <SubscriptionButton :channel-id="channelId" />
-                </div>
-              </div>
-            </router-link>
-            <div class="mt-4" v-html="video.description" />
-            <v-divider class="my-4" />
-            <div class="mt-4" v-if="showDesc && sponsors && sponsors.segments">
-              Sponsors Segments: {{ sponsors.segments.length }}
-            </div>
-            <div>
-              <!-- TODO translate -->
-              <v-checkbox dense :input-value="isAutoplayEnabled" @change="onAutoplayChg" label="Autoplay Next Video" />
-              <v-checkbox dense v-model="selectedAutoLoop" label="Loop this video" />
-            </div>
-          </v-card-text>
-        </v-card>
-      </v-col>
-    </v-row>
+        <v-row dense class="mb-2">
+            <v-col md="10" offset-md="1">
+                <v-card outlined color="bgTwo">
+                    <v-card-title class="text-h5">{{ video.title }}</v-card-title>
+                    <v-card-subtitle class="text-subtitle-1">
+                        <v-row>
+                            <v-col md="5" align-self="start">
+                                {{ $tc('counts.views', video.views, { n: addCommas(video.views) }) }}
+                                •
+                                {{ video.uploadDate }}
+                                <!-- TODO make translatable -->
+                                <span v-if="lastWatch">
+                                    •
+                                    Last watched till {{ lastWatchDurationH }}
+                                    <ExpandableDate :date="lastWatch.timestamp" />
+                                </span>
+                            </v-col>
+                            <v-col offset-md="4" md="3" align-self="end">
+                                <v-icon>mdi-thumb-up</v-icon>
+                                <b class="ml-2">{{ addCommas(video.likes) }}</b>
+                                <v-icon class="ml-2">mdi-thumb-down</v-icon>
+                                <b class="ml-2">{{ addCommas(video.dislikes) }}</b>
+                                <v-btn icon class="ml-2" link :href="'https://youtu.be/' + videoId"
+                                       @click.prevent="onYTClick" target="_blank">
+                                    <v-icon large>
+                                        mdi-youtube
+                                    </v-icon>
+                                </v-btn>
+                                <v-btn class="ml-2" link :href="'https://odysee.com/' + video.lbryId"
+                                       v-if="video.lbryId" target="_blank" outlined>
+                                    LBRY
+                                </v-btn>
+                                <v-tooltip>
+                                    <template v-slot:activator="{ on, attrs }">
+                                        <v-btn
+                                            class="ml-2" @click="downloadAccess"
+                                            target="_blank" outlined
+                                            v-bind="attrs" v-on="on"
+                                        >
+                                            M3U8/DASH/Stream
+                                        </v-btn>
+                                    </template>
+                                    <span>
+                                        With this you can play the video in your own media player.
+                                    </span>
+                                </v-tooltip>
+                            </v-col>
+                        </v-row>
+                    </v-card-subtitle>
+                    <v-divider />
+                    <v-card-text>
+                        <router-link v-if="video.uploaderUrl" :to="video.uploaderUrl" custom v-slot="{ navigate }">
+                            <div
+                                style="justify-items: center; align-items: center; vertical-align: center; display: flex; cursor: pointer"
+                                @click="navigate" @keypress.enter="navigate" role="link"
+                            >
+                                <div>
+                                    <v-img :src="video.uploaderAvatar" height="48" width="48" class="rounded-circle" />
+                                </div>
+                                <a :href="video.uploaderUrl" class="text-h5 ml-4 text-decoration-none">
+                                    {{ video.uploader }}
+                                </a>
+                                <div class="ml-4">
+                                    <SubscriptionButton :channel-id="channelId" />
+                                </div>
+                            </div>
+                        </router-link>
+                        <div class="mt-4" v-html="video.description" />
+                        <v-divider class="my-4" />
+                        <div class="mt-4" v-if="showDesc && sponsors && sponsors.segments">
+                            Sponsors Segments: {{ sponsors.segments.length }}
+                        </div>
+                        <div>
+                            <!-- TODO translate -->
+                            <v-checkbox dense :input-value="isAutoplayEnabled" @change="onAutoplayChg"
+                                        label="Autoplay Next Video" />
+                            <v-checkbox dense v-model="selectedAutoLoop" label="Loop this video" />
+                        </div>
+                    </v-card-text>
+                </v-card>
+            </v-col>
+        </v-row>
 
-    <v-row>
-      <v-col md="8" offset-md="1" v-if="comments && comments.comments">
-        <h5 class="text-h4 text-center my-4">Comments</h5>
-        <VideoComment v-for="comment in comments.comments" :key="comment.commentId" :comment="comment" :video="video" />
-        <v-progress-linear indeterminate v-intersect="onCommentsProgressIntersect" v-if="comments.comments.length !== 0 && comments.nextpage != null" />
-      </v-col>
-      <v-col md="2" v-if="video && video.relatedStreams">
-        <h5 class="text-h4 text-center my-4">Related Videos</h5>
-        <VideoItem class="my-4" v-for="related in video.relatedStreams" :video="related" :key="related.url" />
-      </v-col>
-    </v-row>
-  </div>
+        <v-row>
+            <v-col md="8" offset-md="1" v-if="comments && comments.comments">
+                <h5 class="text-h4 text-center my-4">Comments</h5>
+                <VideoComment v-for="comment in comments.comments" :key="comment.commentId" :comment="comment"
+                              :video="video" />
+                <v-progress-linear indeterminate v-intersect="onCommentsProgressIntersect"
+                                   v-if="comments.comments.length !== 0 && comments.nextpage != null" />
+            </v-col>
+            <v-col md="2" v-if="video && video.relatedStreams">
+                <h5 class="text-h4 text-center my-4">Related Videos</h5>
+                <VideoItem class="my-4" v-for="related in video.relatedStreams" :video="related" :key="related.url" />
+            </v-col>
+        </v-row>
+    </div>
 </template>
 
 <script>
@@ -266,6 +285,28 @@ export default {
 				id: 'autoplay',
 				value: ev
 			})
+		},
+
+		downloadAccess () {
+			const [uri, mime] = this.$refs.player.getAccess()
+			const a = document.createElement('a')
+			a.href = uri
+			a.target = '_blank'
+			a.type = mime
+
+			switch (mime) {
+				case 'application/dash+xml':
+					a.download = 'video.dash'
+					break
+				case 'application/x-mpegURL':
+				default:
+					a.download = 'video.m3u8'
+					break
+			}
+
+			document.body.appendChild(a)
+			a.click()
+			document.body.removeChild(a)
 		},
 
 		async getVideoData () {

@@ -52,7 +52,8 @@ export default {
 	data () {
 		return {
 			$player: null,
-			$ui: null
+			$ui: null,
+			access: []
 		}
 	},
 	computed: {
@@ -72,6 +73,10 @@ export default {
 		getCurrentTime () {
 			// UNCLEAN
 			return this.$refs.videoEl ? this.$refs.videoEl.currentTime : undefined
+		},
+
+		getAccess () {
+			return this.access
 		},
 
 		async loadVideo () {
@@ -127,6 +132,7 @@ export default {
 			} else {
 				uri = this.video.videoStreams.filter(stream => stream.codec == null).slice(-1)[0].url
 			}
+			this.access = [uri, mime]
 
 			if (noPrevPlayer) {
 				shaka.polyfill.installAll()
