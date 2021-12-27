@@ -1,13 +1,28 @@
-# Piped-redesign
+# Piped-Material
 
 [![GitHub Repo stars](https://img.shields.io/github/stars/mmjee/Piped-redesign?style=social)](https://github.com/mmjee/Piped-redesign/stargazers)
 [![GitHub last commit](https://img.shields.io/github/last-commit/mmjee/Piped-redesign)](https://github.com/mmjee/Piped-redesign/commits)
 
-An alternative to an alternative YouTube frontend which is efficient by design.
+Piped-Material is a fork of [Piped](https://github.com/TeamPiped/piped), an alternative client to YouTube. I have tried to improve the performance, the design and efficiency.
 
-Piped-redesign is an attempt to redesign Piped to be more space-efficient, rational and good-looking.
+There are a few things that PM does better, like watch history tracking, but it's feature complete in almost all places.
 
 As a byproduct, the code is also much cleaner, dysfunctional patterns and paradigms have been replaced with clean, beautiful code :).
+
+## Links
+
+| URL                           | Environment | Special Notes | Default Instance |
+|-------------------------------|-------------|---------------|------------------|
+| https://piped-material.১.net  | Production  |               | Kavin            |
+| https://piped-material.ftp.sh | Production  |               | Kavin            |
+| https://piped-staging.ftp.sh  | Staging     |               | Kavin            |
+| https://ui.piped.১.net        | Staging     | IPv6-only     | mmjee            |
+
+Production instances are updated infrequently, and do not includes features that are introduced recently without extensive testing.
+
+## Backlog
+
+- [ ] Playing videos continuously in a playlist
 
 ## Features:
 
@@ -16,7 +31,6 @@ As a byproduct, the code is also much cleaner, dysfunctional patterns and paradi
 - [x] Infinite Scrolling
 - [x] 4K support
 - [x] No connections to Google's servers
-- [x] Playing just audio
 - [x] Comments
 - [x] Playlist support
 - [x] Captions support
@@ -35,8 +49,8 @@ As a byproduct, the code is also much cleaner, dysfunctional patterns and paradi
 
 ## WIP
 
+- [ ] Playing just audio
 - [ ] 8K support
-- [ ] Update screenshots
 
 ## Help
 
