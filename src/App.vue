@@ -110,20 +110,20 @@ export default {
 
 	data: () => ({
 		languageOptions: [
-			{ value: 'zh_Hant', text: 'Chinese (Traditional)' },
 			{ value: 'en', text: 'English' },
 			{ value: 'fr', text: 'French' },
 			{ value: 'de', text: 'German' },
 			{ value: 'el', text: 'Greek' },
-			{ value: 'zh_Hans', text: 'Chinese (Simplified, only loads the font)' },
-			{ value: 'jp', text: 'Japanese (only loads fonts)' },
-			{ value: 'kr', text: 'Korean (only loads fonts)' },
-			{ value: 'cyrl', text: 'Cyrillic Languages (fonts)' },
+			{ value: 'zh-Hans', text: 'Chinese (Simplified, only loads the font)' },
+			{ value: 'zh-Hant', text: 'Chinese (Traditional)' },
+			{ value: 'ja', text: 'Japanese (only loads fonts)' },
+			{ value: 'ko', text: 'Korean (only loads fonts)' },
+			{ value: 'ru', text: 'Russian (only loads fonts)' },
 			{ value: 'lt', text: 'Lithuanian' },
 			{ value: 'ml', text: 'Malayalam' },
-			{ value: 'nb_NO', text: 'Norwegian Bokmål' },
+			{ value: 'nb-NO', text: 'Norwegian Bokmål' },
 			{ value: 'tr', text: 'Turkish' },
-			{ value: 'bn_beng', text: 'Bengali (বাংলা)' }
+			{ value: 'bn-Beng', text: 'Bengali (বাংলা)' }
 			// Incomplete, DO NOT USE
 			/* { value: 'bn_latn', text: 'Bengali (Latin)' }, */
 		].sort((a, b) => {

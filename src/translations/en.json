@@ -16,7 +16,8 @@
         "trendingFetchError": "Could not fetch trending videos. Check whether your country is supported by YouTube"
     },
     "misc": {
-        "searchBarLabel": "What are you looking for?"
+        "searchBarLabel": "What are you looking for?",
+        "lastWatchedTill": "Last watched till {t}"
     },
     "actions": {
         "subscribe": "Subscribe",

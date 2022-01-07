@@ -17,19 +17,19 @@
                 <v-card outlined color="bgTwo">
                     <v-card-title class="text-h5">{{ video.title }}</v-card-title>
                     <v-card-subtitle class="text-subtitle-1">
-                        <v-row>
-                            <v-col md="5" align-self="start">
-                                {{ $tc('counts.views', video.views, { n: addCommas(video.views) }) }}
+                        <v-row align="center">
+                            <v-col>
+                                {{ $tc('counts.views', video.views, { n: $store.getters['i18n/fmtNumber'](video.views) }) }}
                                 •
-                                {{ video.uploadDate }}
+                                {{ $store.getters['i18n/fmtDate'](new Date(video.uploadDate)) }}
                                 <!-- TODO make translatable -->
                                 <span v-if="lastWatch">
                                     •
-                                    Last watched till {{ lastWatchDurationH }}
+                                    {{ $t('misc.lastWatchedTill', { t: lastWatchDurationH }) }}
                                     <ExpandableDate :date="lastWatch.timestamp" />
                                 </span>
                             </v-col>
-                            <v-col offset-md="4" md="3" align-self="end">
+                            <v-col style="text-align: right">
                                 <v-icon>mdi-thumb-up</v-icon>
                                 <b class="ml-2">{{ addCommas(video.likes) }}</b>
                                 <v-icon class="ml-2">mdi-thumb-down</v-icon>
@@ -220,10 +220,6 @@ export default {
 				url.searchParams.set('t', time.toFixed(0))
 			}
 			window.location.href = url.href
-		},
-
-		numberFormat (...args) {
-			return LibPiped.numberFormat(...args)
 		},
 
 		addCommas (...args) {

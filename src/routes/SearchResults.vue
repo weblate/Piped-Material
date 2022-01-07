@@ -111,10 +111,6 @@ export default {
 			})
 		},
 
-		numberFormat (...args) {
-			return LibPiped.numberFormat(...args)
-		},
-
 		timeFormat (...args) {
 			return LibPiped.timeFormat(...args)
 		},
