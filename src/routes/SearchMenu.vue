@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { setupKeybindings } from '@/plugins/keybindings'
+import { setupKeybindings } from 'psychic-tiny-keys'
 
 export default {
 	name: 'SearchMenu',

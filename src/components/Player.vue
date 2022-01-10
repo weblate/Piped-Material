@@ -38,7 +38,7 @@ import shaka from 'shaka-player/dist/shaka-player.ui.js'
 import 'shaka-player/dist/controls.css'
 import { DashUtils } from '@/tools/DashUtils'
 
-import { setupKeybindings } from '@/plugins/keybindings'
+import { setupKeybindings } from 'psychic-tiny-keys'
 
 window.muxjs = muxjs
 
