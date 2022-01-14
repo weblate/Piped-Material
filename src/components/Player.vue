@@ -90,7 +90,7 @@ export default {
 
 			videoEl.setAttribute('poster', this.video.thumbnailUrl)
 
-			if (this.initialSkip != null && Number.isFinite(this.skipToTime)) this.skipToTime(this.initialSkip)
+			if (this.initialSkip != null && Number.isFinite(this.initialSkip)) this.skipToTime(this.initialSkip)
 
 			const noPrevPlayer = !this.$player
 

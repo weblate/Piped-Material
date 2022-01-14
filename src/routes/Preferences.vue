@@ -134,7 +134,6 @@ export default {
 					type: 'select',
 					label: 'Selected Segments to Skip',
 					multi: true,
-					default: ['sponsor', 'interaction', 'selfpromo', 'music_offtopic'],
 					options: [
 						{ text: 'Sponsor Segments ', value: 'sponsors' },
 						{ text: 'Intermission/Intro Animation Segments', value: 'intro' },

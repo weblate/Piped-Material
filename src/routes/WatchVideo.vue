@@ -44,11 +44,11 @@
                                        v-if="video.lbryId" target="_blank" outlined>
                                     LBRY
                                 </v-btn>
-                                <v-tooltip>
+                                <v-tooltip bottom>
                                     <template v-slot:activator="{ on, attrs }">
                                         <v-btn
                                             class="ml-2" @click="downloadAccess"
-                                            target="_blank" outlined
+                                            outlined
                                             v-bind="attrs" v-on="on"
                                         >
                                             M3U8/DASH/Stream
@@ -61,7 +61,9 @@
                             </v-col>
                         </v-row>
                     </v-card-subtitle>
-                    <v-divider />
+                    <v-divider class="my-1" />
+                    <VideoChapters :chapters="video.chapters" @seek="$refs.player.skipToTime($event)" v-if="Array.isArray(video.chapters) && video.chapters.length !== 0" />
+                    <v-divider class="my-1" />
                     <v-card-text>
                         <router-link v-if="video.uploaderUrl" :to="video.uploaderUrl" custom v-slot="{ navigate }">
                             <div
@@ -81,8 +83,6 @@
                         </router-link>
                         <YouTubeMarkupInterpreter :text="video.description" class="mt-4" @timeSegmentClick="$refs.player.skipToTime($event)" />
                         <v-divider class="my-4" v-if="Array.isArray(video.chapters) && video.chapters.length !== 0" />
-                        <VideoChapters :chapters="video.chapters" @seek="$refs.player.skipToTime($event)" v-if="Array.isArray(video.chapters) && video.chapters.length !== 0" />
-                        <v-divider class="my-4" />
                         <div class="mt-4" v-if="showDesc && sponsors && sponsors.segments">
                             Sponsors Segments: {{ sponsors.segments.length }}
                         </div>
@@ -252,7 +252,7 @@ export default {
 			this.sponsors = await this.$store.dispatch('auth/makeRequest', {
 				path: '/sponsors/' + this.videoId,
 				params: {
-					category: JSON.stringify(this.$store.getters['prefs/getPreference']('selectedSkip', ['sponsor', 'interaction', 'selfpromo', 'music_offtopic']))
+					category: JSON.stringify(this.$store.getters['prefs/getPreference']('selectedSkip'))
 				}
 			})
 		},
