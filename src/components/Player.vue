@@ -46,7 +46,7 @@ export default {
 	props: {
 		video: Object,
 		sponsors: Object,
-		skipToTime: Number,
+		initialSkip: Number,
 		selectedAutoLoop: Boolean
 	},
 	data () {
@@ -79,6 +79,10 @@ export default {
 			return this.access
 		},
 
+		skipToTime (timeInSeconds) {
+			this.$refs.videoEl.currentTime = timeInSeconds
+		},
+
 		async loadVideo () {
 			console.log('PIPED | LOADING VIDEO')
 			const component = this
@@ -86,7 +90,7 @@ export default {
 
 			videoEl.setAttribute('poster', this.video.thumbnailUrl)
 
-			if (this.skipToTime != null && Number.isFinite(this.skipToTime)) videoEl.currentTime = this.skipToTime
+			if (this.initialSkip != null && Number.isFinite(this.skipToTime)) this.skipToTime(this.initialSkip)
 
 			const noPrevPlayer = !this.$player
 

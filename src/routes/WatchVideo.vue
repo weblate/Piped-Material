@@ -5,7 +5,7 @@
         <Player
             ref="player"
             :video="video"
-            :skip-to-time="skipToTime"
+            :initial-skip="initialSkip"
             :sponsors="sponsors"
             :selectedAutoLoop="selectedAutoLoop"
             @videoEnded="videoEnded"
@@ -81,6 +81,8 @@
                         </router-link>
                         <div class="mt-4" v-html="video.description" />
                         <v-divider class="my-4" />
+                        <VideoChapters :chapters="video.chapters" @seek="$refs.player.skipToTime($event)" />
+                        <v-divider class="my-4" />
                         <div class="mt-4" v-if="showDesc && sponsors && sponsors.segments">
                             Sponsors Segments: {{ sponsors.segments.length }}
                         </div>
@@ -122,6 +124,7 @@ import VideoComment from '@/components/VideoComment'
 import { addWatchedVideo, updateWatchedVideoProgress, findLastWatch } from '@/store/watched-videos-db'
 import SubscriptionButton from '@/components/SubscriptionButton'
 import ExpandableDate from '@/components/ExpandableDate'
+import VideoChapters from '@/components/VideoChapters'
 
 export default {
 	name: 'WatchVideo',
@@ -349,7 +352,7 @@ export default {
 		videoId () {
 			return this.$route.query.v || this.$route.params.v
 		},
-		skipToTime () {
+		initialSkip () {
 			// 't' in $route.query ? Number($route.query.t) : (lastWatch.progress ? lastWatch.progress : undefined)
 			// 1st Priority - t in query
 			// 2nd Priority - Last Watched Progress, if enabled
@@ -367,6 +370,7 @@ export default {
 		}
 	},
 	components: {
+		VideoChapters,
 		ExpandableDate,
 		SubscriptionButton,
 		VideoComment,
