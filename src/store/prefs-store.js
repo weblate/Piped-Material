@@ -3,7 +3,7 @@ import { get as _get, isString, set as _set } from 'lodash-es'
 const PrefsStore = {
 	namespaced: true,
 	state: () => ({
-		// Declaring boolean values here because v-simple-checkbox has a bug (???) which renders it unable to have internal state
+		// Default values
 		prefs: {
 			darkMode: false,
 			playerAutoplay: true,
@@ -12,7 +12,9 @@ const PrefsStore = {
 			disableLBRY: true,
 			proxyLBRY: true,
 			sponsorblock: true,
-			skipToLastPoint: true
+			skipToLastPoint: true,
+
+			selectedSkip: []
 		}
 	}),
 	mutations: {

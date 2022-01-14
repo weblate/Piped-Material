@@ -48,7 +48,7 @@
                                     <template v-slot:activator="{ on, attrs }">
                                         <v-btn
                                             class="ml-2" @click="downloadAccess"
-                                            target="_blank" outlined
+                                            outlined
                                             v-bind="attrs" v-on="on"
                                         >
                                             M3U8/DASH/Stream
@@ -251,7 +251,7 @@ export default {
 			this.sponsors = await this.$store.dispatch('auth/makeRequest', {
 				path: '/sponsors/' + this.videoId,
 				params: {
-					category: JSON.stringify(this.$store.getters['prefs/getPreference']('selectedSkip', ['sponsor', 'interaction', 'selfpromo', 'music_offtopic']))
+					category: JSON.stringify(this.$store.getters['prefs/getPreference']('selectedSkip'))
 				}
 			})
 		},
