@@ -61,8 +61,9 @@
                             </v-col>
                         </v-row>
                     </v-card-subtitle>
+                    <v-divider class="my-1" />
                     <VideoChapters :chapters="video.chapters" @seek="$refs.player.skipToTime($event)" v-if="Array.isArray(video.chapters) && video.chapters.length !== 0" />
-                    <v-divider class="my-2" />
+                    <v-divider class="my-1" />
                     <v-card-text>
                         <router-link v-if="video.uploaderUrl" :to="video.uploaderUrl" custom v-slot="{ navigate }">
                             <div
