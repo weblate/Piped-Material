@@ -17,19 +17,19 @@
                 <v-card outlined color="bgTwo">
                     <v-card-title class="text-h5">{{ video.title }}</v-card-title>
                     <v-card-subtitle class="text-subtitle-1">
-                        <v-row>
-                            <v-col md="5" align-self="start">
-                                {{ $tc('counts.views', video.views, { n: addCommas(video.views) }) }}
+                        <v-row align="center">
+                            <v-col>
+                                {{ $tc('counts.views', video.views, { n: $store.getters['i18n/fmtNumber'](video.views) }) }}
                                 •
-                                {{ video.uploadDate }}
+                                {{ $store.getters['i18n/fmtDate'](new Date(video.uploadDate)) }}
                                 <!-- TODO make translatable -->
                                 <span v-if="lastWatch">
                                     •
-                                    Last watched till {{ lastWatchDurationH }}
+                                    {{ $t('misc.lastWatchedTill', { t: lastWatchDurationH }) }}
                                     <ExpandableDate :date="lastWatch.timestamp" />
                                 </span>
                             </v-col>
-                            <v-col offset-md="4" md="3" align-self="end">
+                            <v-col style="text-align: right">
                                 <v-icon>mdi-thumb-up</v-icon>
                                 <b class="ml-2">{{ addCommas(video.likes) }}</b>
                                 <v-icon class="ml-2">mdi-thumb-down</v-icon>
@@ -80,6 +80,8 @@
                             </div>
                         </router-link>
                         <YouTubeMarkupInterpreter :text="video.description" class="mt-4" @timeSegmentClick="$refs.player.skipToTime($event)" />
+                        <v-divider class="my-4" v-if="Array.isArray(video.chapters) && video.chapters.length !== 0" />
+                        <VideoChapters :chapters="video.chapters" @seek="$refs.player.skipToTime($event)" v-if="Array.isArray(video.chapters) && video.chapters.length !== 0" />
                         <v-divider class="my-4" />
                         <div class="mt-4" v-if="showDesc && sponsors && sponsors.segments">
                             Sponsors Segments: {{ sponsors.segments.length }}
@@ -94,6 +96,7 @@
                 </v-card>
             </v-col>
         </v-row>
+
         <v-row>
             <v-col md="8" offset-md="1" v-if="comments && comments.comments">
                 <h5 class="text-h4 text-center my-4">Comments</h5>
@@ -122,6 +125,7 @@ import { addWatchedVideo, updateWatchedVideoProgress, findLastWatch } from '@/st
 import SubscriptionButton from '@/components/SubscriptionButton'
 import ExpandableDate from '@/components/ExpandableDate'
 import YouTubeMarkupInterpreter from '@/components/YouTubeMarkupInterpreter'
+import VideoChapters from '@/components/VideoChapters'
 
 export default {
 	name: 'WatchVideo',
@@ -220,10 +224,6 @@ export default {
 				url.searchParams.set('t', time.toFixed(0))
 			}
 			window.location.href = url.href
-		},
-
-		numberFormat (...args) {
-			return LibPiped.numberFormat(...args)
 		},
 
 		addCommas (...args) {
@@ -365,6 +365,7 @@ export default {
 	},
 	components: {
 		YouTubeMarkupInterpreter,
+		VideoChapters,
 		ExpandableDate,
 		SubscriptionButton,
 		VideoComment,

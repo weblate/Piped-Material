@@ -38,7 +38,7 @@ import shaka from 'shaka-player/dist/shaka-player.ui.js'
 import 'shaka-player/dist/controls.css'
 import { DashUtils } from '@/tools/DashUtils'
 
-import { setupKeybindings } from '@/plugins/keybindings'
+import { setupKeybindings } from 'psychic-tiny-keys'
 
 window.muxjs = muxjs
 
@@ -89,6 +89,7 @@ export default {
 			const videoEl = this.$refs.videoEl
 
 			videoEl.setAttribute('poster', this.video.thumbnailUrl)
+
 			if (this.initialSkip != null && Number.isFinite(this.skipToTime)) this.skipToTime(this.initialSkip)
 
 			const noPrevPlayer = !this.$player

@@ -17,7 +17,7 @@
 
         <v-divider class="my-2" />
 
-        <v-icon>mdi-thumb-up</v-icon> {{ numberFormat(comment.likeCount) }}
+        <v-icon>mdi-thumb-up</v-icon> {{ this.$store.getters['i18n/fmtNumber'](comment.likeCount) }}
         <v-icon v-if="comment.hearted" class="ml-4">mdi-heart</v-icon>
         <br />
         <v-btn class="mt-1" text :loading="requestInProgress" :disabled="requestInProgress" @click="loadReplies" v-if="!subComment && childComments.length === 0 && comment.repliesPage != null">Load Replies</v-btn>
@@ -45,9 +45,6 @@ export default {
 		childComments: []
 	}),
 	methods: {
-		numberFormat (...args) {
-			return LibPiped.numberFormat(...args)
-		},
 		async loadReplies () {
 			let nextpage = null
 			this.requestInProgress = true

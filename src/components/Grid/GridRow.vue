@@ -1,5 +1,5 @@
 <template>
-    <div :class="$vuetify.breakpoint.mdAndUp ? 'grid' : undefined">
+    <div :class="$vuetify.breakpoint.mdAndUp ? 'grid' : 'grid-mobile'">
         <slot />
     </div>
 </template>
@@ -19,6 +19,10 @@ export default {
     display: grid;
     grid-template-columns: repeat(60, 1fr);
     grid-gap: 16px;
+}
+
+.grid-mobile * {
+    margin-bottom: 8px;
 }
 
 .grid-col {

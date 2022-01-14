@@ -14,7 +14,7 @@
           <h5 @click="navigate" @keypress.enter="navigate" role="link">{{ video.uploaderName || video.uploader }}</h5>
         </router-link>
         <slot />
-        {{ $tc('counts.views', video.views, { n: numberFormat(video.views) }) }}<br />
+        {{ $tc('counts.views', video.views, { n: this.$store.getters['i18n/fmtNumber'](video.views) }) }}<br />
         {{ video.uploadedDate }} <br />
         {{ timeFormat(video.duration) }}
       </v-card-text>
@@ -74,11 +74,6 @@ export default {
 				}
 			}
 		},
-
-		numberFormat (...args) {
-			return LibPiped.numberFormat(...args)
-		},
-
 		timeFormat (...args) {
 			return LibPiped.timeFormat(...args)
 		}

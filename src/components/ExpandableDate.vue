@@ -10,18 +10,16 @@
 </template>
 
 <script>
-import { LibPiped } from '@/tools/libpiped'
-
 export default {
 	name: 'ExpandableDate',
 	props: ['date'],
 	computed: {
 		timeAgo () {
-			return LibPiped.timeAgo(this.date)
+			return this.$store.getters['i18n/fmtRelative'](this.date)
 		},
 
 		formattedDate () {
-			return LibPiped.formatFullDate(this.date)
+			return this.$store.getters['i18n/fmtDateTime'](this.date)
 		}
 	}
 }
