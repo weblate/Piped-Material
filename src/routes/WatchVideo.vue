@@ -44,7 +44,7 @@
                                        v-if="video.lbryId" target="_blank" outlined>
                                     LBRY
                                 </v-btn>
-                                <v-tooltip>
+                                <v-tooltip bottom>
                                     <template v-slot:activator="{ on, attrs }">
                                         <v-btn
                                             class="ml-2" @click="downloadAccess"
