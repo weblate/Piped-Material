@@ -61,7 +61,8 @@
                             </v-col>
                         </v-row>
                     </v-card-subtitle>
-                    <v-divider />
+                    <VideoChapters :chapters="video.chapters" @seek="$refs.player.skipToTime($event)" v-if="Array.isArray(video.chapters) && video.chapters.length !== 0" />
+                    <v-divider class="my-2" />
                     <v-card-text>
                         <router-link v-if="video.uploaderUrl" :to="video.uploaderUrl" custom v-slot="{ navigate }">
                             <div
@@ -81,8 +82,6 @@
                         </router-link>
                         <div class="mt-4" v-html="video.description" />
                         <v-divider class="my-4" v-if="Array.isArray(video.chapters) && video.chapters.length !== 0" />
-                        <VideoChapters :chapters="video.chapters" @seek="$refs.player.skipToTime($event)" v-if="Array.isArray(video.chapters) && video.chapters.length !== 0" />
-                        <v-divider class="my-4" />
                         <div class="mt-4" v-if="showDesc && sponsors && sponsors.segments">
                             Sponsors Segments: {{ sponsors.segments.length }}
                         </div>
