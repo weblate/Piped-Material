@@ -61,7 +61,7 @@
                             </v-col>
                         </v-row>
                     </v-card-subtitle>
-                    <v-divider class="my-1" />
+                    <v-divider class="my-1" v-if="Array.isArray(video.chapters) && video.chapters.length !== 0" />
                     <VideoChapters :chapters="video.chapters" @seek="$refs.player.skipToTime($event)" v-if="Array.isArray(video.chapters) && video.chapters.length !== 0" />
                     <v-divider class="my-1" />
                     <v-card-text>
