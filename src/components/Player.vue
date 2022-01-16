@@ -14,7 +14,7 @@
   </div>
 </template>
 
-<style>
+<style lang="scss">
 .shaka-text-container > div {
   height: auto !important;
   width: auto !important;
@@ -29,6 +29,16 @@
 
 .shaka-video-container:-webkit-full-screen {
   max-height: none !important;
+}
+
+.shaka-settings-menu {
+    * {
+        line-height: 1;
+    }
+
+    i {
+        font-style: normal;
+    }
 }
 </style>
 
