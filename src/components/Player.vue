@@ -199,7 +199,11 @@ export default {
 					})
 				})
 
-				videoEl.addEventListener('ratechange', () => {
+				videoEl.addEventListener('ratechange', (e) => {
+					const rate = videoEl.playbackRate
+					if (!(rate > 0 && !Number.isNaN(videoEl.duration) && !Number.isNaN(videoEl.duration - e.timeStamp / 1000))) {
+						return
+					}
 					this.$store.commit('prefs/setPrefs', {
 						id: 'rate',
 						value: videoEl.playbackRate
@@ -281,7 +285,13 @@ export default {
 					)
 				})
 				videoEl.volume = this.$store.getters['prefs/getPreferenceNumber']('volume', 1)
-				player.trickPlay(this.$store.getters['prefs/getPreferenceNumber']('rate', 1))
+
+				{
+					const rate = this.$store.getters['prefs/getPreferenceNumber']('rate', 1)
+					player.trickPlay(rate)
+					player.playbackRate = rate
+					player.defaultPlaybackRate = rate
+				}
 			})
 		}
 	},
