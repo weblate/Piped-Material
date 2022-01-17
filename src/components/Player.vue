@@ -14,29 +14,13 @@
   </div>
 </template>
 
-<style>
-.shaka-text-container > div {
-  height: auto !important;
-  width: auto !important;
-  top: auto !important;
-  left: auto !important;
-}
-
-.shaka-text-container * {
-  background-color: rgba(8, 8, 8, 0.75) !important;
-  color: white !important;
-}
-
-.shaka-video-container:-webkit-full-screen {
-  max-height: none !important;
-}
-</style>
-
 <script>
 import muxjs from 'mux.js'
 import shaka from 'shaka-player/dist/shaka-player.ui.js'
 import 'shaka-player/dist/controls.css'
+
 import { DashUtils } from '@/tools/DashUtils'
+import '@/components/Player.scss'
 
 import { setupKeybindings } from 'psychic-tiny-keys'
 
