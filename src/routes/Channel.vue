@@ -1,5 +1,5 @@
 <template>
-    <ErrorHandler v-if="channel && channel.error" :message="channel.message" :error="channel.error" />
+    <NGErrorHandler v-if="error != null" :error="error" />
     <v-container fluid v-else-if="channel">
         <v-card class="pa-4">
             <div
@@ -35,7 +35,7 @@
 <script>
 import marked from 'marked'
 
-import ErrorHandler from '@/components/ErrorHandler'
+import NGErrorHandler from '@/components/NGErrorHandler'
 import VideoItem from '@/components/VideoItem.vue'
 import SubscriptionButton from '@/components/SubscriptionButton'
 import GridRow from '@/components/Grid/GridRow'
@@ -46,7 +46,8 @@ import { LibPiped } from '@/tools/libpiped'
 export default {
 	data () {
 		return {
-			channel: null
+			channel: null,
+			error: null
 		}
 	},
 	metaInfo () {
@@ -103,9 +104,18 @@ export default {
 	},
 	methods: {
 		async fetchChannel () {
-			this.channel = await this.$store.dispatch('auth/makeRequest', {
-				path: '/' + this.$route.params.path + '/' + this.$route.params.channelId
-			})
+			try {
+				this.channel = await this.$store.dispatch('auth/makeRequest', {
+					path: '/' + this.$route.params.path + '/' + this.$route.params.channelId
+				})
+				this.error = null
+			} catch (e) {
+				if (e.isAxiosError) {
+					this.error = e.response.data
+				} else {
+					throw e
+				}
+			}
 		},
 
 		onRelatedStreamsEndIntersect (entries) {
@@ -137,7 +147,7 @@ export default {
 		GridRow,
 		GridCol,
 		SubscriptionButton,
-		ErrorHandler,
+		NGErrorHandler,
 		VideoItem
 	}
 }
