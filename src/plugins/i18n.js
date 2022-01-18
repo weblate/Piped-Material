@@ -18,7 +18,8 @@ export const i18n = new VueI18n({
 })
 
 const TIME_AGO_EXCEPTIONS = {
-	'bn-Beng': 'bn'
+	'bn-Beng': 'bn',
+	'nb-NO': 'nb'
 }
 
 async function syncStylesPerLanguage (locale) {
