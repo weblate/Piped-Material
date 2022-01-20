@@ -255,7 +255,7 @@ export default {
 			this.sponsors = await this.$store.dispatch('auth/makeRequest', {
 				path: '/sponsors/' + this.videoId,
 				params: {
-					category: JSON.stringify()
+					category: JSON.stringify(selectedSkip)
 				}
 			})
 		},
