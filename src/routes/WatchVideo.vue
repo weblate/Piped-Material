@@ -248,10 +248,14 @@ export default {
 			if (!this.$store.getters['prefs/getPreference']('sponsorblock', true)) {
 				return
 			}
+			const selectedSkip = this.$store.getters['prefs/getPreference']('selectedSkip')
+			if (selectedSkip.length === 0) {
+				return
+			}
 			this.sponsors = await this.$store.dispatch('auth/makeRequest', {
 				path: '/sponsors/' + this.videoId,
 				params: {
-					category: JSON.stringify(this.$store.getters['prefs/getPreference']('selectedSkip'))
+					category: JSON.stringify()
 				}
 			})
 		},
