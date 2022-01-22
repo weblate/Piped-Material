@@ -12,9 +12,7 @@
     <v-row v-for="(chunk, chunkId) in chunkedByFour" :key="chunkId">
       <v-col md="3" v-for="doc in chunk" :key="doc._id">
         <VideoItem :video="doc.video" :src-progress="doc.progressPcnt" max-height>
-          <ExpandableDate :date="doc.timestamp">
-            Watched
-          </ExpandableDate>
+          <ExpandableDate message-key="misc.watchedAgo" :message-arguments="{ p: timeFormat(doc.progress) }" :date="doc.timestamp" />
           <br />
         </VideoItem>
       </v-col>
@@ -25,6 +23,7 @@
 <script>
 import _chunk from 'lodash-es/chunk'
 
+import { LibPiped } from '@/tools/libpiped'
 import { deleteWatchedVideos, getUnfinishedVideos, getWatchedVideos } from '@/store/watched-videos-db'
 import VideoItem from '@/components/VideoItem'
 import ExpandableDate from '@/components/ExpandableDate'
@@ -47,6 +46,10 @@ export default {
 	},
 
 	methods: {
+		timeFormat (t) {
+			return LibPiped.timeFormat(t)
+		},
+
 		async loadData (onlyUnfinished = false) {
 			if (!onlyUnfinished) {
 				this.data = await getWatchedVideos()

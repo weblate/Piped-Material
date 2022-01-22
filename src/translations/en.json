@@ -17,7 +17,8 @@
     },
     "misc": {
         "searchBarLabel": "What are you looking for?",
-        "lastWatchedTill": "Last watched till {t}"
+        "lastWatchedTill": "Last watched till {t}",
+        "watchedAgo": "Watched {t} till {p}"
     },
     "actions": {
         "subscribe": "Subscribe",

@@ -16,7 +16,8 @@
     },
     "misc": {
         "searchBarLabel": "কি সন্ধান করছেন বলুন?",
-        "lastWatchedTill": "আপনি {t} পর্যন্ত দেখেছিলেন"
+        "lastWatchedTill": "আপনি {t} পর্যন্ত দেখেছিলেন",
+        "watchedAgo": "{t} দেখেছিলেন এই ভিডিওটি {p} অব্দি"
     },
     "actions": {
         "subscribe": "সদস্যতা নিন",
