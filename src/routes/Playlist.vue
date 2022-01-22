@@ -26,7 +26,8 @@
               <h5 class="text-h5 ml-16">{{ $tc('counts.videos', playlist.videos) }}</h5>
             </v-card-text>
             <v-card-actions>
-              <v-btn icon x-large link :href="getRssUrl"><v-icon x-large>mdi-rss-box</v-icon></v-btn>
+                <v-btn icon x-large link :href="getRssUrl"><v-icon x-large>mdi-rss-box</v-icon></v-btn>
+                <v-btn icon x-large link :href="youtubeURL"><v-icon x-large>mdi-youtube</v-icon></v-btn>
             </v-card-actions>
           </v-card>
 
@@ -63,7 +64,11 @@ export default {
 		getRssUrl () {
 			return this.$store.getters['prefs/apiUrl'] + '/rss/playlists/' + this.$route.query.list
 		},
-
+		youtubeURL () {
+			const url = new URL('https://youtube.com/playlist')
+			url.searchParams.set('list', this.$route.query.list)
+			return url.href
+		},
 		chunkedByFour () {
 			return _chunk(this.playlist.relatedStreams, 4)
 		}
