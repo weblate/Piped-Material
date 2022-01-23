@@ -203,6 +203,7 @@ export default {
 		},
 		setPlayerAttrs (localPlayer, videoEl, uri, mime, shaka) {
 			if (!this.$ui) {
+				this.destroy()
 				this.$ui = new shaka.ui.Overlay(localPlayer, this.$refs.container, videoEl)
 
 				const config = {
