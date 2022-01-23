@@ -278,6 +278,20 @@ export default {
 					player.defaultPlaybackRate = rate
 				}
 			})
+		},
+
+		destroy () {
+			if (this.$ui) {
+				this.$ui.destroy()
+				this.$ui = undefined
+				this.$player = undefined
+			}
+			if (this.$player) {
+				this.$player.destroy()
+				this.$player = undefined
+			}
+			if (this.unsubToKeybindings) this.unsubToKeybindings()
+			if (this.$refs.container) this.$refs.container.querySelectorAll('div').forEach(node => node.remove())
 		}
 	},
 
@@ -341,17 +355,7 @@ export default {
 	},
 
 	beforeDestroy () {
-		if (this.$ui) {
-			this.$ui.destroy()
-			this.$ui = undefined
-			this.$player = undefined
-		}
-		if (this.$player) {
-			this.$player.destroy()
-			this.$player = undefined
-		}
-		this.unsubToKeybindings()
-		this.$refs.container.querySelectorAll('div').forEach(node => node.remove())
+		this.destroy()
 	}
 }
 </script>
