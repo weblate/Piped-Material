@@ -33,7 +33,7 @@ One of the easiest and most important ways to contribute is to translate and loc
 
 You can use Weblate for this, or you can just send normal PRs or patches.
 
-Weblate URL: [https://hosted.weblate.org/projects/piped-material/i18n/#information](https://hosted.weblate.org/projects/piped-material/i18n/#information).
+Weblate URL: [https://hosted.weblate.org/projects/piped-material/i18n](https://hosted.weblate.org/projects/piped-material/i18n).
 
 ## Backlog
 
