@@ -2,6 +2,7 @@
 
 [![GitHub Repo stars](https://img.shields.io/github/stars/mmjee/Piped-redesign?style=social)](https://github.com/mmjee/Piped-redesign/stargazers)
 [![GitHub last commit](https://img.shields.io/github/last-commit/mmjee/Piped-redesign)](https://github.com/mmjee/Piped-redesign/commits)
+[![Weblate Translation Status](https://hosted.weblate.org/widgets/piped-material/-/i18n/svg-badge.svg)](https://hosted.weblate.org/projects/piped-material/i18n/#information)
 
 Piped-Material is a fork of [Piped](https://github.com/TeamPiped/piped), an alternative client to YouTube. I have tried to improve the performance, the design and efficiency.
 
@@ -19,6 +20,21 @@ As a byproduct, the code is also much cleaner, dysfunctional patterns and paradi
 | https://ui.piped.১.net        | Staging     | IPv6-only     | mmjee            |
 
 Production instances are updated infrequently, and do not include features that are introduced recently without extensive testing.
+
+## Help
+
+Join the Libera Chat channel [#piped-material via IRC](ircs://irc.libera.chat:6697/#piped-material).
+
+Or alternatively you [can join in via Matrix](https://matrix.to/#/#piped-material:libera.chat).
+
+## How to contribute
+
+One of the easiest and most important ways to contribute is to translate and localize it to your language and/or region.
+
+You can use Weblate for this, or you can just send normal PRs or patches.
+
+Weblate URL: [https://hosted.weblate.org/projects/piped-material/i18n/#information](https://hosted.weblate.org/projects/piped-material/i18n/#information).
+
 ## Backlog
 
 - [ ] Playing videos continuously in a playlist
@@ -50,10 +66,6 @@ Production instances are updated infrequently, and do not include features that 
 
 - [ ] Playing just audio
 - [ ] 8K support
-
-## Help
-
-Join the Libera Chat channel #piped-material via [IRC](ircs://irc.libera.chat:6697/#piped-material) or [Matrix](https://matrix.to/#/#piped-material:libera.chat).
 
 ## Documentation
 
