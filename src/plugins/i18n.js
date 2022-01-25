@@ -17,9 +17,16 @@ export const i18n = new VueI18n({
 	messages
 })
 
-const TIME_AGO_EXCEPTIONS = {
+export const TIME_AGO_EXCEPTIONS = {
 	'bn-Beng': 'bn',
 	'nb-NO': 'nb'
+}
+
+export const COUNTRY_I18N_EXCEPTIONS = {
+	'bn-Beng': 'bn',
+	'nb-NO': 'nb',
+	'zh-Hant': 'zh',
+	'zh-Hans': 'zh'
 }
 
 async function syncStylesPerLanguage (locale) {

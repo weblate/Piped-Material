@@ -33,9 +33,7 @@
 </template>
 
 <script>
-import Countries from 'i18n-iso-countries'
-import EnglishNames from 'i18n-iso-countries/langs/en.json'
-Countries.registerLocale(EnglishNames)
+import { COUNTRY_I18N_EXCEPTIONS } from '@/plugins/i18n'
 
 export default {
 	data () {
@@ -143,16 +141,6 @@ export default {
 						{ text: 'Unpaid/Self Promotion Segments', value: 'selfpromo' },
 						{ text: 'Music: Non-Music Segments', value: 'music_offtopic' }
 					]
-				},
-				{
-					id: 'region',
-					type: 'select',
-					label: 'Country',
-					default: 'US',
-					options: Object.entries(Countries.getNames('en', { select: 'official' })).map(([code, name]) => ({
-						text: name,
-						value: code
-					}))
 				}
 			],
 			tableHeaders: [
@@ -180,43 +168,81 @@ export default {
 			title: this.$t('titles.preferences')
 		}
 	},
-
+	watch: {
+		'$i18n.locale': 'getCountries'
+	},
 	mounted () {
 		if (Object.keys(this.$route.query).length > 0) this.$router.replace({ query: {} })
-
-		fetch('https://raw.githubusercontent.com/wiki/TeamPiped/Piped-Frontend/Instances.md')
-			.then(resp => resp.text())
-			.then(body => {
-				let skipped = 0
-				const lines = body.split('\n')
-				lines.forEach(line => {
-					const split = line.split('|')
-					if (split.length === 5) {
-						if (skipped < 2) {
-							skipped++
-							return
-						}
-						this.instances.push({
-							name: split[0].trim(),
-							apiurl: split[1].trim(),
-							locations: split[2].trim(),
-							cdn: split[3].trim()
-						})
-					}
-				})
-				this.options.push({
-					id: 'instance',
-					type: 'select',
-					default: this.$store.getters['prefs/apiUrl'],
-					label: 'Instance',
-					options: this.instances.map(i => ({
-						text: i.name,
-						value: i.apiurl
-					}))
-				})
-			})
+		Promise.all([
+			this.getInstances(),
+			this.getCountries()
+		])
 	},
 	methods: {
+		async getCountries () {
+			const locale = COUNTRY_I18N_EXCEPTIONS[this.$i18n.locale] || this.$i18n.locale
+			const [Countries, LocalizedNames] = await Promise.all([
+				import('i18n-iso-countries'),
+				import(/* webpackChunkName: "countries-[request]" */ `i18n-iso-countries/langs/${locale}.json`)
+			])
+			Countries.registerLocale(LocalizedNames)
+			this.options = this.options.filter(x => x.id !== 'region')
+			this.options.push({
+				id: 'region',
+				type: 'select',
+				label: 'Country',
+				default: 'US',
+				options: Object.entries(Countries.getNames(locale, { select: 'official' })).map(([code, name]) => ({
+					text: name,
+					value: code
+				}))
+			})
+		},
+
+		getInstances () {
+			fetch('https://raw.githubusercontent.com/wiki/TeamPiped/Piped-Frontend/Instances.md')
+				.then(resp => resp.text())
+				.then(body => {
+					let skipped = 0
+					const lines = body.split('\n')
+					lines.forEach(line => {
+						const split = line.split('|')
+						if (split.length === 5) {
+							if (skipped < 2) {
+								skipped++
+								return
+							}
+							this.instances.push({
+								name: split[0].trim(),
+								apiurl: split[1].trim(),
+								locations: split[2].trim(),
+								cdn: split[3].trim()
+							})
+						}
+					})
+					if (process.env.VUE_APP_PIPED_URL && this.instances.indexOf(process.env.VUE_APP_PIPED_URL) === -1) {
+						const u = new URL(process.env.VUE_APP_PIPED_URL)
+
+						this.instances.push({
+							name: u.hostname,
+							apiurl: process.env.VUE_APP_PIPED_URL,
+							locations: '???',
+							cdn: '???'
+						})
+					}
+					this.options.push({
+						id: 'instance',
+						type: 'select',
+						default: this.$store.getters['prefs/apiUrl'],
+						label: 'Instance',
+						options: this.instances.map(i => ({
+							text: i.name,
+							value: i.apiurl
+						}))
+					})
+				})
+		},
+
 		setValue (k, v) {
 			this.$store.commit('prefs/setPrefs', {
 				id: k,
