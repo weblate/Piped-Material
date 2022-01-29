@@ -290,7 +290,6 @@ export default {
 				this.$player.destroy()
 				this.$player = undefined
 			}
-			if (this.unsubToKeybindings) this.unsubToKeybindings()
 			if (this.$refs.container) this.$refs.container.querySelectorAll('div').forEach(node => node.remove())
 		}
 	},
@@ -350,12 +349,21 @@ export default {
 			ArrowRight (e) {
 				videoEl.currentTime = videoEl.currentTime + 5
 				e.preventDefault()
+			},
+			'Shift+>' (e) {
+				self.$player.trickPlay(Math.min(videoEl.playbackRate + 0.25, 2))
+				e.preventDefault()
+			},
+			'Shift+<' (e) {
+				self.$player.trickPlay(Math.max(videoEl.playbackRate - 0.25, 0.25))
+				e.preventDefault()
 			}
 		})
 	},
 
 	beforeDestroy () {
 		this.destroy()
+		if (this.unsubToKeybindings) this.unsubToKeybindings()
 	}
 }
 </script>
