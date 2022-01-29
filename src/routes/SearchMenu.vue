@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import _debounce from 'lodash-es/debounce'
 import { setupKeybindings } from 'psychic-tiny-keys'
 
 export default {
@@ -56,17 +57,26 @@ export default {
 	},
 
 	methods: {
-		async refreshSuggestions () {
+		refreshSuggestions: _debounce(async function refreshSuggestions () {
 			this.requestInProgress = true
-			this.searchSuggestions = await this.$store.dispatch('auth/makeRequest', {
+			const suggestions = await this.$store.dispatch('auth/makeRequest', {
 				path: '/suggestions',
 				params: {
 					query: this.searchText
 				}
 			})
-			this.searchSuggestions.unshift(this.searchText)
+
+			{
+				const idx = suggestions.indexOf(this.searchText)
+				if (idx !== -1) {
+					suggestions.splice(idx, 1)
+				}
+			}
+			suggestions.unshift(this.searchText)
+
+			this.searchSuggestions = suggestions
 			this.requestInProgress = false
-		}
+		}, 500)
 	},
 
 	mounted () {
