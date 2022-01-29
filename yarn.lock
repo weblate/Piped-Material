@@ -941,10 +941,10 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@fontsource/hind-siliguri@^4.5.0":
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/@fontsource/hind-siliguri/-/hind-siliguri-4.5.0.tgz#e5489447c309484e9f48b2a75ee54a3f6cc40b31"
-  integrity sha512-kt7rXU/+G5oQeCFNibg5lKPv5zJnZSQe2jx52RDPthKnNDbt2z5z5eLdXLjueTjtZC/dVwnGijAWSPAmlIv5ow==
+"@fontsource/baloo-da-2@^4.5.2":
+  version "4.5.2"
+  resolved "https://registry.yarnpkg.com/@fontsource/baloo-da-2/-/baloo-da-2-4.5.2.tgz#95321e09002be5ece6a490f6030247bedc4d55fe"
+  integrity sha512-cBTw52mmCLjRyvyD019vdXYaKbayT9KbFAMxx+3Wkju66898282DygnNr6HPNCGGcmJvhrHd67KkJkqIJjjgmw==
 
 "@fontsource/noto-sans-jp@^4.5.2":
   version "4.5.2"
