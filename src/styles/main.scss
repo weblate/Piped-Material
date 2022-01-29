@@ -9,6 +9,10 @@
 
     font-family: $font-primary, Helvetica Neue, sans-serif !important;
   }
+
+  .shaka-video-container * {
+    font-family: $font-primary, Helvetica Neue, sans-serif;
+  }
 }
 
 .latin {
