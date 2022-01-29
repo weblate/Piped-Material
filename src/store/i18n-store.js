@@ -9,14 +9,14 @@ export const i18nStore = {
 
 	mutations: {
 		updateState (state, { intlLocale, NF, timeAgo }) {
-			state.fullFormatter = new Intl.DateTimeFormat(intlLocale, {
+			state.fullFormatter = new Intl.DateTimeFormat(window.localStorage.getItem('DTF_OVERRIDE') || intlLocale, {
 				dateStyle: 'full',
 				timeStyle: 'full'
 			})
 			state.dateFormatter = new Intl.DateTimeFormat(intlLocale, {
 				dateStyle: 'long'
 			})
-			state.NF = new Intl.NumberFormat(intlLocale)
+			state.NF = new Intl.NumberFormat(window.localStorage.getItem('NF_OVERRIDE') || intlLocale)
 
 			state.timeAgo = timeAgo
 		}
