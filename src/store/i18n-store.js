@@ -13,7 +13,7 @@ export const i18nStore = {
 				dateStyle: 'full',
 				timeStyle: 'full'
 			})
-			state.dateFormatter = new Intl.DateTimeFormat(intlLocale, {
+			state.dateFormatter = new Intl.DateTimeFormat(window.localStorage.getItem('DTF_OVERRIDE') || intlLocale, {
 				dateStyle: 'long'
 			})
 			state.NF = new Intl.NumberFormat(window.localStorage.getItem('NF_OVERRIDE') || intlLocale)
