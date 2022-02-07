@@ -97,7 +97,7 @@ async function loadFormatting (locale) {
 	const tal = TIME_AGO_EXCEPTIONS[locale] || locale
 	const data = await import(/* webpackChunkName: "timeago-[request]" */ `javascript-time-ago/locale/${tal}.json`)
 	TimeAgo.addLocale(data)
-	const timeAgo = new TimeAgo(locale)
+	const timeAgo = new TimeAgo(tal)
 
 	store.commit('i18n/updateState', {
 		intlLocale: locale,

@@ -8,7 +8,7 @@ export const i18nStore = {
 	}),
 
 	mutations: {
-		updateState (state, { intlLocale, NF, timeAgo }) {
+		updateState (state, { intlLocale, timeAgo }) {
 			state.fullFormatter = new Intl.DateTimeFormat(window.localStorage.getItem('DTF_OVERRIDE') || intlLocale, {
 				dateStyle: 'full',
 				timeStyle: 'full'
