@@ -31,6 +31,7 @@ export const COUNTRY_I18N_EXCEPTIONS = {
 	'zh-Hans': 'zh'
 }
 
+// Similar switches for RTL can be found in the i18n store
 async function syncStylesPerLanguage (locale) {
 	switch (locale) {
 		// All the latin languages

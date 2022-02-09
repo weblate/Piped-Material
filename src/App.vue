@@ -172,12 +172,6 @@ export default {
 		}
 	},
 
-	watch: {
-		'$store.state.prefs.prefs.darkMode' (newVal) {
-			this.$vuetify.theme.dark = newVal
-		}
-	},
-
 	methods: {
 		changeLocale (lang) {
 			return changeLocale(lang)
@@ -192,9 +186,20 @@ export default {
 		}
 	},
 
+	watch: {
+		'$store.state.prefs.prefs.darkMode' (newVal) {
+			this.$vuetify.theme.dark = newVal
+		},
+
+		'$store.state.i18n.rtl' (newVal) {
+			this.$vuetify.rtl = newVal
+		}
+	},
+
 	created () {
 		this.$store.dispatch('prefs/loadState')
 		this.$store.dispatch('auth/initializeAuth')
+		this.$vuetify.rtl = this.$store.state.i18n.rtl
 	}
 }
 </script>

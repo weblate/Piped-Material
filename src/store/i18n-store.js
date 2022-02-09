@@ -4,7 +4,8 @@ export const i18nStore = {
 		fullFormatter: null,
 		dateFormatter: null,
 		NF: null,
-		timeAgo: null
+		timeAgo: null,
+		rtl: false
 	}),
 
 	mutations: {
@@ -17,8 +18,17 @@ export const i18nStore = {
 				dateStyle: 'long'
 			})
 			state.NF = new Intl.NumberFormat(window.localStorage.getItem('NF_OVERRIDE') || intlLocale)
-
 			state.timeAgo = timeAgo
+
+			switch (intlLocale) {
+				case 'ar':
+				case 'ckb':
+					state.rtl = true
+					break
+				default:
+					state.rtl = false
+					break
+			}
 		}
 	},
 
