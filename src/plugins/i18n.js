@@ -54,10 +54,11 @@ async function syncStylesPerLanguage (locale) {
 			break
 		// Other languages
 		// NOTE: if you are a native speaker & want to see a different font, just email me or join the channel
+		case 'ar':
 		case 'ckb':
 			await import('@fontsource/noto-naskh-arabic/arabic.css')
 			document.body.classList.remove(...document.body.classList)
-			document.body.classList.add('sorani-kurdish')
+			document.body.classList.add('arabic-script')
 			break
 		case 'zh-Hant':
 			await import('@fontsource/noto-sans-tc/chinese-traditional.css')

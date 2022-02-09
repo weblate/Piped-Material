@@ -124,6 +124,7 @@ export default {
 			{ value: 'nb-NO', text: 'Norwegian Bokmål' },
 			{ value: 'tr', text: 'Turkish' },
 			{ value: 'bn-Beng', text: 'Bengali (বাংলা)' },
+			{ value: 'ar', text: 'Arabic' },
 			{ value: 'ckb', text: 'Sorani Kurdish' }
 			// Incomplete, DO NOT USE
 			/* { value: 'bn_latn', text: 'Bengali (Latin)' }, */

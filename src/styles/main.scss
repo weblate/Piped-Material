@@ -43,8 +43,8 @@
   @include addFonts('Nunito Sans');
 }
 
-.sorani-kurdish {
-  @include addFonts('Noto Naskh Arabic')
+.arabic-script {
+  @include addFonts('Noto Naskh Arabic');
 }
 
 .v-application {
