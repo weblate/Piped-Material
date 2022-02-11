@@ -8,9 +8,8 @@
                 <div>
                     <v-img :src="channel.avatarUrl" height="48" width="48" class="rounded-circle" />
                 </div>
-                <div class="text-h5 ml-4">
-                    {{ channel.name }}
-                </div>
+                <span class="text-h5 ml-4">{{ channel.name }}</span>
+                <v-icon class="ml-2" v-if="channel.verified">mdi-check-circle-outline</v-icon>
                 <SubscriptionButton :channel-id="channel.id" />
             </div>
             <v-card-text>
