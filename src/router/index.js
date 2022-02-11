@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import VueMeta from 'vue-meta'
 
 import FeedPage from '@/routes/FeedPage'
+import ClipRedir from '@/routes/ClipRedir'
 
 Vue.use(VueMeta)
 Vue.use(VueRouter)
@@ -46,6 +47,11 @@ const routes = [
 		path: '/:path(v|w|embed|shorts|watch)/:v?',
 		name: 'WatchVideo',
 		component: () => import('@/routes/WatchVideo')
+	},
+	{
+		path: '/clip/:clipId',
+		name: 'Clips',
+		component: ClipRedir
 	},
 	{
 		path: '/:path(channel|user|c)/:channelId/:videos?',
