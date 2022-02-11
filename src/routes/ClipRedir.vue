@@ -29,7 +29,7 @@ export default {
 
 		if (out.videoId) {
 			this.$router.push({
-				path: '/video',
+				path: '/watch',
 				query: {
 					v: out.videoId
 				}
