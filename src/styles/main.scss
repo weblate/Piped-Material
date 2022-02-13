@@ -45,6 +45,10 @@
 
 .arabic-script {
   @include addFonts('Noto Naskh Arabic');
+
+  .v-btn {
+    letter-spacing: 0 !important;
+  }
 }
 
 .v-application {
