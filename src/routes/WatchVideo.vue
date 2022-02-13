@@ -18,7 +18,7 @@
                     <v-card-title class="text-h5">{{ video.title }}</v-card-title>
                     <v-card-subtitle class="text-subtitle-1">
                         <v-row align="center">
-                            <v-col>
+                            <v-col cols="12" md="6">
                                 {{ $tc('counts.views', video.views, { n: $store.getters['i18n/fmtNumber'](video.views) }) }}
                                 •
                                 {{ $store.getters['i18n/fmtDate'](new Date(video.uploadDate)) }}
@@ -29,7 +29,7 @@
                                     <ExpandableDate :date="lastWatch.timestamp" />
                                 </span>
                             </v-col>
-                            <v-col style="text-align: right">
+                            <v-col cols="12" md="6" :style="$vuetify.breakpoint.mdAndUp ? { textAlign: 'right' } : {}">
                                 <v-icon>mdi-thumb-up</v-icon>
                                 <b class="ml-2">{{ addCommas(video.likes) }}</b>
                                 <v-icon class="ml-2">mdi-thumb-down</v-icon>
