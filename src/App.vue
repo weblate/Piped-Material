@@ -197,8 +197,6 @@ export default {
 	},
 
 	created () {
-		this.$store.dispatch('prefs/loadState')
-		this.$store.dispatch('auth/initializeAuth')
 		this.$vuetify.rtl = this.$store.state.i18n.rtl
 	}
 }

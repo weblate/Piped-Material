@@ -13,7 +13,11 @@ import './registerServiceWorker'
 
 Vue.config.productionTip = false
 
-i18nInitialized.then(() => {
+Promise.all([
+	store.dispatch('prefs/loadState'),
+	store.dispatch('auth/initializeAuth'),
+	i18nInitialized
+]).then(() => {
 	new Vue({
 		vuetify,
 		i18n,

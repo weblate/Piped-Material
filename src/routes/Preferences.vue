@@ -24,7 +24,8 @@
         :attach="opt.multi"
         :chips="opt.multi"
         :multiple="opt.multi"
-        @input="setValue(opt.id, $event)" :items="opt.options"
+        :items="opt.options"
+        @input="setValue(opt.id, $event)"
       />
     </div>
     <h5 class="text-h5">{{ $t('actions.instances_list') }}</h5>
@@ -133,14 +134,18 @@ export default {
 					label: 'Selected Segments to Skip',
 					multi: true,
 					options: [
-						{ text: 'Sponsor Segments ', value: 'sponsors' },
-						{ text: 'Intermission/Intro Animation Segments', value: 'intro' },
-						{ text: 'Endcards/Credits Segments', value: 'outro' },
-						{ text: 'Preview/Recap Segments', value: 'preview' },
-						{ text: 'Interaction Reminder (Subscribe) Segments', value: 'interaction' },
-						{ text: 'Unpaid/Self Promotion Segments', value: 'selfpromo' },
-						{ text: 'Music: Non-Music Segments', value: 'music_offtopic' }
-					]
+						// TODO somehow make this dynamic and change values when locale changes
+						{ text: 'actions.skip_sponsors', value: 'sponsors' },
+						{ text: 'actions.skip_intro', value: 'intro' },
+						{ text: 'actions.skip_outro', value: 'outro' },
+						{ text: 'actions.skip_preview', value: 'preview' },
+						{ text: 'actions.skip_interaction', value: 'interaction' },
+						{ text: 'actions.skip_self_promo', value: 'selfpromo' },
+						{ text: 'actions.skip_non_music', value: 'music_offtopic' }
+					].map(o => {
+						o.text = this.$i18n.t(o.text)
+						return o
+					})
 				}
 			],
 			tableHeaders: [
