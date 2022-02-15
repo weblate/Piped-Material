@@ -31,7 +31,7 @@
                             </v-col>
                             <v-col cols="12" md="6" :style="$vuetify.breakpoint.mdAndUp ? { textAlign: 'right' } : {}">
                                 <v-icon>mdi-thumb-up</v-icon>
-                                <b class="ml-2">{{ addCommas(video.likes) }}</b>
+                                <b class="ml-2">{{ $store.getters['i18n/fmtNumber'](video.likes) }}</b>
                                 <v-btn icon class="ml-2" link :href="'https://youtu.be/' + videoId"
                                        @click.prevent="onYTClick" target="_blank">
                                     <v-icon large>
@@ -221,10 +221,6 @@ export default {
 				url.searchParams.set('t', time.toFixed(0))
 			}
 			window.location.href = url.href
-		},
-
-		addCommas (...args) {
-			return LibPiped.addCommas(...args)
 		},
 
 		async fetchVideo () {

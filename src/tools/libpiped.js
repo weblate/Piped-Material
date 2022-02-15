@@ -10,11 +10,6 @@ class LibPiped {
 		return formatDuration(durationInSeconds * 1000)
 	}
 
-	addCommas (num) {
-		num = parseInt(num)
-		return num.toLocaleString('en-US')
-	}
-
 	purifyHTML (original) {
 		return DOMPurify.sanitize(original)
 	}
