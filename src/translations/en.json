@@ -24,6 +24,7 @@
         "subscribe": "Subscribe",
         "unsubscribe": "Unsubscribe",
         "view_subscriptions": "View Subscriptions",
+        "rss_of_subscriptions": "RSS of your subscriptions",
         "sort_by": "Sort by:",
         "most_recent": "Most Recent",
         "least_recent": "Least Recent",

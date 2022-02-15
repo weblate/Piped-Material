@@ -22,7 +22,8 @@
     "actions": {
         "subscribe": "সদস্যতা নিন",
         "unsubscribe": "সদস্যতা পরিত্যাগ",
-        "view_subscriptions": "সদস্যতার তালিকা",
+        "view_subscriptions": "channel এ সদস্যতার তালিকা",
+        "rss_of_subscriptions": "আপনি জেজে channel এ সদস্যতা নিয়েছেন তাদের RSS ফিড",
         "sort_by": "কোন ক্রমানুযায়ী ভিডিও গুলো আসবে ",
         "most_recent": "সবচেয়ে নতুন আগে",
         "least_recent": "সবচেয়ে পুরোনো আগে",

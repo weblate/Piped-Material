@@ -1,8 +1,8 @@
 <template>
     <v-container fluid>
         <h3 class="text-h4 justify-center">{{ $t('titles.' + feedName) }}</h3>
-        <v-btn outlined color="primary" class="mt-2" v-if="$store.getters['auth/isCurrentlyAuthenticated']" link
-               to="/subscriptions">Your Subscriptions
+        <v-btn outlined color="primary" class="mt-2" v-if="$store.getters['auth/isCurrentlyAuthenticated']" link to="/subscriptions">
+            {{ $t('actions.view_subscriptions') }}
         </v-btn>
         <v-btn
             outlined color="primary" class="mt-2 ml-2"
@@ -10,7 +10,7 @@
             link :href="$store.getters['prefs/apiUrl'] + '/feed/rss?authToken=' + $store.getters['auth/authToken']"
         >
             <v-icon>mdi-rss</v-icon>
-            RSS of Your Subscriptions
+            {{ $t('actions.rss_of_subscriptions') }}
         </v-btn>
 
         <v-divider class="my-4" />
