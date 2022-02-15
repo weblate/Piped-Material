@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <v-container style="max-width: 1080px">
     <h1 class="text-h4 text-center">{{ $t('titles.preferences') }}</h1>
     <v-divider class="ma-4" />
     <div v-for="(opt, optId) in options" :key="optId">

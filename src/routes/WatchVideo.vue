@@ -32,8 +32,6 @@
                             <v-col cols="12" md="6" :style="$vuetify.breakpoint.mdAndUp ? { textAlign: 'right' } : {}">
                                 <v-icon>mdi-thumb-up</v-icon>
                                 <b class="ml-2">{{ addCommas(video.likes) }}</b>
-                                <v-icon class="ml-2">mdi-thumb-down</v-icon>
-                                <b class="ml-2">{{ addCommas(video.dislikes) }}</b>
                                 <v-btn icon class="ml-2" link :href="'https://youtu.be/' + videoId"
                                        @click.prevent="onYTClick" target="_blank">
                                     <v-icon large>
