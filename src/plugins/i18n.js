@@ -19,14 +19,15 @@ export const i18n = new VueI18n({
 
 export const TIME_AGO_EXCEPTIONS = {
 	'bn-Beng': 'bn',
-	'bn-Latn': 'en',
+	'bn-Latn': 'bn',
 	'nb-NO': 'nb',
 	ckb: 'ku'
 }
 
 export const COUNTRY_I18N_EXCEPTIONS = {
-	ckb: 'ku',
 	'bn-Beng': 'bn',
+	'bn-Latn': 'bn',
+	ckb: 'ku',
 	'nb-NO': 'nb',
 	'zh-Hant': 'zh',
 	'zh-Hans': 'zh'
