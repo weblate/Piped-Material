@@ -15,10 +15,9 @@
         <v-btn
           v-else
           text
+          small
           v-bind="attrs"
           v-on="on"
-          min-width="100%"
-          class="mx-2"
         >
           Log In/Sign Up
         </v-btn>
@@ -40,7 +39,7 @@
   >
     Log Out
   </v-list-item>
-  <v-btn text min-width="100%" class="mx-2" @click="logOut" v-else>Log Out</v-btn>
+  <v-btn text small @click="logOut" v-else>Log Out</v-btn>
 </template>
 
 <script>

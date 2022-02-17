@@ -4,16 +4,16 @@
       app
       color="primary"
       dark
-      v-if="$vuetify.breakpoint.width > 1675"
+      v-if="$vuetify.breakpoint.width > 1500"
     >
       <!-- ^^^ The above breakpoint is manually determined to be the minimum sustainable width where everything works w/o overlapping -->
       <!-- Might need changing when buttons change -->
       <v-row dense align="center" justify="center">
-        <v-col md="1" v-for="link in links" :key="link.id">
+        <v-col cols="auto" v-for="link in links" :key="link.id">
           <v-btn
-            text
             link
-            min-width="100%"
+            text
+            small
             :to="link.to"
           >
             {{ $t(link.name) }}
@@ -22,8 +22,8 @@
         <v-col md="1">
           <AuthenticationModal />
         </v-col>
-        <v-col cols="auto" class="ml-2">
-          <v-btn icon @click="toggleDarkMode"><v-icon>mdi-brightness-6</v-icon></v-btn>
+        <v-col cols="auto">
+          <v-btn icon small @click="toggleDarkMode"><v-icon>mdi-brightness-6</v-icon></v-btn>
         </v-col>
         <v-col md="2">
           <v-select
