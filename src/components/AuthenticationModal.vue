@@ -15,7 +15,6 @@
         <v-btn
           v-else
           text
-          small
           v-bind="attrs"
           v-on="on"
         >
@@ -39,7 +38,7 @@
   >
     Log Out
   </v-list-item>
-  <v-btn text small @click="logOut" v-else>Log Out</v-btn>
+  <v-btn text @click="logOut" v-else>Log Out</v-btn>
 </template>
 
 <script>

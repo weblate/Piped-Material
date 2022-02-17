@@ -1,93 +1,100 @@
 <template>
-  <v-app :style="bgStyles">
-    <v-app-bar
-      app
-      color="primary"
-      dark
-      v-if="$vuetify.breakpoint.width > 1500"
-    >
-      <!-- ^^^ The above breakpoint is manually determined to be the minimum sustainable width where everything works w/o overlapping -->
-      <!-- Might need changing when buttons change -->
-      <v-row dense align="center" justify="center">
-        <v-col cols="auto" v-for="link in links" :key="link.id">
-          <v-btn
-            link
-            text
-            small
-            :to="link.to"
-          >
-            {{ $t(link.name) }}
-          </v-btn>
-        </v-col>
-        <v-col md="1">
-          <AuthenticationModal />
-        </v-col>
-        <v-col cols="auto">
-          <v-btn icon small @click="toggleDarkMode"><v-icon>mdi-brightness-6</v-icon></v-btn>
-        </v-col>
-        <v-col md="2">
-          <v-select
-            class="mt-6"
+    <v-app :style="bgStyles">
+        <v-app-bar
+            app
+            color="primary"
+            dark
             dense
-            :items="languageOptions"
-            label="Language"
-            :value="$i18n.locale"
-            @input="changeLocale"
-            outlined
-          />
-        </v-col>
-        <v-col>
-          <SearchMenu />
-        </v-col>
-      </v-row>
-    </v-app-bar>
-    <div v-else>
-      <v-navigation-drawer
-        v-model="drawer"
-        app
-      >
-        <v-list nav>
-          <v-list-item
-            v-for="link in links"
-            :key="link.id"
-            link
-            :to="link.to"
-          >
-            {{ $t(link.name) }}
-          </v-list-item>
-          <AuthenticationModal :list-mode="true" />
-        </v-list>
-        <v-switch
-          dense
-          class="mx-2 mt-0 pt-0"
-          :input-value="$store.getters['prefs/getPreferenceBoolean']('darkMode', false)"
-          @change="toggleDarkMode"
-          label="Dark Mode"
-        />
-        <v-select
-          dense
-          :items="languageOptions"
-          label="Language"
-          :value="$i18n.locale"
-          @input="changeLocale"
-          outlined
-          class="mx-2"
-        />
-        <SearchMenu class="mx-2" />
-      </v-navigation-drawer>
+            v-if="$vuetify.breakpoint.width > 1000"
+            class="desktop-buttons-container"
+        >
+            <v-btn
+                v-for="link in links" :key="link.id"
+                link
+                text
+                :to="link.to"
+            >
+                {{ $t(link.name) }}
+            </v-btn>
+            <AuthenticationModal />
+            <v-btn icon @click="toggleDarkMode">
+                <v-icon>mdi-brightness-6</v-icon>
+            </v-btn>
+            <v-select
+                class="mt-6"
+                style="max-width: 15vw"
+                dense
+                :items="languageOptions"
+                label="Language"
+                :value="$i18n.locale"
+                @input="changeLocale"
+                outlined
+            />
+            <SearchMenu class="search-menu" />
+            <!-- ^^^ The above breakpoint is manually determined to be the minimum sustainable width where everything works w/o overlapping -->
+            <!-- Might need changing when buttons change -->
+            <div class="desktop-buttons-container">
+            </div>
+        </v-app-bar>
+        <div v-else>
+            <v-navigation-drawer
+                v-model="drawer"
+                app
+            >
+                <v-list nav>
+                    <v-list-item
+                        v-for="link in links"
+                        :key="link.id"
+                        link
+                        :to="link.to"
+                    >
+                        {{ $t(link.name) }}
+                    </v-list-item>
+                    <AuthenticationModal :list-mode="true" />
+                </v-list>
+                <v-switch
+                    dense
+                    class="mx-2 mt-0 pt-0"
+                    :input-value="$store.getters['prefs/getPreferenceBoolean']('darkMode', false)"
+                    @change="toggleDarkMode"
+                    label="Dark Mode"
+                />
+                <v-select
+                    dense
+                    :items="languageOptions"
+                    label="Language"
+                    :value="$i18n.locale"
+                    @input="changeLocale"
+                    outlined
+                    class="mx-2"
+                />
+                <SearchMenu class="mx-2" />
+            </v-navigation-drawer>
 
-      <v-app-bar app color="primary" dark>
-        <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+            <v-app-bar app color="primary" dark>
+                <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
-        <v-toolbar-title>Piped Material</v-toolbar-title>
-      </v-app-bar>
-    </div>
+                <v-toolbar-title>Piped Material</v-toolbar-title>
+            </v-app-bar>
+        </div>
 
-    <v-main>
-      <router-view />
-    </v-main>
-  </v-app>
+        <v-main>
+            <router-view />
+        </v-main>
+    </v-app>
 </template>
+
+<style lang="scss">
+.desktop-buttons-container {
+    * {
+        margin-right: 4px;
+    }
+
+    :last-child {
+        margin-right: 0px;
+    }
+}
+</style>
 
 <script>
 import SearchMenu from '@/routes/SearchMenu'
@@ -110,22 +117,70 @@ export default {
 
 	data: () => ({
 		languageOptions: [
-			{ value: 'en', text: 'English' },
-			{ value: 'fr', text: 'French' },
-			{ value: 'de', text: 'German' },
-			{ value: 'el', text: 'Greek' },
-			{ value: 'zh-Hans', text: 'Chinese (Simplified, only loads the font)' },
-			{ value: 'zh-Hant', text: 'Chinese (Traditional)' },
-			{ value: 'ja', text: 'Japanese (only loads fonts)' },
-			{ value: 'ko', text: 'Korean (only loads fonts)' },
-			{ value: 'ru', text: 'Russian (only loads fonts)' },
-			{ value: 'lt', text: 'Lithuanian' },
-			{ value: 'ml', text: 'Malayalam' },
-			{ value: 'nb-NO', text: 'Norwegian Bokmål' },
-			{ value: 'tr', text: 'Turkish' },
-			{ value: 'bn-Beng', text: 'Bengali (বাংলা)' },
-			{ value: 'ar', text: 'Arabic' },
-			{ value: 'ckb', text: 'Sorani Kurdish' }
+			{
+				value: 'en',
+				text: 'English'
+			},
+			{
+				value: 'fr',
+				text: 'French'
+			},
+			{
+				value: 'de',
+				text: 'German'
+			},
+			{
+				value: 'el',
+				text: 'Greek'
+			},
+			{
+				value: 'zh-Hans',
+				text: 'Chinese (Simplified, only loads the font)'
+			},
+			{
+				value: 'zh-Hant',
+				text: 'Chinese (Traditional)'
+			},
+			{
+				value: 'ja',
+				text: 'Japanese (only loads fonts)'
+			},
+			{
+				value: 'ko',
+				text: 'Korean (only loads fonts)'
+			},
+			{
+				value: 'ru',
+				text: 'Russian (only loads fonts)'
+			},
+			{
+				value: 'lt',
+				text: 'Lithuanian'
+			},
+			{
+				value: 'ml',
+				text: 'Malayalam'
+			},
+			{
+				value: 'nb-NO',
+				text: 'Norwegian Bokmål'
+			},
+			{
+				value: 'tr',
+				text: 'Turkish'
+			},
+			{
+				value: 'bn-Beng',
+				text: 'Bengali (বাংলা)'
+			},
+			{
+				value: 'ar',
+				text: 'Arabic'
+			},
+			{
+				value: 'ckb',
+				text: 'Sorani Kurdish'
+			}
 			// Incomplete, DO NOT USE
 			/* { value: 'bn_latn', text: 'Bengali (Latin)' }, */
 		].sort((a, b) => {
