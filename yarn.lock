@@ -968,6 +968,11 @@
   resolved "https://registry.yarnpkg.com/@fontsource/baloo-da-2/-/baloo-da-2-4.5.3.tgz#61a378cfa46bf03085927eedc6a10943a2ac7124"
   integrity sha512-7v+BXA1SShqOZIEpGTyrKImo1SGRMMIsSKeISDfHjkTzE9ZQ7xA6DUpMdMazfegNoitwbVuQhheL8lHJSZChZw==
 
+"@fontsource/inter@^4.5.4":
+  version "4.5.4"
+  resolved "https://registry.yarnpkg.com/@fontsource/inter/-/inter-4.5.4.tgz#d6906fdaaf81242d975a1f9b6dedab7bfba77997"
+  integrity sha512-D0icTFpt9bWvB/OEXMztYf0bhUQZoDIYpsco5C7GVfxgKDRl8Jdn3N2aHHQqwjgRUUvRuyMv8HrRM8Hrt4U52w==
+
 "@fontsource/noto-naskh-arabic@^4.5.3":
   version "4.5.3"
   resolved "https://registry.yarnpkg.com/@fontsource/noto-naskh-arabic/-/noto-naskh-arabic-4.5.3.tgz#1dc63eb985f2eeecc07e90e9349cd1203f5f4638"

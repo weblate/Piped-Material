@@ -1,22 +1,22 @@
 @mixin addFonts ($font-primary) {
   .v-application {
     [class*='text-'],[class*='body-'] {
-      font-family: $font-primary, Helvetica Neue, sans-serif !important;
+      font-family: $font-primary, system-ui, sans-serif !important;
     }
     .headline, .title {
-      font-family: $font-primary, Helvetica Neue, sans-serif !important;
+      font-family: $font-primary, system-ui, sans-serif !important;
     }
 
-    font-family: $font-primary, Helvetica Neue, sans-serif !important;
+    font-family: $font-primary, system-ui, sans-serif !important;
   }
 
   .shaka-video-container * {
-    font-family: $font-primary, Helvetica Neue, sans-serif;
+    font-family: $font-primary, system-ui, sans-serif;
   }
 }
 
 .latin {
-  @include addFonts('Helvetica Neue');
+  @include addFonts('Inter');
 }
 
 .bengali {

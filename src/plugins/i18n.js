@@ -46,6 +46,7 @@ async function syncStylesPerLanguage (locale) {
 		case 'tr':
 		case 'bn-Latn':
 			// Don't need to import fonts because Latin fonts are always loaded
+			await import('@fontsource/inter/latin.css')
 			document.body.classList.remove(...document.body.classList)
 			document.body.classList.add('latin')
 			break
