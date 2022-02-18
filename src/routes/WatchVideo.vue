@@ -30,12 +30,12 @@
                                 </span>
                             </v-col>
                             <v-col cols="12" md="6" :style="$vuetify.breakpoint.mdAndUp ? { textAlign: 'right' } : {}">
-                                <v-icon>mdi-thumb-up</v-icon>
+                                <v-icon>{{ mdiThumbUp }}</v-icon>
                                 <b class="ml-2">{{ $store.getters['i18n/fmtNumber'](video.likes) }}</b>
                                 <v-btn icon class="ml-2" link :href="'https://youtu.be/' + videoId"
                                        @click.prevent="onYTClick" target="_blank">
                                     <v-icon large>
-                                        mdi-youtube
+                                        {{ mdiYoutube }}
                                     </v-icon>
                                 </v-btn>
                                 <v-btn class="ml-2" link :href="'https://odysee.com/' + video.lbryId"
@@ -113,6 +113,8 @@
 
 <script>
 import { debounce } from 'lodash-es'
+import { mdiThumbUp, mdiYoutube } from '@mdi/js'
+
 import { LibPiped } from '@/tools/libpiped'
 
 import Player from '@/components/Player.vue'
@@ -140,7 +142,10 @@ export default {
 			channelId: null,
 
 			dbID: null,
-			lastWatch: null
+			lastWatch: null,
+
+			mdiThumbUp,
+			mdiYoutube
 		}
 	},
 	metaInfo () {

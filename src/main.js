@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
 
-import '@mdi/font/css/materialdesignicons.min.css'
 import '@/styles/main.scss'
 
 import { i18n, i18nInitialized } from '@/plugins/i18n'

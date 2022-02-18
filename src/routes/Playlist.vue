@@ -26,8 +26,8 @@
               <h5 class="text-h5 ml-16">{{ $tc('counts.videos', playlist.videos) }}</h5>
             </v-card-text>
             <v-card-actions>
-                <v-btn icon x-large link :href="getRssUrl"><v-icon x-large>mdi-rss-box</v-icon></v-btn>
-                <v-btn icon x-large link :href="youtubeURL"><v-icon x-large>mdi-youtube</v-icon></v-btn>
+                <v-btn icon x-large link :href="getRssUrl"><v-icon x-large>{{ mdiRssBox }}</v-icon></v-btn>
+                <v-btn icon x-large link :href="youtubeURL"><v-icon x-large>{{ mdiYoutube }}</v-icon></v-btn>
             </v-card-actions>
           </v-card>
 
@@ -42,15 +42,19 @@
 </template>
 
 <script>
+import { chunk as _chunk } from 'lodash-es'
+import { mdiRssBox, mdiYoutube } from '@mdi/js'
+
 import ErrorHandler from '@/components/ErrorHandler.vue'
 import VideoItem from '@/components/VideoItem.vue'
-
-import { chunk as _chunk } from 'lodash-es'
 
 export default {
 	data () {
 		return {
-			playlist: null
+			playlist: null,
+
+			mdiRssBox,
+			mdiYoutube
 		}
 	},
 	metaInfo () {

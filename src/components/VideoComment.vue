@@ -7,9 +7,9 @@
     </v-col>
     <v-col cols="12" md="11">
       <v-card-text>
-        <v-icon v-if="comment.pinned" class="mx-2">mdi-pin</v-icon>
+        <v-icon v-if="comment.pinned" class="mx-2">{{ mdiPin }}</v-icon>
         <router-link :to="comment.commentorUrl" class="text-decoration-none primary--text">
-          <b>{{ comment.author }}</b><v-icon v-if="comment.verified">mdi-account-check</v-icon>
+          <b>{{ comment.author }}</b><v-icon v-if="comment.verified">{{ mdiAccountCheck }}</v-icon>
         </router-link>
         {{ comment.commentedTime }}
 
@@ -17,8 +17,8 @@
 
         <v-divider class="my-2" />
 
-        <v-icon>mdi-thumb-up</v-icon> {{ this.$store.getters['i18n/fmtNumber'](comment.likeCount) }}
-        <v-icon v-if="comment.hearted" class="ml-4">mdi-heart</v-icon>
+        <v-icon>{{ mdiThumbUp }}</v-icon> {{ this.$store.getters['i18n/fmtNumber'](comment.likeCount) }}
+        <v-icon v-if="comment.hearted" class="ml-4">{{ mdiHeart }}</v-icon>
         <br />
         <v-btn class="mt-1" text :loading="requestInProgress" :disabled="requestInProgress" @click="loadReplies" v-if="!subComment && childComments.length === 0 && comment.repliesPage != null">Load Replies</v-btn>
         <div v-else-if="!subComment && childComments.length !== 0">
@@ -33,8 +33,10 @@
 </template>
 
 <script>
-import { LibPiped } from '@/tools/libpiped'
 import marked from 'marked'
+import { mdiPin, mdiAccountCheck, mdiHeart, mdiThumbUp } from '@mdi/js'
+
+import { LibPiped } from '@/tools/libpiped'
 
 export default {
 	name: 'VideoComment',
@@ -42,7 +44,12 @@ export default {
 	data: () => ({
 		requestInProgress: false,
 		showChildComments: true,
-		childComments: []
+		childComments: [],
+
+		mdiPin,
+		mdiAccountCheck,
+		mdiHeart,
+		mdiThumbUp
 	}),
 	methods: {
 		async loadReplies () {

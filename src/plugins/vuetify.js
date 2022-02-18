@@ -4,6 +4,9 @@ import Vuetify from 'vuetify/lib/framework'
 Vue.use(Vuetify)
 
 export default new Vuetify({
+	icons: {
+		iconfont: 'mdiSvg'
+	},
 	theme: {
 		// There's apparently a race condition that causes components being rendered shortly before dark mode initialization unable to change to dark mode
 		dark: (() => {

@@ -9,7 +9,7 @@
             v-if="$store.getters['auth/isCurrentlyAuthenticated']"
             link :href="$store.getters['prefs/apiUrl'] + '/feed/rss?authToken=' + $store.getters['auth/authToken']"
         >
-            <v-icon>mdi-rss</v-icon>
+            <v-icon>{{ mdiRss }}</v-icon>
             {{ $t('actions.rss_of_subscriptions') }}
         </v-btn>
 
@@ -27,6 +27,8 @@
 <script>
 import axios from 'axios'
 
+import { mdiRss } from '@mdi/js'
+
 import VideoItem from '@/components/VideoItem.vue'
 import NGErrorHandler from '@/components/NGErrorHandler'
 import GridRow from '@/components/Grid/GridRow'
@@ -40,7 +42,9 @@ export default {
 			feedName: 'trending',
 			videos: [],
 			error: null,
-			errorIsJSON: false
+			errorIsJSON: false,
+
+			mdiRss
 		}
 	},
 

@@ -18,7 +18,7 @@
             </v-btn>
             <AuthenticationModal />
             <v-btn icon @click="toggleDarkMode">
-                <v-icon>mdi-brightness-6</v-icon>
+                <v-icon>{{ mdiBrightness6 }}</v-icon>
             </v-btn>
             <v-select
                 class="mt-6"
@@ -97,6 +97,8 @@
 </style>
 
 <script>
+import { mdiBrightness6 } from '@mdi/js'
+
 import SearchMenu from '@/routes/SearchMenu'
 import { changeLocale } from '@/plugins/i18n'
 import AuthenticationModal from '@/components/AuthenticationModal'
@@ -186,7 +188,9 @@ export default {
 		].sort((a, b) => {
 			return a.text.localeCompare(b.text)
 		}),
-		drawer: false
+		drawer: false,
+
+		mdiBrightness6
 	}),
 
 	computed: {
