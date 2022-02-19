@@ -15,6 +15,11 @@
   }
 }
 
+// Fix for https://github.com/vuetifyjs/vuetify/issues/9130, PM so far doesn't care about IE
+.v-card__text, .v-card__title {
+  word-break: normal !important;
+}
+
 .latin {
   @include addFonts('Inter');
 }
