@@ -10,6 +10,7 @@ module.exports = {
 		appleMobileWebAppStatusBarStyle: 'black',
 
 		workboxOptions: {
+			cleanupOutdatedCaches: true,
 			navigateFallback: 'index.html',
 			skipWaiting: true,
 			importWorkboxFrom: 'local',
