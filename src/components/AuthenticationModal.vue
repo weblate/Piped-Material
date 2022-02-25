@@ -10,7 +10,7 @@
           v-bind="attrs"
           v-on="on"
         >
-          Log In/Sign Up
+            {{ $t('actions.logInSignUp') }}
         </v-list-item>
         <v-btn
           v-else
@@ -18,7 +18,7 @@
           v-bind="attrs"
           v-on="on"
         >
-          Log In/Sign Up
+            {{ $t('actions.logInSignUp') }}
         </v-btn>
       </template>
       <v-card>
@@ -36,7 +36,7 @@
     v-else-if="listMode === true"
     @click="logOut"
   >
-    Log Out
+      {{ $t('actions.logOut') }}
   </v-list-item>
   <v-btn text @click="logOut" v-else>Log Out</v-btn>
 </template>
