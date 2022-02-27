@@ -19,6 +19,8 @@
         "watchedAgo": "{t} dēkhēchilēna ēi bhiḍiōṭi {p} avdi"
     },
     "actions": {
+        "logInSignUp": "vartamāna ēkāunṭa ēra vyavahāra vā natuna ēkāunṭa khōlā",
+        "logOut": "ēkāunṭaēra thēkē prasthāna",
         "subscribe": "sadasyatā nina",
         "unsubscribe": "sadasyatā parityāga",
         "view_subscriptions": "channel ē sadasyatāra tālikā",
