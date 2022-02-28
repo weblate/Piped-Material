@@ -1,17 +1,17 @@
 @mixin addFonts ($font-primary) {
   .v-application {
     [class*='text-'],[class*='body-'] {
-      font-family: $font-primary, system-ui, sans-serif !important;
+      font-family: $font-primary, Inter, system-ui, sans-serif !important;
     }
     .headline, .title {
-      font-family: $font-primary, system-ui, sans-serif !important;
+      font-family: $font-primary, Inter, system-ui, sans-serif !important;
     }
 
-    font-family: $font-primary, system-ui, sans-serif !important;
+    font-family: $font-primary, Inter, system-ui, sans-serif !important;
   }
 
-  .shaka-video-container * {
-    font-family: $font-primary, system-ui, sans-serif;
+  .shaka-video-container *:not(.material-icons-round)  {
+    font-family: $font-primary, Inter, system-ui, sans-serif;
   }
 }
 
