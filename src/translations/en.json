@@ -22,6 +22,9 @@
     "actions": {
         "logInSignUp": "Log In/Sign Up",
         "logOut": "Log Out",
+        "loadReplies": "Load Replies",
+        "hideReplies": "Hide Replies",
+        "showReplies": "Show Replies",
         "subscribe": "Subscribe",
         "unsubscribe": "Unsubscribe",
         "view_subscriptions": "View Subscriptions",

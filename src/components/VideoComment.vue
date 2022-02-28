@@ -20,9 +20,16 @@
         <v-icon>{{ mdiThumbUp }}</v-icon> {{ this.$store.getters['i18n/fmtNumber'](comment.likeCount) }}
         <v-icon v-if="comment.hearted" class="ml-4">{{ mdiHeart }}</v-icon>
         <br />
-        <v-btn class="mt-1" text :loading="requestInProgress" :disabled="requestInProgress" @click="loadReplies" v-if="!subComment && childComments.length === 0 && comment.repliesPage != null">Load Replies</v-btn>
+        <v-btn
+            class="mt-1" text :loading="requestInProgress" :disabled="requestInProgress"
+            @click="loadReplies"
+            v-if="!subComment && childComments.length === 0 && comment.repliesPage != null"
+        >
+
+            {{ $t('actions.loadReplies')}}
+        </v-btn>
         <div v-else-if="!subComment && childComments.length !== 0">
-          <v-btn text @click="showChildComments = !showChildComments">{{ showChildComments ? 'Hide' : 'Show' }} Replies</v-btn>
+          <v-btn text @click="showChildComments = !showChildComments">{{ $t('actions.' + (showChildComments ? 'hide' : 'show') + 'Replies') }}</v-btn>
         </div>
         <div v-if="childComments.length !== 0 && showChildComments">
           <video-comment :comment="childComment" :video="video" :sub-comment="true" v-for="(childComment) in childComments" :key="childComment.commentId" />

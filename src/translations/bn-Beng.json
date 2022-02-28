@@ -21,6 +21,9 @@
     "actions": {
         "logInSignUp": "বর্তমান একাউন্ট এর ব্যবহার বা নতুন একাউন্ট খোলা",
         "logOut": "একাউন্টএর থেকে প্রস্থান",
+        "loadReplies": "মন্তব্য - খুজবো?",
+        "hideReplies": "মন্তব্য - লোকাবো?",
+        "showReplies": "মন্তব্য - দেখাবো?",
         "subscribe": "সদস্যতা নিন",
         "unsubscribe": "সদস্যতা পরিত্যাগ",
         "view_subscriptions": "channel এ সদস্যতার তালিকা",
