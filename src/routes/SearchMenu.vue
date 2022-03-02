@@ -47,6 +47,7 @@ export default {
 					name: 'SearchResults',
 					query: { search_query: val }
 				})
+				this.$emit('selected', val)
 			} catch (e) {
 				console.log('???', e)
 			} finally {

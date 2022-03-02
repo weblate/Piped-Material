@@ -107,7 +107,7 @@
                             <v-toolbar-title>Search</v-toolbar-title>
                         </v-toolbar>
                         <v-card-text class="mt-2">
-                            <SearchMenu />
+                            <SearchMenu @selected="searchMenuOpened = false" />
                         </v-card-text>
                     </v-card>
                 </v-dialog>
