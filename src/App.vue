@@ -68,13 +68,49 @@
                     outlined
                     class="mx-2"
                 />
-                <SearchMenu class="mx-2" />
             </v-navigation-drawer>
 
             <v-app-bar app color="primary" dark dense>
                 <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
                 <v-toolbar-title>Piped Material</v-toolbar-title>
+                <v-spacer />
+                <v-dialog
+                    v-model="searchMenuOpened"
+                    fullscreen hide-overlay
+                    transition="dialog-bottom-transition"
+                >
+                    <template v-slot:activator="{ on, attrs }">
+                        <v-btn
+                            icon
+                            large
+                            v-bind="attrs"
+                            v-on="on"
+                        >
+                            <v-icon large>
+                                {{ mdiCardSearchOutline }}
+                            </v-icon>
+                        </v-btn>
+                    </template>
+                    <v-card>
+                        <v-toolbar
+                            dark
+                            color="primary"
+                        >
+                            <v-btn
+                                icon
+                                dark
+                                @click="searchMenuOpened = false"
+                            >
+                                <v-icon>{{ mdiClose }}</v-icon>
+                            </v-btn>
+                            <v-toolbar-title>Search</v-toolbar-title>
+                        </v-toolbar>
+                        <v-card-text class="mt-2">
+                            <SearchMenu />
+                        </v-card-text>
+                    </v-card>
+                </v-dialog>
             </v-app-bar>
         </div>
 
@@ -97,7 +133,7 @@
 </style>
 
 <script>
-import { mdiBrightness6 } from '@mdi/js'
+import { mdiBrightness6, mdiCardSearchOutline, mdiClose } from '@mdi/js'
 
 import SearchMenu from '@/routes/SearchMenu'
 import { changeLocale } from '@/plugins/i18n'
@@ -189,8 +225,12 @@ export default {
 			return a.text.localeCompare(b.text)
 		}),
 		drawer: false,
+		// Only used on phones
+		searchMenuOpened: false,
 
-		mdiBrightness6
+		mdiBrightness6,
+		mdiCardSearchOutline,
+		mdiClose
 	}),
 
 	computed: {
