@@ -86,9 +86,10 @@
                             large
                             v-bind="attrs"
                             v-on="on"
+                            aria-label="Open Search Menu"
                         >
-                            <v-icon large>
-                                {{ mdiCardSearchOutline }}
+                            <v-icon>
+                                {{ mdiMagnify }}
                             </v-icon>
                         </v-btn>
                     </template>
@@ -133,7 +134,7 @@
 </style>
 
 <script>
-import { mdiBrightness6, mdiCardSearchOutline, mdiClose } from '@mdi/js'
+import { mdiBrightness6, mdiMagnify, mdiClose } from '@mdi/js'
 
 import SearchMenu from '@/routes/SearchMenu'
 import { changeLocale } from '@/plugins/i18n'
@@ -229,7 +230,7 @@ export default {
 		searchMenuOpened: false,
 
 		mdiBrightness6,
-		mdiCardSearchOutline,
+		mdiMagnify,
 		mdiClose
 	}),
 
