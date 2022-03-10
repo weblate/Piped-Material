@@ -19,6 +19,13 @@
         "lastWatchedTill": "Last watched till {t}",
         "watchedAgo": "Watched {t} till {p}"
     },
+    "video_sharing_panel": {
+        "share": "Share",
+        "with_timestamps": "With Timestamps",
+        "without_timestamps": "Without Timestamps",
+        "via_pm": "Via Piped Material",
+        "via_yt": "Via YouTube"
+    },
     "actions": {
         "logInSignUp": "Log In/Sign Up",
         "logOut": "Log Out",

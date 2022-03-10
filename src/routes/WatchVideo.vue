@@ -12,6 +12,10 @@
             @timeupdate="onTimeUpdate"
         />
 
+        <v-dialog max-width="720" v-model="sharingPanelOpen">
+            <VideoSharingPanel @input="sharingPanelOpen = $event" :current-time="currentTime" :video-id="videoId" />
+        </v-dialog>
+
         <v-row dense class="mb-2">
             <v-col md="10" offset-md="1">
                 <v-card outlined color="bgTwo">
@@ -32,11 +36,11 @@
                             <v-col cols="12" md="6" :style="$vuetify.breakpoint.mdAndUp ? { textAlign: 'right' } : {}">
                                 <v-icon>{{ mdiThumbUp }}</v-icon>
                                 <b class="ml-2">{{ $store.getters['i18n/fmtNumber'](video.likes) }}</b>
-                                <v-btn icon class="ml-2" link :href="'https://youtu.be/' + videoId"
-                                       @click.prevent="onYTClick" target="_blank">
-                                    <v-icon large>
-                                        {{ mdiYoutube }}
+                                <v-btn outlined class="ml-2" @click.stop="onShareClick" target="_blank">
+                                    <v-icon class="mr-1">
+                                        {{ mdiShareVariant }}
                                     </v-icon>
+                                    {{ $t('video_sharing_panel.share') }}
                                 </v-btn>
                                 <v-btn class="ml-2" link :href="'https://odysee.com/' + video.lbryId"
                                        v-if="video.lbryId" target="_blank" outlined>
@@ -45,7 +49,7 @@
                                 <v-tooltip bottom>
                                     <template v-slot:activator="{ on, attrs }">
                                         <v-btn
-                                            class="ml-2" @click="downloadAccess"
+                                            class="ml-2 mt-2 mt-md-0" @click="downloadAccess"
                                             outlined
                                             v-bind="attrs" v-on="on"
                                         >
@@ -113,24 +117,28 @@
 
 <script>
 import { debounce } from 'lodash-es'
-import { mdiThumbUp, mdiYoutube } from '@mdi/js'
+import { mdiThumbUp, mdiShareVariant } from '@mdi/js'
 
+import { addWatchedVideo, updateWatchedVideoProgress, findLastWatch } from '@/store/watched-videos-db'
 import { LibPiped } from '@/tools/libpiped'
 
 import Player from '@/components/Player.vue'
-import VideoItem from '@/components/VideoItem.vue'
 import NGErrorHandler from '@/components/NGErrorHandler'
-import VideoComment from '@/components/VideoComment'
-import { addWatchedVideo, updateWatchedVideoProgress, findLastWatch } from '@/store/watched-videos-db'
-import SubscriptionButton from '@/components/SubscriptionButton'
 import ExpandableDate from '@/components/ExpandableDate'
+
+import SubscriptionButton from '@/components/SubscriptionButton'
+import VideoItem from '@/components/VideoItem.vue'
+
+import VideoComment from '@/components/VideoComment'
 import VideoChapters from '@/components/VideoChapters'
+import VideoSharingPanel from '@/components/VideoSharingPanel'
 
 export default {
 	name: 'WatchVideo',
 	data () {
 		return {
 			loaded: false,
+			sharingPanelOpen: false,
 			video: {
 				title: 'Loading ...'
 			},
@@ -143,9 +151,10 @@ export default {
 
 			dbID: null,
 			lastWatch: null,
+			currentTime: null,
 
 			mdiThumbUp,
-			mdiYoutube
+			mdiShareVariant
 		}
 	},
 	metaInfo () {
@@ -217,15 +226,10 @@ export default {
 			}
 		},
 
-		onYTClick () {
+		onShareClick () {
 			const time = this.$refs.player.getCurrentTime()
-
-			const url = new URL('https://youtube.com/watch')
-			url.searchParams.set('v', this.videoId)
-			if (Number.isFinite(time)) {
-				url.searchParams.set('t', time.toFixed(0))
-			}
-			window.location.href = url.href
+			this.currentTime = time
+			this.sharingPanelOpen = true
 		},
 
 		async fetchVideo () {
@@ -374,6 +378,7 @@ export default {
 	},
 	components: {
 		VideoChapters,
+		VideoSharingPanel,
 		ExpandableDate,
 		SubscriptionButton,
 		VideoComment,
