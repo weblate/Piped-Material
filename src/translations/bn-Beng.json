@@ -18,6 +18,14 @@
         "lastWatchedTill": "আপনি {t} পর্যন্ত দেখেছিলেন",
         "watchedAgo": "{t} দেখেছিলেন এই ভিডিওটি {p} অব্দি"
     },
+    "video_sharing_panel": {
+        "title": "অন্নদের এই videoটি দেখারনর জন্যে এই URL গুলি ব্যবহার করুন।",
+        "share": "অন্নদের এটা দেখাতে ছান?",
+        "with_timestamps": "বর্তমান সমাই সমেত।",
+        "without_timestamps": "বর্তমান সমাই ছারা।",
+        "via_pm": "Piped Material দারা -",
+        "via_yt": "YouTube দারা -"
+    },
     "actions": {
         "logInSignUp": "বর্তমান একাউন্ট এর ব্যবহার বা নতুন একাউন্ট খোলা",
         "logOut": "একাউন্টএর থেকে প্রস্থান",

@@ -20,6 +20,7 @@
         "watchedAgo": "Watched {t} till {p}"
     },
     "video_sharing_panel": {
+        "title": "Share this video",
         "share": "Share",
         "with_timestamps": "With Timestamps",
         "without_timestamps": "Without Timestamps",

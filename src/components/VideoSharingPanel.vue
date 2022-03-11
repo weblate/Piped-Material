@@ -1,6 +1,6 @@
 <template>
     <v-card>
-        <v-card-title>Share this video</v-card-title>
+        <v-card-title>{{ $t('video_sharing_panel.title' )}}</v-card-title>
         <v-card-text>
             <p class="text-subtitle-1">{{ $t('video_sharing_panel.with_timestamps') }}</p>
             <v-row align="center" no-gutters>
