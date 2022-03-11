@@ -18,9 +18,20 @@
         "lastWatchedTill": "āpani {t} paryanta dēkhēchilēna",
         "watchedAgo": "{t} dēkhēchilēna ēi bhiḍiōṭi {p} avdi"
     },
+    "video_sharing_panel": {
+        "title": "annadēra ēi videoṭi dēkhāranara janyē ēi URL guli vyavahāra karuna।",
+        "share": "annadēra ēṭā dēkhātē chāna?",
+        "with_timestamps": "vartamāna samāi samēta।",
+        "without_timestamps": "vartamāna samāi chārā।",
+        "via_pm": "Piped Material dārā -",
+        "via_yt": "YouTube dārā -"
+    },
     "actions": {
         "logInSignUp": "vartamāna ēkāunṭa ēra vyavahāra vā natuna ēkāunṭa khōlā",
         "logOut": "ēkāunṭaēra thēkē prasthāna",
+        "loadReplies": "mantavya - khujavō?",
+        "hideReplies": "mantavya - lōkāvō?",
+        "showReplies": "mantavya - dēkhāvō?",
         "subscribe": "sadasyatā nina",
         "unsubscribe": "sadasyatā parityāga",
         "view_subscriptions": "channel ē sadasyatāra tālikā",
