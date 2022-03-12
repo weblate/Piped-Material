@@ -138,7 +138,7 @@ import { cloneDeep as _cloneDeep } from 'lodash-es'
 import { mdiBrightness6, mdiMagnify, mdiClose } from '@mdi/js'
 
 import SearchMenu from '@/routes/SearchMenu'
-import { changeLocale, SUPPORTED_LANGUAGES } from '@/plugins/i18n'
+import { changeLocale, LANGUAGE_OPTIONS } from '@/plugins/i18n'
 import AuthenticationModal from '@/components/AuthenticationModal'
 
 export default {
@@ -156,7 +156,7 @@ export default {
 	},
 
 	data: () => ({
-		languageOptions: _cloneDeep(SUPPORTED_LANGUAGES),
+		languageOptions: _cloneDeep(LANGUAGE_OPTIONS),
 		drawer: false,
 		// Only used on phones
 		searchMenuOpened: false,
