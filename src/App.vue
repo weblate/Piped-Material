@@ -134,10 +134,11 @@
 </style>
 
 <script>
+import { cloneDeep as _cloneDeep } from 'lodash-es'
 import { mdiBrightness6, mdiMagnify, mdiClose } from '@mdi/js'
 
 import SearchMenu from '@/routes/SearchMenu'
-import { changeLocale } from '@/plugins/i18n'
+import { changeLocale, SUPPORTED_LANGUAGES } from '@/plugins/i18n'
 import AuthenticationModal from '@/components/AuthenticationModal'
 
 export default {
@@ -155,76 +156,7 @@ export default {
 	},
 
 	data: () => ({
-		languageOptions: [
-			{
-				value: 'en',
-				text: 'English'
-			},
-			{
-				value: 'fr',
-				text: 'French'
-			},
-			{
-				value: 'de',
-				text: 'German'
-			},
-			{
-				value: 'el',
-				text: 'Greek'
-			},
-			{
-				value: 'zh-Hans',
-				text: 'Chinese (Simplified, only loads the font)'
-			},
-			{
-				value: 'zh-Hant',
-				text: 'Chinese (Traditional)'
-			},
-			{
-				value: 'ja',
-				text: 'Japanese (only loads fonts)'
-			},
-			{
-				value: 'ko',
-				text: 'Korean (only loads fonts)'
-			},
-			{
-				value: 'ru',
-				text: 'Russian (only loads fonts)'
-			},
-			{
-				value: 'lt',
-				text: 'Lithuanian'
-			},
-			{
-				value: 'ml',
-				text: 'Malayalam'
-			},
-			{
-				value: 'nb-NO',
-				text: 'Norwegian Bokmål'
-			},
-			{
-				value: 'tr',
-				text: 'Turkish'
-			},
-			{
-				value: 'bn-Beng',
-				text: 'Bengali (বাংলা)'
-			},
-			{
-				value: 'ar',
-				text: 'Arabic'
-			},
-			{
-				value: 'ckb',
-				text: 'Sorani Kurdish'
-			}
-			// Incomplete, DO NOT USE
-			/* { value: 'bn_latn', text: 'Bengali (Latin)' }, */
-		].sort((a, b) => {
-			return a.text.localeCompare(b.text)
-		}),
+		languageOptions: _cloneDeep(SUPPORTED_LANGUAGES),
 		drawer: false,
 		// Only used on phones
 		searchMenuOpened: false,

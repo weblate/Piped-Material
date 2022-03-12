@@ -11,6 +11,79 @@ const messages = {
 	en: ENTranslations
 }
 
+export const LANGUAGE_OPTIONS = [
+	{
+		value: 'en',
+		text: 'English'
+	},
+	{
+		value: 'fr',
+		text: 'French'
+	},
+	{
+		value: 'de',
+		text: 'German'
+	},
+	{
+		value: 'el',
+		text: 'Greek'
+	},
+	{
+		value: 'zh-Hans',
+		text: 'Chinese (Simplified, only loads the font)'
+	},
+	{
+		value: 'zh-Hant',
+		text: 'Chinese (Traditional)'
+	},
+	{
+		value: 'ja',
+		text: 'Japanese (only loads fonts)'
+	},
+	{
+		value: 'ko',
+		text: 'Korean (only loads fonts)'
+	},
+	{
+		value: 'ru',
+		text: 'Russian (only loads fonts)'
+	},
+	{
+		value: 'lt',
+		text: 'Lithuanian'
+	},
+	{
+		value: 'ml',
+		text: 'Malayalam'
+	},
+	{
+		value: 'nb-NO',
+		text: 'Norwegian Bokmål'
+	},
+	{
+		value: 'tr',
+		text: 'Turkish'
+	},
+	{
+		value: 'bn-Beng',
+		text: 'Bengali (বাংলা)'
+	},
+	{
+		value: 'ar',
+		text: 'Arabic'
+	},
+	{
+		value: 'ckb',
+		text: 'Sorani Kurdish'
+	}
+	// Incomplete, DO NOT USE
+	/* { value: 'bn_latn', text: 'Bengali (Latin)' }, */
+].sort((a, b) => {
+	return a.text.localeCompare(b.text)
+})
+
+export const SUPPORTED_LANGUAGES = LANGUAGE_OPTIONS.map(l => l.value)
+
 export const i18n = new VueI18n({
 	locale: 'en', // set default locale
 	fallbackLocale: 'en',
@@ -131,8 +204,15 @@ export async function changeLocale (lang) {
 function initializeLocalLocale () {
 	let lang = window.localStorage.getItem('LOCALE')
 	if (lang == null) {
-		// Default language
-		lang = 'en'
+		for (const possible of navigator.languages) {
+			if (SUPPORTED_LANGUAGES.includes(possible)) {
+				lang = possible
+				break
+			}
+		}
+		if (lang == null) {
+			lang = 'en'
+		}
 	}
 	return changeLocale(lang)
 }
