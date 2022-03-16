@@ -37,6 +37,10 @@ export const LANGUAGE_OPTIONS = [
 		text: 'Chinese (Traditional)'
 	},
 	{
+		value: 'cs',
+		text: 'Czech'
+	},
+	{
 		value: 'ja',
 		text: 'Japanese (only loads fonts)'
 	},
@@ -117,6 +121,7 @@ async function syncStylesPerLanguage (locale) {
 		case 'lt':
 		case 'ml':
 		case 'tr':
+		case 'cs':
 		case 'bn-Latn':
 			// Don't need to import fonts because Latin fonts are always loaded
 			document.body.classList.remove(...document.body.classList)
