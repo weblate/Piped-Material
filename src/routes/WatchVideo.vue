@@ -26,7 +26,6 @@
                                 {{ $tc('counts.views', video.views, { n: $store.getters['i18n/fmtNumber'](video.views) }) }}
                                 •
                                 {{ $store.getters['i18n/fmtDate'](new Date(video.uploadDate)) }}
-                                <!-- TODO make translatable -->
                                 <span v-if="lastWatch">
                                     •
                                     {{ $t('misc.lastWatchedTill', { t: lastWatchDurationH }) }}
@@ -365,6 +364,8 @@ export default {
 			// 2nd Priority - Last Watched Progress, if enabled
 			if ('t' in this.$route.query) {
 				return Number(this.$route.query.t)
+			} else if ('start' in this.$route.query) {
+				return Number(this.$route.query.start)
 			} else if (this.lastWatch && this.lastWatch.progress != null && this.lastWatch.progress !== 0 && this.$store.getters['prefs/getPreferenceBoolean']('skipToLastPoint', true)) {
 				return this.lastWatch.progress
 			} else {
