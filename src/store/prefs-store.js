@@ -1,4 +1,4 @@
-import { get as _get, isString, set as _set } from 'lodash-es'
+import { isString, set as _set } from 'lodash-es'
 
 const PrefsStore = {
 	namespaced: true,
@@ -46,7 +46,7 @@ const PrefsStore = {
 
 	getters: {
 		getPreference: state => (id, default_) => {
-			return _get(state.prefs, id, default_)
+			return state.prefs[id] || default_
 		},
 
 		getPreferenceBoolean: (_, getters) => (...args) => {
