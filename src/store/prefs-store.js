@@ -46,7 +46,8 @@ const PrefsStore = {
 
 	getters: {
 		getPreference: state => (id, default_) => {
-			return state.prefs[id] || default_
+			const pref = state.prefs[id]
+			return pref != null ? pref : default_
 		},
 
 		getPreferenceBoolean: (_, getters) => (...args) => {
