@@ -1,10 +1,17 @@
+const webpack = require('webpack')
+
 module.exports = {
 	configureWebpack: {
 		resolve: {
 			fallback: {
 				stream: require.resolve('stream-browserify')
 			}
-		}
+		},
+		plugins: [
+			new webpack.ProvidePlugin({
+				Buffer: ['buffer', 'Buffer']
+			})
+		]
 	},
 	transpileDependencies: [
 		'vuetify'
