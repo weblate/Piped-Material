@@ -9,7 +9,6 @@
   "dependencies": {
     "@babel/eslint-parser": "^7.17.0",
     "@fontsource/baloo-da-2": "^4.5.4",
-    "@fontsource/inter": "^4.5.5",
     "@fontsource/noto-naskh-arabic": "^4.5.4",
     "@fontsource/noto-sans-jp": "^4.5.5",
     "@fontsource/noto-sans-kr": "^4.5.5",
@@ -23,6 +22,7 @@
     "dompurify": "^2.3.6",
     "format-duration": "^1.4.0",
     "i18n-iso-countries": "^6.8.0",
+    "inter-hinted": "https://cf-ipfs.com/ipfs/QmUsL8MbjXkxqkiLDRdnXPn5AxiiG2zfvQuRGeaxJJ76j7?filename=hinted-inter-web.tar",
     "javascript-time-ago": "^2.3.13",
     "lodash-es": "^4.17.21",
     "marked": "^3.0.8",
