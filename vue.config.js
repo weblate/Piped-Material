@@ -1,4 +1,11 @@
 module.exports = {
+	configureWebpack: {
+		resolve: {
+			fallback: {
+				stream: require.resolve('stream-browserify')
+			}
+		}
+	},
 	transpileDependencies: [
 		'vuetify'
 	],
@@ -13,7 +20,6 @@ module.exports = {
 			cleanupOutdatedCaches: true,
 			navigateFallback: 'index.html',
 			skipWaiting: true,
-			importWorkboxFrom: 'local',
 			runtimeCaching: [
 				{
 					urlPattern: /\.(?:png|svg|ico)$/,
