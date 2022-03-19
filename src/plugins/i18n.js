@@ -98,6 +98,7 @@ export const TIME_AGO_EXCEPTIONS = {
 	'bn-Beng': 'bn',
 	'bn-Latn': 'bn',
 	'nb-NO': 'nb',
+	'zh-Hans': 'zh',
 	ckb: 'ku'
 }
 
