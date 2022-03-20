@@ -22,6 +22,9 @@ module.exports = {
 		msTileColor: '',
 		appleMobileWebAppCapable: 'yes',
 		appleMobileWebAppStatusBarStyle: 'black',
+		iconPaths: {
+			faviconSVG: null
+		},
 
 		workboxOptions: {
 			cleanupOutdatedCaches: true,
