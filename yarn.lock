@@ -977,11 +977,6 @@
   resolved "https://registry.yarnpkg.com/@fontsource/baloo-da-2/-/baloo-da-2-4.5.4.tgz#cc0f79ad9d31914073e84b100bf9f40dbeb726ca"
   integrity sha512-ZIgIlnwp779Bm2hxwDSntDHXmjahev5madn+JjOH/5TF4AJ7AbtUgQaLcw8MsHneXHJaP45jHVBIXD3kW5loUw==
 
-"@fontsource/inter@^4.5.5":
-  version "4.5.5"
-  resolved "https://registry.yarnpkg.com/@fontsource/inter/-/inter-4.5.5.tgz#d4e52e8a0c84b93abae46efd4c43bd7a7f23907f"
-  integrity sha512-mWnePEroLfaJQWmynipzOVcH6JwT8Jta3+yLsC5Pm/snHBXnOiAOnjBqYjKnvXwJ4eUPt2AaAhyrtwCgWQRGOg==
-
 "@fontsource/noto-naskh-arabic@^4.5.4":
   version "4.5.4"
   resolved "https://registry.yarnpkg.com/@fontsource/noto-naskh-arabic/-/noto-naskh-arabic-4.5.4.tgz#7e848caaf349dd90190b6e2c888ed0678e3d5e3a"
@@ -4029,6 +4024,10 @@ inherits@2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.3.tgz#633c2c83e3da42a502f52466022480f4208261de"
   integrity sha1-Yzwsg+PaQqUC9SRmAiSA9CCCYd4=
+
+"inter-hinted@https://cf-ipfs.com/ipfs/QmUsL8MbjXkxqkiLDRdnXPn5AxiiG2zfvQuRGeaxJJ76j7?filename=hinted-inter-web.tar":
+  version "0.0.0"
+  resolved "https://cf-ipfs.com/ipfs/QmUsL8MbjXkxqkiLDRdnXPn5AxiiG2zfvQuRGeaxJJ76j7?filename=hinted-inter-web.tar#4cb347da3bfff090be4e56a86ca7d6ab5f6c2dc2"
 
 internal-slot@^1.0.3:
   version "1.0.3"

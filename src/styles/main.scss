@@ -18,6 +18,10 @@
 
 .latin {
   @include addFonts('Inter');
+
+  .v-application {
+    font-feature-settings: "calt", "case", "ccmp", "ss01", "ss02", "ss03";
+  }
 }
 
 .bengali {
