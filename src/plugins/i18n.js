@@ -29,6 +29,10 @@ export const LANGUAGE_OPTIONS = [
 		text: 'Greek'
 	},
 	{
+		value: 'es',
+		text: 'Spanish'
+	},
+	{
 		value: 'zh-Hans',
 		text: 'Chinese (Simplified, only loads the font)'
 	},
@@ -118,6 +122,7 @@ async function syncStylesPerLanguage (locale) {
 		case 'de':
 		case 'en':
 		case 'el':
+		case 'es':
 		case 'fr':
 		case 'lt':
 		case 'ml':
