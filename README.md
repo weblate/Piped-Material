@@ -73,8 +73,7 @@ The original parent repository documentation can be found at https://piped-docs.
 
 ## Screenshots
 
-![Screenshot 1](https://piped-ng-assets.xn--17b.net/screenshot1.png)
-![Screenshot 2](https://piped-ng-assets.xn--17b.net/screenshot2.png)
-![Screenshot 3](https://piped-ng-assets.xn--17b.net/screenshot3.png)
+![Screenshot 1](https://cf-ipfs.com/ipfs/QmPKNVeLWLLkpbqYoRADrWH2zeGxpPp5zcBVB4TgFaCLSY?filename=index.png)
+![Screenshot 2](https://cf-ipfs.com/ipfs/QmXSEJ2dUXGBqx6d6dsKYmx9QUcgycvh5MmuExTxZYmoEA?filename=rick.png)
 
 To donate and for support, [see TeamPiped/piped](https://github.com/TeamPiped/piped)
