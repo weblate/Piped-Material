@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 
-import 'inter-hinted/inter.css'
+import 'antar-hinted/antar.css'
 import '@/styles/main.scss'
 
 import { i18n, i18nInitialized } from '@/plugins/i18n'

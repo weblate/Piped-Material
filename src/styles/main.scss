@@ -1,13 +1,15 @@
 @mixin addFonts ($font-primary) {
+  $font-line: Antar, $font-primary, system-ui, sans-serif;
+
   .v-application {
     [class*='text-'],[class*='body-'] {
-      font-family: $font-primary, Inter, system-ui, sans-serif !important;
+      font-family: $font-line !important;
     }
     .headline, .title {
-      font-family: $font-primary, Inter, system-ui, sans-serif !important;
+      font-family: $font-line !important;
     }
 
-    font-family: $font-primary, Inter, system-ui, sans-serif !important;
+    font-family: $font-line !important;
   }
 }
 
@@ -17,11 +19,7 @@
 }
 
 .latin {
-  @include addFonts('Inter');
-
-  .v-application {
-    font-feature-settings: "calt", "case", "ccmp", "ss01", "ss02", "ss03";
-  }
+  @include addFonts('Antar');
 }
 
 .bengali {
@@ -42,10 +40,6 @@
 
 .korean {
   @include addFonts('Noto Sans KR');
-}
-
-.russian {
-  @include addFonts('Nunito Sans');
 }
 
 .arabic-script {
