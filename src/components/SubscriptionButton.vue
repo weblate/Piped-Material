@@ -3,7 +3,7 @@
     v-if="showButtons" outlined color="primary" @click="subscribeHandler"
     class="ml-2"
   >
-    {{ subscribed ? 'Unsubscribe' : 'Subscribe' }}
+    {{ subscribed ? $t('actions.unsubscribe') : $t('actions.subscribe') }}
   </v-btn>
 </template>
 

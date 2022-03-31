@@ -76,6 +76,10 @@
                                 </div>
                                 <a :href="video.uploaderUrl" class="text-h5 ml-4 text-decoration-none">
                                     {{ video.uploader }}
+                                    <br />
+                                    <span class="text-subtitle-1">
+                                        {{ $tc('counts.subscribers', video.uploaderSubscriberCount, { formatted: $store.getters['i18n/fmtNumber'](video.uploaderSubscriberCount) }) }}
+                                    </span>
                                 </a>
                                 <div class="ml-4">
                                     <SubscriptionButton :channel-id="channelId" />

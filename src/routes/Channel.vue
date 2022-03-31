@@ -8,7 +8,13 @@
                 <div>
                     <v-img :src="channel.avatarUrl" height="48" width="48" class="rounded-circle" />
                 </div>
-                <span class="text-h5 ml-4">{{ channel.name }}</span>
+                <span class="text-h5 ml-4">
+                    {{ channel.name }}
+                    <br />
+                    <span class="text-subtitle-1">
+                        {{ $tc('counts.subscribers', channel.subscriberCount, { formatted: $store.getters['i18n/fmtNumber'](channel.subscriberCount) }) }}
+                    </span>
+                </span>
                 <v-icon class="ml-2" v-if="channel.verified">{{ mdiCheckCircleOutline }}</v-icon>
                 <SubscriptionButton :channel-id="channel.id" />
             </div>
