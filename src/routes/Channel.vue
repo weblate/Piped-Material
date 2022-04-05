@@ -10,12 +10,12 @@
                 </div>
                 <span class="text-h5 ml-4">
                     {{ channel.name }}
+                    <v-icon v-if="channel.verified">{{ mdiCheckCircleOutline }}</v-icon>
                     <br />
                     <span class="text-subtitle-1">
                         {{ $tc('counts.subscribers', channel.subscriberCount, { formatted: $store.getters['i18n/fmtNumber'](channel.subscriberCount) }) }}
                     </span>
                 </span>
-                <v-icon class="ml-2" v-if="channel.verified">{{ mdiCheckCircleOutline }}</v-icon>
                 <SubscriptionButton :channel-id="channel.id" />
             </div>
             <v-card-text>
