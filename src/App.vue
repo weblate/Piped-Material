@@ -189,11 +189,6 @@ export default {
 					id: 'watch-history',
 					name: 'titles.history',
 					to: '/watch-history'
-				},
-				{
-					id: 'playlists',
-					name: 'titles.playlists',
-					to: '/playlists'
 				}
 			]
 
@@ -202,6 +197,11 @@ export default {
 					id: 'feed',
 					name: 'titles.feed',
 					to: '/feed'
+				})
+				links.push({
+					id: 'playlists',
+					name: 'titles.playlists',
+					to: '/playlists'
 				})
 			}
 
