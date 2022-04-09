@@ -18,7 +18,7 @@
                 </v-btn>
             </v-col>
             <v-col cols="auto" class="justify-end">
-                <v-pagination v-model="currentPage" :length="Math.ceil(videos.length / PAGE_SIZE)" />
+                <v-pagination v-model="currentPage" :total-visible="7" :length="Math.ceil(videos.length / PAGE_SIZE)" />
             </v-col>
         </v-row>
 
