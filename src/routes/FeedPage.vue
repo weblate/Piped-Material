@@ -17,9 +17,6 @@
                     {{ $t('actions.rss_of_subscriptions') }}
                 </v-btn>
             </v-col>
-            <v-col cols="auto" class="justify-end">
-                <v-pagination v-model="currentPage" :total-visible="7" :length="Math.ceil(videos.length / PAGE_SIZE)" />
-            </v-col>
         </v-row>
 
         <v-divider class="my-4" />
@@ -30,6 +27,7 @@
                 <VideoItem :video="video" max-height />
             </GridCol>
         </GridRow>
+        <v-pagination v-model="currentPage" :total-visible="7" :length="Math.ceil(videos.length / PAGE_SIZE)" />
     </v-container>
 </template>
 
