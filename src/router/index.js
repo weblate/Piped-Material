@@ -41,7 +41,7 @@ const routes = [
 	{
 		path: '/playlist',
 		name: 'Playlist',
-		component: () => import('@/routes/Playlist')
+		component: () => import('@/routes/PlaylistPage')
 	},
 	{
 		path: '/:path(v|w|embed|shorts|watch)/:v?',
@@ -65,6 +65,11 @@ const routes = [
 	{
 		path: '/watch-history',
 		component: () => import('@/routes/WatchHistory')
+	},
+	{
+		path: '/playlists',
+		name: 'Playlists',
+		component: () => import('@/routes/PlaylistsPage')
 	}
 ]
 

@@ -1,15 +1,16 @@
 <template>
     <v-container fluid>
         <h3 class="text-h4 justify-center">{{ $t('titles.' + feedName) }}</h3>
-        <v-row align="center" align-content="center">
+        <v-row align="center" align-content="center" dense>
             <v-col cols="auto" v-if="$store.getters['auth/isCurrentlyAuthenticated']">
-                <v-btn outlined color="primary" class="mt-2" link to="/subscriptions">
+                <v-btn outlined color="primary" link to="/subscriptions">
+                    <v-icon>{{ mdiYoutubeSubscription }}</v-icon>
                     {{ $t('actions.view_subscriptions') }}
                 </v-btn>
             </v-col>
             <v-col cols="auto" v-if="$store.getters['auth/isCurrentlyAuthenticated']">
                 <v-btn
-                        outlined color="primary" class="mt-2 ml-2"
+                        outlined color="primary"
                         link :href="$store.getters['prefs/apiUrl'] + '/feed/rss?authToken=' + $store.getters['auth/authToken']"
                 >
                     <v-icon>{{ mdiRss }}</v-icon>
@@ -35,7 +36,7 @@
 <script>
 import axios from 'axios'
 
-import { mdiRss } from '@mdi/js'
+import { mdiYoutubeSubscription, mdiRss } from '@mdi/js'
 
 import VideoItem from '@/components/VideoItem.vue'
 import NGErrorHandler from '@/components/NGErrorHandler'
@@ -56,7 +57,8 @@ export default {
 			currentPage: 1,
 			PAGE_SIZE,
 
-			mdiRss
+			mdiRss,
+			mdiYoutubeSubscription
 		}
 	},
 

@@ -5,7 +5,8 @@
         "register": "Register",
         "feed": "Feed",
         "preferences": "Preferences",
-        "history": "Watch History"
+        "history": "Watch History",
+        "playlists": "Playlists"
     },
     "counts": {
         "subscribers": "No subscribers | 1 subscriber | {formatted} subscribers",
@@ -14,6 +15,10 @@
     },
     "errors": {
         "trendingFetchError": "Could not fetch trending videos. Check whether your country is supported by YouTube"
+    },
+    "playlists": {
+        "add_to_playlist": "Add to Playlist",
+        "confirm_addition": "Confirm addition"
     },
     "misc": {
         "searchBarLabel": "What are you looking for?",

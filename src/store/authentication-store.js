@@ -79,6 +79,9 @@ const AuthenticationStore = {
 				apiURL,
 				token: resp.token
 			})
+			setTimeout(() => {
+				window.location.reload()
+			}, 1000)
 		},
 
 		async makeRequest ({

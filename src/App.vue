@@ -189,6 +189,11 @@ export default {
 					id: 'watch-history',
 					name: 'titles.history',
 					to: '/watch-history'
+				},
+				{
+					id: 'playlists',
+					name: 'titles.playlists',
+					to: '/playlists'
 				}
 			]
 

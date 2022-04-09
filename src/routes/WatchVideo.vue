@@ -15,6 +15,12 @@
         <v-dialog max-width="720" v-model="sharingPanelOpen">
             <VideoSharingPanel @input="sharingPanelOpen = $event" :current-time="currentTime" :video-id="videoId" />
         </v-dialog>
+        <v-dialog max-width="720" v-model="playlistAddDialogOpen">
+            <VideoPlaylistOperationsA @input="playlistAddDialogOpen = $event" :video-id="videoId" />
+        </v-dialog>
+        <!-- <v-dialog max-width="720" v-model="playlistRemoveDialogOpen">
+            <VideoSharingPanel @input="sharingPanelOpen = $event" :current-time="currentTime" :video-id="videoId" />
+        </v-dialog> -->
 
         <v-row dense class="mb-2">
             <v-col md="10" offset-md="1">
@@ -35,11 +41,17 @@
                             <v-col cols="12" md="6" :style="$vuetify.breakpoint.mdAndUp ? { textAlign: 'right' } : {}">
                                 <v-icon>{{ mdiThumbUp }}</v-icon>
                                 <b class="ml-2">{{ $store.getters['i18n/fmtNumber'](video.likes) }}</b>
-                                <v-btn outlined class="ml-2" @click.stop="onShareClick" target="_blank">
+                                <v-btn outlined class="ml-2" @click.stop="onShareClick">
                                     <v-icon class="mr-1">
                                         {{ mdiShareVariant }}
                                     </v-icon>
                                     {{ $t('video_sharing_panel.share') }}
+                                </v-btn>
+                                <v-btn outlined class="ml-2" @click.stop="playlistAddDialogOpen = true" v-if="$store.getters['auth/isCurrentlyAuthenticated']">
+                                    <v-icon class="mr-1">
+                                        {{ mdiLinkPlus }}
+                                    </v-icon>
+                                    {{ $t('playlists.add_to_playlist') }}
                                 </v-btn>
                                 <v-btn class="ml-2" link :href="'https://odysee.com/' + video.lbryId"
                                        v-if="video.lbryId" target="_blank" outlined>
@@ -120,7 +132,7 @@
 
 <script>
 import { debounce } from 'lodash-es'
-import { mdiThumbUp, mdiShareVariant } from '@mdi/js'
+import { mdiThumbUp, mdiShareVariant, mdiLinkPlus } from '@mdi/js'
 
 import { addWatchedVideo, updateWatchedVideoProgress, findLastWatch } from '@/store/watched-videos-db'
 import { LibPiped } from '@/tools/libpiped'
@@ -135,6 +147,7 @@ import VideoItem from '@/components/VideoItem.vue'
 import VideoComment from '@/components/VideoComment'
 import VideoChapters from '@/components/VideoChapters'
 import VideoSharingPanel from '@/components/VideoSharingPanel'
+import VideoPlaylistOperationsA from '@/components/VideoPlaylistOperationsA'
 
 export default {
 	name: 'WatchVideo',
@@ -152,12 +165,17 @@ export default {
 			comments: null,
 			channelId: null,
 
+			// TODO: Refactor, this is miserable
+			playlistAddDialogOpen: false,
+			playlistRemoveDialogOpen: false,
+
 			dbID: null,
 			lastWatch: null,
 			currentTime: null,
 
 			mdiThumbUp,
-			mdiShareVariant
+			mdiShareVariant,
+			mdiLinkPlus
 		}
 	},
 	metaInfo () {
@@ -382,6 +400,7 @@ export default {
 		}
 	},
 	components: {
+		VideoPlaylistOperationsA,
 		VideoChapters,
 		VideoSharingPanel,
 		ExpandableDate,

@@ -52,6 +52,7 @@ export default {
 	data () {
 		return {
 			playlist: null,
+			isAdmin: false,
 
 			mdiRssBox,
 			mdiYoutube
@@ -61,8 +62,20 @@ export default {
 		return { title: this.playlist ? this.playlist.name : 'Loading' }
 	},
 
-	mounted () {
-		this.getPlaylistData()
+	async mounted () {
+		await this.getPlaylistData()
+		if (this.$store.getters['auth/isCurrentlyAuthenticated'] && this.$route.query.list?.length === 36) {
+			const playlists = await this.$store.dispatch('auth/makeRequest', {
+				method: 'GET',
+				path: '/user/playlists'
+			})
+			for (const playlist of playlists) {
+				if (playlist.id === this.$route.query.list) {
+					this.isAdmin = true
+					break
+				}
+			}
+		}
 	},
 	computed: {
 		getRssUrl () {
