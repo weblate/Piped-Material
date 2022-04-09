@@ -136,7 +136,7 @@ async function syncStylesPerLanguage (locale) {
 			break
 		// Bengali script
 		case 'bn-Beng':
-			await import('@fontsource/baloo-da-2/index.css')
+			await import('@fontsource/baloo-da-2/bengali.css')
 			document.body.classList.remove(...document.body.classList)
 			document.body.classList.add('bengali')
 			break
@@ -144,27 +144,27 @@ async function syncStylesPerLanguage (locale) {
 		// NOTE: if you are a native speaker & want to see a different font, just email me or join the channel
 		case 'ar':
 		case 'ckb':
-			await import('@fontsource/noto-naskh-arabic/index.css')
+			await import('@fontsource/noto-naskh-arabic/arabic.css')
 			document.body.classList.remove(...document.body.classList)
 			document.body.classList.add('arabic-script')
 			break
 		case 'zh-Hant':
-			await import('@fontsource/noto-sans-tc/index.css')
+			await import('@fontsource/noto-sans-tc/chinese-traditional.css')
 			document.body.classList.remove(...document.body.classList)
 			document.body.classList.add('traditional-chinese')
 			break
 		case 'zh-Hans':
-			await import('@fontsource/noto-sans-sc/index.css')
+			await import('@fontsource/noto-sans-sc/chinese-simplified.css')
 			document.body.classList.remove(...document.body.classList)
 			document.body.classList.add('simplified-chinese')
 			break
 		case 'ja':
-			await import('@fontsource/noto-sans-jp/index.css')
+			await import('@fontsource/noto-sans-jp/japanese.css')
 			document.body.classList.remove(...document.body.classList)
 			document.body.classList.add('japanese')
 			break
 		case 'ko':
-			await import('@fontsource/noto-sans-kr/index.css')
+			await import('@fontsource/noto-sans-kr/korean.css')
 			document.body.classList.remove(...document.body.classList)
 			document.body.classList.add('korean')
 			break
