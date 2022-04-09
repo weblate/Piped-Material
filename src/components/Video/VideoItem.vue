@@ -13,9 +13,9 @@
                     v-if="video.uploaderUrl && (video.uploaderName || video.uploader) && !hideChannel" custom
                     v-slot="{ navigate }"
             >
-                <h5 @click="navigate" @keypress.enter="navigate" role="link">{{
-                        video.uploaderName || video.uploader
-                    }}</h5>
+                <h5 @click="navigate" @keypress.enter="navigate" role="link">
+                    {{ video.uploaderName || video.uploader }}
+                </h5>
             </router-link>
             <slot/>
             {{ $tc('counts.views', video.views, { n: this.$store.getters['i18n/fmtNumber'](video.views) }) }}<br/>
