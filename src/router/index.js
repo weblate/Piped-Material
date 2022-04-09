@@ -60,7 +60,7 @@ const routes = [
 	},
 	{
 		path: '/:videoId([a-zA-Z0-9_-]{11})',
-		component: () => import('@/components/VideoRedirect')
+		component: () => import('@/components/Video/VideoRedirect')
 	},
 	{
 		path: '/watch-history',

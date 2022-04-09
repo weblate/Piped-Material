@@ -42,7 +42,7 @@ import marked from 'marked'
 import { mdiCheckCircleOutline } from '@mdi/js'
 
 import NGErrorHandler from '@/components/NGErrorHandler'
-import VideoItem from '@/components/VideoItem.vue'
+import VideoItem from '@/components/Video/VideoItem.vue'
 import SubscriptionButton from '@/components/SubscriptionButton'
 import GridRow from '@/components/Grid/GridRow'
 import GridCol from '@/components/Grid/GridCol'

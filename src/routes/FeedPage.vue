@@ -38,7 +38,7 @@ import axios from 'axios'
 
 import { mdiYoutubeSubscription, mdiRss } from '@mdi/js'
 
-import VideoItem from '@/components/VideoItem.vue'
+import VideoItem from '@/components/Video/VideoItem.vue'
 import NGErrorHandler from '@/components/NGErrorHandler'
 import GridRow from '@/components/Grid/GridRow'
 import GridCol from '@/components/Grid/GridCol'

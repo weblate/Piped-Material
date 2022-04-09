@@ -1,31 +1,31 @@
 <template>
     <v-card link :to="video.url" outlined :height="maxHeight ? '100%' : undefined" color="bgTwo">
-        <v-img
-            :height="height"
-            :width="width"
-            :src="video.thumbnail || video.thumbnailUrl"
-            alt="thumbnail"
-            loading="lazy"
+        <img
+                :src="video.thumbnail || video.thumbnailUrl"
+                style="width: 100%; object-fit: contain"
+                loading="lazy"
         />
-        <v-progress-linear :value="progress" v-if="alreadyWatched" />
+        <v-progress-linear :value="progress" v-if="alreadyWatched"/>
         <v-card-title class="text-subtitle-1">{{ video.title }}</v-card-title>
         <v-card-text>
             <router-link
-                :to="video.uploaderUrl" class="text-subtitle-1 text-decoration-none"
-                v-if="video.uploaderUrl && (video.uploaderName || video.uploader) && !hideChannel" custom
-                v-slot="{ navigate }"
+                    :to="video.uploaderUrl" class="text-subtitle-1 text-decoration-none"
+                    v-if="video.uploaderUrl && (video.uploaderName || video.uploader) && !hideChannel" custom
+                    v-slot="{ navigate }"
             >
-                <h5 @click="navigate" @keypress.enter="navigate" role="link">{{ video.uploaderName || video.uploader }}</h5>
+                <h5 @click="navigate" @keypress.enter="navigate" role="link">{{
+                        video.uploaderName || video.uploader
+                    }}</h5>
             </router-link>
-            <slot />
-            {{ $tc('counts.views', video.views, { n: this.$store.getters['i18n/fmtNumber'](video.views) }) }}<br />
+            <slot/>
+            {{ $tc('counts.views', video.views, { n: this.$store.getters['i18n/fmtNumber'](video.views) }) }}<br/>
             <span v-if="video.uploaded > 0">
-                <ExpandableDate :date="new Date(video.uploaded)" />
+                <ExpandableDate :date="new Date(video.uploaded)"/>
             </span>
             <span v-else-if="video.uploadedDate">
                 {{ video.uploadedDate }}
             </span>
-            <br />
+            <br/>
             {{ timeFormat(video.duration) }}
         </v-card-text>
     </v-card>

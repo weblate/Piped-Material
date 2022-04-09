@@ -46,7 +46,7 @@ import { chunk as _chunk } from 'lodash-es'
 import { mdiRssBox, mdiYoutube } from '@mdi/js'
 
 import ErrorHandler from '@/components/ErrorHandler.vue'
-import VideoItem from '@/components/VideoItem.vue'
+import VideoItem from '@/components/Video/VideoItem.vue'
 
 export default {
 	data () {

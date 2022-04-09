@@ -29,7 +29,7 @@
 
 <script>
 import { LibPiped } from '@/tools/libpiped'
-import VideoItem from '@/components/VideoItem'
+import VideoItem from '@/components/Video/VideoItem'
 import GenericDisplayItem from '@/components/GenericDisplayItem'
 import GridRow from '@/components/Grid/GridRow'
 import GridCol from '@/components/Grid/GridCol'

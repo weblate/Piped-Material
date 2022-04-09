@@ -142,12 +142,12 @@ import NGErrorHandler from '@/components/NGErrorHandler'
 import ExpandableDate from '@/components/ExpandableDate'
 
 import SubscriptionButton from '@/components/SubscriptionButton'
-import VideoItem from '@/components/VideoItem.vue'
+import VideoItem from '@/components/Video/VideoItem.vue'
 
-import VideoComment from '@/components/VideoComment'
-import VideoChapters from '@/components/VideoChapters'
-import VideoSharingPanel from '@/components/VideoSharingPanel'
-import VideoPlaylistOperationsA from '@/components/VideoPlaylistOperationsA'
+import VideoComment from '@/components/Video/VideoComment'
+import VideoChapters from '@/components/Video/VideoChapters'
+import VideoSharingPanel from '@/components/Video/VideoSharingPanel'
+import VideoPlaylistOperationsA from '@/components/Video/VideoPlaylistOperationsA'
 
 export default {
 	name: 'WatchVideo',

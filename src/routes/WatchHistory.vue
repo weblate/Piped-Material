@@ -25,7 +25,7 @@ import _chunk from 'lodash-es/chunk'
 
 import { LibPiped } from '@/tools/libpiped'
 import { deleteWatchedVideos, getUnfinishedVideos, getWatchedVideos } from '@/store/watched-videos-db'
-import VideoItem from '@/components/VideoItem'
+import VideoItem from '@/components/Video/VideoItem'
 import ExpandableDate from '@/components/ExpandableDate'
 
 export default {
