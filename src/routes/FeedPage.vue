@@ -1,23 +1,32 @@
 <template>
     <v-container fluid>
         <h3 class="text-h4 justify-center">{{ $t('titles.' + feedName) }}</h3>
-        <v-btn outlined color="primary" class="mt-2" v-if="$store.getters['auth/isCurrentlyAuthenticated']" link to="/subscriptions">
-            {{ $t('actions.view_subscriptions') }}
-        </v-btn>
-        <v-btn
-            outlined color="primary" class="mt-2 ml-2"
-            v-if="$store.getters['auth/isCurrentlyAuthenticated']"
-            link :href="$store.getters['prefs/apiUrl'] + '/feed/rss?authToken=' + $store.getters['auth/authToken']"
-        >
-            <v-icon>{{ mdiRss }}</v-icon>
-            {{ $t('actions.rss_of_subscriptions') }}
-        </v-btn>
+        <v-row align="center" align-content="center">
+            <v-col cols="auto">
+                <v-btn outlined color="primary" class="mt-2" v-if="$store.getters['auth/isCurrentlyAuthenticated']" link to="/subscriptions">
+                    {{ $t('actions.view_subscriptions') }}
+                </v-btn>
+            </v-col>
+            <v-col cols="auto">
+                <v-btn
+                        outlined color="primary" class="mt-2 ml-2"
+                        v-if="$store.getters['auth/isCurrentlyAuthenticated']"
+                        link :href="$store.getters['prefs/apiUrl'] + '/feed/rss?authToken=' + $store.getters['auth/authToken']"
+                >
+                    <v-icon>{{ mdiRss }}</v-icon>
+                    {{ $t('actions.rss_of_subscriptions') }}
+                </v-btn>
+            </v-col>
+            <v-col cols="auto" class="justify-end">
+                <v-pagination v-model="currentPage" :length="Math.ceil(videos.length / PAGE_SIZE)" />
+            </v-col>
+        </v-row>
 
         <v-divider class="my-4" />
 
         <NGErrorHandler :error="error" :errorIsJSON="errorIsJSON" />
         <GridRow>
-            <GridCol v-for="video in videos" :key="video.url">
+            <GridCol v-for="video in currentVideos" :key="video.url">
                 <VideoItem :video="video" max-height />
             </GridCol>
         </GridRow>
@@ -34,6 +43,7 @@ import NGErrorHandler from '@/components/NGErrorHandler'
 import GridRow from '@/components/Grid/GridRow'
 import GridCol from '@/components/Grid/GridCol'
 
+const PAGE_SIZE = 50
 let lastAbortController = new AbortController()
 
 export default {
@@ -43,6 +53,9 @@ export default {
 			videos: [],
 			error: null,
 			errorIsJSON: false,
+
+			currentPage: 1,
+			PAGE_SIZE,
 
 			mdiRss
 		}
@@ -113,6 +126,12 @@ export default {
 					throw e
 				}
 			}
+		}
+	},
+	computed: {
+		currentVideos () {
+			const start = (this.currentPage - 1) * PAGE_SIZE
+			return this.videos.slice(start, start + PAGE_SIZE)
 		}
 	},
 	components: {
