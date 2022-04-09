@@ -18,7 +18,9 @@
     },
     "playlists": {
         "add_to_playlist": "Add to Playlist",
-        "confirm_addition": "Confirm addition"
+        "confirm_addition": "Confirm addition",
+        "create_playlist": "Create Playlist",
+        "playlist_field_name": "Playlist Name"
     },
     "misc": {
         "searchBarLabel": "What are you looking for?",
