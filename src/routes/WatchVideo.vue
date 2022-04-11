@@ -39,28 +39,30 @@
                                 </span>
                             </v-col>
                             <v-col cols="12" md="6" :style="$vuetify.breakpoint.mdAndUp ? { textAlign: 'right' } : {}">
-                                <v-icon>{{ mdiThumbUp }}</v-icon>
-                                <b class="ml-2">{{ $store.getters['i18n/fmtNumber'](video.likes) }}</b>
-                                <v-btn outlined class="ml-2" @click.stop="onShareClick">
+                                <span style="vertical-align: middle">
+                                    <v-icon>{{ mdiThumbUp }}</v-icon>
+                                    <b class="ml-1">{{ $store.getters['i18n/fmtNumber'](video.likes) }}</b>
+                                </span>
+                                <v-btn outlined class="mt-1 ml-1" @click.stop="onShareClick">
                                     <v-icon class="mr-1">
                                         {{ mdiShareVariant }}
                                     </v-icon>
                                     {{ $t('video_sharing_panel.share') }}
                                 </v-btn>
-                                <v-btn outlined class="ml-2" @click.stop="playlistAddDialogOpen = true" v-if="$store.getters['auth/isCurrentlyAuthenticated']">
+                                <v-btn outlined class="mt-1 ml-1" @click.stop="playlistAddDialogOpen = true" v-if="$store.getters['auth/isCurrentlyAuthenticated']">
                                     <v-icon class="mr-1">
                                         {{ mdiLinkPlus }}
                                     </v-icon>
                                     {{ $t('playlists.add_to_playlist') }}
                                 </v-btn>
-                                <v-btn class="ml-2" link :href="'https://odysee.com/' + video.lbryId"
+                                <v-btn class="mt-1 ml-1" link :href="'https://odysee.com/' + video.lbryId"
                                        v-if="video.lbryId" target="_blank" outlined>
                                     LBRY
                                 </v-btn>
                                 <v-tooltip bottom>
                                     <template v-slot:activator="{ on, attrs }">
                                         <v-btn
-                                            class="ml-2 mt-2 mt-md-0" @click="downloadAccess"
+                                            class="mt-1 ml-1" @click="downloadAccess"
                                             outlined
                                             v-bind="attrs" v-on="on"
                                         >
