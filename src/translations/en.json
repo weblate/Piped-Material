@@ -9,7 +9,7 @@
         "playlists": "Playlists"
     },
     "counts": {
-        "subscribers": "No subscribers | 1 subscriber | {formatted} subscribers",
+        "subscribers": "No subscribers | One subscriber | {formatted} subscribers",
         "videos": "No videos | One Video | {count} Videos",
         "views": "No views | One view | {n} views"
     },
