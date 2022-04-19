@@ -36,7 +36,7 @@
                         <VideoItem :video="video" max-height>
                             <template v-slot:bottom>
                                 <v-card-actions v-if="isAdmin">
-                                    <v-btn outlined>
+                                    <v-btn outlined color="error" @click.prevent="removeVideo(video)">
                                         Delete this video
                                     </v-btn>
                                 </v-card-actions>
@@ -72,13 +72,13 @@ export default {
 
 	async mounted () {
 		await this.getPlaylistData()
-		if (this.$store.getters['auth/isCurrentlyAuthenticated'] && this.$route.query.list?.length === 36) {
+		if (this.$store.getters['auth/isCurrentlyAuthenticated'] && this.playlistID?.length === 36) {
 			const playlists = await this.$store.dispatch('auth/makeRequest', {
 				method: 'GET',
 				path: '/user/playlists'
 			})
 			for (const playlist of playlists) {
-				if (playlist.id === this.$route.query.list) {
+				if (playlist.id === this.playlistID) {
 					this.isAdmin = true
 					break
 				}
@@ -87,11 +87,14 @@ export default {
 	},
 	computed: {
 		getRssUrl () {
-			return this.$store.getters['prefs/apiUrl'] + '/rss/playlists/' + this.$route.query.list
+			return this.$store.getters['prefs/apiUrl'] + '/rss/playlists/' + this.playlistID
+		},
+		playlistID () {
+			return this.$route.query.list
 		},
 		youtubeURL () {
 			const url = new URL('https://youtube.com/playlist')
-			url.searchParams.set('list', this.$route.query.list)
+			url.searchParams.set('list', this.playlistID)
 			return url.href
 		},
 		chunkedByFour () {
@@ -101,12 +104,24 @@ export default {
 	methods: {
 		async fetchPlaylist () {
 			return this.$store.dispatch('auth/makeRequest', {
-				path: '/playlists/' + this.$route.query.list
+				path: '/playlists/' + this.playlistID
 			})
 		},
 		async getPlaylistData () {
 			this.fetchPlaylist()
 				.then(data => (this.playlist = data))
+		},
+
+		async removeVideo (video) {
+			await this.$store.dispatch('auth/makeRequest', {
+				method: 'POST',
+				path: '/user/playlists/remove',
+				data: {
+					playlistId: this.playlistID,
+					index: this.playlist.relatedStreams.indexOf(video)
+				}
+			})
+			await this.getPlaylistData()
 		}
 	},
 	components: {
