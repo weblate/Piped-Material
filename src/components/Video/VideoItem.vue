@@ -17,7 +17,7 @@
                     {{ video.uploaderName || video.uploader }}
                 </h5>
             </router-link>
-            <slot/>
+            <slot name="top" />
             {{ $tc('counts.views', video.views, { n: this.$store.getters['i18n/fmtNumber'](video.views) }) }}<br/>
             <span v-if="video.uploaded > 0">
                 <ExpandableDate :date="new Date(video.uploaded)"/>
@@ -28,6 +28,7 @@
             <br/>
             {{ timeFormat(video.duration) }}
         </v-card-text>
+        <slot name="bottom" />
     </v-card>
 </template>
 

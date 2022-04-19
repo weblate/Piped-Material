@@ -1,43 +1,51 @@
 <template>
-    <ErrorHandler v-if="playlist && playlist.error" :message="playlist.message" :error="playlist.error" />
+    <ErrorHandler v-if="playlist && playlist.error" :message="playlist.message" :error="playlist.error"/>
 
     <v-container fluid v-else-if="playlist">
-      <v-row>
-        <v-col md="8" offset-md="2">
-          <v-card>
-            <v-img v-if="playlist.avatarUrl" :src="playlist.avatarUrl" />
-            <v-card-title class="text-h4">
-              {{ playlist.name }}
-            </v-card-title>
-            <v-card-text>
-              <router-link v-if="playlist.uploaderUrl" :to="playlist.uploaderUrl" custom v-slot="{ navigate }">
-                <div
-                  style="justify-items: center; align-items: center; vertical-align: center; display: flex; cursor: pointer"
-                  @click="navigate" @keypress.enter="navigate" role="link"
-                >
-                  <div>
-                    <v-img :src="playlist.uploaderAvatar" height="48" width="48" class="rounded-circle" />
-                  </div>
-                  <div class="text-h5 ml-4">
-                    {{ playlist.uploader }}
-                  </div>
-                </div>
-              </router-link>
-              <h5 class="text-h5 ml-16">{{ $tc('counts.videos', playlist.videos) }}</h5>
-            </v-card-text>
-            <v-card-actions>
-                <v-btn icon x-large link :href="getRssUrl"><v-icon x-large>{{ mdiRssBox }}</v-icon></v-btn>
-                <v-btn icon x-large link :href="youtubeURL"><v-icon x-large>{{ mdiYoutube }}</v-icon></v-btn>
-            </v-card-actions>
-          </v-card>
+        <v-row>
+            <v-col md="8" offset-md="2">
+                <v-card>
+                    <v-img v-if="playlist.avatarUrl" :src="playlist.avatarUrl"/>
+                    <v-card-title class="text-h4">
+                        {{ playlist.name }}
+                    </v-card-title>
+                    <v-card-text>
+                        <router-link v-if="playlist.uploaderUrl" :to="playlist.uploaderUrl" custom
+                                     v-slot="{ navigate }">
+                            <div style="justify-items: center; align-items: center; vertical-align: center; display: flex; cursor: pointer" @click="navigate" @keypress.enter="navigate" role="link">
+                                <v-img :src="playlist.uploaderAvatar" height="48" width="48" class="rounded-circle" />
+                                <div class="text-h5 ml-4">
+                                    {{ playlist.uploader }}
+                                </div>
+                            </div>
+                        </router-link>
+                        <h5 class="text-h5 ml-16">{{ $tc('counts.videos', playlist.videos) }}</h5>
+                    </v-card-text>
+                    <v-card-actions>
+                        <v-btn icon x-large link :href="getRssUrl">
+                            <v-icon x-large>{{ mdiRssBox }}</v-icon>
+                        </v-btn>
+                        <v-btn icon x-large link :href="youtubeURL">
+                            <v-icon x-large>{{ mdiYoutube }}</v-icon>
+                        </v-btn>
+                    </v-card-actions>
+                </v-card>
 
-          <v-row v-for="(chunk, chunkId) in chunkedByFour" :key="chunkId" class="mt-4">
-            <v-col md="3" v-for="video in chunk" :key="video.url">
-              <VideoItem :video="video" max-height />
+                <v-row v-for="(chunk, chunkId) in chunkedByFour" :key="chunkId" class="mt-4">
+                    <v-col md="3" v-for="video in chunk" :key="video.url">
+                        <VideoItem :video="video" max-height>
+                            <template v-slot:bottom>
+                                <v-card-actions v-if="isAdmin">
+                                    <v-btn outlined>
+                                        Delete this video
+                                    </v-btn>
+                                </v-card-actions>
+                            </template>
+                        </VideoItem>
+                    </v-col>
+                </v-row>
             </v-col>
-          </v-row>
-        </v-col>
-      </v-row>
+        </v-row>
     </v-container>
 </template>
 
