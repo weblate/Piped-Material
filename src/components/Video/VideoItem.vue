@@ -1,7 +1,7 @@
 <template>
     <v-card link :to="video.url" outlined :height="maxHeight ? '100%' : undefined" color="bgTwo">
         <img
-                :src="video.thumbnail || video.thumbnailUrl"
+                :src="imgURL"
                 style="width: 100%; object-fit: contain"
                 loading="lazy"
         />
@@ -59,6 +59,14 @@ export default {
 		'video.videoId': 'findIfVideoWatched',
 		'video.url': 'findIfVideoWatched',
 		srcProgress: 'findIfVideoWatched'
+	},
+
+	computed: {
+		imgURL () {
+			const url = this.video.thumbnail ?? this.video.thumbnailUrl
+			const clickbaitAvoidance = this.$store.getters['prefs/getPreferenceBoolean']('clickbaitThumbnailAvoidance')
+			return clickbaitAvoidance ? url.replace('hqdefault.jpg', 'hq2.jpg') : url
+		}
 	},
 
 	methods: {
