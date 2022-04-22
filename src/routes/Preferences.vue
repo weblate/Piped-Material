@@ -29,7 +29,7 @@
       />
     </div>
     <h5 class="text-h5">{{ $t('actions.instances_list') }}</h5>
-    <v-data-table :headers="tableHeaders" :items="instances" />
+    <v-data-table :headers="tableHeaders" :items="instances" :items-per-page="-1" />
   </v-container>
 </template>
 
