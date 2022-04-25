@@ -13,6 +13,7 @@ const PrefsStore = {
 			proxyLBRY: true,
 			sponsorblock: true,
 			skipToLastPoint: true,
+			clickbaitThumbnailAvoidance: false,
 
 			selectedSkip: []
 		}

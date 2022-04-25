@@ -85,6 +85,7 @@
         "quality": "Default Quality",
         "region": "Country Selection",
         "homepage": "Default Homepage",
-        "instance": "Instance"
+        "instance": "Instance",
+        "clickbaitThumbnailAvoidance": "Replace default thumbnails with an automatically generated one"
     }
 }

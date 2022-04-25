@@ -68,6 +68,11 @@ export default {
 					default: true
 				},
 				{
+					id: 'clickbaitThumbnailAvoidance',
+					type: 'bool',
+					default: false
+				},
+				{
 					id: 'homepage',
 					type: 'select',
 					label: 'Default Homepage',
