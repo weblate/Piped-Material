@@ -33,6 +33,10 @@ export const LANGUAGE_OPTIONS = [
 		text: 'Spanish'
 	},
 	{
+		value: 'id',
+		text: 'Indonesian'
+	},
+	{
 		value: 'zh-Hans',
 		text: 'Chinese (Simplified, only loads the font)'
 	},
@@ -118,21 +122,22 @@ export const COUNTRY_I18N_EXCEPTIONS = {
 // Similar switches for RTL can be found in the i18n store
 async function syncStylesPerLanguage (locale) {
 	switch (locale) {
-		// All the latin languages
+		// All the Inter-based languages
+		case 'cs':
 		case 'de':
 		case 'en':
 		case 'el':
 		case 'es':
+		case 'id':
 		case 'fr':
 		case 'lt':
 		case 'ml':
 		case 'tr':
-		case 'cs':
 		case 'ru':
 		case 'bn-Latn':
-			// Don't need to import fonts because Latin fonts are always loaded
+			// Don't need to import fonts because Inter supports Latin and Cyrillic and is always loaded
 			document.body.classList.remove(...document.body.classList)
-			document.body.classList.add('latin')
+			document.body.classList.add('default-font')
 			break
 		// Bengali script
 		case 'bn-Beng':
@@ -168,6 +173,8 @@ async function syncStylesPerLanguage (locale) {
 			document.body.classList.remove(...document.body.classList)
 			document.body.classList.add('korean')
 			break
+		default:
+			throw new Error('Invalid language')
 	}
 }
 
