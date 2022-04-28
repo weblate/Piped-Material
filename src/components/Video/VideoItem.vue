@@ -37,6 +37,8 @@ import { LibPiped } from '@/tools/libpiped'
 import { findLastWatch } from '@/store/watched-videos-db'
 import ExpandableDate from '@/components/ExpandableDate'
 
+const CLICKBAIT_AVOIDANCE_REGEX = /(maxresdefault|hq720|hqdefault).(webp|jpg)/
+
 export default {
 	name: 'VideoItem',
 	components: { ExpandableDate },
@@ -65,7 +67,7 @@ export default {
 		imgURL () {
 			const url = this.video.thumbnail ?? this.video.thumbnailUrl
 			const clickbaitAvoidance = this.$store.getters['prefs/getPreferenceBoolean']('clickbaitThumbnailAvoidance')
-			return clickbaitAvoidance ? url.replace('hqdefault.jpg', 'hq2.jpg') : url
+			return clickbaitAvoidance ? url.replaceAll(CLICKBAIT_AVOIDANCE_REGEX, 'hq2.jpg') : url
 		}
 	},
 
