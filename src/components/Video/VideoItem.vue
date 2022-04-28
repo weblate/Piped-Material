@@ -37,7 +37,7 @@ import { LibPiped } from '@/tools/libpiped'
 import { findLastWatch } from '@/store/watched-videos-db'
 import ExpandableDate from '@/components/ExpandableDate'
 
-const CLICKBAIT_AVOIDANCE_REGEX = /(maxresdefault|hq720|hqdefault).(webp|jpg)/
+const CLICKBAIT_AVOIDANCE_REGEX = /(maxresdefault|hq720|hqdefault).(webp|jpg)/g
 
 export default {
 	name: 'VideoItem',
