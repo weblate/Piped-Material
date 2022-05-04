@@ -121,7 +121,8 @@ export const COUNTRY_I18N_EXCEPTIONS = {
 	ckb: 'ku',
 	'nb-NO': 'nb',
 	'zh-Hant': 'zh',
-	'zh-Hans': 'zh'
+	'zh-Hans': 'zh',
+	'pt-BR': 'pt'
 }
 
 // Similar switches for RTL can be found in the i18n store
