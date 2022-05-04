@@ -77,6 +77,10 @@ export const LANGUAGE_OPTIONS = [
 		text: 'Turkish'
 	},
 	{
+		value: 'pt-BR',
+		text: 'Portuguese (Brazil)'
+	},
+	{
 		value: 'bn-Beng',
 		text: 'Bengali (বাংলা)'
 	},
@@ -107,7 +111,8 @@ export const TIME_AGO_EXCEPTIONS = {
 	'bn-Latn': 'bn',
 	'nb-NO': 'nb',
 	'zh-Hans': 'zh',
-	ckb: 'ku'
+	ckb: 'ku',
+	'pt-BR': 'pt'
 }
 
 export const COUNTRY_I18N_EXCEPTIONS = {
@@ -133,6 +138,7 @@ async function syncStylesPerLanguage (locale) {
 		case 'lt':
 		case 'ml':
 		case 'tr':
+		case 'pt-BR':
 		case 'ru':
 		case 'bn-Latn':
 			// Don't need to import fonts because Inter supports Latin and Cyrillic and is always loaded
