@@ -134,6 +134,16 @@ export default {
 					default: true
 				},
 				{
+					id: 'showComments',
+					type: 'bool',
+					default: true
+				},
+				{
+					id: 'showRelatedVideos',
+					type: 'bool',
+					default: true
+				},
+				{
 					id: 'selectedSkip',
 					type: 'select',
 					label: 'Selected Segments to Skip',

@@ -85,6 +85,8 @@
         "region": "ইউটিউব ভাববে যে আপনি এই জায়গা তে আছেন",
         "homepage": "ওয়েবসাইট খোলার পর গতানুগতিক কি দেখবেন",
         "instance": "আমাদের প্রতিনিধি যে ইউটিউব এর সঙ্গে সব যোগাযোগ এর নিয়ন্ত্রণ আর দেখাশোনা করবে",
-        "clickbaitThumbnailAvoidance": "videoএর যে thumbnail আছে সেটা কি একতা স্বয়ংক্রিয়ভাবে বানানো thumbnail দিয়ে প্রতিস্থাপন করে দেব?"
+        "clickbaitThumbnailAvoidance": "videoএর যে thumbnail আছে সেটা কি একতা স্বয়ংক্রিয়ভাবে বানানো thumbnail দিয়ে প্রতিস্থাপন করে দেব?",
+        "showComments": "videoটি সঙ্গে অন্নদের মন্তব্য দেখাব তো?",
+        "showRelatedVideos": "videoটির সঙ্গে অন্ন সম্পর্কিত বা প্রস্তাবিত video দেখাব তো?"
     }
 }

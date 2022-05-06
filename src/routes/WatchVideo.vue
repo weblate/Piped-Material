@@ -117,14 +117,14 @@
         </v-row>
 
         <v-row>
-            <v-col cols="12" md="8" offset-md="1" v-if="comments && comments.comments">
+            <v-col cols="12" md="8" offset-md="1" v-if="comments && comments.comments && areCommentsEnabled">
                 <h5 class="text-h4 text-center my-4">Comments</h5>
                 <VideoComment v-for="comment in comments.comments" :key="comment.commentId" :comment="comment"
                               :video="video" />
                 <v-progress-linear indeterminate v-intersect="onCommentsProgressIntersect"
                                    v-if="comments.comments.length !== 0 && comments.nextpage != null" />
             </v-col>
-            <v-col cols="12" md="2" v-if="video && video.relatedStreams">
+            <v-col cols="12" md="2" v-if="video && video.relatedStreams && $store.getters['prefs/getPreferenceBoolean']('showRelatedVideos')">
                 <h5 class="text-h4 text-center my-4">Related Videos</h5>
                 <VideoItem class="my-4" v-for="related in video.relatedStreams" :video="related" :key="related.url" />
             </v-col>
@@ -235,7 +235,9 @@ export default {
 		initialize () {
 			this.getVideoData()
 			this.getSponsors()
-			if (this.$store.getters['prefs/getPreferenceBoolean']('comments', true)) this.getComments()
+			if (this.areCommentsEnabled) {
+				this.fetchComments().then(data => (this.comments = data))
+			}
 		},
 
 		videoEnded () {
@@ -364,9 +366,6 @@ export default {
 			)
 			this.dbID = await addWatchedVideo(video)
 		},
-		getComments () {
-			this.fetchComments().then(data => (this.comments = data))
-		},
 
 		onTimeUpdate: debounce(function onTimeUpdate (e) {
 			if (this.dbID == null || !this.$refs.player) {
@@ -378,6 +377,9 @@ export default {
 	computed: {
 		isAutoplayEnabled () {
 			return this.$store.getters['prefs/getPreferenceBoolean']('autoplay', false)
+		},
+		areCommentsEnabled () {
+			return this.$store.getters['prefs/getPreferenceBoolean']('showComments')
 		},
 		videoId () {
 			return this.$route.query.v || this.$route.params.v

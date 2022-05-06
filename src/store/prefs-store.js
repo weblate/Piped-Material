@@ -9,11 +9,14 @@ const PrefsStore = {
 			playerAutoplay: true,
 			autoplay: false,
 			listen: false,
-			disableLBRY: true,
-			proxyLBRY: true,
 			sponsorblock: true,
 			skipToLastPoint: true,
 			clickbaitThumbnailAvoidance: false,
+
+			showComments: true,
+			showRelatedVideos: true,
+			disableLBRY: true,
+			proxyLBRY: true,
 
 			selectedSkip: []
 		}

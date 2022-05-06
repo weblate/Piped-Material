@@ -77,8 +77,6 @@
         "sponsorblock": "Enable SponsorBlock",
         "selectedSkip": "Segments to Skip",
         "skipToLastPoint": "Skip to the last watched point when encountering a video already seen",
-        "disableLBRY": "Disable LBRY",
-        "proxyLBRY": "Proxy LBRY videos",
         "playerAutoplay": "Autoplay Video",
         "bufferGoal": "Buffering Goal",
         "listen": "Audio Only",
@@ -86,6 +84,10 @@
         "region": "Country Selection",
         "homepage": "Default Homepage",
         "instance": "Instance",
-        "clickbaitThumbnailAvoidance": "Replace default thumbnails with an automatically generated one"
+        "clickbaitThumbnailAvoidance": "Replace default thumbnails with an automatically generated one",
+        "disableLBRY": "Disable LBRY",
+        "proxyLBRY": "Proxy LBRY videos",
+        "showComments": "Show Comments",
+        "showRelatedVideos": "Show Related Videos"
     }
 }
