@@ -141,6 +141,7 @@ async function syncStylesPerLanguage (locale) {
 		case 'tr':
 		case 'pt-BR':
 		case 'ru':
+		case 'nb-NO':
 		case 'bn-Latn':
 			// Don't need to import fonts because Inter supports Latin and Cyrillic and is always loaded
 			document.body.classList.remove(...document.body.classList)
