@@ -13,6 +13,10 @@ const messages = {
 
 export const LANGUAGE_OPTIONS = [
 	{
+		value: 'az',
+		text: 'Azerbaijani'
+	},
+	{
 		value: 'en',
 		text: 'English'
 	},
@@ -129,6 +133,7 @@ export const COUNTRY_I18N_EXCEPTIONS = {
 async function syncStylesPerLanguage (locale) {
 	switch (locale) {
 		// All the Inter-based languages
+		case 'az':
 		case 'cs':
 		case 'de':
 		case 'en':
