@@ -62,7 +62,7 @@ export const LANGUAGE_OPTIONS = [
 	},
 	{
 		value: 'ru',
-		text: 'Russian (only loads fonts)'
+		text: 'Russian'
 	},
 	{
 		value: 'lt',
