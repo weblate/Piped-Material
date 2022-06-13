@@ -305,7 +305,7 @@ export default {
 			}
 
 			const array = ['to right']
-			this.sponsors?.segments.forEach(segment => {
+			this.sponsors?.segments?.forEach(segment => {
 				const start = (segment.segment[0] / this.video.duration) * 100
 				const end = (segment.segment[1] / this.video.duration) * 100
 				let color
