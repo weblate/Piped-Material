@@ -144,6 +144,11 @@ export default {
 					default: true
 				},
 				{
+					id: 'showMarkers',
+					type: 'bool',
+					default: true
+				},
+				{
 					id: 'selectedSkip',
 					type: 'select',
 					label: 'Selected Segments to Skip',

@@ -51,6 +51,10 @@ export default {
 			if (this.$refs.videoEl.canPlayType('video/webm; codecs="vp9"') !== '') preferredVideoCodecs.push('vp9')
 			if (this.$refs.videoEl.canPlayType('video/mp4; codecs="avc1.4d401f"') !== '') { preferredVideoCodecs.push('avc1') }
 			return preferredVideoCodecs
+		},
+
+		shouldShowMarkers () {
+			return this.$store.getters['prefs/getPreferenceBoolean']('showMarkers', true) && this.$store.getters['prefs/getPreferenceBoolean']('sponsorblock', true)
 		}
 	},
 	methods: {
@@ -199,7 +203,7 @@ export default {
 				})
 			}
 
-			// TODO: Add sponsors on seekbar: https://github.com/ajayyy/SponsorBlock/blob/e39de9fd852adb9196e0358ed827ad38d9933e29/src/js-components/previewBar.ts#L12
+			this.createMarkers()
 		},
 		setPlayerAttrs (localPlayer, videoEl, uri, mime, shaka) {
 			if (!this.$ui) {
@@ -293,6 +297,60 @@ export default {
 			})
 		},
 
+		createMarkers () {
+			const markers = this.$refs.container.querySelector('.shaka-ad-markers')
+			if (!this.shouldShowMarkers) {
+				markers.style.background = 'none'
+				return false
+			}
+
+			const array = ['to right']
+			this.sponsors?.segments.forEach(segment => {
+				const start = (segment.segment[0] / this.video.duration) * 100
+				const end = (segment.segment[1] / this.video.duration) * 100
+				let color
+				switch (segment.category) {
+					case 'sponsor':
+						color = '#00d400'
+						break
+					case 'selfpromo':
+						color = '#ffff00'
+						break
+					case 'interaction':
+						color = '#cc00ff'
+						break
+					case 'poi_highlight':
+						color = '#ff1684'
+						break
+					case 'intro':
+						color = '#00ffff'
+						break
+					case 'outro':
+						color = '#0202ed'
+						break
+					case 'preview':
+						color = '#008fd6'
+						break
+					case 'filler':
+						color = '#7300FF'
+						break
+					case 'music_offtopic':
+						color = '#ff9900'
+						break
+					default:
+						color = 'white'
+				}
+				array.push(`transparent ${start}%`)
+				array.push(`${color} ${start}%`)
+				array.push(`${color} ${end}%`)
+				array.push(`transparent ${end}%`)
+			})
+			if (array.length <= 1) {
+				return
+			}
+			markers.style.background = `linear-gradient(${array.join(',')})`
+		},
+
 		destroy () {
 			if (this.$ui) {
 				this.$ui.destroy()
@@ -310,7 +368,8 @@ export default {
 	watch: {
 		'video.videoId' () {
 			this.loadVideo()
-		}
+		},
+		shouldShowMarkers: 'createMarkers'
 	},
 
 	mounted () {

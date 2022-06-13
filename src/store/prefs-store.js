@@ -15,6 +15,7 @@ const PrefsStore = {
 
 			showComments: true,
 			showRelatedVideos: true,
+			showMarkers: true,
 			disableLBRY: true,
 			proxyLBRY: true,
 
