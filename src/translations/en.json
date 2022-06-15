@@ -60,6 +60,8 @@
         "skip_interaction": "Skip Interaction Reminder (Subscribe)",
         "skip_self_promo": "Skip Unpaid/Self Promotion",
         "skip_non_music": "Skip Music: Non-Music Section",
+        "skip_poi_highlights": "Skip Highlights",
+        "skip_filler": "Skip Fillers",
         "theme": "Theme",
         "auto": "Auto",
         "dark": "Dark",
