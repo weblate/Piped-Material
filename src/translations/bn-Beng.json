@@ -60,6 +60,8 @@
         "skip_interaction": "Skip Interaction Reminder (Subscribe)",
         "skip_self_promo": "আপনি কি আত্মসম্প্রচার এড়িয়ে যেতে চান?",
         "skip_non_music": "আপনি কি গানের মধ্যে গানহীন অংশ এড়িয়ে যেতে চান?",
+        "skip_poi_highlights": "আপনি কি উজ্জ্বলতম অংশসমুহ এড়িয়ে যেতে চান?",
+        "skip_filler": "আপনি কি filler গুলি এড়িয়ে যেতে চান?",
         "theme": "থিম",
         "auto": "আপনার কম্পিউটার অনুযায়ী । ",
         "dark": "কৃষ্ণাভ ।",
