@@ -5,6 +5,8 @@ export const i18nStore = {
 		dateFormatter: null,
 		NF: null,
 		timeAgo: null,
+		languageFormatter: null,
+		collator: null,
 		rtl: false
 	}),
 
@@ -18,6 +20,10 @@ export const i18nStore = {
 				dateStyle: 'long'
 			})
 			state.NF = new Intl.NumberFormat(window.localStorage.getItem('NF_OVERRIDE') || intlLocale)
+			state.languageFormatter = new Intl.DisplayNames([intlLocale, 'en-US'], {
+				type: 'language'
+			})
+			state.collator = new Intl.Collator(intlLocale)
 			state.timeAgo = timeAgo
 
 			switch (intlLocale) {
@@ -47,6 +53,14 @@ export const i18nStore = {
 
 		fmtDateTime: state => dt => {
 			return state.fullFormatter.format(dt)
+		},
+
+		fmtLanguage: state => code => {
+			return state.languageFormatter.of(code)
+		},
+
+		compare: state => {
+			return state.collator.compare
 		}
 	}
 }

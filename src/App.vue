@@ -134,11 +134,10 @@
 </style>
 
 <script>
-import { cloneDeep as _cloneDeep } from 'lodash-es'
 import { mdiBrightness6, mdiMagnify, mdiClose } from '@mdi/js'
 
 import SearchMenu from '@/routes/SearchMenu'
-import { changeLocale, LANGUAGE_OPTIONS } from '@/plugins/i18n'
+import { changeLocale, SUPPORTED_LANGUAGES } from '@/plugins/i18n'
 import AuthenticationModal from '@/components/AuthenticationModal'
 
 export default {
@@ -156,7 +155,6 @@ export default {
 	},
 
 	data: () => ({
-		languageOptions: _cloneDeep(LANGUAGE_OPTIONS),
 		drawer: false,
 		// Only used on phones
 		searchMenuOpened: false,
@@ -206,6 +204,15 @@ export default {
 			}
 
 			return links
+		},
+
+		languageOptions () {
+			return SUPPORTED_LANGUAGES.map(code => {
+				return {
+					text: this.$store.getters['i18n/fmtLanguage'](code),
+					value: code
+				}
+			}).sort((a, b) => this.$store.getters['i18n/compare'](a.text, b.text))
 		}
 	},
 

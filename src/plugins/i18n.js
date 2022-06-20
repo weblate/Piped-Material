@@ -11,98 +11,29 @@ const messages = {
 	en: ENTranslations
 }
 
-export const LANGUAGE_OPTIONS = [
-	{
-		value: 'az',
-		text: 'Azerbaijani'
-	},
-	{
-		value: 'en',
-		text: 'English'
-	},
-	{
-		value: 'fr',
-		text: 'French'
-	},
-	{
-		value: 'de',
-		text: 'German'
-	},
-	{
-		value: 'el',
-		text: 'Greek'
-	},
-	{
-		value: 'es',
-		text: 'Spanish'
-	},
-	{
-		value: 'id',
-		text: 'Indonesian'
-	},
-	{
-		value: 'zh-Hans',
-		text: 'Chinese (Simplified, only loads the font)'
-	},
-	{
-		value: 'zh-Hant',
-		text: 'Chinese (Traditional)'
-	},
-	{
-		value: 'cs',
-		text: 'Czech'
-	},
-	{
-		value: 'ja',
-		text: 'Japanese (only loads fonts)'
-	},
-	{
-		value: 'ko',
-		text: 'Korean (only loads fonts)'
-	},
-	{
-		value: 'ru',
-		text: 'Russian'
-	},
-	{
-		value: 'lt',
-		text: 'Lithuanian'
-	},
-	{
-		value: 'ml',
-		text: 'Malayalam'
-	},
-	{
-		value: 'nb-NO',
-		text: 'Norwegian Bokmål'
-	},
-	{
-		value: 'tr',
-		text: 'Turkish'
-	},
-	{
-		value: 'pt-BR',
-		text: 'Portuguese (Brazil)'
-	},
-	{
-		value: 'bn-Beng',
-		text: 'Bengali (বাংলা)'
-	},
-	{
-		value: 'ar',
-		text: 'Arabic'
-	},
-	{
-		value: 'ckb',
-		text: 'Sorani Kurdish'
-	}
-	// Incomplete, DO NOT USE
-	/* { value: 'bn_latn', text: 'Bengali (Latin)' }, */
-].sort((a, b) => {
-	return a.text.localeCompare(b.text)
-})
-
-export const SUPPORTED_LANGUAGES = LANGUAGE_OPTIONS.map(l => l.value)
+export const SUPPORTED_LANGUAGES = [
+	'az',
+	'en',
+	'fr',
+	'de',
+	'el',
+	'es',
+	'id',
+	'zh-Hans',
+	'zh-Hant',
+	'cs',
+	'ja',
+	'ko',
+	'ru',
+	'lt',
+	'ml',
+	'nb-NO',
+	'tr',
+	'pt-BR',
+	'bn-Beng',
+	'ar',
+	'ckb'
+]
 
 export const i18n = new VueI18n({
 	locale: 'en', // set default locale
