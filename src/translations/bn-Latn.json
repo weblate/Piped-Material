@@ -14,7 +14,7 @@
         "views": "kēu dēkhē ni ēkhana paryanta | ēkavāra mātra dēkhā haẏēchē ēi videoṭi kē  | {n} vāra dēkhā haẏēchē ēi videoṭi kē"
     },
     "errors": {
-        "trendingFetchError": "janapriya় video khu~jē pāōẏā yāẏani। dēkhuna āpanāra nirvācita dēśa kē iuṭuvē sāpōrṭa karē ki nā।"
+        "trendingFetchError": "janapriya় video khum̐jē pāōẏā yāẏani। dēkhuna āpanāra nirvācita dēśa kē iuṭuvē sāpōrṭa karē ki nā।"
     },
     "playlists": {
         "add_to_playlist": "video ṭi ki tālikā tē yōga karavēna?",
@@ -38,7 +38,7 @@
     "actions": {
         "logInSignUp": "vartamāna ēkāunṭa ēra vyavahāra vā natuna ēkāunṭa khōlā",
         "logOut": "ēkāunṭaēra thēkē prasthāna",
-        "loadReplies": "mantavya - khu~jē ānavō?",
+        "loadReplies": "mantavya - khum̐jē ānavō?",
         "hideReplies": "mantavya - lōkāvō?",
         "showReplies": "mantavya - dēkhāvō?",
         "subscribe": "sadasyatā nēvēna?",
@@ -52,16 +52,16 @@
         "channel_name_desc": "cyānēlēra nāma anusārē (Z-A)",
         "back": " phērata yāvēna? ",
         "uses_api_from": "ēi pariṣēvāṭi  vyavahāra  karē : ",
-        "enable_sponsorblock": "āpani ki spanasaravlaka sakriya় karatē cāna ?",
-        "skip_sponsors": "āpani ki spanasara ēṛiẏē yētē cāna ?",
-        "skip_intro": "āpani ki sūcanā ēvaṁ sāmaya়ika virati ēṛiẏē yētē cāna ?",
-        "skip_outro": "āpani ki kr̥titva tālikā (Credits) ēḍa়iya়ē yētē cāna ?",
-        "skip_preview": "āpani ki pūrvadr̥śya/āgēra parvēra saṁkṣiptasāra ēḍa়iya়ē yētē cāna ?",
-        "skip_interaction": "Skip Interaction Reminder (Subscribe)",
-        "skip_self_promo": "āpani ki ātmasampracāra ēḍa়iya়ē yētē cāna?",
-        "skip_non_music": "āpani ki gānēra madhyē gānahīna aṁśa ēṛiẏē yētē cāna?",
-        "skip_poi_highlights": "āpani ki ujjvalatama aṁśasamuha ēṛiẏē yētē cāna?",
-        "skip_filler": "āpani ki filler guli ēḍa়iya়ē yētē cāna?",
+        "enable_sponsorblock": "āpani ki SponsorBlock sakriya় karatē cāna ?",
+        "skip_sponsors": "Sponsor karā aṁśa",
+        "skip_intro": "sūcanā ēvaṁ sāmaya়ika virati",
+        "skip_outro": "kr̥titva tālikā (Credits)",
+        "skip_preview": "pūrvadr̥śya/āgēra parvēra saṁkṣiptasāra",
+        "skip_interaction": "Interaction Reminder (Subscribe)",
+        "skip_self_promo": "ātmasampracāra",
+        "skip_non_music": "gānēra madhyē gānahīna aṁśa",
+        "skip_poi_highlights": "ujjvalatama aṁśasamuha (Highlights)",
+        "skip_filler": "Filler aṁśaguli",
         "theme": "thima",
         "auto": "āpanāra kampiuṭāra anuyāẏī । ",
         "dark": "kr̥ṣṇābha ।",
@@ -77,7 +77,7 @@
     "preferences": {
         "feedColumns": "kōnō pēja ē kaṭā karē stambha thākavē?",
         "sponsorblock": "āpani ki spanasaravlaka sakriya় karatē cāna ?",
-        "selectedSkip": "ki ki dharanēra videora aṁśa vāda ditē cāna āpani ?",
+        "selectedSkip": "ki ki dharanēra videora aṁśa ēṛiẏē yētē cāna āpani ?",
         "skipToLastPoint": "purōnō video dēkhāra samaya় āgē yataṭā avdi dēkhēchilēna sēkhānē calē yāōẏā ucita?",
         "disableLBRY": "yē video guli LBRY tē āchē sēgulō ki sēkhāna thēkēi sarāsari cālānō ucita naẏa ?",
         "proxyLBRY": "LBRY thēkē yē video guli kē cālānō hacchē sēgulō ki āmādēra pratinidhi dvārā cālānō havē ?",
