@@ -32,7 +32,8 @@ export const SUPPORTED_LANGUAGES = [
 	'pt-BR',
 	'bn-Beng',
 	'ar',
-	'ckb'
+	'ckb',
+	'hr'
 ]
 
 export const i18n = new VueI18n({
