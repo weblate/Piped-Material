@@ -30,7 +30,7 @@
     "search_results": {
         "filterLabel": "Filter results by type",
         "result_types": {
-            "all": "All videos",
+            "all": "All results",
             "videos": "Ordinary videos",
             "channels": "Channels",
             "playlists": "Playlists",
