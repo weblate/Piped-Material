@@ -5,10 +5,10 @@
         </h5>
 
         <v-select
-            label="Filter videos"
-            :value="$route.query.filter"
+            :label="$t('search_results.filterLabel')"
+            :value="filterValue"
             @change="$router.push({ query: { ...$route.query, filter: $event }})"
-            :items="availableFilters"
+            :items="options"
         />
         <v-divider class="my-4" />
 
@@ -42,21 +42,9 @@ export default {
 		GenericDisplayItem,
 		VideoItem
 	},
-	data () {
-		return {
-			results: null,
-			availableFilters: [
-				'all',
-				'videos',
-				'channels',
-				'playlists',
-				'music_songs',
-				'music_videos',
-				'music_albums',
-				'music_playlists'
-			]
-		}
-	},
+	data: () => ({
+		results: null
+	}),
 	metaInfo () {
 		return {
 			title: this.$route.query.search_query
@@ -66,6 +54,29 @@ export default {
 	mounted () {
 		this.updateResults()
 	},
+
+	computed: {
+		filterValue () {
+			return this.$route.query.filter ?? 'all'
+		},
+
+		options () {
+			return [
+				'all',
+				'videos',
+				'channels',
+				'playlists',
+				'music_songs',
+				'music_videos',
+				'music_albums',
+				'music_playlists'
+			].map((name) => ({
+				text: this.$t('search_results.result_types.' + name),
+				value: name
+			}))
+		}
+	},
+
 	watch: {
 		// For history navigation
 		'$route.query.search_query' () {
@@ -105,7 +116,7 @@ export default {
 				path: 'search',
 				params: {
 					q: this.$route.query.search_query,
-					filter: this.$route.query.filter ?? 'all'
+					filter: this.filterValue
 				}
 			})
 		},

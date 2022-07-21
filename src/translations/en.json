@@ -27,6 +27,19 @@
         "lastWatchedTill": "Last watched till {t}",
         "watchedAgo": "Watched {t} till {p}"
     },
+    "search_results": {
+        "filterLabel": "Filter results by type",
+        "result_types": {
+            "all": "All videos",
+            "videos": "Ordinary videos",
+            "channels": "Channels",
+            "playlists": "Playlists",
+            "music_songs": "Songs (YouTube Music)",
+            "music_videos": "Music Videos (YouTube Music)",
+            "music_albums": "Albums (YouTube Music)",
+            "music_playlists": "Playlists (YouTube Music)"
+        }
+    },
     "video_sharing_panel": {
         "title": "Share this video",
         "share": "Share",
