@@ -6,7 +6,8 @@
 
         <v-select
             label="Filter videos"
-            v-model="selectedFilter"
+            :value="$route.query.filter"
+            @change="$router.push({ query: { ...$route.query, filter: $event }})"
             :items="availableFilters"
         />
         <v-divider class="my-4" />
@@ -53,8 +54,7 @@ export default {
 				'music_videos',
 				'music_albums',
 				'music_playlists'
-			],
-			selectedFilter: 'all'
+			]
 		}
 	},
 	metaInfo () {
@@ -67,12 +67,11 @@ export default {
 		this.updateResults()
 	},
 	watch: {
-		selectedFilter () {
-			this.updateResults()
-		},
-
 		// For history navigation
 		'$route.query.search_query' () {
+			this.updateResults()
+		},
+		'$route.query.filter' () {
 			this.updateResults()
 		}
 	},
@@ -106,7 +105,7 @@ export default {
 				path: 'search',
 				params: {
 					q: this.$route.query.search_query,
-					filter: this.selectedFilter
+					filter: this.$route.query.filter ?? 'all'
 				}
 			})
 		},
