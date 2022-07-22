@@ -70,7 +70,7 @@
                 />
             </v-navigation-drawer>
 
-            <v-app-bar app dense :light="$vuetify.theme.dark" :dark="!$vuetify.theme.dark">
+            <v-app-bar app dense light color="#efcac3">
                 <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
                 <v-toolbar-title>Piped Material</v-toolbar-title>
