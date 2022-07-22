@@ -2,9 +2,9 @@
     <v-app :style="bgStyles">
         <v-app-bar
             app
-            color="primary"
-            dark
             dense
+            color="#efcac3"
+            light
             v-if="$vuetify.breakpoint.width > 1000"
             class="desktop-buttons-container"
         >
@@ -70,7 +70,7 @@
                 />
             </v-navigation-drawer>
 
-            <v-app-bar app color="primary" dark dense>
+            <v-app-bar app dense :light="$vuetify.theme.dark" :dark="!$vuetify.theme.dark">
                 <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
                 <v-toolbar-title>Piped Material</v-toolbar-title>
@@ -167,7 +167,7 @@ export default {
 	computed: {
 		bgStyles () {
 			return {
-				backgroundColor: this.$vuetify.theme.dark ? '#282828' : '#fbf1c7'
+				backgroundColor: this.$vuetify.theme.currentTheme.bgOne
 			}
 		},
 
