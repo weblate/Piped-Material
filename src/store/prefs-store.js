@@ -83,6 +83,10 @@ const PrefsStore = {
 
 		apiUrl (state, getters) {
 			return getters.getPreference('instance', process.env.VUE_APP_PIPED_URL || 'https://pipedapi.kavin.rocks')
+		},
+
+		isEmbedded () {
+			return window.self !== window.top
 		}
 	}
 }

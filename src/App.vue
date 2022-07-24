@@ -5,7 +5,7 @@
             dense
             color="#efcac3"
             light
-            v-if="$vuetify.breakpoint.width > 1000"
+            v-if="$vuetify.breakpoint.width > 1000 && !$store.getters['prefs/isEmbedded']"
             class="desktop-buttons-container"
         >
             <v-btn
@@ -36,7 +36,7 @@
             <div class="desktop-buttons-container">
             </div>
         </v-app-bar>
-        <div v-else>
+        <div v-else-if="!$store.getters['prefs/isEmbedded']">
             <v-navigation-drawer
                 v-model="drawer"
                 app
