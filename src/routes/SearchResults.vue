@@ -142,7 +142,7 @@ export default {
 				params: {
 					nextpage: this.results.nextpage,
 					q: this.$route.query.search_query,
-					filter: this.selectedFilter
+					filter: this.filterValue
 				}
 			}).then(json => {
 				this.results.nextpage = json.nextpage
