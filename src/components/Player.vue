@@ -42,7 +42,7 @@ export default {
 	},
 	computed: {
 		shouldAutoPlay () {
-			return this.$store.getters['prefs/getPreferenceBoolean']('playerAutoPlay', true)
+			return this.$store.getters['prefs/getPreferenceBoolean']('playerAutoPlay', true) && !this.$store.getters['prefs/isEmbedded']
 		},
 
 		preferredVideoCodecs () {
