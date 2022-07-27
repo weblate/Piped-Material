@@ -30,6 +30,7 @@ export default {
 	props: {
 		video: Object,
 		sponsors: Object,
+		audioOnly: Boolean,
 		initialSkip: Number,
 		selectedAutoLoop: Boolean
 	},
@@ -226,13 +227,11 @@ export default {
 
 			this.$player = player
 
-			const disableVideo = this.$store.getters['prefs/getPreferenceBoolean']('listen', false) && !this.video.livestream
-
 			this.$player.configure({
 				preferredVideoCodecs: this.preferredVideoCodecs,
 				preferredAudioCodecs: ['opus', 'mp4a'],
 				manifest: {
-					disableVideo: disableVideo,
+					disableVideo: this.audioOnly,
 					hls: {
 						useFullSegmentsForStartTime: true
 					}
@@ -243,7 +242,7 @@ export default {
 			})
 
 			const quality = this.$store.getters['prefs/getPreferenceNumber']('quality', 0)
-			const qualityConds = quality > 0 && (this.video.audioStreams.length > 0 || this.video.livestream) && !disableVideo
+			const qualityConds = quality > 0 && (this.video.audioStreams.length > 0 || this.video.livestream) && !this.audioOnly
 			if (qualityConds) this.$player.configure('abr.enabled', false)
 
 			player.load(uri, 0, mime).then(() => {
@@ -366,9 +365,8 @@ export default {
 	},
 
 	watch: {
-		'video.videoId' () {
-			this.loadVideo()
-		},
+		'video.videoId': 'loadVideo',
+		audioOnly: 'loadVideo',
 		shouldShowMarkers: 'createMarkers'
 	},
 

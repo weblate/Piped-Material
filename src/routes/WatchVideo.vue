@@ -8,6 +8,7 @@
             :initial-skip="initialSkip"
             :sponsors="sponsors"
             :selectedAutoLoop="selectedAutoLoop"
+            :audio-only="($store.getters['prefs/getPreferenceBoolean']('listen', false) || $route.query.listen === '1') && !video.livestream"
             @videoEnded="videoEnded"
             @timeupdate="onTimeUpdate"
         />
@@ -108,8 +109,14 @@
                         <div>
                             <!-- TODO translate -->
                             <v-checkbox dense :input-value="isAutoplayEnabled" @change="onAutoplayChg"
-                                        label="Autoplay Next Video" />
-                            <v-checkbox dense v-model="selectedAutoLoop" label="Loop this video" />
+                                        label="Autoplay Next Video" hide-details />
+                            <v-checkbox dense
+                                        :input-value="$store.getters['prefs/getPreferenceBoolean']('listen', false)"
+                                        @change="onListenChg"
+                                        :label="$t('preferences.listen')"
+                                        hide-details
+                            />
+                            <v-checkbox dense v-model="selectedAutoLoop" label="Loop this video" hide-details />
                         </div>
                     </v-card-text>
                 </v-card>
@@ -314,6 +321,13 @@ export default {
 		onAutoplayChg (ev) {
 			this.$store.commit('prefs/setPrefs', {
 				id: 'autoplay',
+				value: ev
+			})
+		},
+
+		onListenChg (ev) {
+			this.$store.commit('prefs/setPrefs', {
+				id: 'listen',
 				value: ev
 			})
 		},

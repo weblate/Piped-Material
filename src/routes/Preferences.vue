@@ -48,11 +48,6 @@ export default {
 					default: true
 				},
 				{
-					id: 'listen',
-					type: 'bool',
-					default: false
-				},
-				{
 					id: 'disableLBRY',
 					type: 'bool',
 					default: true
