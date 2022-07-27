@@ -1,6 +1,6 @@
 <template>
   <v-btn
-    v-if="showButtons" outlined color="primary" @click="subscribeHandler"
+    v-if="showButtons" outlined color="primary" @click.prevent="subscribeHandler"
     class="ml-2"
   >
     {{ subscribed ? $t('actions.unsubscribe') : $t('actions.subscribe') }}
