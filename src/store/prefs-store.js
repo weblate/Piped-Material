@@ -13,7 +13,7 @@ const PrefsStore = {
 			skipToLastPoint: true,
 			clickbaitThumbnailAvoidance: false,
 
-			showComments: true,
+			disableCommentsByDefault: false,
 			showRelatedVideos: true,
 			showMarkers: true,
 			disableLBRY: true,
