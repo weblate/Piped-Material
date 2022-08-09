@@ -11,7 +11,7 @@
     "counts": {
         "subscribers": "kēu ēi channel ēra sadasyatā nāya়ni | ēkajana mātra ēi channel ēra sadasyatā niya়ēchēna | {formatted} jana sadasyatā niẏēchēna",
         "videos": "kōnō video nēi | ēkaṭā video | {formatted}ṭi video prakāśana karēchēna ini",
-        "views": "kēu dēkhē ni ēkhana paryanta | ēkavāra mātra dēkhā haẏēchē ēi videoṭi kē  | {n} vāra dēkhā haẏēchē ēi videoṭi kē"
+        "views": "kēu dēkhē ni ēkhana paryanta | ēkavāra mātra dēkhā haẏēchē ēi videoṭi kē | {n} vāra dēkhā haẏēchē ēi videoṭi kē"
     },
     "errors": {
         "trendingFetchError": "janapriya় video khum̐jē pāōẏā yāẏani। dēkhuna āpanāra nirvācita dēśa kē iuṭuvē sāpōrṭa karē ki nā।"
@@ -87,7 +87,22 @@
         "homepage": "ōẏēvasāiṭa khōlāra para gatānugatika ki dēkhavēna",
         "instance": "āmādēra pratinidhi yē iuṭiuva ēra saṅgē sava yōgāyōga ēra niya়ntraṇa āra dēkhāśōnā karavē",
         "clickbaitThumbnailAvoidance": "videoēra yē thumbnail āchē sēṭā ki ēkatā svaya়ṁkriya়bhāvē vānānō thumbnail diẏē pratisthāpana karē dēva?",
-        "showRelatedVideos": "videoṭira saṅgē anna samparkita vā prastāvita video dēkhāva tō?",
-        "showMarkers": "āpani ki vijñāpanēra (ō anya vibhrāntikara jinisēra) cihnitakārī dēkhatē cāna?"
+        "showRelatedVideos": "āpani ki videora saṅgē anna samparkita vā prastāvita video dēkhatē cāna?",
+        "showMarkers": "āpani ki vijñāpanēra (ō anya vibhrāntikara jinisēra) cihnitakārī dēkhatē cāna?",
+        "bufferGoal": "Buffering Goal",
+        "disableCommentsByDefault": "mantavya dēkhānōra janya āpanāra anumati ki cāōẏā ucita?"
+    },
+    "search_results": {
+        "filterLabel": "phalāphalagulikē parisruta karāra janya upalavdha vikalpa",
+        "result_types": {
+            "all": "sava dharanēra phalāphala",
+            "videos": "sādhāraṇa video",
+            "channels": "sudhu channel",
+            "playlists": "sudhu videoēra tālikā",
+            "music_songs": "sudhu gāna (YouTube Music thēkē)",
+            "music_videos": "sudhu gānēra video (YouTube Music)",
+            "music_albums": "sudhu gānēra pañji (album) (YouTube Music thēkē)",
+            "music_playlists": "sudhu gānēra tālikā (YouTube Music thēkē)"
+        }
     }
 }
