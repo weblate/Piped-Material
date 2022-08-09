@@ -76,7 +76,7 @@ The original parent repository documentation can be found at https://piped-docs.
 
 ## Screenshots
 
-![Screenshot 1](https://cf-ipfs.com/ipfs/QmeQ4iWYB6vVjj4z7oUbgZrcd5CxuePkxwD9TM4uL9NiKg?filename=img2.png)
-![Screenshot 2](https://cf-ipfs.com/ipfs/QmXSEJ2dUXGBqx6d6dsKYmx9QUcgycvh5MmuExTxZYmoEA?filename=rick.png)
+![Screenshot 1](https://bafybeie4ulcmyw6fazbk7wwpqhe4l73mvvm7fayuv7g47ywqavotkjh2jy.ipfs.dweb.link/?filename=img1.webp)
+![Screenshot 2](https://bafybeieg5li3ldla6i4balyomrm7ccrn6wlvsqit4chig6phmuitqqhhpi.ipfs.dweb.link/?filename=img2.webp)
 
 To donate and for support, [see TeamPiped/piped](https://github.com/TeamPiped/piped)
