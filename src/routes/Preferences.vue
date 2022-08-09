@@ -129,9 +129,9 @@ export default {
 					default: true
 				},
 				{
-					id: 'showComments',
+					id: 'disableCommentsByDefault',
 					type: 'bool',
-					default: true
+					default: false
 				},
 				{
 					id: 'showRelatedVideos',

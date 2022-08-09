@@ -124,12 +124,15 @@
         </v-row>
 
         <v-row>
-            <v-col cols="12" md="8" offset-md="1" v-if="comments && comments.comments && areCommentsEnabled">
+            <v-col cols="12" md="8" offset-md="1" v-if="this.availableComments !== 0">
                 <h5 class="text-h4 text-center my-4">Comments</h5>
                 <VideoComment v-for="comment in comments.comments" :key="comment.commentId" :comment="comment"
                               :video="video" />
                 <v-progress-linear indeterminate v-intersect="onCommentsProgressIntersect"
                                    v-if="comments.comments.length !== 0 && comments.nextpage != null" />
+            </v-col>
+            <v-col cols="12" md="8" offset-md="1" style="display: flex; justify-content: center" v-else-if="$store.getters['prefs/getPreferenceBoolean']('disableCommentsByDefault')">
+                <v-btn x-large @click="fetchComments">Load Comments</v-btn>
             </v-col>
             <v-col cols="12" md="2" v-if="video && video.relatedStreams && $store.getters['prefs/getPreferenceBoolean']('showRelatedVideos')">
                 <h5 class="text-h4 text-center my-4">Related Videos</h5>
@@ -242,8 +245,8 @@ export default {
 		initialize () {
 			this.getVideoData()
 			this.getSponsors()
-			if (this.areCommentsEnabled) {
-				this.fetchComments().then(data => (this.comments = data))
+			if (!this.$store.getters['prefs/getPreferenceBoolean']('disableCommentsByDefault')) {
+				this.fetchComments()
 			}
 		},
 
@@ -294,8 +297,8 @@ export default {
 				}
 			})
 		},
-		fetchComments () {
-			return this.$store.dispatch('auth/makeRequest', {
+		async fetchComments () {
+			this.comments = await this.$store.dispatch('auth/makeRequest', {
 				path: '/comments/' + this.videoId
 			})
 		},
@@ -392,11 +395,12 @@ export default {
 		isAutoplayEnabled () {
 			return this.$store.getters['prefs/getPreferenceBoolean']('autoplay', false)
 		},
-		areCommentsEnabled () {
-			return this.$store.getters['prefs/getPreferenceBoolean']('showComments')
-		},
 		videoId () {
 			return this.$route.query.v || this.$route.params.v
+		},
+		availableComments () {
+			const l = this.comments?.comments?.length
+			return Number.isFinite(l) ? l : 0
 		},
 		initialSkip () {
 			// 't' in $route.query ? Number($route.query.t) : (lastWatch.progress ? lastWatch.progress : undefined)

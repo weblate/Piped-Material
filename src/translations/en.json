@@ -80,7 +80,6 @@
         "dark": "Dark",
         "light": "Light",
         "buffering_goal": "Buffering Goal (in seconds)",
-        "show_comments": "Show Comments",
         "minimize_description": "Minimize Description by default",
         "store_watch_history": "Store Watch History",
         "language_selection": "Language Selection",
@@ -102,7 +101,7 @@
         "clickbaitThumbnailAvoidance": "Replace default thumbnails with auto-generated ones",
         "disableLBRY": "Disable LBRY",
         "proxyLBRY": "Proxy LBRY videos",
-        "showComments": "Show Comments",
+        "disableCommentsByDefault": "Don't show comments by default",
         "showRelatedVideos": "Show Related Videos",
         "showMarkers": "Show SponsorBlock Markers"
     }
