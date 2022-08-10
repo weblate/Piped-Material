@@ -132,7 +132,7 @@
                                    v-if="comments.comments.length !== 0 && comments.nextpage != null" />
             </v-col>
             <v-col cols="12" md="8" offset-md="1" style="display: flex; justify-content: center" v-else-if="$store.getters['prefs/getPreferenceBoolean']('disableCommentsByDefault')">
-                <v-btn x-large @click="fetchComments">Load Comments</v-btn>
+                <v-btn x-large @click="fetchComments">{{ $t('actions.loadComments') }}</v-btn>
             </v-col>
             <v-col cols="12" md="2" v-if="video && video.relatedStreams && $store.getters['prefs/getPreferenceBoolean']('showRelatedVideos')">
                 <h5 class="text-h4 text-center my-4">Related Videos</h5>

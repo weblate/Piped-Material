@@ -49,6 +49,7 @@
         "via_yt": "Via YouTube"
     },
     "actions": {
+        "loadComments": "Load Comments",
         "logInSignUp": "Log In/Sign Up",
         "logOut": "Log Out",
         "loadReplies": "Load Replies",
