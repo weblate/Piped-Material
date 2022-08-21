@@ -6,7 +6,7 @@
 
 Piped-Material is a fork of [Piped](https://github.com/TeamPiped/piped), an alternative client to YouTube. I have tried to improve the performance, the design and efficiency.
 
-There are a few things that PM does better, like watch history tracking, but it's feature complete in almost all places.
+There are a few things that PM does better, like watch history tracking, and compares favorably to Piped's features.
 
 As a byproduct, the code is also much cleaner, dysfunctional patterns and paradigms have been replaced with clean, beautiful code :).
 
@@ -64,10 +64,10 @@ Weblate URL: [https://hosted.weblate.org/projects/piped-material/i18n](https://h
 - [x] Feeds
 - [x] Integration with SponsorBlock
 - [x] Integration with LBRY
+- [x] Playing just audio
 
 ## WIP
 
-- [ ] Playing just audio
 - [ ] 8K support
 
 ## Documentation
