@@ -93,9 +93,7 @@
                                     {{ video.uploader }}
                                     <br />
                                     <span class="text-subtitle-1">
-                                        {{
-                                            $tc('counts.subscribers', video.uploaderSubscriberCount, { formatted: $store.getters['i18n/fmtFullNumber'](video.uploaderSubscriberCount) })
-                                        }}
+                                        <ExpandableNumber :num="video.uploaderSubscriberCount" message-key="counts.subscribers" />
                                     </span>
                                 </a>
                                 <div class="ml-4">
