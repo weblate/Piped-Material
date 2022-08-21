@@ -67,9 +67,9 @@
         "disableCommentsByDefault": "Ikke vis kommentarer som forvalg"
     },
     "counts": {
-        "videos": "Ingen videoer | Én video | {formatted} videroer",
+        "videos": "Ingen videoer | Én video | {n} videroer",
         "views": "Ingen visninger | Én visning | {n} visninger",
-        "subscribers": "Ingen abonnenter | Én abonnent | {formatted} abonnenter"
+        "subscribers": "Ingen abonnenter | Én abonnent | {n} abonnenter"
     },
     "errors": {
         "trendingFetchError": "Kunne ikke hente inn videoer på vei opp. Sjekk hvorvidt landet ditt støttes av YouTube"

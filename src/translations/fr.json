@@ -66,8 +66,8 @@
     },
     "counts": {
         "views": "Aucune vue | Une vue | {n} vues",
-        "videos": "Aucune vidéo | Une vidéo | {formatted} vidéos",
-        "subscribers": "Aucun abonné | Un abonné | {formatted} abonnés"
+        "videos": "Aucune vidéo | Une vidéo | {n} vidéos",
+        "subscribers": "Aucun abonné | Un abonné | {n} abonnés"
     },
     "misc": {
         "searchBarLabel": "Qu'est-ce que vous recherchez ?",

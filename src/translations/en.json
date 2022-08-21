@@ -9,9 +9,9 @@
         "playlists": "Playlists"
     },
     "counts": {
-        "subscribers": "No subscribers | One subscriber | {formatted} subscribers",
-        "videos": "No videos | One Video | {formatted} Videos",
-        "views": "No views | One view | {n} views"
+        "subscribers": "No subscribers | One subscriber | {n} subscribers",
+        "videos": "No videos | One Video | {n} Videos",
+        "views": "{n} views"
     },
     "errors": {
         "trendingFetchError": "Could not fetch trending videos. Check whether your country is supported by YouTube"

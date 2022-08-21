@@ -9,8 +9,8 @@
         "playlists": "videoএর তালিকা"
     },
     "counts": {
-        "subscribers": "কেউ এই channel এর সদস্যতা নায়নি | একজন মাত্র এই channel এর সদস্যতা নিয়েছেন | {formatted} জন সদস্যতা নিয়েছেন",
-        "videos": "কোনো video নেই | একটা video | {formatted}টি video প্রকাশন করেছেন ইনি",
+        "subscribers": "কেউ এই channel এর সদস্যতা নায়নি | একজন মাত্র এই channel এর সদস্যতা নিয়েছেন | {n} জন সদস্যতা নিয়েছেন",
+        "videos": "কোনো video নেই | একটা video | {n}টি video প্রকাশন করেছেন ইনি",
         "views": "কেউ দেখে নি এখন পর্যন্ত | একবার মাত্র দেখা হয়েছে এই videoটি কে | {n} বার দেখা হয়েছে এই videoটি কে"
     },
     "errors": {

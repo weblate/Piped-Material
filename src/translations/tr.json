@@ -71,9 +71,9 @@
         "disableCommentsByDefault": "Yorumları öntanımlı olarak gösterme"
     },
     "counts": {
-        "videos": "Video yok | Bir Video | {formatted} Video",
+        "videos": "Video yok | Bir Video | {n} Video",
         "views": "Görüntüleme yok | Bir görüntüleme | {n} görüntüleme",
-        "subscribers": "Abone yok | Bir abone | {formatted} abone"
+        "subscribers": "Abone yok | Bir abone | {n} abone"
     },
     "errors": {
         "trendingFetchError": "Öne çıkan videolar getirilemedi. Ülkenizin YouTube tarafından desteklenip desteklenmediğini denetleyin"

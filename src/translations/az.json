@@ -17,8 +17,8 @@
         "playlists": "Pleylistlər"
     },
     "counts": {
-        "subscribers": "Abunəçi yoxdur | Bir abunəçi | {formatted} abunəçi",
-        "videos": "Video yoxdur | Bir Video | {formatted} Video",
+        "subscribers": "Abunəçi yoxdur | Bir abunəçi | {n} abunəçi",
+        "videos": "Video yoxdur | Bir Video | {n} Video",
         "views": "Baxış yoxdur | Bir baxış | {n} baxış"
     },
     "playlists": {

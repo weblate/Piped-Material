@@ -10,7 +10,7 @@
     },
     "counts": {
         "videos": "Nenhum vídeo | Um vídeo | {count} vídeos",
-        "subscribers": "Sem inscritos | Um inscrito | inscritos {formatted}",
+        "subscribers": "Sem inscritos | Um inscrito | inscritos {n}",
         "views": "Sem visualizações | Uma visualização| {n} visualizações"
     },
     "playlists": {

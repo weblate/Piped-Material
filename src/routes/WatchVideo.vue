@@ -30,7 +30,7 @@
                     <v-card-subtitle class="text-subtitle-1">
                         <v-row align="center">
                             <v-col cols="12" md="6">
-                                {{ $tc('counts.views', video.views, { n: $store.getters['i18n/fmtNumber'](video.views) }) }}
+                                <ExpandableNumber :num="video.views" message-key="counts.views" />
                                 •
                                 {{ $store.getters['i18n/fmtDate'](new Date(video.uploadDate)) }}
                                 <span v-if="lastWatch">
@@ -42,7 +42,7 @@
                             <v-col cols="12" md="6" :style="$vuetify.breakpoint.mdAndUp ? { textAlign: 'right' } : {}">
                                 <span style="vertical-align: middle">
                                     <v-icon>{{ mdiThumbUp }}</v-icon>
-                                    <b class="ml-1">{{ $store.getters['i18n/fmtNumber'](video.likes) }}</b>
+                                    <b class="ml-1">{{ $store.getters['i18n/fmtFullNumber'](video.likes) }}</b>
                                 </span>
                                 <v-btn outlined class="mt-1 ml-1" @click.stop="onShareClick">
                                     <v-icon class="mr-1">
@@ -93,7 +93,9 @@
                                     {{ video.uploader }}
                                     <br />
                                     <span class="text-subtitle-1">
-                                        {{ $tc('counts.subscribers', video.uploaderSubscriberCount, { formatted: $store.getters['i18n/fmtNumber'](video.uploaderSubscriberCount) }) }}
+                                        {{
+                                            $tc('counts.subscribers', video.uploaderSubscriberCount, { formatted: $store.getters['i18n/fmtFullNumber'](video.uploaderSubscriberCount) })
+                                        }}
                                     </span>
                                 </a>
                                 <div class="ml-4">
@@ -152,6 +154,7 @@ import { LibPiped } from '@/tools/libpiped'
 import Player from '@/components/Player.vue'
 import NGErrorHandler from '@/components/NGErrorHandler'
 import ExpandableDate from '@/components/ExpandableDate'
+import ExpandableNumber from '@/components/ExpandableNumber'
 
 import SubscriptionButton from '@/components/SubscriptionButton'
 import VideoItem from '@/components/Video/VideoItem.vue'
@@ -422,6 +425,7 @@ export default {
 		}
 	},
 	components: {
+		ExpandableNumber,
 		VideoPlaylistOperationsA,
 		VideoChapters,
 		VideoSharingPanel,

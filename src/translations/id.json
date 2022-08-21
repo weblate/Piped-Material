@@ -90,8 +90,8 @@
         "disableCommentsByDefault": "Jangan tampilkan komentar secara bawaan"
     },
     "counts": {
-        "subscribers": "Tidak ada pelanggan | Satu pelanggan | {formatted} pelanggan",
-        "videos": "Tidak ada video | Satu Video | {formatted} Video",
+        "subscribers": "Tidak ada pelanggan | Satu pelanggan | {n} pelanggan",
+        "videos": "Tidak ada video | Satu Video | {n} Video",
         "views": "Tidak ada tontonan | Satu ditonton | {n} ditonton"
     },
     "errors": {

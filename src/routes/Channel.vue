@@ -13,7 +13,7 @@
                     <v-icon v-if="channel.verified">{{ mdiCheckCircleOutline }}</v-icon>
                     <br />
                     <span class="text-subtitle-1">
-                        {{ $tc('counts.subscribers', channel.subscriberCount, { formatted: $store.getters['i18n/fmtNumber'](channel.subscriberCount) }) }}
+                        <ExpandableNumber :num="channel.subscriberCount" message-key="counts.subscribers" />
                     </span>
                 </span>
                 <SubscriptionButton :channel-id="channel.id" />
@@ -41,6 +41,7 @@
 import marked from 'marked'
 import { mdiCheckCircleOutline } from '@mdi/js'
 
+import ExpandableNumber from '@/components/ExpandableNumber'
 import NGErrorHandler from '@/components/NGErrorHandler'
 import VideoItem from '@/components/Video/VideoItem.vue'
 import SubscriptionButton from '@/components/SubscriptionButton'
@@ -152,6 +153,7 @@ export default {
 		}
 	},
 	components: {
+		ExpandableNumber,
 		GridRow,
 		GridCol,
 		SubscriptionButton,

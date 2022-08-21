@@ -9,8 +9,8 @@
         "playlists": "videoēra tālikā"
     },
     "counts": {
-        "subscribers": "kēu ēi channel ēra sadasyatā nāya়ni | ēkajana mātra ēi channel ēra sadasyatā niya়ēchēna | {formatted} jana sadasyatā niẏēchēna",
-        "videos": "kōnō video nēi | ēkaṭā video | {formatted}ṭi video prakāśana karēchēna ini",
+        "subscribers": "kēu ēi channel ēra sadasyatā nāya়ni | ēkajana mātra ēi channel ēra sadasyatā niya়ēchēna | {n} jana sadasyatā niẏēchēna",
+        "videos": "kōnō video nēi | ēkaṭā video | {n}ṭi video prakāśana karēchēna ini",
         "views": "kēu dēkhē ni ēkhana paryanta | ēkavāra mātra dēkhā haẏēchē ēi videoṭi kē | {n} vāra dēkhā haẏēchē ēi videoṭi kē"
     },
     "errors": {

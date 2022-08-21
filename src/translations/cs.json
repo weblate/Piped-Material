@@ -17,9 +17,9 @@
         "playlists": "Playlisty"
     },
     "counts": {
-        "videos": "Žádná videa | Jedno video | {formatted} videí",
+        "videos": "Žádná videa | Jedno video | {n} videí",
         "views": "Žádná zhlédnutí | Jedno zhlédnutí | {n} zhlédnutí",
-        "subscribers": "Žádní odběratelé | Jeden odběratel | {formatted} odběratelů"
+        "subscribers": "Žádní odběratelé | Jeden odběratel | {n} odběratelů"
     },
     "errors": {
         "trendingFetchError": "Nepodařilo se načíst trendy videa. Zkontrolujte, zda je vaše země podporována YouTube"

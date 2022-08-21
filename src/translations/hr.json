@@ -67,8 +67,8 @@
         "playlists": "Playliste"
     },
     "counts": {
-        "subscribers": "Bez pretplatnika | Jedan pretplatnik | {formatted} pretplatnika",
-        "videos": "Bez videa | Jedan video | {formatted} videa",
+        "subscribers": "Bez pretplatnika | Jedan pretplatnik | {n} pretplatnika",
+        "videos": "Bez videa | Jedan video | {n} videa",
         "views": "Bez gledanja | Jedno gledanje | {n} gledanja"
     },
     "errors": {

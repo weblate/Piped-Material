@@ -18,7 +18,8 @@
                 </h5>
             </router-link>
             <slot name="top" />
-            {{ $tc('counts.views', video.views, { n: this.$store.getters['i18n/fmtNumber'](video.views) }) }}<br/>
+            <ExpandableNumber :num="video.views" message-key="counts.views" />
+            <br />
             <span v-if="video.uploaded > 0">
                 <ExpandableDate :date="new Date(video.uploaded)"/>
             </span>
@@ -36,12 +37,13 @@
 import { LibPiped } from '@/tools/libpiped'
 import { findLastWatch } from '@/store/watched-videos-db'
 import ExpandableDate from '@/components/ExpandableDate'
+import ExpandableNumber from '@/components/ExpandableNumber'
 
 const CLICKBAIT_AVOIDANCE_REGEX = /(maxresdefault|hq720|hqdefault).(webp|jpg)/g
 
 export default {
 	name: 'VideoItem',
-	components: { ExpandableDate },
+	components: { ExpandableNumber, ExpandableDate },
 	props: {
 		video: Object,
 		height: Number,

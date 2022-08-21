@@ -28,8 +28,8 @@
         "playlists": "播放列表"
     },
     "counts": {
-        "videos": "没有视频 | 一个视频 | {formatted} 个视频",
-        "subscribers": "无订阅者 | 一位订阅者 | {formatted} 位订阅者",
+        "videos": "没有视频 | 一个视频 | {n} 个视频",
+        "subscribers": "无订阅者 | 一位订阅者 | {n} 位订阅者",
         "views": "无人观看 | 一次观看 | {n} 次观看"
     },
     "actions": {

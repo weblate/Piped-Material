@@ -19,7 +19,7 @@
                 <v-divider class="my-2"/>
 
                 <v-icon>{{ mdiThumbUp }}</v-icon>
-                {{ this.$store.getters['i18n/fmtNumber'](comment.likeCount) }}
+                {{ this.$store.getters['i18n/fmtFullNumber'](comment.likeCount) }}
                 <v-icon v-if="comment.hearted" class="ml-4">{{ mdiHeart }}</v-icon>
                 <br/>
                 <v-btn

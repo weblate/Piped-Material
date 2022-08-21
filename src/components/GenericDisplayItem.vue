@@ -13,7 +13,9 @@
           <h5 @click="navigate" @keypress.enter="navigate" role="link">{{ item.uploaderName }}</h5>
         </router-link>
         <span v-else-if="item.uploaderName">{{ item.uploaderName }}<br /></span>
-        <span v-if="isNumber(item.videos)">{{ $tc('counts.videos', item.videos, { formatted: $store.getters['i18n/fmtNumber'](item.videos) }) }}</span>
+        <span v-if="isNumber(item.videos)">
+            {{ $tc('counts.videos', item.videos, { formatted: $store.getters['i18n/fmtFullNumber'](item.videos) }) }}
+        </span>
       </v-card-text>
     </v-card>
 </template>

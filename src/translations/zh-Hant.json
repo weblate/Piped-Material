@@ -40,9 +40,9 @@
         "title": "分享這個影片"
     },
     "counts": {
-        "videos": "無影片| 一個影片 | {formatted} 影片",
-        "subscribers": "無訂閱者| 一個訂閱者 | {formatted} 訂閱者",
-        "views": "無觀看次數| 一個觀看次數 | {formatted} 觀看次數"
+        "videos": "無影片| 一個影片 | {n} 影片",
+        "subscribers": "無訂閱者| 一個訂閱者 | {n} 訂閱者",
+        "views": "無觀看次數| 一個觀看次數 | {n} 觀看次數"
     },
     "playlists": {
         "confirm_addition": "確定加入",
