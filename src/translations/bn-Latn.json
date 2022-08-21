@@ -36,6 +36,7 @@
         "via_yt": "YouTube dārā -"
     },
     "actions": {
+        "loadComments": "mantavya khum̐jē ānava?",
         "logInSignUp": "vartamāna ēkāunṭa ēra vyavahāra vā natuna ēkāunṭa khōlā",
         "logOut": "ēkāunṭaēra thēkē prasthāna",
         "loadReplies": "mantavya - khum̐jē ānavō?",
@@ -50,8 +51,8 @@
         "least_recent": "savacēẏē purōnō āgē",
         "channel_name_asc": "cyānēlēra nāma anusārē (A-Z)",
         "channel_name_desc": "cyānēlēra nāma anusārē (Z-A)",
-        "back": " phērata yāvēna? ",
-        "uses_api_from": "ēi pariṣēvāṭi  vyavahāra  karē : ",
+        "back": "phērata yāvēna?",
+        "uses_api_from": "ēi pariṣēvāṭi vyavahāra karē : ",
         "enable_sponsorblock": "āpani ki SponsorBlock sakriya় karatē cāna ?",
         "skip_sponsors": "Sponsor karā aṁśa",
         "skip_intro": "sūcanā ēvaṁ sāmaya়ika virati",
@@ -63,15 +64,19 @@
         "skip_poi_highlights": "ujjvalatama aṁśasamuha (Highlights)",
         "skip_filler": "Filler aṁśaguli",
         "theme": "thima",
-        "auto": "āpanāra kampiuṭāra anuyāẏī । ",
+        "auto": "āpanāra kampiuṭāra anuyāẏī ।",
         "dark": "kr̥ṣṇābha ।",
         "light": "ujjvala ।",
         "buffering_goal": "Buffering Goal (in seconds)",
         "minimize_description": "āpani ki svābhāvika bhāvē vivaraṇaṭikē saṁkṣipta rākhatē cāna ?",
         "store_watch_history": "āpani ki dēkhāra itihāsa majuta rākhatē cāna?",
         "language_selection": "āpani kōna bhāṣāẏa dēkhatē cāna ?",
-        "instances_list": "ēi pratinidhira tālikā ",
-        "enabled_codecs": "Enabled Codecs (Multiple)"
+        "instances_list": "ēi pratinidhira tālikā",
+        "enabled_codecs": "Enabled Codecs (Multiple)",
+        "accounts": "āpanāra account (nathi)",
+        "delAccountMessage": "āpani ki āpanāra account (nathi) kē muchē phēlatē cāna?",
+        "logOutFromAllDevices": "sava yantra thēkē ki āpani prasthāna karatē cāna?",
+        "confirmPWToDelAcc": "āpanāra account mōchāra janyē āpanāra password ṭā ārēkavāra dina"
     },
     "preferences": {
         "feedColumns": "kōnō pēja ē kaṭā karē stambha thākavē?",
