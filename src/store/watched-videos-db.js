@@ -23,8 +23,9 @@ export function updateWatchedVideoProgress (videoID, prog, dur) {
 	})
 }
 
-export function findLastWatch (videoId) {
-	return PMDB.watchedVideos.where('videoId').equals(videoId).last()
+export async function findLastWatch (videoId) {
+	const v = await PMDB.watchedVideos.where('videoId').equals(videoId).reverse().sortBy('progressPcnt')
+	return v[0]
 }
 
 export function getWatchedVideos () {
