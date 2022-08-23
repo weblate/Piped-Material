@@ -11,7 +11,7 @@
     "counts": {
         "subscribers": "No subscribers | One subscriber | {n} subscribers",
         "videos": "No videos | One Video | {n} Videos",
-        "views": "{n} views"
+        "views": "No views | One view | {n} views"
     },
     "errors": {
         "trendingFetchError": "Could not fetch trending videos. Check whether your country is supported by YouTube"

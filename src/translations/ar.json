@@ -58,7 +58,11 @@
         "showReplies": "إظهار الردود",
         "skip_poi_highlights": "أبرز الأحداث",
         "skip_filler": "مشاهد الفكاهة",
-        "loadComments": "تحميل التعليقات"
+        "loadComments": "تحميل التعليقات",
+        "logOutFromAllDevices": "تسجيل الخروج من جميع الأجهزة",
+        "accounts": "الحساب الخاص بك",
+        "confirmPWToDelAcc": "قم بتأكيد كلمة المرور لحذف حسابك",
+        "delAccountMessage": "هل تريد حذف حسابك؟"
     },
     "preferences": {
         "feedColumns": "عدد الأعمدة في صفحة الخلاصة",

@@ -58,7 +58,11 @@
         "showReplies": "وەڵامەکان نیشان بدە",
         "skip_filler": "دیمەنە گاڵتەجاڕییەکان",
         "skip_poi_highlights": "گرینگترین بەشەکان",
-        "loadComments": "کۆمێنتەکان بار بکە"
+        "loadComments": "کۆمێنتەکان بار بکە",
+        "logOutFromAllDevices": "لە هەموو ئامێرەکانەوە دەربکەوە",
+        "accounts": "هەژمارەکەت",
+        "delAccountMessage": "دەتەوێت هەژمارەکەت بسڕیتەوە؟",
+        "confirmPWToDelAcc": "بۆ سڕینەوەی هەژمارەکەت وشەی نهێنی خۆت پشت ڕاست بکەرەوە"
     },
     "preferences": {
         "feedColumns": "ژمارەی ئەستوونەکان لە پەڕەی پوختەکان",
