@@ -1,40 +1,47 @@
 <template>
-  <v-container style="max-width: 1080px">
-    <h1 class="text-h4 text-center">{{ $t('titles.preferences') }}</h1>
-    <v-divider class="ma-4" />
-    <div v-for="(opt, optId) in options" :key="optId">
-      <v-checkbox
-        v-if="opt.type === 'bool'"
-        dense
-        :label="$t('preferences.' + opt.id)"
-        :input-value="$store.getters['prefs/getPreferenceBoolean'](opt.id, opt.default)"
-        @change="setValue(opt.id, $event)"
-      />
-      <v-text-field
-        v-else-if="opt.type === 'number'"
-        type="number"
-        :label="$t('preferences.' + opt.id)"
-        :value="$store.getters['prefs/getPreferenceNumber'](opt.id, opt.default)"
-        @input="setValue(opt.id, Number($event))"
-      />
-      <v-select
-        v-else-if="opt.type === 'select'"
-        :label="$t('preferences.' + opt.id)"
-        :value="$store.getters['prefs/getPreference'](opt.id, opt.default)"
-        :attach="opt.multi"
-        :chips="opt.multi"
-        :multiple="opt.multi"
-        :items="opt.options"
-        @input="setValue(opt.id, $event)"
-      />
-    </div>
-    <h5 class="text-h5">{{ $t('actions.instances_list') }}</h5>
-    <v-data-table :headers="tableHeaders" :items="instances" :items-per-page="-1" />
-  </v-container>
+    <v-container style="max-width: 1080px">
+        <h1 class="text-h4 text-center">{{ $t('titles.preferences') }}</h1>
+        <v-divider class="ma-4"/>
+        <v-select
+            :label="$t('preferences.colorScheme')"
+            :value="$store.state.prefs.colorScheme"
+            @input="$store.commit('prefs/setColorScheme', { colorScheme: $event })"
+            :items="colorSchemeOptions"
+        />
+        <div v-for="(opt, optId) in options" :key="optId">
+            <v-checkbox
+                    v-if="opt.type === 'bool'"
+                    dense
+                    :label="$t('preferences.' + opt.id)"
+                    :input-value="$store.getters['prefs/getPreferenceBoolean'](opt.id, opt.default)"
+                    @change="setValue(opt.id, $event)"
+            />
+            <v-text-field
+                    v-else-if="opt.type === 'number'"
+                    type="number"
+                    :label="$t('preferences.' + opt.id)"
+                    :value="$store.getters['prefs/getPreferenceNumber'](opt.id, opt.default)"
+                    @input="setValue(opt.id, Number($event))"
+            />
+            <v-select
+                    v-else-if="opt.type === 'select'"
+                    :label="$t('preferences.' + opt.id)"
+                    :value="$store.getters['prefs/getPreference'](opt.id, opt.default)"
+                    :attach="opt.multi"
+                    :chips="opt.multi"
+                    :multiple="opt.multi"
+                    :items="opt.options"
+                    @input="setValue(opt.id, $event)"
+            />
+        </div>
+        <h5 class="text-h5">{{ $t('actions.instances_list') }}</h5>
+        <v-data-table :headers="tableHeaders" :items="instances" :items-per-page="-1"/>
+    </v-container>
 </template>
 
 <script>
 import { COUNTRY_I18N_EXCEPTIONS } from '@/plugins/i18n'
+import { COLOR_SCHEME_STATES } from '@/store/prefs-store'
 
 export default {
 	data () {
@@ -149,15 +156,42 @@ export default {
 					label: 'Selected Segments to Skip',
 					multi: true,
 					options: [
-						{ text: 'actions.skip_sponsors', value: 'sponsor' },
-						{ text: 'actions.skip_intro', value: 'intro' },
-						{ text: 'actions.skip_outro', value: 'outro' },
-						{ text: 'actions.skip_preview', value: 'preview' },
-						{ text: 'actions.skip_interaction', value: 'interaction' },
-						{ text: 'actions.skip_self_promo', value: 'selfpromo' },
-						{ text: 'actions.skip_non_music', value: 'music_offtopic' },
-						{ text: 'actions.skip_poi_highlights', value: 'poi_highlight' },
-						{ text: 'actions.skip_filler', value: 'filler' }
+						{
+							text: 'actions.skip_sponsors',
+							value: 'sponsor'
+						},
+						{
+							text: 'actions.skip_intro',
+							value: 'intro'
+						},
+						{
+							text: 'actions.skip_outro',
+							value: 'outro'
+						},
+						{
+							text: 'actions.skip_preview',
+							value: 'preview'
+						},
+						{
+							text: 'actions.skip_interaction',
+							value: 'interaction'
+						},
+						{
+							text: 'actions.skip_self_promo',
+							value: 'selfpromo'
+						},
+						{
+							text: 'actions.skip_non_music',
+							value: 'music_offtopic'
+						},
+						{
+							text: 'actions.skip_poi_highlights',
+							value: 'poi_highlight'
+						},
+						{
+							text: 'actions.skip_filler',
+							value: 'filler'
+						}
 					].map(o => {
 						o.text = this.$i18n.t(o.text)
 						return o
@@ -191,6 +225,15 @@ export default {
 	},
 	watch: {
 		'$i18n.locale': 'getCountries'
+	},
+	computed: {
+		colorSchemeOptions () {
+			return [
+				{ text: this.$t('actions.auto'), value: COLOR_SCHEME_STATES.SYSTEM },
+				{ text: this.$t('actions.light'), value: COLOR_SCHEME_STATES.LIGHT },
+				{ text: this.$t('actions.dark'), value: COLOR_SCHEME_STATES.DARK }
+			]
+		}
 	},
 	mounted () {
 		if (Object.keys(this.$route.query).length > 0) this.$router.replace({ query: {} })

@@ -79,6 +79,7 @@
         "confirmPWToDelAcc": "আপনার account মোছার জন্যে আপনার password টা আরেকবার দিন"
     },
     "preferences": {
+        "colorScheme": "কি রঙে আপনি দেখতে চান",
         "feedColumns": "কোনো পেজ এ কটা করে স্তম্ভ থাকবে?",
         "sponsorblock": "আপনি কি স্পনসরব্লক সক্রিয় করতে চান ?",
         "selectedSkip": "কি কি ধরনের videoর অংশ এড়িয়ে যেতে চান আপনি ?",

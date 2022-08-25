@@ -92,6 +92,7 @@
         "enabled_codecs": "Enabled Codecs (Multiple)"
     },
     "preferences": {
+        "colorScheme": "Color Scheme",
         "feedColumns": "Count of Columns in Feed Pages",
         "sponsorblock": "Enable SponsorBlock",
         "selectedSkip": "Segments to Skip",
