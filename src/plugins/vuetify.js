@@ -13,6 +13,8 @@ export default new Vuetify({
 	theme: {
 		// There's apparently a race condition that causes components being rendered shortly before dark mode initialization unable to change to dark mode
 		dark: (() => {
+			const autoValue = window.matchMedia('(prefers-color-scheme: dark)').matches
+
 			// Partly duplicated in App.vue
 			try {
 				const LSValue = window.localStorage.getItem('COLOR_SCHEME')
@@ -20,15 +22,18 @@ export default new Vuetify({
 					const state = JSON.parse(LSValue)
 					switch (state) {
 						case COLOR_SCHEME_STATES.SYSTEM:
-							return window.matchMedia('(prefers-color-scheme: dark)').matches
+							return autoValue
 						case COLOR_SCHEME_STATES.DARK:
 							return true
 						case COLOR_SCHEME_STATES.LIGHT:
 							return false
 					}
+				} else {
+					return autoValue
 				}
 			} catch (e) {
-				return false
+				// Auto by default
+				return autoValue
 			}
 		})(),
 		themes: {
