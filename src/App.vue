@@ -139,6 +139,7 @@ import { mdiBrightness6, mdiMagnify, mdiClose } from '@mdi/js'
 import SearchMenu from '@/routes/SearchMenu'
 import { changeLocale, SUPPORTED_LANGUAGES } from '@/plugins/i18n'
 import AuthenticationModal from '@/components/AuthenticationModal'
+import { COLOR_SCHEME_STATES } from '@/store/prefs-store'
 
 export default {
 	name: 'App',
@@ -222,19 +223,38 @@ export default {
 		},
 
 		toggleDarkMode () {
-			this.$vuetify.theme.dark = !this.$vuetify.theme.dark
-			this.$store.commit('prefs/setPrefs', {
-				id: 'darkMode',
-				value: this.$vuetify.theme.dark
+			let colorSchemeState
+			const newDarkState = !this.$vuetify.theme.dark
+			this.$vuetify.theme.dark = newDarkState
+
+			if (newDarkState) {
+				colorSchemeState = COLOR_SCHEME_STATES.DARK
+			} else {
+				colorSchemeState = COLOR_SCHEME_STATES.LIGHT
+			}
+
+			this.$store.commit('prefs/setColorScheme', {
+				colorScheme: colorSchemeState
 			})
+		},
+
+		syncDarkMode (newVal = this.$store.state.prefs.colorScheme) {
+			switch (newVal) {
+				case COLOR_SCHEME_STATES.SYSTEM:
+					this.$vuetify.theme.dark = window.matchMedia('(prefers-color-scheme: dark)').matches
+					break
+				case COLOR_SCHEME_STATES.DARK:
+					this.$vuetify.theme.dark = true
+					break
+				case COLOR_SCHEME_STATES.LIGHT:
+					this.$vuetify.theme.dark = false
+					break
+			}
 		}
 	},
 
 	watch: {
-		'$store.state.prefs.prefs.darkMode' (newVal) {
-			this.$vuetify.theme.dark = newVal
-		},
-
+		'$store.state.prefs.colorScheme': 'syncDarkMode',
 		'$store.state.i18n.rtl' (newVal) {
 			this.$vuetify.rtl = newVal
 		}
@@ -242,6 +262,7 @@ export default {
 
 	created () {
 		this.$vuetify.rtl = this.$store.state.i18n.rtl
+		this.syncDarkMode()
 	}
 }
 </script>

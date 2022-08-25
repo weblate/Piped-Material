@@ -1,11 +1,19 @@
 import { isString, set as _set } from 'lodash-es'
 
+export const COLOR_SCHEME_STATES = {
+	LIGHT: 0,
+	DARK: 1,
+	SYSTEM: 2
+}
+
 const PrefsStore = {
 	namespaced: true,
 	state: () => ({
+		// Not a normal pref
+		colorScheme: COLOR_SCHEME_STATES.SYSTEM,
+
 		// Default values
 		prefs: {
-			darkMode: false,
 			playerAutoplay: true,
 			autoplay: false,
 			listen: false,
@@ -23,6 +31,11 @@ const PrefsStore = {
 		}
 	}),
 	mutations: {
+		setColorScheme (state, { colorScheme }) {
+			state.colorScheme = colorScheme
+			window.localStorage.setItem('COLOR_SCHEME', JSON.stringify(colorScheme))
+		},
+
 		setPrefs (state, {
 			id,
 			value
@@ -38,6 +51,11 @@ const PrefsStore = {
 	actions: {
 		loadState ({ commit }) {
 			try {
+				const cs = window.localStorage.getItem('COLOR_SCHEME')
+				if (isString(cs) && cs.length !== 0) {
+					commit('setColorScheme', { colorScheme: JSON.parse(cs) })
+				}
+
 				const jv = window.localStorage.getItem('PREFERENCES')
 				if (isString(jv) && jv.length !== 0) {
 					const p = JSON.parse(jv)

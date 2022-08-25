@@ -9,14 +9,7 @@ export default new Vuetify({
 	},
 	theme: {
 		// There's apparently a race condition that causes components being rendered shortly before dark mode initialization unable to change to dark mode
-		dark: (() => {
-			try {
-				const preferences = JSON.parse(window.localStorage.getItem('PREFERENCES'))
-				return preferences.darkMode
-			} catch (e) {
-				return false
-			}
-		})(),
+		dark: false,
 		themes: {
 			light: {
 				primary: '#455A64',
