@@ -213,10 +213,12 @@ export default {
 				type: 'select',
 				label: 'Country',
 				default: 'US',
-				options: Object.entries(Countries.getNames(locale, { select: 'official' })).map(([code, name]) => ({
-					text: name,
-					value: code
-				}))
+				options: Object.entries(Countries.getNames(locale, { select: 'official' }))
+					.sort((a, b) => this.$store.getters['i18n/compare'](a[1], b[1]))
+					.map(([code, name]) => ({
+						text: name,
+						value: code
+					}))
 			})
 		},
 
