@@ -113,6 +113,8 @@ function initializePrefEvents (store) {
 	window.addEventListener('storage', (storageEv) => {
 		if (storageEv.key === 'PREFERENCES') {
 			store.commit('prefs/replacePrefs', JSON.parse(storageEv.newValue))
+		} else if (storageEv.key === 'COLOR_SCHEME') {
+			store.commit('prefs/setColorScheme', JSON.parse(storageEv.newValue))
 		}
 	})
 }
