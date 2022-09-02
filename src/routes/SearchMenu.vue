@@ -2,6 +2,7 @@
   <v-autocomplete
     ref="searchMenu"
     v-model="select"
+    :prepend-inner-icon="mdiMagnify"
     :loading="requestInProgress"
     :items="searchSuggestions"
     :search-input.sync="searchText"
@@ -20,6 +21,8 @@
 import _debounce from 'lodash-es/debounce'
 import { setupKeybindings } from 'psychic-tiny-keys'
 
+import { mdiMagnify } from '@mdi/js'
+
 export default {
 	name: 'SearchMenu',
 	data () {
@@ -28,7 +31,9 @@ export default {
 			select: '',
 			searchText: '',
 			requestInProgress: false,
-			searchSuggestions: []
+			searchSuggestions: [],
+
+			mdiMagnify
 		}
 	},
 	watch: {
