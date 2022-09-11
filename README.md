@@ -10,14 +10,19 @@ There are a few things that PM does better, like watch history tracking, and com
 
 As a byproduct, the code is also much cleaner, dysfunctional patterns and paradigms have been replaced with clean, beautiful code :).
 
+There's an experimental branch implementing preferences & watch history syncing, alongside username and password generation using [EDS](https://git.maharshi.ninja/root/libeds) at the `feature-eds` branch. It requires a Web3 Wallet available in the browser like MetaMask or Brave Wallet. I don't plan to merge it to master since it significantly complicates the usage for people without a Web3 Wallet configured.
+
+This branch is deployed at [ng.piped.১.net](https://ng.piped.১.net/).
+
 ## Links
 
-| URL                           | Environment | Special Notes | Default Instance |
-|-------------------------------|-------------|---------------|------------------|
-| https://piped-material.১.net  | Production  |               | Kavin            |
-| https://piped-material.ftp.sh | Production  |               | Kavin            |
-| https://piped-staging.ftp.sh  | Staging     |               | Kavin            |
-| https://ui.piped.১.net        | Staging     | IPv6-only     | mmjee            |
+| URL                           | Environment | Special Notes  | Default Instance |
+|-------------------------------|-------------|----------------|------------------|
+| https://piped-material.১.net  | Production  |                | Kavin            |
+| https://piped-material.ftp.sh | Production  |                | Kavin            |
+| https://piped-staging.ftp.sh  | Staging     |                | Kavin            |
+| https://ui.piped.১.net        | Staging     | IPv6-only      | mmjee            |
+| https://ng.piped.১.net        | Staging     | IPv6-only, EDS | mmjee            |
 
 Production instances are updated infrequently, and do not include features that are introduced recently without extensive testing.
 
