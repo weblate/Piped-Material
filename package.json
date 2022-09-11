@@ -23,6 +23,7 @@
     "core-js": "^3.25.1",
     "dexie": "^3.2.2",
     "dompurify": "^2.4.0",
+    "eslint-config-mojee-vue": "https://bafybeicmcey56ktfjkkfp2jayvbszdilqqg26t2ivmqnbfpwinpzerastq.ipfs.cf-ipfs.com/",
     "format-duration": "^1.4.0",
     "i18n-iso-countries": "^6.8.0",
     "javascript-time-ago": "https://cf-ipfs.com/ipfs/QmSf7qn1E3GrBsriwrRCvJe9it45gPXGeyZ7N986ceoeAU?filename=jta.tar.gz",
@@ -72,59 +73,10 @@
     "extends": [
       "plugin:vue/essential",
       "eslint:recommended",
-      "@vue/standard"
+      "eslint-config-mojee-vue"
     ],
     "parserOptions": {
       "parser": "@babel/eslint-parser"
-    },
-    "rules": {
-      "no-tabs": "off",
-      "indent": [
-        "error",
-        "tab",
-        {
-          "SwitchCase": 1,
-          "VariableDeclarator": 1,
-          "outerIIFEBody": 1,
-          "MemberExpression": 1,
-          "FunctionDeclaration": {
-            "parameters": 1,
-            "body": 1
-          },
-          "FunctionExpression": {
-            "parameters": 1,
-            "body": 1
-          },
-          "CallExpression": {
-            "arguments": 1
-          },
-          "ArrayExpression": 1,
-          "ObjectExpression": 1,
-          "ImportDeclaration": 1,
-          "flatTernaryExpressions": false,
-          "ignoreComments": false,
-          "ignoredNodes": [
-            "TemplateLiteral *",
-            "JSXElement",
-            "JSXElement > *",
-            "JSXAttribute",
-            "JSXIdentifier",
-            "JSXNamespacedName",
-            "JSXMemberExpression",
-            "JSXSpreadAttribute",
-            "JSXExpressionContainer",
-            "JSXOpeningElement",
-            "JSXClosingElement",
-            "JSXFragment",
-            "JSXOpeningFragment",
-            "JSXClosingFragment",
-            "JSXText",
-            "JSXEmptyExpression",
-            "JSXSpreadChild"
-          ],
-          "offsetTernaryExpressions": true
-        }
-      ]
     }
   },
   "browserslist": [
