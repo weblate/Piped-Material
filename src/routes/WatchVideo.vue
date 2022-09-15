@@ -124,7 +124,7 @@
         </v-row>
 
         <v-row>
-            <v-col cols="12" md="8" offset-md="1" v-if="this.availableComments !== 0">
+            <v-col cols="12" md="8" offset-md="1" v-if="commentsLoaded">
                 <h5 class="text-h4 text-center my-4">Comments</h5>
                 <VideoComment v-for="comment in comments.comments" :key="comment.commentId" :comment="comment"
                               :video="video" />
@@ -175,6 +175,7 @@ export default {
 			sponsors: null,
 			selectedAutoLoop: false,
 			showDesc: true,
+			commentsLoaded: false,
 			comments: null,
 			channelId: null,
 
@@ -302,6 +303,7 @@ export default {
 			this.comments = await this.$store.dispatch('auth/makeRequest', {
 				path: '/comments/' + this.videoId
 			})
+			this.commentsLoaded = true
 		},
 
 		onCommentsProgressIntersect (entries) {
@@ -398,10 +400,6 @@ export default {
 		},
 		videoId () {
 			return this.$route.query.v || this.$route.params.v
-		},
-		availableComments () {
-			const l = this.comments?.comments?.length
-			return Number.isFinite(l) ? l : 0
 		},
 		initialSkip () {
 			// 't' in $route.query ? Number($route.query.t) : (lastWatch.progress ? lastWatch.progress : undefined)
