@@ -100,7 +100,7 @@ const PrefsStore = {
 		},
 
 		apiUrl (state, getters) {
-			return state.prefs.instance ?? process.env.VUE_APP_PIPED_URL ?? 'https://pipedapi-libre.kavin.rocks'
+			return state.prefs.instance ?? process.env.VUE_APP_PIPED_URL ?? 'https://pipedapi.kavin.rocks'
 		},
 
 		isEmbedded () {
