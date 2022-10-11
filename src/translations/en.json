@@ -40,6 +40,10 @@
             "music_playlists": "Playlists (YouTube Music)"
         }
     },
+    "channel_sharing_panel": {
+        "title": "Share this channel",
+        "share": "Share"
+    },
     "video_sharing_panel": {
         "title": "Share this video",
         "share": "Share",

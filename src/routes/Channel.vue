@@ -11,6 +11,7 @@
                 <span class="text-h5 ml-4">
                     {{ channel.name }}
                     <v-icon v-if="channel.verified">{{ mdiCheckCircleOutline }}</v-icon>
+                    <ChannelSharingPanel :channel-id="channel.id" />
                     <br />
                     <span class="text-subtitle-1">
                         <ExpandableNumber :num="channel.subscriberCount" message-key="counts.subscribers" />
@@ -47,6 +48,7 @@ import VideoItem from '@/components/Video/VideoItem.vue'
 import SubscriptionButton from '@/components/SubscriptionButton'
 import GridRow from '@/components/Grid/GridRow'
 import GridCol from '@/components/Grid/GridCol'
+import ChannelSharingPanel from '@/components/ChannelSharingPanel'
 
 import { LibPiped } from '@/tools/libpiped'
 
@@ -153,6 +155,7 @@ export default {
 		}
 	},
 	components: {
+		ChannelSharingPanel,
 		ExpandableNumber,
 		GridRow,
 		GridCol,
