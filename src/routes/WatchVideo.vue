@@ -402,9 +402,9 @@ export default {
 			return this.$route.query.v || this.$route.params.v
 		},
 		initialSkip () {
-			// 't' in $route.query ? Number($route.query.t) : (lastWatch.progress ? lastWatch.progress : undefined)
-			// 1st Priority - t in query
-			// 2nd Priority - Last Watched Progress, if enabled
+			// “t” in $route.query ? Number($route.query.t) : (lastWatch.progress ? lastWatch.progress : undefined)
+			// 1st Priority – t in query
+			// 2nd Priority – Last Watched Progress, if enabled.
 			if ('t' in this.$route.query) {
 				return Number(this.$route.query.t)
 			} else if ('start' in this.$route.query) {
