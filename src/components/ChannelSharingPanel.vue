@@ -1,7 +1,7 @@
 <template>
     <v-dialog v-model="dialogOpen" width="720">
         <template v-slot:activator="{ on, attrs }">
-            <v-btn outlined small v-bind="attrs" class="ml-2" v-on="on">
+            <v-btn outlined class="ml-2" color="primary" v-bind="attrs" v-on="on">
                 {{ $t('channel_sharing_panel.share') }}
             </v-btn>
         </template>

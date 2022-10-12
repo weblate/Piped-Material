@@ -11,12 +11,12 @@
                 <span class="text-h5 ml-4">
                     {{ channel.name }}
                     <v-icon v-if="channel.verified">{{ mdiCheckCircleOutline }}</v-icon>
-                    <ChannelSharingPanel :channel-id="channel.id" />
                     <br />
                     <span class="text-subtitle-1">
                         <ExpandableNumber :num="channel.subscriberCount" message-key="counts.subscribers" />
                     </span>
                 </span>
+                <ChannelSharingPanel :channel-id="channel.id" />
                 <SubscriptionButton :channel-id="channel.id" />
             </div>
             <v-card-text>
