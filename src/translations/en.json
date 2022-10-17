@@ -42,7 +42,9 @@
     },
     "channel_sharing_panel": {
         "title": "Share this channel",
-        "share": "Share"
+        "share": "Share",
+        "via_pm": "Via Piped Material",
+        "via_yt": "Via YouTube"
     },
     "video_sharing_panel": {
         "title": "Share this video",

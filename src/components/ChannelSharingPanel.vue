@@ -10,7 +10,22 @@
                 {{ $t('channel_sharing_panel.title') }}
             </v-card-title>
             <v-card-text>
-                <v-text-field readonly :value="value" />
+                <v-row align="center" no-gutters>
+                    <v-col cols="4">
+                        {{ $t('channel_sharing_panel.via_pm')}}
+                    </v-col>
+                    <v-col cols="8">
+                        <v-text-field readonly dense :value="viaPM" />
+                    </v-col>
+                </v-row>
+                <v-row align="center" no-gutters>
+                    <v-col cols="4">
+                        {{ $t('channel_sharing_panel.via_yt')}}
+                    </v-col>
+                    <v-col cols="8">
+                        <v-text-field readonly dense :value="viaYT" />
+                    </v-col>
+                </v-row>
             </v-card-text>
         </v-card>
     </v-dialog>
@@ -24,7 +39,7 @@ export default {
 		dialogOpen: false
 	}),
 	computed: {
-		value () {
+		viaPM () {
 			const u = new URL(window.location.href)
 			for (const k of u.searchParams.keys()) {
 				u.searchParams.delete(k)
@@ -32,6 +47,10 @@ export default {
 			u.hash = ''
 			u.pathname = '/channel/' + this.channelId
 			return u.href
+		},
+
+		viaYT () {
+			return 'https://youtube.com/channel/' + this.channelId
 		}
 	}
 }
