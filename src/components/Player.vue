@@ -293,9 +293,8 @@ export default {
 
 				{
 					const rate = this.$store.getters['prefs/getPreferenceNumber']('rate', 1)
-					player.trickPlay(rate)
-					player.playbackRate = rate
-					player.defaultPlaybackRate = rate
+					videoEl.playbackRate = rate
+					videoEl.defaultPlaybackRate = rate
 				}
 			})
 		},

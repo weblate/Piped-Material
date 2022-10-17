@@ -1985,9 +1985,9 @@ ansi-styles@^4.0.0, ansi-styles@^4.1.0:
   dependencies:
     color-convert "^2.0.1"
 
-"antar-hinted@https://cf-ipfs.com/ipfs/QmZxWPvQmFGZucKB2U1oChGpKYAAWdrbbSTj2RAQqL7gEd?filename=hinted-antar-web.tar":
+"antar-hinted@https://bafybeifmuaik6ozj65yoy443khijb6d5pqkmi4dwgykfzfvymtvc57mo6i.ipfs.cf-ipfs.com/?filename=hinted-antar-web.tar":
   version "0.0.0"
-  resolved "https://cf-ipfs.com/ipfs/QmZxWPvQmFGZucKB2U1oChGpKYAAWdrbbSTj2RAQqL7gEd?filename=hinted-antar-web.tar#817b3a0ed4504a6bdb079b66126e753c3005a855"
+  resolved "https://bafybeifmuaik6ozj65yoy443khijb6d5pqkmi4dwgykfzfvymtvc57mo6i.ipfs.cf-ipfs.com/?filename=hinted-antar-web.tar#817b3a0ed4504a6bdb079b66126e753c3005a855"
 
 any-promise@^1.0.0:
   version "1.3.0"
@@ -4387,9 +4387,9 @@ javascript-stringify@^2.0.1:
   resolved "https://registry.yarnpkg.com/javascript-stringify/-/javascript-stringify-2.1.0.tgz#27c76539be14d8bd128219a2d731b09337904e79"
   integrity sha512-JVAfqNPTvNq3sB/VHQJAFxN/sPgKnsKrCwyRt15zwNCdrMMJDdcEOdubuy+DuJYYdm0ox1J4uzEuYKkN+9yhVg==
 
-"javascript-time-ago@https://cf-ipfs.com/ipfs/QmSf7qn1E3GrBsriwrRCvJe9it45gPXGeyZ7N986ceoeAU?filename=jta.tar.gz":
+"javascript-time-ago@https://bafybeicafhqxxnrmlt5fipy7zf46je4u6iwady7fiqrwcszhpk7ztno6pe.ipfs.cf-ipfs.com/?filename=jta.tar.gz":
   version "2.5.4"
-  resolved "https://cf-ipfs.com/ipfs/QmSf7qn1E3GrBsriwrRCvJe9it45gPXGeyZ7N986ceoeAU?filename=jta.tar.gz#9d9f78298f93af907f552d19e33828be6a93f8a5"
+  resolved "https://bafybeicafhqxxnrmlt5fipy7zf46je4u6iwady7fiqrwcszhpk7ztno6pe.ipfs.cf-ipfs.com/?filename=jta.tar.gz#9d9f78298f93af907f552d19e33828be6a93f8a5"
   dependencies:
     relative-time-format "^1.1.4"
 
