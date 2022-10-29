@@ -16,9 +16,11 @@
         <v-dialog max-width="720" v-model="sharingPanelOpen">
             <VideoSharingPanel @input="sharingPanelOpen = $event" :current-time="currentTime" :video-id="videoId" />
         </v-dialog>
-        <v-dialog max-width="720" v-model="playlistAddDialogOpen">
-            <VideoPlaylistOperationsA @input="playlistAddDialogOpen = $event" :video-id="videoId" />
-        </v-dialog>
+        <VideoPlaylistOperationsA
+                :dialog-open="playlistAddDialogOpen"
+                @input="playlistAddDialogOpen = $event"
+                :video-id="videoId"
+        />
         <!-- <v-dialog max-width="720" v-model="playlistRemoveDialogOpen">
             <VideoSharingPanel @input="sharingPanelOpen = $event" :current-time="currentTime" :video-id="videoId" />
         </v-dialog> -->
@@ -160,7 +162,7 @@ import VideoItem from '@/components/Video/VideoItem.vue'
 import VideoComment from '@/components/Video/VideoComment'
 import VideoChapters from '@/components/Video/VideoChapters'
 import VideoSharingPanel from '@/components/Video/VideoSharingPanel'
-import VideoPlaylistOperationsA from '@/components/Video/VideoPlaylistOperationsA'
+import VideoPlaylistOperationsA from '@/components/Playlist/VideoPlaylistOperationsA'
 
 export default {
 	name: 'WatchVideo',

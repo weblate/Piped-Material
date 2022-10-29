@@ -54,3 +54,13 @@
   max-width: 100vw;
   overflow: hidden;
 }
+
+.pm-breakable-button {
+  max-width: 100%;
+  height: unset !important;
+
+  > .v-btn__content {
+    max-width: 100%;
+    white-space: normal;
+  }
+}

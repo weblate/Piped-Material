@@ -20,7 +20,11 @@
         "add_to_playlist": "Add to Playlist",
         "confirm_addition": "Confirm addition",
         "create_playlist": "Create Playlist",
-        "playlist_field_name": "Playlist Name"
+        "playlist_field_name": "Playlist Name",
+        "remove_video": "Remove this video from the playlist",
+        "delete_self": "Delete",
+        "rename_self": "Rename",
+        "new_name_msg": "What do you want the new name to be?"
     },
     "misc": {
         "searchBarLabel": "What are you looking for?",

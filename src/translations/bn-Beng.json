@@ -20,7 +20,11 @@
         "add_to_playlist": "video টি কি তালিকা তে যোগ করবেন?",
         "confirm_addition": "ঠিক তো?",
         "create_playlist": "নতুন তালিকা বানাবেন?",
-        "playlist_field_name": "তালিকার নাম"
+        "playlist_field_name": "তালিকার নাম",
+        "remove_video": "আপনি কি এই videoটি এই তালিকা থেকে বাদ দিতে চান?",
+        "delete_self": "আপনি কি এই তালিকা কে মুছে দিতে চান?",
+        "rename_self": "আপনি কি এই তালিকা কে নতুন নাম দিতে চান?",
+        "new_name_msg": "তালিকার নতুন নাম কি হবে?"
     },
     "misc": {
         "searchBarLabel": "কি সন্ধান করছেন বলুন?",

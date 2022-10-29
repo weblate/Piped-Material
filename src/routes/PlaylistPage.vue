@@ -28,6 +28,12 @@
                         <v-btn icon x-large link :href="youtubeURL">
                             <v-icon x-large>{{ mdiYoutube }}</v-icon>
                         </v-btn>
+                        <v-btn v-if="isAdmin" @click="deleteSelf" outlined>
+                            {{ $t('playlists.delete_self') }}
+                        </v-btn>
+                        <v-btn v-if="isAdmin" @click="renameSelf" outlined>
+                            {{ $t('playlists.rename_self') }}
+                        </v-btn>
                     </v-card-actions>
                 </v-card>
 
@@ -36,8 +42,13 @@
                         <VideoItem :video="video" max-height>
                             <template v-slot:bottom>
                                 <v-card-actions v-if="isAdmin">
-                                    <v-btn outlined color="error" @click.prevent="removeVideo(video)">
-                                        Delete this video
+                                    <v-btn
+                                            outlined
+                                            color="secondary"
+                                            @click.prevent="removeVideo(video)"
+                                            class="pm-breakable-button"
+                                    >
+                                        {{ $t('playlists.remove_video')}}
                                     </v-btn>
                                 </v-card-actions>
                             </template>
@@ -119,6 +130,30 @@ export default {
 				data: {
 					playlistId: this.playlistID,
 					index: this.playlist.relatedStreams.indexOf(video)
+				}
+			})
+			await this.getPlaylistData()
+		},
+
+		async deleteSelf () {
+			await this.$store.dispatch('auth/makeRequest', {
+				path: '/user/playlists/delete',
+				method: 'POST',
+				data: {
+					playlistId: this.playlistID
+				}
+			})
+			await this.$router.replace('/playlists')
+		},
+
+		async renameSelf () {
+			const newName = window.prompt(this.$t('playlists.new_name_msg'))
+			await this.$store.dispatch('auth/makeRequest', {
+				path: '/user/playlists/rename',
+				method: 'POST',
+				data: {
+					playlistId: this.playlistID,
+					newName
 				}
 			})
 			await this.getPlaylistData()
