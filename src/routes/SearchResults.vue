@@ -15,7 +15,7 @@
         <div v-if="results && results.items">
             <GridRow>
                 <GridCol v-for="(video, videoId) in results.items" :key="videoId">
-                    <VideoItem :height="270" :width="480" :video="video" max-height v-if="video.type === 'VIDEO'" />
+                    <VideoItem :height="270" :width="480" :video="video" max-height v-if="video.type === 'stream'" />
                     <GenericDisplayItem :height="270" :width="480" :item="video" v-else />
                 </GridCol>
             </GridRow>
@@ -89,22 +89,8 @@ export default {
 
 	methods: {
 		rationalizeSearchResult (sr) {
-			let type
-			// This seriously can't be the best solution
-			if (sr.url.startsWith('/watch')) {
-				type = 'VIDEO'
-			} else if (sr.url.startsWith('/playlist')) {
-				type = 'PLAYLIST'
-			} else if (sr.url.startsWith('/channel')) {
-				type = 'CHANNEL'
-			} else {
-				console.warn('WARNING: UNKNOWN VIDEO URL TYPE FOUND:', sr.url)
-				type = 'VIDEO'
-			}
-
 			return {
 				title: sr.name,
-				type,
 				uploaderName: sr.uploader,
 				uploadedDate: sr.uploadDate,
 				...sr
