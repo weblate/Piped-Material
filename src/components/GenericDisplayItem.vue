@@ -6,7 +6,7 @@
         :src="item.thumbnail"
         alt="thumbnail"
       />
-      <v-card-title class="text-subtitle-1">{{ item.title }}</v-card-title>
+      <v-card-title class="text-subtitle-1">{{ item.title ?? item.name }}</v-card-title>
       <v-card-subtitle>{{ item.type }}</v-card-subtitle>
       <v-card-text>
         <router-link :to="item.uploaderUrl" class="text-subtitle-1 text-decoration-none" v-if="item.uploaderUrl && item.uploaderName && !hideChannel" custom v-slot="{ navigate }">

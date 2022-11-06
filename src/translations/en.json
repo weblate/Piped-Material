@@ -31,6 +31,13 @@
         "lastWatchedTill": "Last watched till {t}",
         "watchedAgo": "Watched {t} till {p}"
     },
+    "channel_tabs": {
+        "videos": "Videos",
+        "livestreams": "Livestreams",
+        "playlists": "Playlists",
+        "channels": "Channels",
+        "shorts": "Shorts"
+    },
     "search_results": {
         "filterLabel": "Filter results by type",
         "result_types": {

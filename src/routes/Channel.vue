@@ -1,6 +1,7 @@
 <template>
     <NGErrorHandler v-if="error != null" :error="error" />
-    <v-container fluid v-else-if="channel">
+    <v-progress-linear indeterminate v-else-if="loading" />
+    <v-container fluid v-else>
         <v-card class="pa-4">
             <div
                 style="justify-items: center; align-items: center; vertical-align: center; display: flex;"
@@ -22,18 +23,19 @@
             <v-card-text>
                 <div v-html="renderedDescription" />
             </v-card-text>
+            <v-tabs center-active v-model="currentlySelectedTab">
+                <v-tab v-for="tab in tabs" :key="tab.name">{{ tab.name }}</v-tab>
+            </v-tabs>
         </v-card>
 
-        <v-divider class="my-4" />
-
-        <div v-if="channel && channel.relatedStreams">
+        <div v-if="view.videos" class="mt-2">
             <GridRow>
-                <GridCol v-for="(video, videoId) in channel.relatedStreams" :key="videoId">
-                    <VideoItem :height="270" :width="480" :video="video" max-height />
+                <GridCol v-for="(video, videoId) in view.videos" :key="videoId">
+                    <VideoItem :height="270" :width="480" :video="video" max-height v-if="video.type === 'stream'" />
+                    <GenericDisplayItem :item="video" v-else />
                 </GridCol>
             </GridRow>
-            <v-progress-linear v-if="channel.nextpage != null" indeterminate
-                               v-intersect="onRelatedStreamsEndIntersect" />
+            <v-progress-linear v-if="view.hasNextPage" indeterminate v-intersect="onRelatedStreamsEndIntersect" />
         </div>
     </v-container>
 </template>
@@ -45,6 +47,7 @@ import { mdiCheckCircleOutline } from '@mdi/js'
 import ExpandableNumber from '@/components/ExpandableNumber'
 import NGErrorHandler from '@/components/NGErrorHandler'
 import VideoItem from '@/components/Video/VideoItem.vue'
+import GenericDisplayItem from '@/components/GenericDisplayItem'
 import SubscriptionButton from '@/components/SubscriptionButton'
 import GridRow from '@/components/Grid/GridRow'
 import GridCol from '@/components/Grid/GridCol'
@@ -57,6 +60,10 @@ export default {
 		return {
 			channel: null,
 			error: null,
+
+			loading: true,
+			currentlySelectedTab: 0,
+			tabs: [],
 
 			mdiCheckCircleOutline
 		}
@@ -111,7 +118,8 @@ export default {
 		this.fetchChannel()
 	},
 	watch: {
-		'$route.params.channelId': 'fetchChannel'
+		'$route.params.channelId': 'fetchChannel',
+		currentlySelectedTab: 'onTabChange'
 	},
 	methods: {
 		async fetchChannel () {
@@ -119,6 +127,28 @@ export default {
 				this.channel = await this.$store.dispatch('auth/makeRequest', {
 					path: '/' + this.$route.params.path + '/' + this.$route.params.channelId
 				})
+				this.tabs.push({
+					originalName: '',
+					name: this.$t('channel_tabs.videos')
+				})
+				for (const tab of this.channel.tabs) {
+					tab.originalName = tab.name
+					switch (tab.name) {
+						case 'Livestreams':
+							tab.name = this.$t('channel_tabs.livestreams')
+							break
+						case 'Playlists':
+							tab.name = this.$t('channel_tabs.playlists')
+							break
+						case 'Channels':
+							tab.name = this.$t('channel_tabs.channels')
+							break
+						case 'Shorts':
+							tab.name = this.$t('channel_tabs.shorts')
+							break
+					}
+					this.tabs.push(tab)
+				}
 				this.error = null
 			} catch (e) {
 				if (e.isAxiosError) {
@@ -126,6 +156,8 @@ export default {
 				} else {
 					throw e
 				}
+			} finally {
+				this.loading = false
 			}
 		},
 
@@ -135,16 +167,53 @@ export default {
 			}
 		},
 
-		fetchMoreVideos () {
-			this.$store.dispatch('auth/makeRequest', {
-				path: '/nextpage/channel/' + this.channel.id,
-				params: {
-					nextpage: this.channel.nextpage
+		async onTabChange (newTab) {
+			this.loading = true
+			try {
+				if (newTab === 0) {
+					this.channelVideos = this.channel.relatedStreams
+					return
 				}
-			}).then(j => {
-				this.channel.relatedStreams = this.channel.relatedStreams.concat(j.relatedStreams)
-				this.channel.nextpage = j.nextpage
-			})
+				const t = this.tabs[this.currentlySelectedTab]
+
+				const { content, nextpage } = await this.$store.dispatch('auth/makeRequest', {
+					method: 'GET',
+					path: '/channels/tabs',
+					params: {
+						data: t.data
+					}
+				})
+				t.videos = content
+				t.nextpage = nextpage
+			} finally {
+				this.loading = false
+			}
+		},
+
+		async fetchMoreVideos () {
+			if (this.currentlySelectedTab === 0) {
+				this.$store.dispatch('auth/makeRequest', {
+					path: '/nextpage/channel/' + this.channel.id,
+					params: {
+						nextpage: this.channel.nextpage
+					}
+				}).then(j => {
+					this.channel.relatedStreams = this.channel.relatedStreams.concat(j.relatedStreams)
+					this.channel.nextpage = j.nextpage
+				})
+			} else {
+				const t = this.tabs[this.currentlySelectedTab]
+				this.$store.dispatch('auth/makeRequest', {
+					path: '/channels/tabs',
+					params: {
+						data: t.data,
+						nextpage: t.nextpage
+					}
+				}).then(j => {
+					t.videos = t.videos.concat(j.relatedStreams)
+					t.nextpage = j.nextpage
+				})
+			}
 		}
 	},
 	computed: {
@@ -152,9 +221,25 @@ export default {
 			return LibPiped.purifyHTML(marked.parseInline(this.channel.description, {
 				breaks: true
 			}))
+		},
+
+		view () {
+			if (this.currentlySelectedTab === 0) {
+				return {
+					videos: this.channel.relatedStreams,
+					hasNextPage: this.channel.nextpage != null
+				}
+			} else {
+				const t = this.tabs[this.currentlySelectedTab]
+				return {
+					videos: t.videos,
+					hasNextPage: t.nextpage != null
+				}
+			}
 		}
 	},
 	components: {
+		GenericDisplayItem,
 		ChannelSharingPanel,
 		ExpandableNumber,
 		GridRow,
