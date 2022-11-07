@@ -127,6 +127,8 @@ export default {
 				this.channel = await this.$store.dispatch('auth/makeRequest', {
 					path: '/' + this.$route.params.path + '/' + this.$route.params.channelId
 				})
+				this.tabs = []
+				this.currentlySelectedTab = 0
 				this.tabs.push({
 					originalName: '',
 					name: this.$t('channel_tabs.videos')
