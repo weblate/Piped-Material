@@ -20,24 +20,34 @@
         "add_to_playlist": "video ṭi ki tālikā tē yōga karavēna?",
         "confirm_addition": "ṭhika tō?",
         "create_playlist": "natuna tālikā vānāvēna?",
-        "playlist_field_name": "tālikāra nāma"
+        "playlist_field_name": "tālikāra nāma",
+        "remove_video": "āpani ki ēi videoṭi ēi tālikā thēkē vāda ditē cāna?",
+        "delete_self": "āpani ki ēi tālikā kē muchē ditē cāna?",
+        "rename_self": "āpani ki ēi tālikā kē natuna nāma ditē cāna?",
+        "new_name_msg": "tālikāra natuna nāma ki havē?"
     },
     "misc": {
         "searchBarLabel": "ki sandhāna karachēna valuna?",
         "lastWatchedTill": "āpani {t} paryanta dēkhēchilēna",
         "watchedAgo": "{t} dēkhēchilēna ēi videoṭi {p} avdi"
     },
+    "channel_sharing_panel": {
+        "title": "ēi channelṭi annadēra dēkhānōra janyē ēi URL guli vyavahāra karatē pārēna āpani।",
+        "share": "annadēra ēi channelṭi dēkhātē cāna?",
+        "via_pm": "Piped Materialēra dvārā –",
+        "via_yt": "YouTubeēra dvārā –"
+    },
     "video_sharing_panel": {
-        "title": "annadēra ēi videoṭi dēkhāranara janyē ēi URL guli vyavahāra karuna।",
+        "title": "ēi videoṭi annadēra dēkhānara janyē ēi URL guli vyavahāra karatē pārēna āpani।",
         "share": "annadēra ēṭā dēkhātē chāna?",
         "with_timestamps": "vartamāna samāi samēta।",
         "without_timestamps": "vartamāna samāi chārā।",
-        "via_pm": "Piped Material dārā -",
-        "via_yt": "YouTube dārā -"
+        "via_pm": "Piped Materialēra dvārā –",
+        "via_yt": "YouTubeēra dvārā –"
     },
     "actions": {
         "loadComments": "mantavya khum̐jē ānava?",
-        "logInSignUp": "vartamāna ēkāunṭa ēra vyavahāra vā natuna ēkāunṭa khōlā",
+        "logInSignUp": "vartamāna account (nathi) ēra vyavahāra vā natuna ēkāunṭa khōlā",
         "logOut": "ēkāunṭaēra thēkē prasthāna",
         "loadReplies": "mantavya - khum̐jē ānavō?",
         "hideReplies": "mantavya - lōkāvō?",
@@ -79,8 +89,9 @@
         "confirmPWToDelAcc": "āpanāra account mōchāra janyē āpanāra password ṭā ārēkavāra dina"
     },
     "preferences": {
+        "colorScheme": "ki raṅē āpani dēkhatē cāna",
         "feedColumns": "kōnō pēja ē kaṭā karē stambha thākavē?",
-        "sponsorblock": "āpani ki spanasaravlaka sakriya় karatē cāna ?",
+        "sponsorblock": "āpani ki SponsorBlock sakriya় karatē cāna ?",
         "selectedSkip": "ki ki dharanēra videora aṁśa ēṛiẏē yētē cāna āpani ?",
         "skipToLastPoint": "purōnō video dēkhāra samaya় āgē yataṭā avdi dēkhēchilēna sēkhānē calē yāōẏā ucita?",
         "disableLBRY": "yē video guli LBRY tē āchē sēgulō ki sēkhāna thēkēi sarāsari cālānō ucita naẏa ?",
@@ -109,5 +120,12 @@
             "music_albums": "sudhu gānēra pañji (album) (YouTube Music thēkē)",
             "music_playlists": "sudhu gānēra tālikā (YouTube Music thēkē)"
         }
+    },
+    "channel_tabs": {
+        "playlists": "videoēra tālikā",
+        "shorts": "chōṭa video",
+        "videos": "sādhāraṇa video",
+        "livestreams": "sarāsari sampracārita video",
+        "channels": "anyānya channel"
     }
 }
