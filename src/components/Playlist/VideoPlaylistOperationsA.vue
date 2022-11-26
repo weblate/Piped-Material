@@ -44,6 +44,9 @@ export default {
 	},
 	methods: {
 		async loadPlaylists () {
+			if (!this.$store.getters['auth/isCurrentlyAuthenticated']) {
+				return
+			}
 			this.playlistItems = (await this.$store.dispatch('auth/makeRequest', {
 				method: 'GET',
 				path: '/user/playlists'

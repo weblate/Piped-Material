@@ -17,6 +17,7 @@
     "@fontsource/noto-sans-tc": "^4.5.11",
     "@fontsource/nunito-sans": "^4.5.9",
     "@fontsource/roboto": "^4.5.8",
+    "@formatjs/intl-localematcher": "^0.2.31",
     "@mdi/js": "^6.9.96",
     "antar-hinted": "https://bafybeifmuaik6ozj65yoy443khijb6d5pqkmi4dwgykfzfvymtvc57mo6i.ipfs.cf-ipfs.com/?filename=hinted-antar-web.tar",
     "axios": "^0.27.2",

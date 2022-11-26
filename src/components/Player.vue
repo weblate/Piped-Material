@@ -15,9 +15,9 @@
 </template>
 
 <script>
-import muxjs from 'mux.js'
 import shaka from 'shaka-player/dist/shaka-player.ui.js'
 import 'shaka-player/dist/controls.css'
+import * as LocaleMatcher from '@formatjs/intl-localematcher'
 
 import { DashUtils } from '@/tools/DashUtils'
 import '@/components/Player.scss'
@@ -28,7 +28,11 @@ import '@fontsource/roboto/latin.css'
 
 import { setupKeybindings } from 'psychic-tiny-keys'
 
-window.muxjs = muxjs
+if (!window.muxjs) {
+	import('mux.js').then(m => {
+		window.muxjs = m
+	})
+}
 
 export default {
 	props: {
@@ -142,8 +146,7 @@ export default {
 					const url = new URL(uri)
 					const headers = request.headers
 					if (
-						url.host.endsWith('.googlevideo.com') ||
-            (url.host.endsWith('.lbryplayer.xyz') && (this.$store.getters['prefs/getPreferenceBoolean']('proxyLBRY', true) || headers.Range))
+						url.host.endsWith('.googlevideo.com') || (url.host.endsWith('.lbryplayer.xyz') && (this.$store.getters['prefs/getPreferenceBoolean']('proxyLBRY', true) || headers.Range))
 					) {
 						url.searchParams.set('host', url.host)
 						url.host = proxyHost
@@ -215,8 +218,17 @@ export default {
 				this.destroy()
 				this.$ui = new shaka.ui.Overlay(localPlayer, this.$refs.container, videoEl)
 
+				const overflowMenuButtons = [
+					'quality',
+					'language',
+					'captions',
+					'picture_in_picture',
+					'playback_rate',
+					'airplay'
+				]
+
 				const config = {
-					overflowMenuButtons: ['quality', 'captions', 'picture_in_picture', 'playback_rate'],
+					overflowMenuButtons,
 					seekBarColors: {
 						base: 'rgba(255, 255, 255, 0.3)',
 						buffered: 'rgba(255, 255, 255, 0.54)',
@@ -250,21 +262,31 @@ export default {
 			if (qualityConds) this.$player.configure('abr.enabled', false)
 
 			player.load(uri, 0, mime).then(() => {
+				let bestFitLanguage
+				{
+					const langs = player.getAudioLanguages()
+					bestFitLanguage = LocaleMatcher.match([this.$i18n.locale], langs, 'en')
+					player.selectAudioLanguage(bestFitLanguage)
+				}
+
 				if (qualityConds) {
 					let leastDiff = Number.MAX_VALUE
 					let bestStream = null
 
 					let bestAudio = 0
+					const tracks = player
+						.getVariantTracks()
+						.filter(track => track.language === bestFitLanguage || track.language === 'und')
+
 					// Choose the best audio stream
 					if (quality >= 480) {
-						player.getVariantTracks().forEach(track => {
+						tracks.forEach(track => {
 							const audioBandwidth = track.audioBandwidth
 							if (audioBandwidth > bestAudio) bestAudio = audioBandwidth
 						})
 					}
 
-					player
-						.getVariantTracks()
+					tracks
 						.sort((a, b) => a.bandwidth - b.bandwidth)
 						.forEach(stream => {
 							if (stream.audioBandwidth < bestAudio) return
