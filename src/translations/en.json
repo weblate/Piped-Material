@@ -119,6 +119,7 @@
         "quality": "Default Quality",
         "region": "Country Selection",
         "homepage": "Default Homepage",
+        "homepageButton": "Enable Homepage Button",
         "instance": "Instance",
         "clickbaitThumbnailAvoidance": "Replace default thumbnails with auto-generated ones",
         "disableLBRY": "Disable LBRY",

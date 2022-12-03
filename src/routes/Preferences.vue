@@ -75,6 +75,11 @@ export default {
 					default: false
 				},
 				{
+					id: 'homepageButton',
+					type: 'bool',
+					default: false
+				},
+				{
 					id: 'homepage',
 					type: 'select',
 					label: 'Default Homepage',

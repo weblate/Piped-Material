@@ -8,6 +8,11 @@
             v-if="$vuetify.breakpoint.width > 1000 && !$store.getters['prefs/isEmbedded']"
             class="desktop-buttons-container"
         >
+            <v-btn icon link to="/" v-if="$store.getters['prefs/getPreferenceBoolean']('homepageButton')">
+                <v-icon>
+                    {{ mdiHome }}
+                </v-icon>
+            </v-btn>
             <v-btn
                 v-for="link in links" :key="link.id"
                 link
@@ -128,13 +133,13 @@
     }
 
     :last-child {
-        margin-right: 0px;
+        margin-right: 0;
     }
 }
 </style>
 
 <script>
-import { mdiBrightness6, mdiMagnify, mdiClose } from '@mdi/js'
+import { mdiBrightness6, mdiMagnify, mdiClose, mdiHome } from '@mdi/js'
 
 import SearchMenu from '@/routes/SearchMenu'
 import { changeLocale, SUPPORTED_LANGUAGES } from '@/plugins/i18n'
@@ -162,7 +167,8 @@ export default {
 
 		mdiBrightness6,
 		mdiMagnify,
-		mdiClose
+		mdiClose,
+		mdiHome
 	}),
 
 	computed: {

@@ -26,6 +26,7 @@ const PrefsStore = {
 			showMarkers: true,
 			disableLBRY: true,
 			proxyLBRY: true,
+			homepageButton: false,
 
 			selectedSkip: []
 		}
