@@ -62,7 +62,7 @@
                     class="mx-2 mt-0 pt-0"
                     :input-value="$store.getters['prefs/getPreferenceBoolean']('darkMode', false)"
                     @change="toggleDarkMode"
-                    label="Dark Mode"
+                    :label="$t('actions.enable_dark_mode')"
                 />
                 <v-select
                     dense

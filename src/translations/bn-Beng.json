@@ -45,6 +45,13 @@
         "via_pm": "Piped Materialএর দ্বারা –",
         "via_yt": "YouTubeএর দ্বারা –"
     },
+    "auth_dialog": {
+        "title": "আপনার নথি",
+        "username": "আপনার নথির নাম",
+        "password": "আপনার নহির গোপনকথা",
+        "log_in": "আপনি কি নথি চালু করতে চান?",
+        "sign_up": "আপনি কি নতুন নথি বানাতে চান?"
+    },
     "actions": {
         "loadComments": "মন্তব্য খুঁজে আনব?",
         "logInSignUp": "বর্তমান account (নথি) এর ব্যবহার বা নতুন একাউন্ট খোলা",

@@ -22,16 +22,16 @@
             </v-btn>
         </template>
         <v-card>
-            <v-card-title>Authentication</v-card-title>
+            <v-card-title>{{ $t('auth_dialog.title') }}</v-card-title>
             <v-card-text>
-                <v-text-field v-model="username" label="Username"/>
-                <v-text-field type="password" v-model="password" label="Password"/>
+                <v-text-field v-model="username" :label="$t('auth_dialog.username')"/>
+                <v-text-field type="password" v-model="password" :label="$t('auth_dialog.password')"/>
                 <v-alert outlined color="error" v-if="error != null">{{ error }}</v-alert>
-                <v-btn @click="login" :disabled="requestInProgress" :loading="requestInProgress" color="primary"
-                       outlined large>Log In
+                <v-btn @click="login" :disabled="requestInProgress" :loading="requestInProgress" color="primary" outlined large>
+                    {{ $t('auth_dialog.log_in') }}
                 </v-btn>
-                <v-btn @click="register" :disabled="requestInProgress" :loading="requestInProgress" color="primary"
-                       class="ml-2" outlined large>Sign Up
+                <v-btn @click="register" :disabled="requestInProgress" :loading="requestInProgress" color="primary" class="ml-2" outlined large>
+                    {{ $t('auth_dialog.sign_up') }}
                 </v-btn>
             </v-card-text>
         </v-card>

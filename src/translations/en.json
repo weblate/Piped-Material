@@ -65,7 +65,15 @@
         "via_pm": "Via Piped Material",
         "via_yt": "Via YouTube"
     },
+    "auth_dialog": {
+        "title": "Authentication",
+        "username": "Username",
+        "password": "Password",
+        "log_in": "Log In",
+        "sign_up": "Sign Up"
+    },
     "actions": {
+        "enable_dark_mode": "Enable Dark Mode",
         "loadComments": "Load Comments",
         "logInSignUp": "Log In/Sign Up",
         "logOut": "Log Out",

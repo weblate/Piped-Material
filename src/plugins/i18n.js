@@ -34,7 +34,10 @@ export const SUPPORTED_LANGUAGES = [
 	'bn-Beng',
 	'ar',
 	'ckb',
-	'hr'
+	'hr',
+	'nl',
+	'sr',
+	'bs'
 ]
 
 export const i18n = new VueI18n({
@@ -82,6 +85,9 @@ async function syncStylesPerLanguage (locale) {
 		case 'hr':
 		case 'nb-NO':
 		case 'bn-Latn':
+		case 'nl':
+		case 'sr':
+		case 'bs':
 			// Don't need to import fonts because Inter supports Latin and Cyrillic and is always loaded
 			document.body.classList.remove(...document.body.classList)
 			document.body.classList.add('default-font')
