@@ -40,8 +40,8 @@
     "video_sharing_panel": {
         "title": "এই videoটি অন্নদের দেখানর জন্যে এই URL গুলি ব্যবহার করতে পারেন আপনি।",
         "share": "অন্নদের এটা দেখাতে ছান?",
-        "with_timestamps": "বর্তমান সমাই সমেত।",
-        "without_timestamps": "বর্তমান সমাই ছারা।",
+        "with_timestamps": "বর্তমান সময় সমেত।",
+        "without_timestamps": "বর্তমান সময় ছারা।",
         "via_pm": "Piped Materialএর দ্বারা –",
         "via_yt": "YouTubeএর দ্বারা –"
     },
