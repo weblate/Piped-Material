@@ -20,6 +20,7 @@
                 </VideoItem>
             </v-col>
         </v-row>
+        <v-pagination v-model="currentPage" :total-visible="7" :length="pageCount" />
     </v-container>
 </template>
 
@@ -27,9 +28,11 @@
 import _chunk from 'lodash-es/chunk'
 
 import { LibPiped } from '@/tools/libpiped'
-import { deleteWatchedVideos, getUnfinishedVideos, getWatchedVideos } from '@/store/watched-videos-db'
+import { deleteWatchedVideos, PMDB } from '@/store/watched-videos-db'
 import VideoItem from '@/components/Video/VideoItem'
 import ExpandableDate from '@/components/ExpandableDate'
+
+const PAGE_SIZE = 50
 
 export default {
 	components: {
@@ -39,6 +42,8 @@ export default {
 	data: () => ({
 		loaded: false,
 		data: null,
+		currentPage: 1,
+		pageCount: 0,
 		unfinishedVideosSwitch: false
 	}),
 
@@ -53,12 +58,13 @@ export default {
 			return LibPiped.timeFormat(t)
 		},
 
-		async loadData (onlyUnfinished = false) {
-			if (!onlyUnfinished) {
-				this.data = await getWatchedVideos()
+		async loadData () {
+			if (!this.unfinishedVideosSwitch) {
+				this.data = await PMDB.watchedVideos.orderBy('timestamp').reverse().offset((this.currentPage - 1) * PAGE_SIZE).limit(PAGE_SIZE).toArray()
 			} else {
-				this.data = await getUnfinishedVideos()
+				this.data = await PMDB.watchedVideos.where('progressPcnt').below(99.9).reverse().offset((this.currentPage - 1) * PAGE_SIZE).limit(PAGE_SIZE).sortBy('timestamp')
 			}
+			this.pageCount = Math.ceil((await PMDB.watchedVideos.count()) / PAGE_SIZE)
 			this.loaded = true
 		},
 
@@ -70,7 +76,11 @@ export default {
 
 	watch: {
 		unfinishedVideosSwitch () {
-			this.loadData(this.unfinishedVideosSwitch)
+			this.loadData()
+		},
+
+		currentPage () {
+			this.loadData()
 		}
 	},
 

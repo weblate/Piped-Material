@@ -28,15 +28,6 @@ export async function findLastWatch (videoId) {
 	return v[0]
 }
 
-export function getWatchedVideos () {
-	return PMDB.watchedVideos.orderBy('timestamp').reverse().toArray()
-}
-
-export function getUnfinishedVideos () {
-	// Shaka never fires the last event, thus the last percent turns out to be around 99.95 or 99.98
-	return PMDB.watchedVideos.where('progressPcnt').below(99.9).reverse().sortBy('timestamp')
-}
-
 export function deleteWatchedVideos () {
 	return PMDB.watchedVideos.clear()
 }
