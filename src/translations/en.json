@@ -113,7 +113,11 @@
         "store_watch_history": "Store Watch History",
         "language_selection": "Language Selection",
         "instances_list": "Instances List",
-        "enabled_codecs": "Enabled Codecs (Multiple)"
+        "enabled_codecs": "Enabled Codecs (Multiple)",
+        "related_videos": "Related Videos",
+        "related_comments": "Comments",
+        "autoplay_next_video": "Proceed to the first related video once this video ends",
+        "loop_this_video": "Loop this video"
     },
     "preferences": {
         "colorScheme": "Color Scheme",

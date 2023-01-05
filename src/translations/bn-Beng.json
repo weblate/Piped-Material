@@ -39,7 +39,7 @@
     },
     "video_sharing_panel": {
         "title": "এই videoটি অন্নদের দেখানর জন্যে এই URL গুলি ব্যবহার করতে পারেন আপনি।",
-        "share": "অন্নদের এটা দেখাতে ছান?",
+        "share": "অন্নদের এটা দেখাতে চান?",
         "with_timestamps": "বর্তমান সময় সমেত।",
         "without_timestamps": "বর্তমান সময় ছারা।",
         "via_pm": "Piped Materialএর দ্বারা –",
@@ -92,7 +92,11 @@
         "accounts": "আপনার account (নথি)",
         "delAccountMessage": "আপনি কি আপনার account (নথি) কে মুছে ফেলতে চান?",
         "logOutFromAllDevices": "সব যন্ত্র থেকে কি আপনি প্রস্থান করতে চান?",
-        "confirmPWToDelAcc": "আপনার account মোছার জন্যে আপনার password টা আরেকবার দিন"
+        "confirmPWToDelAcc": "আপনার account মোছার জন্যে আপনার password টা আরেকবার দিন",
+        "related_videos": "অন্ন সম্পর্কিত video",
+        "related_comments": "অন্নদের মন্তব্য",
+        "autoplay_next_video": "এই videoটি শেষ হয়ে গেলে কি আপনি প্রথম সম্পর্কিত videoতে চলে যেতে চান?",
+        "loop_this_video": "এই videoটি শেষ হয়ে গেলে, videoটি কে আবার সুরু থেকে চালাব? (loop করব?)"
     },
     "preferences": {
         "colorScheme": "কি রঙে আপনি দেখতে চান",

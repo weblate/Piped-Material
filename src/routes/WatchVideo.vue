@@ -111,14 +111,14 @@
                         <div>
                             <!-- TODO translate -->
                             <v-checkbox dense :input-value="isAutoplayEnabled" @change="onAutoplayChg"
-                                        label="Autoplay Next Video" hide-details />
+                                        :label="$t('actions.autoplay_next_video')" hide-details />
                             <v-checkbox dense
                                         :input-value="$store.getters['prefs/getPreferenceBoolean']('listen', false)"
                                         @change="onListenChg"
                                         :label="$t('preferences.listen')"
                                         hide-details
                             />
-                            <v-checkbox dense v-model="selectedAutoLoop" label="Loop this video" hide-details />
+                            <v-checkbox dense v-model="selectedAutoLoop" :label="$t('actions.loop_this_video')" hide-details />
                         </div>
                     </v-card-text>
                 </v-card>
@@ -127,7 +127,7 @@
 
         <v-row>
             <v-col cols="12" md="8" offset-md="1" v-if="commentsLoaded">
-                <h5 class="text-h4 text-center my-4">Comments</h5>
+                <h5 class="text-h4 text-center my-4">{{ $t('actions.related_comments') }}</h5>
                 <VideoComment v-for="comment in comments.comments" :key="comment.commentId" :comment="comment"
                               :video="video" />
                 <v-progress-linear indeterminate v-intersect="onCommentsProgressIntersect"
@@ -137,7 +137,7 @@
                 <v-btn x-large @click="fetchComments">{{ $t('actions.loadComments') }}</v-btn>
             </v-col>
             <v-col cols="12" md="2" v-if="video && video.relatedStreams && $store.getters['prefs/getPreferenceBoolean']('showRelatedVideos')">
-                <h5 class="text-h4 text-center my-4">Related Videos</h5>
+                <h5 class="text-h4 text-center my-4">{{ $t('actions.related_videos') }}</h5>
                 <VideoItem class="my-4" v-for="related in video.relatedStreams" :video="related" :key="related.url" />
             </v-col>
         </v-row>
