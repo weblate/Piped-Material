@@ -62,7 +62,7 @@
         "subscribe": "সদস্যতা নেবেন?",
         "unsubscribe": "সদস্যতা পরিত্যাগ করবেন?",
         "view_subscriptions": "channel এ সদস্যতার তালিকা",
-        "rss_of_subscriptions": "আপনি যে যে channel এ সদস্যতা নিয়েছেন তাদের RSS ফিড",
+        "rss_of_subscriptions": "আপনার সদস্যতা নেওয়া channelদের বারতা – RSS দ্বারা",
         "sort_by": "কোন ক্রমানুযায়ী video গুলো আসবে ",
         "most_recent": "সবচেয়ে নতুন আগে",
         "least_recent": "সবচেয়ে পুরোনো আগে",
@@ -96,7 +96,8 @@
         "related_videos": "অন্ন সম্পর্কিত video",
         "related_comments": "অন্নদের মন্তব্য",
         "autoplay_next_video": "এই videoটি শেষ হয়ে গেলে কি আপনি প্রথম সম্পর্কিত videoতে চলে যেতে চান?",
-        "loop_this_video": "এই videoটি শেষ হয়ে গেলে, videoটি কে আবার সুরু থেকে চালাব? (loop করব?)"
+        "loop_this_video": "এই videoটি শেষ হয়ে গেলে, videoটি কে আবার সুরু থেকে চালাব? (loop করব?)",
+        "unauthenticated_rss": "এই channelটির RSS বারতা URL (আপনার নথির সঙ্গে অসম্পর্কিত)"
     },
     "preferences": {
         "colorScheme": "কি রঙে আপনি দেখতে চান",

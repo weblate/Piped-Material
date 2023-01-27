@@ -19,6 +19,7 @@
                 </span>
                 <ChannelSharingPanel :channel-id="channel.id" />
                 <SubscriptionButton :channel-id="channel.id" />
+                <v-btn outlined color="primary" link :href="unauthenticatedRSS" class="ml-2">{{ $t('actions.unauthenticated_rss') }}</v-btn>
             </div>
             <v-card-text>
                 <div v-html="renderedDescription" />
@@ -223,6 +224,12 @@ export default {
 			return LibPiped.purifyHTML(marked.parseInline(this.channel.description, {
 				breaks: true
 			}))
+		},
+
+		unauthenticatedRSS () {
+			const u = new URL('/feed/unauthenticated/rss', this.$store.getters['prefs/apiUrl'])
+			u.searchParams.set('channels', this.channel?.id)
+			return u.href
 		},
 
 		view () {
