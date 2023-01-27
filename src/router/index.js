@@ -59,6 +59,10 @@ const routes = [
 		component: () => import('@/routes/Channel')
 	},
 	{
+		path: '/@:channelId',
+		component: () => import('@/components/NewChannelRedirect')
+	},
+	{
 		path: '/:videoId([a-zA-Z0-9_-]{11})',
 		component: () => import('@/components/Video/VideoRedirect')
 	},
