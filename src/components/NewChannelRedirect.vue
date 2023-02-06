@@ -9,6 +9,7 @@ export default {
 		const { channelId } = this.$route.params
 		if (channelId.length === 0) {
 			this.$router.replace('/')
+			return
 		}
 		this.$router.replace('/c/@' + channelId)
 	}
