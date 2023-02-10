@@ -10,9 +10,7 @@ There are a few things that PM does better, like watch history tracking, and com
 
 As a byproduct, the code is also much cleaner, dysfunctional patterns and paradigms have been replaced with clean, beautiful code :).
 
-There's an experimental branch implementing preferences & watch history syncing, alongside username and password generation using [EDS](https://git.maharshi.ninja/root/libeds) at the `feature-eds` branch. It requires a Web3 Wallet available in the browser like MetaMask or Brave Wallet. I don't plan to merge it to master since it significantly complicates the usage for people without a Web3 Wallet configured.
-
-This branch is deployed at [ng.piped.১.net](https://ng.piped.১.net/).
+There's an experimental branch implementing preferences & watch history syncing, alongside username and password generation using [EDS](https://git.maharshi.ninja/root/libeds) at the `feature-eds` branch. There are two deployments, one supporting authentication via Web3 wallets like MetaMask, Brave, etc. at [ng.piped.১.net](https://ng.piped.১.net) and with a standard username-password combination at [ngp.piped.১.net](https://ngp.piped.১.net), do note that accounts are not recoverable if you lose your password. Private keys are derived from your password via PBKDF with the username as the salt.
 
 ## Links
 
@@ -20,6 +18,7 @@ This branch is deployed at [ng.piped.১.net](https://ng.piped.১.net/).
 |-------------------------------|-------------|----------------|------------------|
 | https://piped-material.১.net  | Production  |                | Kavin            |
 | https://piped-material.ftp.sh | Production  |                | Kavin            |
+| https://ngp.piped.১.net       | Production  | EDS-Password   | Kavin            |
 | https://piped-staging.ftp.sh  | Staging     |                | Kavin            |
 | https://ui.piped.১.net        | Staging     | IPv6-only      | mmjee            |
 | https://ng.piped.১.net        | Staging     | IPv6-only, EDS | mmjee            |
