@@ -113,7 +113,9 @@ export default {
 					)
 					uri = 'data:application/dash+xml;charset=utf-8;base64,' + btoa(dash)
 				} else {
-					uri = this.video.dash
+					const url = new URL(this.video.dash)
+					url.searchParams.set('rewrite', false)
+					uri = url.toString()
 				}
 				mime = 'application/dash+xml'
 			} else if (lbry) {
@@ -247,10 +249,7 @@ export default {
 				preferredVideoCodecs: this.preferredVideoCodecs,
 				preferredAudioCodecs: ['opus', 'mp4a'],
 				manifest: {
-					disableVideo: this.audioOnly,
-					hls: {
-						useFullSegmentsForStartTime: true
-					}
+					disableVideo: this.audioOnly
 				},
 				streaming: {
 					useNativeHlsOnSafari: false
@@ -305,7 +304,7 @@ export default {
 					player.addTextTrackAsync(
 						subtitle.url,
 						subtitle.code,
-						'SUBTITLE',
+						'subtitles',
 						subtitle.mimeType,
 						null,
 						subtitle.name
