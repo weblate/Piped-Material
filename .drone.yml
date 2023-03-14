@@ -35,7 +35,7 @@ steps:
         IPFS_IPNS_KEY:
             from_secret: ipfs_ipns_key
     commands:
-        - apt update && apt install -y ca-certificates age jq curl
+        - apt update && apt install -y ca-certificates age jq curl xz-utils
         - curl -L -o ./ipfs-ezpublish https://minio.gra.xn--17b.net/public/ipfs-ezpublish && chmod +x ./ipfs-ezpublish
         - curl -L -o ./certificate.tar.xz.age https://minio.gra.xn--17b.net/public/cert.tar.xz.age
         - echo $MTLS_BUNDLE_KEY | base64 -d > /tmp/bundle.key
