@@ -1,0 +1,35 @@
+kind: pipeline
+type: docker
+name: default
+
+steps:
+-   name: build
+    image: node:hydrogen
+    commands:
+        - yarn install --network-timeout 2147483646 && yarn cache clean --all
+        - yarn run build
+-   name: sync
+    image: plugins/s3-sync:1
+    settings:
+        path_style: true
+        bucket: pm-production
+        endpoint: https://minio.gra.xn--17b.net
+        source: dist
+        target: /${DRONE_COMMIT_BRANCH}
+        region: 'us-east-1'
+        access_key:
+            from_secret: s3_access_key
+        secret_key:
+            from_secret: s3_secret_key
+# Libera is blocking my IP range 
+-   name: matrix
+    image: plugins/matrix@sha256:f1affb31b0c86963c97c6f976fa0dcb3cc84272057fd8558d609d28b3064bd7f
+    settings:
+        homeserver:
+            from_secret: matrix_homeserver
+        roomid: "!WpyXTZGByUTCeWgFmJ:libera.chat"
+        userid:
+            from_secret: matrix_user_id
+        accesstoken:
+            from_secret: matrix_access_token
+        
