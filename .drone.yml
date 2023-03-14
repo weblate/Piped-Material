@@ -24,6 +24,10 @@ steps:
 # Libera is blocking my IP range 
 -   name: matrix
     image: plugins/matrix@sha256:f1affb31b0c86963c97c6f976fa0dcb3cc84272057fd8558d609d28b3064bd7f
+    when:
+        status:
+            - success
+            - failure
     settings:
         homeserver:
             from_secret: matrix_homeserver
