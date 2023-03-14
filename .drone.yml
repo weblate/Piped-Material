@@ -8,19 +8,38 @@ steps:
     commands:
         - yarn install --network-timeout 2147483646 && yarn cache clean --all
         - yarn run build
--   name: sync
+        - mv dist dist1
+        - export VUE_APP_PIPED_URL=https://api.piped.১.net
+        - yarn run build
+        - mv dist dist2
+-   name: sync1
     image: plugins/s3-sync:1
     settings:
         path_style: true
         bucket: pm-production
         endpoint: https://minio.mumbai.xn--17b.net
-        source: dist
-        target: /${DRONE_COMMIT_BRANCH}
+        source: dist1
+        target: /${DRONE_COMMIT_BRANCH}-1
         region: 'us-east-1'
         access_key:
             from_secret: s3_access_key
         secret_key:
             from_secret: s3_secret_key
+
+-   name: sync2
+    image: plugins/s3-sync:1
+    settings:
+        path_style: true
+        bucket: pm-production
+        endpoint: https://minio.mumbai.xn--17b.net
+        source: dist2
+        target: /${DRONE_COMMIT_BRANCH}-2
+        region: 'us-east-1'
+        access_key:
+            from_secret: s3_access_key
+        secret_key:
+            from_secret: s3_secret_key
+
 
 # Libera is blocking my IP range 
 -   name: matrix
@@ -37,4 +56,3 @@ steps:
             from_secret: matrix_user_id
         accesstoken:
             from_secret: matrix_access_token
-        
