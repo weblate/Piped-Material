@@ -13,7 +13,7 @@ steps:
     settings:
         path_style: true
         bucket: pm-production
-        endpoint: https://minio.gra.xn--17b.net
+        endpoint: https://minio.mumbai.xn--17b.net
         source: dist
         target: /${DRONE_COMMIT_BRANCH}
         region: 'us-east-1'
@@ -36,8 +36,8 @@ steps:
             from_secret: ipfs_ipns_key
     commands:
         - apt update && apt install -y ca-certificates age jq curl xz-utils
-        - curl -L -o ./ipfs-ezpublish https://minio.gra.xn--17b.net/public/ipfs-ezpublish && chmod +x ./ipfs-ezpublish
-        - curl -L -o ./certificate.tar.xz.age https://minio.gra.xn--17b.net/public/cert.tar.xz.age
+        - curl -L -o ./ipfs-ezpublish https://minio.mumbai.xn--17b.net/public/ipfs-ezpublish && chmod +x ./ipfs-ezpublish
+        - curl -L -o ./certificate.tar.xz.age https://minio.mumbai.xn--17b.net/public/cert.tar.xz.age
         - echo $MTLS_BUNDLE_KEY | base64 -d > /tmp/bundle.key
         - mkdir -v /tmp/certificate
         - age -d -i /tmp/bundle.key certificate.tar.xz.age | tar -Jxv -C /tmp/certificate
