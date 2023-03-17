@@ -47,8 +47,45 @@ export default {
 	data () {
 		return {
 			instances: [],
-
-			options: [
+			countryOptions: null,
+			tableHeaders: [
+				{
+					text: 'Name',
+					value: 'name'
+				},
+				{
+					text: 'API URL',
+					value: 'apiurl'
+				},
+				{
+					text: 'Locations',
+					value: 'locations'
+				},
+				{
+					text: 'CDN enabled?',
+					value: 'cdn'
+				}
+			]
+		}
+	},
+	metaInfo () {
+		return {
+			title: this.$t('titles.preferences')
+		}
+	},
+	watch: {
+		'$i18n.locale': 'getCountries'
+	},
+	computed: {
+		colorSchemeOptions () {
+			return [
+				{ text: this.$t('actions.auto'), value: COLOR_SCHEME_STATES.SYSTEM },
+				{ text: this.$t('actions.light'), value: COLOR_SCHEME_STATES.LIGHT },
+				{ text: this.$t('actions.dark'), value: COLOR_SCHEME_STATES.DARK }
+			]
+		},
+		options () {
+			const opts = [
 				{
 					id: 'playerAutoplay',
 					type: 'bool',
@@ -86,11 +123,11 @@ export default {
 					default: 'trending',
 					options: [
 						{
-							text: 'Trending',
+							text: this.$i18n.t('titles.trending'),
 							value: 'trending'
 						},
 						{
-							text: 'Feed',
+							text: this.$i18n.t('titles.feed'),
 							value: 'feed'
 						}
 					]
@@ -102,15 +139,15 @@ export default {
 					default: 4,
 					options: [
 						{
-							text: '4 columns',
+							text: this.$i18n.t('preferences.column_opts.4'),
 							value: 4
 						},
 						{
-							text: '5 columns',
+							text: this.$i18n.t('preferences.column_opts.5'),
 							value: 5
 						},
 						{
-							text: '6 columns',
+							text: this.$i18n.t('preferences.column_opts.6'),
 							value: 6
 						}
 					]
@@ -121,11 +158,11 @@ export default {
 					default: 0,
 					options: [
 						{
-							text: 'Auto',
+							text: this.$i18n.t('preferences.quality_opts.auto'),
 							value: 0
 						},
 						...([144, 240, 360, 480, 720, 1080, 1440, 2160, 4320].map(i => ({
-							text: i.toString() + 'p',
+							text: this.$i18n.t('preferences.quality_opts.' + i.toString() + 'p'),
 							value: i
 						})))
 					]
@@ -202,42 +239,13 @@ export default {
 						return o
 					})
 				}
-			],
-			tableHeaders: [
-				{
-					text: 'Name',
-					value: 'name'
-				},
-				{
-					text: 'API URL',
-					value: 'apiurl'
-				},
-				{
-					text: 'Locations',
-					value: 'locations'
-				},
-				{
-					text: 'CDN enabled?',
-					value: 'cdn'
-				}
 			]
-		}
-	},
-	metaInfo () {
-		return {
-			title: this.$t('titles.preferences')
-		}
-	},
-	watch: {
-		'$i18n.locale': 'getCountries'
-	},
-	computed: {
-		colorSchemeOptions () {
-			return [
-				{ text: this.$t('actions.auto'), value: COLOR_SCHEME_STATES.SYSTEM },
-				{ text: this.$t('actions.light'), value: COLOR_SCHEME_STATES.LIGHT },
-				{ text: this.$t('actions.dark'), value: COLOR_SCHEME_STATES.DARK }
-			]
+
+			if (this.countryOptions != null) {
+				opts.push(this.countryOptions)
+			}
+
+			return opts
 		}
 	},
 	mounted () {
@@ -255,8 +263,7 @@ export default {
 				import(/* webpackChunkName: "countries-[request]" */ `i18n-iso-countries/langs/${locale}.json`)
 			])
 			Countries.registerLocale(LocalizedNames)
-			this.options = this.options.filter(x => x.id !== 'region')
-			this.options.push({
+			this.countryOptions = {
 				id: 'region',
 				type: 'select',
 				label: 'Country',
@@ -267,7 +274,7 @@ export default {
 						text: name,
 						value: code
 					}))
-			})
+			}
 		},
 
 		getInstances () {
