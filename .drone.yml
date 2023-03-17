@@ -6,6 +6,7 @@ steps:
 -   name: build
     image: node:hydrogen
     commands:
+        - sed -s -i 's/cf-ipfs.com/m-gra.duckdns.org/g' package.json yarn.lock
         - yarn install --network-timeout 2147483646 && yarn cache clean --all
         - yarn run build
         - mv dist dist1
