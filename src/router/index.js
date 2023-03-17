@@ -44,7 +44,7 @@ const routes = [
 		component: () => import('@/routes/PlaylistPage')
 	},
 	{
-		path: '/:path(v|w|embed|shorts|watch)/:v?',
+		path: '/:path(v|w|embed|live|shorts|watch)/:v?',
 		name: 'WatchVideo',
 		component: () => import('@/routes/WatchVideo')
 	},

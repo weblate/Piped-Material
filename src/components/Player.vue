@@ -19,7 +19,7 @@ import shaka from 'shaka-player/dist/shaka-player.ui.js'
 import 'shaka-player/dist/controls.css'
 import * as LocaleMatcher from '@formatjs/intl-localematcher'
 
-import { DashUtils } from '@/tools/DashUtils'
+import * as DashUtils from '@/tools/DashUtils'
 import '@/components/Player.scss'
 
 // Fonts for Shaka
@@ -107,7 +107,7 @@ export default {
 				mime = 'application/x-mpegURL'
 			} else if (this.video.audioStreams.length > 0 && !lbry && MseSupport) {
 				if (!this.video.dash) {
-					const dash = DashUtils.generate_dash_file_from_formats(
+					const dash = DashUtils.generateDashFileFromFormats(
 						streams,
 						this.video.duration
 					)
