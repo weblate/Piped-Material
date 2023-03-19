@@ -47,6 +47,7 @@ export default {
 	data () {
 		return {
 			instances: [],
+			instanceOption: null,
 			countryOptions: null,
 			tableHeaders: [
 				{
@@ -244,6 +245,9 @@ export default {
 			if (this.countryOptions != null) {
 				opts.push(this.countryOptions)
 			}
+			if (this.instanceOption != null) {
+				opts.push(this.instanceOption)
+			}
 
 			return opts
 		}
@@ -283,6 +287,8 @@ export default {
 				.then(body => {
 					let skipped = 0
 					const lines = body.split('\n')
+					const instances = []
+
 					lines.forEach(line => {
 						const split = line.split('|')
 						if (split.length === 5) {
@@ -290,7 +296,7 @@ export default {
 								skipped++
 								return
 							}
-							this.instances.push({
+							instances.push({
 								name: split[0].trim(),
 								apiurl: split[1].trim(),
 								locations: split[2].trim(),
@@ -298,26 +304,28 @@ export default {
 							})
 						}
 					})
-					if (process.env.VUE_APP_PIPED_URL && this.instances.indexOf(process.env.VUE_APP_PIPED_URL) === -1) {
+					if (process.env.VUE_APP_PIPED_URL && !instances.includes(process.env.VUE_APP_PIPED_URL)) {
 						const u = new URL(process.env.VUE_APP_PIPED_URL)
 
-						this.instances.push({
+						instances.push({
 							name: u.hostname,
 							apiurl: process.env.VUE_APP_PIPED_URL,
 							locations: '???',
 							cdn: '???'
 						})
 					}
-					this.options.push({
+
+					this.instances = instances
+					this.instanceOption = {
 						id: 'instance',
 						type: 'select',
 						default: this.$store.getters['prefs/apiUrl'],
 						label: 'Instance',
-						options: this.instances.map(i => ({
+						options: instances.map(i => ({
 							text: i.name,
 							value: i.apiurl
 						}))
-					})
+					}
 				})
 		},
 
