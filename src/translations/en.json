@@ -157,5 +157,11 @@
             "5": "5 columns",
             "6": "6 columns"
         }
+    },
+    "footer": {
+        "text": "Running Piped-Material {1}, please help in localizing Piped-Material to more languages {2}!{0} For help, suggestions and/or feedback, please {3}.",
+        "commit_message_1": "commit {hash}",
+        "translations_msg_2": "through Weblate",
+        "help_message_3": "join the Matrix room or the IRC channel"
     }
 }

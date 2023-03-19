@@ -28,6 +28,22 @@
             </GridCol>
         </GridRow>
         <v-pagination v-model="currentPage" :total-visible="7" :length="Math.ceil(videos.length / PAGE_SIZE)" />
+
+		<!-- TODO somehow eliminate references to GitHub, Weblate and other such temporal references -->
+		<v-footer v-if="footerGitCommitHash != null" padless class="mt-2">
+			<v-card class="flex" flat tile color="bgTwo">
+				<v-card-title class="text-body-1">
+					<i18n path="footer.text" tag="p">
+						<br />
+						<a :href="'https://github.com/mmjee/Piped-Material/commit/' + footerGitCommitHash" rel="noreferrer" target="_blank">
+							{{ $t('footer.commit_message_1', { hash: footerGitCommitHash }) }}</a>
+						<a href="https://hosted.weblate.org/projects/piped-material/i18n/" rel="noreferrer" target="_blank">
+							{{ $t('footer.translations_msg_2') }}</a>
+						<a href="https://github.com/mmjee/Piped-Material#help">{{ $t('footer.help_message_3') }}</a>
+					</i18n>
+				</v-card-title>
+			</v-card>
+		</v-footer>
     </v-container>
 </template>
 
@@ -54,6 +70,8 @@ export default {
 
 			currentPage: 1,
 			PAGE_SIZE,
+
+			footerGitCommitHash: process.env.VUE_APP_GIT_COMMIT_HASH,
 
 			mdiRss,
 			mdiYoutubeSubscription

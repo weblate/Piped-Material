@@ -78,7 +78,7 @@
             <v-app-bar app dense light color="#efcac3">
                 <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
-                <v-toolbar-title>Piped Material</v-toolbar-title>
+                <v-toolbar-title>Piped-Material</v-toolbar-title>
                 <v-spacer />
                 <v-dialog
                     v-model="searchMenuOpened"
