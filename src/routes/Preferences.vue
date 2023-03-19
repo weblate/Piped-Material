@@ -336,7 +336,7 @@ export default {
 				label: 'Instance',
 				options: instances.map(i => ({
 					text: i.name,
-					value: i.apiurl
+					value: i.api_url
 				}))
 			}
 		},
