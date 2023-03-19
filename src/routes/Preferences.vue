@@ -35,7 +35,12 @@
             />
         </div>
         <h5 class="text-h5">{{ $t('actions.instances_list') }}</h5>
-        <v-data-table :headers="tableHeaders" :items="instances" :items-per-page="-1"/>
+        <v-data-table :headers="tableHeaders" :items="instances" :items-per-page="-1">
+			<!-- eslint-disable-next-line vue/valid-v-slot -->
+			<template v-slot:item.registered="{ item }">
+				{{ $store.getters['i18n/fmtFullNumber'](item.registered) }}
+			</template>
+        </v-data-table>
     </v-container>
 </template>
 
@@ -56,7 +61,7 @@ export default {
 				},
 				{
 					text: 'API URL',
-					value: 'apiurl'
+					value: 'api_url'
 				},
 				{
 					text: 'Locations',
@@ -65,6 +70,10 @@ export default {
 				{
 					text: 'CDN enabled?',
 					value: 'cdn'
+				},
+				{
+					text: 'Registered users',
+					value: 'registered'
 				}
 			]
 		}
@@ -281,52 +290,55 @@ export default {
 			}
 		},
 
-		getInstances () {
-			fetch('https://raw.githubusercontent.com/wiki/TeamPiped/Piped-Frontend/Instances.md')
-				.then(resp => resp.text())
-				.then(body => {
-					let skipped = 0
-					const lines = body.split('\n')
-					const instances = []
+		async getInstances () {
+			const resp = await fetch(process.env.VUE_APP_PIPED_INSTANCES_API ?? 'https://piped-instances.kavin.rocks/', {
+				referrerPolicy: 'no-referrer'
+			}).then(resp => resp.json())
 
-					lines.forEach(line => {
-						const split = line.split('|')
-						if (split.length === 5) {
-							if (skipped < 2) {
-								skipped++
-								return
-							}
-							instances.push({
-								name: split[0].trim(),
-								apiurl: split[1].trim(),
-								locations: split[2].trim(),
-								cdn: split[3].trim()
-							})
-						}
-					})
-					if (process.env.VUE_APP_PIPED_URL && !instances.includes(process.env.VUE_APP_PIPED_URL)) {
-						const u = new URL(process.env.VUE_APP_PIPED_URL)
+			const instances = resp.map((v) => {
+				try {
+					v._locations = v.locations.split(',')
+				} catch (e) {
+					v._locations = []
+					console.error('Error while parsing locations:', v.locations)
+				}
+				v._cdn = v.cdn
+				v.cdn = v._cdn === true ? '✔️' : '❌'
+				return v
+			})
 
-						instances.push({
-							name: u.hostname,
-							apiurl: process.env.VUE_APP_PIPED_URL,
-							locations: '???',
-							cdn: '???'
-						})
-					}
+			if (process.env.VUE_APP_PIPED_URL && !instances.includes(process.env.VUE_APP_PIPED_URL)) {
+				const u = new URL(process.env.VUE_APP_PIPED_URL)
 
-					this.instances = instances
-					this.instanceOption = {
-						id: 'instance',
-						type: 'select',
-						default: this.$store.getters['prefs/apiUrl'],
-						label: 'Instance',
-						options: instances.map(i => ({
-							text: i.name,
-							value: i.apiurl
-						}))
-					}
+				instances.push({
+					name: u.hostname,
+					api_url: process.env.VUE_APP_PIPED_URL,
+					locations: '???',
+					_locations: [],
+					registered: -1,
+					cdn: '???',
+					_cdn: false
 				})
+			}
+
+			instances.sort((a, b) => this.$store.getters['i18n/compare'](a.name, b.name))
+			instances.sort((a, b) => b.registered - a.registered)
+			instances.sort((a, b) => ((a._cdn === b._cdn) ? 0 : a._cdn ? 1 : -1))
+			instances.sort((a, b) => {
+				return b._locations.length - a._locations.length
+			})
+
+			this.instances = instances
+			this.instanceOption = {
+				id: 'instance',
+				type: 'select',
+				default: this.$store.getters['prefs/apiUrl'],
+				label: 'Instance',
+				options: instances.map(i => ({
+					text: i.name,
+					value: i.apiurl
+				}))
+			}
 		},
 
 		setValue (k, v) {
