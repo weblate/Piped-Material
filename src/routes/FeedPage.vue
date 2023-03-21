@@ -57,6 +57,8 @@ import NGErrorHandler from '@/components/NGErrorHandler'
 import GridRow from '@/components/Grid/GridRow'
 import GridCol from '@/components/Grid/GridCol'
 
+import { LibPiped } from '@/tools/libpiped'
+
 const PAGE_SIZE = 50
 let lastAbortController = new AbortController()
 
@@ -79,8 +81,19 @@ export default {
 	},
 
 	metaInfo () {
+		let generatedDescription = ''
+		for (const vid of this.videos) {
+			generatedDescription += `${vid.title} — ${this.$store.getters['i18n/fmtFullNumber'](vid.views)} views (${LibPiped.timeFormat(vid.duration)})\n`
+		}
+
 		return {
-			title: this.$t('titles.' + this.feedName)
+			title: this.$t('titles.' + this.feedName),
+			meta: [
+				{
+					name: 'description',
+					content: generatedDescription
+				}
+			]
 		}
 	},
 
@@ -92,7 +105,7 @@ export default {
 	},
 	methods: {
 		async fetchData () {
-			const region = this.$store.getters['prefs/getPreference']('region', this.$route.query.region ?? 'US')
+			const region = this.$route.query.region ?? this.$store.getters['prefs/getPreference']('region', 'US')
 			const selectedHomepage = this.$store.getters['prefs/getPreference']('homepage', 'trending')
 			let path
 
