@@ -14,7 +14,7 @@
         "views": "কেউ দেখে নি এখন পর্যন্ত | একবার মাত্র দেখা হয়েছে এই videoটি কে | {n} বার দেখা হয়েছে এই videoটি কে"
     },
     "errors": {
-        "trendingFetchError": "জনপ্রিয় video খুঁজে পাওয়া যায়নি। দেখুন আপনার নির্বাচিত দেশ কে ইউটুবে সাপোর্ট করে কি না।"
+        "trendingFetchError": "জনপ্রিয় video খুঁজে পাওয়া যায়নি। দেখুন আপনার নির্বাচিত দেশ কে YouTube support করে কি না।"
     },
     "playlists": {
         "add_to_playlist": "video টি কি তালিকা তে যোগ করবেন?",
@@ -32,7 +32,7 @@
         "watchedAgo": "{t} দেখেছিলেন এই videoটি {p} অব্দি"
     },
     "channel_sharing_panel": {
-        "title": "এই channelটি অন্নদের দেখানোর জন্যে এই URL গুলি ব্যবহার করতে পারেন আপনি।",
+        "title": "এই channelটি অন্নদের দেখানোর জন্যে এই URLগুলি ব্যবহার করতে পারেন আপনি।",
         "share": "অন্নদের এই channelটি দেখাতে চান?",
         "via_pm": "Piped Materialএর দ্বারা –",
         "via_yt": "YouTubeএর দ্বারা –"
@@ -54,8 +54,8 @@
     },
     "actions": {
         "loadComments": "মন্তব্য খুঁজে আনব?",
-        "logInSignUp": "বর্তমান account (নথি) এর ব্যবহার বা নতুন একাউন্ট খোলা",
-        "logOut": "একাউন্টএর থেকে প্রস্থান",
+        "logInSignUp": "বর্তমান account (নথি) এর ব্যবহার করবেন বা নতুন নথি খুলবেন?",
+        "logOut": "নথি থেকে প্রস্থান করবেন?",
         "loadReplies": "মন্তব্য - খুঁজে আনবো?",
         "hideReplies": "মন্তব্য - লোকাবো?",
         "showReplies": "মন্তব্য - দেখাবো?",
@@ -80,8 +80,8 @@
         "skip_non_music": "গানের মধ্যে গানহীন অংশ",
         "skip_poi_highlights": "উজ্জ্বলতম অংশসমুহ (Highlights)",
         "skip_filler": "Filler অংশগুলি",
-        "theme": "থিম",
-        "auto": "আপনার কম্পিউটার অনুযায়ী ।",
+        "theme": "Piped-Materialএর কী রঙে দেখানো হবে",
+        "auto": "আপনার computer অনুযায়ী ।",
         "dark": "কৃষ্ণাভ ।",
         "light": "উজ্জ্বল ।",
         "minimize_description": "আপনি কি স্বাভাবিক ভাবে বিবরণটিকে সংক্ষিপ্ত রাখতে চান ?",
@@ -158,7 +158,7 @@
         "channels": "অন্যান্য channel"
     },
     "footer": {
-        "text": "Piped-Material {1} চলছে। দয়া করে Piped-Material কে অন্য ভাষা ও উপভাষাতে তে ভাষান্তরিত করতে সাহায্য করুন {2}।{0} সাহায্য, উপরোধ বা সুপারিশ করতে {3}।",
+        "text": "Piped-Material {1} চলছে। দয়া করে Piped-Material কে অন্য ভাষা ও উপভাষা তে ভাষান্তরিত করতে সাহায্য করুন {2}।{0} সাহায্য, উপরোধ বা সুপারিশ করতে {3}।",
         "commit_message_1": "নিশানদিহি {hash}",
         "translations_msg_2": "Weblate দ্বারা",
         "help_message_3": "Matrix বা IRC দ্বারা যোগাযোগ করতে পারেন আপনি"
