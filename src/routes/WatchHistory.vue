@@ -14,7 +14,7 @@
                 <VideoItem :video="doc.video" :src-progress="doc.progressPcnt" max-height>
                     <template v-slot:top>
                         <ExpandableDate message-key="misc.watchedAgo"
-                                        :message-arguments="{ p: timeFormat(doc.progress) }" :date="doc.timestamp"/>
+                                        :message-arguments="{ p: $store.getters['i18n/fmtDuration'](doc.progress) }" :date="doc.timestamp"/>
                         <br/>
                     </template>
                 </VideoItem>
@@ -27,7 +27,6 @@
 <script>
 import _chunk from 'lodash-es/chunk'
 
-import { LibPiped } from '@/tools/libpiped'
 import { deleteWatchedVideos, PMDB } from '@/store/watched-videos-db'
 import VideoItem from '@/components/Video/VideoItem'
 import ExpandableDate from '@/components/ExpandableDate'
@@ -54,10 +53,6 @@ export default {
 	},
 
 	methods: {
-		timeFormat (t) {
-			return LibPiped.timeFormat(t)
-		},
-
 		async loadData () {
 			if (!this.unfinishedVideosSwitch) {
 				this.data = await PMDB.watchedVideos.orderBy('timestamp').reverse().offset((this.currentPage - 1) * PAGE_SIZE).limit(PAGE_SIZE).toArray()

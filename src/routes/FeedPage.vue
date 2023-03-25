@@ -57,8 +57,6 @@ import NGErrorHandler from '@/components/NGErrorHandler'
 import GridRow from '@/components/Grid/GridRow'
 import GridCol from '@/components/Grid/GridCol'
 
-import { LibPiped } from '@/tools/libpiped'
-
 const PAGE_SIZE = 50
 let lastAbortController = new AbortController()
 
@@ -83,7 +81,7 @@ export default {
 	metaInfo () {
 		let generatedDescription = ''
 		for (const vid of this.videos) {
-			generatedDescription += `${vid.title} — ${this.$store.getters['i18n/fmtFullNumber'](vid.views)} views (${LibPiped.timeFormat(vid.duration)})\n`
+			generatedDescription += `${vid.title} — ${this.$store.getters['i18n/fmtFullNumber'](vid.views)} views (${this.$store.getters['i18n/fmtDuration'](vid.duration)})\n`
 		}
 
 		return {

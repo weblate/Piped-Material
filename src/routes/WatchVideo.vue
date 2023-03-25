@@ -419,7 +419,7 @@ export default {
 		},
 
 		lastWatchDurationH () {
-			return LibPiped.timeFormat(this.lastWatch.progress)
+			return this.$store.getters['i18n/fmtDuration'](this.lastWatch.progress)
 		}
 	},
 	components: {

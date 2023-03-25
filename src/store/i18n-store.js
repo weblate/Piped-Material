@@ -1,3 +1,5 @@
+import DurationUnitFormat from 'intl-unofficial-duration-unit-format'
+
 export const i18nStore = {
 	namespaced: true,
 	state: () => ({
@@ -5,6 +7,7 @@ export const i18nStore = {
 		dateFormatter: null,
 		fullNumberFormatter: null,
 		abbreviatedNumFormatter: null,
+		durationFormatter: null,
 		timeAgo: null,
 		languageFormatter: null,
 		collator: null,
@@ -33,6 +36,10 @@ export const i18nStore = {
 			state.languageFormatter = new Intl.DisplayNames([intlLocale, 'en-US'], {
 				type: 'language'
 			})
+			state.durationFormatter = new DurationUnitFormat(intlLocale, {
+				style: DurationUnitFormat.styles.NARROW,
+				format: '{hours} {minutes} {seconds}'
+			})
 			state.collator = new Intl.Collator(intlLocale)
 			state.timeAgo = timeAgo
 
@@ -58,6 +65,10 @@ export const i18nStore = {
 		},
 		fmtAbbreviatedNum: state => num => {
 			return state.abbreviatedNumFormatter.format(num)
+		},
+
+		fmtDuration: state => dur => {
+			return state.durationFormatter.format(dur)
 		},
 
 		fmtDate: state => dt => {

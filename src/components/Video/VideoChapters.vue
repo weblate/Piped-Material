@@ -12,15 +12,13 @@
 </template>
 
 <script>
-import formatDuration from 'format-duration'
-
 export default {
 	name: 'VideoChapters',
 	props: ['chapters'],
 	computed: {
 		humanizedChapters () {
 			return this.chapters.map(ch => {
-				ch.humanizedStart = formatDuration(ch.start * 1000)
+				ch.humanizedStart = this.$store.getters['i18n/fmtDuration'](ch.start)
 				return ch
 			})
 		}

@@ -29,7 +29,6 @@
 </template>
 
 <script>
-import { LibPiped } from '@/tools/libpiped'
 import VideoItem from '@/components/Video/VideoItem'
 import GenericDisplayItem from '@/components/GenericDisplayItem'
 import GridRow from '@/components/Grid/GridRow'
@@ -107,9 +106,6 @@ export default {
 			})
 		},
 
-		timeFormat (...args) {
-			return LibPiped.timeFormat(...args)
-		},
 		async updateResults () {
 			this.results = this.fetchResults().then(json => {
 				json.items = json.items.map(this.rationalizeSearchResult)

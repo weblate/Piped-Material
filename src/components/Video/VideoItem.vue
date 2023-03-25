@@ -27,7 +27,7 @@
                 {{ video.uploadedDate }}
             </span>
             <br/>
-            {{ timeFormat(video.duration) }}
+            {{ $store.getters['i18n/fmtDuration'](video.duration) }}
         </v-card-text>
         <slot name="bottom" />
     </v-card>
@@ -102,9 +102,6 @@ export default {
 					this.alreadyWatched = false
 				}
 			}
-		},
-		timeFormat (...args) {
-			return LibPiped.timeFormat(...args)
 		}
 	}
 }

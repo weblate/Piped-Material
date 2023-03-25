@@ -1,13 +1,8 @@
 import DOMPurify from 'dompurify'
-import formatDuration from 'format-duration'
 
 class LibPiped {
 	pad (num, size) {
 		return ('000' + num).slice(size * -1)
-	}
-
-	timeFormat (durationInSeconds) {
-		return formatDuration(durationInSeconds * 1000)
 	}
 
 	purifyHTML (original) {
