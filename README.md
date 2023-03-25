@@ -25,6 +25,9 @@ There's an experimental branch implementing preferences & watch history syncing,
 
 Production instances are updated infrequently, and do not include features that are introduced recently without extensive testing.
 
+Piped-Material's Production instance is also available via IPFS at IPNS key `k51qzi5uqu5dl0a18rats73hcc6d5dtvtz9pjbpgzj6hl66b9za5i5wn0yzgjv`.
+For example, it's available [via dweb.link](https://k51qzi5uqu5dl0a18rats73hcc6d5dtvtz9pjbpgzj6hl66b9za5i5wn0yzgjv.ipns.dweb.link) and [via cf-ipfs.com](https://k51qzi5uqu5dl0a18rats73hcc6d5dtvtz9pjbpgzj6hl66b9za5i5wn0yzgjv.ipns.cf-ipfs.com).
+
 ## Help
 
 Join the Libera Chat channel [#piped-material via IRC](ircs://irc.libera.chat:6697/#piped-material).
