@@ -50,6 +50,10 @@ export const i18n = new VueI18n({
 	messages
 })
 
+export const DEPRECATED_LANGUAGES_MAP = new Map([
+	['bn-Beng', 'bn-IN']
+])
+
 export const TIME_AGO_EXCEPTIONS = {
 	'bn-IN': 'bn',
 	'nb-NO': 'nb',
@@ -171,6 +175,9 @@ async function loadFormatting (locale) {
 }
 
 export async function changeLocale (lang) {
+	if (DEPRECATED_LANGUAGES_MAP.has(lang)) {
+		lang = DEPRECATED_LANGUAGES_MAP.get(lang)
+	}
 	await Promise.all([
 		loadLocale(lang),
 		syncStylesPerLanguage(lang),

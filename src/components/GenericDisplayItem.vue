@@ -14,7 +14,7 @@
         </router-link>
         <span v-else-if="item.uploaderName">{{ item.uploaderName }}<br /></span>
         <span v-if="isNumber(item.videos)">
-            {{ $tc('counts.videos', item.videos, { formatted: $store.getters['i18n/fmtFullNumber'](item.videos) }) }}
+            {{ $tc('counts.videos', item.videos, { n: $store.getters['i18n/fmtFullNumber'](item.videos) }) }}
         </span>
       </v-card-text>
     </v-card>
