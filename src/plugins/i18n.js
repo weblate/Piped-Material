@@ -31,7 +31,7 @@ export const SUPPORTED_LANGUAGES = [
 	'nb-NO',
 	'tr',
 	'pt-BR',
-	'bn-Beng',
+	'bn-IN',
 	'ar',
 	'ckb',
 	'hr',
@@ -49,8 +49,7 @@ export const i18n = new VueI18n({
 })
 
 export const TIME_AGO_EXCEPTIONS = {
-	'bn-Beng': 'bn',
-	'bn-Latn': 'bn',
+	'bn-IN': 'bn',
 	'nb-NO': 'nb',
 	'zh-Hans': 'zh',
 	ckb: 'ku',
@@ -69,6 +68,7 @@ export const COUNTRY_I18N_EXCEPTIONS = {
 
 // Similar switches for RTL can be found in the i18n store
 async function syncStylesPerLanguage (locale) {
+	document.documentElement.setAttribute('lang', locale)
 	switch (locale) {
 		// All the Inter-based languages
 		case 'az':
@@ -86,7 +86,6 @@ async function syncStylesPerLanguage (locale) {
 		case 'ru':
 		case 'hr':
 		case 'nb-NO':
-		case 'bn-Latn':
 		case 'nl':
 		case 'sr':
 		case 'bs':
@@ -97,7 +96,7 @@ async function syncStylesPerLanguage (locale) {
 			document.body.classList.add('default-font')
 			break
 		// Bengali script
-		case 'bn-Beng':
+		case 'bn-IN':
 			await import('@fontsource/baloo-da-2/bengali.css')
 			document.body.classList.remove(...document.body.classList)
 			document.body.classList.add('bengali')
@@ -149,7 +148,7 @@ export async function loadLocale (locale) {
 }
 
 async function loadFormatting (locale) {
-	const tal = TIME_AGO_EXCEPTIONS[locale] || locale
+	const tal = TIME_AGO_EXCEPTIONS[locale] ?? locale
 	const data = await import(/* webpackChunkName: "timeago-[request]" */ `javascript-time-ago/locale/${tal}.json`)
 	TimeAgo.addLocale(data)
 	const timeAgo = new TimeAgo(tal, {
