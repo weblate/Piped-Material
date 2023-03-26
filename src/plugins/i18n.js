@@ -5,8 +5,10 @@ import * as LocaleMatcher from '@formatjs/intl-localematcher'
 
 import store from '@/store'
 import ENTranslations from '@/translations/en.json'
+import ENTimeAgo from 'javascript-time-ago/locale/en.json'
 
 Vue.use(VueI18n)
+TimeAgo.addLocale(ENTimeAgo)
 
 const messages = {
 	en: ENTranslations
@@ -54,6 +56,10 @@ export const TIME_AGO_EXCEPTIONS = {
 	'zh-Hans': 'zh',
 	ckb: 'ku',
 	'pt-BR': 'pt'
+}
+
+const TIME_AGO_LOADED = {
+	en: true
 }
 
 export const COUNTRY_I18N_EXCEPTIONS = {
@@ -149,8 +155,11 @@ export async function loadLocale (locale) {
 
 async function loadFormatting (locale) {
 	const tal = TIME_AGO_EXCEPTIONS[locale] ?? locale
-	const data = await import(/* webpackChunkName: "timeago-[request]" */ `javascript-time-ago/locale/${tal}.json`)
-	TimeAgo.addLocale(data)
+	if (!TIME_AGO_LOADED[tal]) {
+		const data = await import(/* webpackChunkName: "timeago-[request]" */ `javascript-time-ago/locale/${tal}.json`)
+		TimeAgo.addLocale(data)
+		TIME_AGO_LOADED[tal] = true
+	}
 	const timeAgo = new TimeAgo(tal, {
 		polyfill: false
 	})
