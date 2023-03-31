@@ -33,6 +33,7 @@ export const SUPPORTED_LANGUAGES = [
 	'nb-NO',
 	'tr',
 	'pt-BR',
+	'bn',
 	'bn-IN',
 	'ar',
 	'ckb',
@@ -67,8 +68,7 @@ const TIME_AGO_LOADED = {
 }
 
 export const COUNTRY_I18N_EXCEPTIONS = {
-	'bn-Beng': 'bn',
-	'bn-Latn': 'bn',
+	'bn-IN': 'bn',
 	ckb: 'ku',
 	'nb-NO': 'nb',
 	'zh-Hant': 'zh',
@@ -106,6 +106,7 @@ async function syncStylesPerLanguage (locale) {
 			document.body.classList.add('default-font')
 			break
 		// Bengali script
+		case 'bn':
 		case 'bn-IN':
 			await import('@fontsource/baloo-da-2/bengali.css')
 			document.body.classList.remove(...document.body.classList)
