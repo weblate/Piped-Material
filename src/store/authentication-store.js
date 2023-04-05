@@ -61,15 +61,27 @@ const AuthenticationStore = {
 
 		async loginOrRegister ({ commit, rootGetters }, { path, username, password }) {
 			const apiURL = rootGetters['prefs/apiUrl']
-			const { data: resp } = await axios({
-				method: 'POST',
-				baseURL: apiURL,
-				url: '/' + path,
-				data: {
-					username,
-					password
+			let resp
+			try {
+				const data = await axios({
+					method: 'POST',
+					baseURL: apiURL,
+					url: '/' + path,
+					data: {
+						username,
+						password
+					}
+				})
+				resp = data.data
+			} catch (e) {
+				if (e.response.status === 400) {
+					const errorData = e.response.data
+					if ('error' in errorData) {
+						throw new AuthenticationError(errorData.error)
+					}
 				}
-			})
+				throw e
+			}
 
 			if ('error' in resp) {
 				throw new AuthenticationError(resp.error)
