@@ -50,13 +50,13 @@ export default new Vuetify({
 				bgTwo: '#ECEFF1'
 			},
 			dark: {
-				primary: '#5c6bc0',
-				secondary: '#5c9dc0',
-				accent: '#7f5cc0',
-				error: '#c05c6b',
-				warning: '#e8dd7b',
-				info: '#3949ab',
-				success: '#b15cc0',
+				primary: '#9aa5ce',
+				secondary: '#7aa2f7',
+				accent: '#7dcfff',
+				error: '#f7768e',
+				warning: '#ff9e64',
+				info: '#b4f9f8',
+				success: '#9ece6a',
 
 				bgOne: '#212121',
 				bgTwo: '#424242'
