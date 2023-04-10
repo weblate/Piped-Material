@@ -63,7 +63,8 @@
         "with_timestamps": "With Timestamps",
         "without_timestamps": "Without Timestamps",
         "via_pm": "Via Piped Material",
-        "via_yt": "Via YouTube"
+        "via_yt": "Via YouTube",
+        "share_system": "Share via system dialog"
     },
     "auth_dialog": {
         "title": "Authentication",

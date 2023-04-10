@@ -7,16 +7,26 @@
                 <v-col cols="4">
                     {{ $t('video_sharing_panel.via_pm')}}
                 </v-col>
-                <v-col cols="8">
+                <v-col :cols="columnsForTxt">
                     <v-text-field readonly dense :value="PMURL.withTimestamps" />
+                </v-col>
+                <v-col cols="2" v-if="isShareable" @click="systemShare(PMURL.withTimestamps)">
+                    <v-btn icon class="ml-2 mb-2" :alt="$t('video_sharing_panel.share_system')" >
+                        <v-icon>{{ mdiShareVariantOutline }}</v-icon>
+                    </v-btn>
                 </v-col>
             </v-row>
             <v-row align="center" no-gutters>
                 <v-col cols="4">
                     {{ $t('video_sharing_panel.via_yt')}}
                 </v-col>
-                <v-col cols="8">
+                <v-col :cols="columnsForTxt">
                     <v-text-field readonly dense :value="youtubeURL.withTimestamps" />
+                </v-col>
+                <v-col cols="2" v-if="isShareable" @click="systemShare(youtubeURL.withTimestamps)">
+                    <v-btn icon class="ml-2 mb-2" :alt="$t('video_sharing_panel.share_system')" >
+                        <v-icon>{{ mdiShareVariantOutline }}</v-icon>
+                    </v-btn>
                 </v-col>
             </v-row>
             <v-divider class="my-1" />
@@ -25,16 +35,26 @@
                 <v-col cols="4">
                     {{ $t('video_sharing_panel.via_pm')}}
                 </v-col>
-                <v-col cols="8">
+                <v-col :cols="columnsForTxt">
                     <v-text-field readonly dense :value="PMURL.base" />
+                </v-col>
+                <v-col cols="2" v-if="isShareable" @click="systemShare(PMURL.base)">
+                    <v-btn icon class="ml-2 mb-2" :alt="$t('video_sharing_panel.share_system')" >
+                        <v-icon>{{ mdiShareVariantOutline }}</v-icon>
+                    </v-btn>
                 </v-col>
             </v-row>
             <v-row align="center" no-gutters>
                 <v-col cols="4">
                     {{ $t('video_sharing_panel.via_yt')}}
                 </v-col>
-                <v-col cols="8">
+                <v-col :cols="columnsForTxt">
                     <v-text-field readonly dense :value="youtubeURL.base" />
+                </v-col>
+                <v-col cols="2" v-if="isShareable" @click="systemShare(youtubeURL.base)">
+                    <v-btn icon class="ml-2 mb-2" :alt="$t('video_sharing_panel.share_system')" >
+                        <v-icon>{{ mdiShareVariantOutline }}</v-icon>
+                    </v-btn>
                 </v-col>
             </v-row>
         </v-card-text>
@@ -42,10 +62,23 @@
 </template>
 
 <script>
+import { mdiShareVariantOutline } from '@mdi/js'
+
 export default {
 	name: 'VideoSharingPanel',
 	props: ['currentTime', 'videoId'],
+	data: () => ({
+		mdiShareVariantOutline
+	}),
 	computed: {
+		isShareable () {
+			return navigator.canShare ? navigator.canShare({ url: this.youtubeURL }) : false
+		},
+
+		columnsForTxt () {
+			return this.isShareable ? 6 : 8
+		},
+
 		currentTimeR () {
 			return Math.round(this.currentTime)
 		},
@@ -72,6 +105,11 @@ export default {
 				base: baseHref,
 				withTimestamps: base.href
 			}
+		}
+	},
+	methods: {
+		systemShare (url) {
+			return navigator.share({ url })
 		}
 	}
 }

@@ -13,7 +13,7 @@
             @timeupdate="onTimeUpdate"
         />
 
-        <v-dialog max-width="720" v-model="sharingPanelOpen">
+        <v-dialog max-width="960" v-model="sharingPanelOpen">
             <VideoSharingPanel @input="sharingPanelOpen = $event" :current-time="currentTime" :video-id="videoId" />
         </v-dialog>
         <VideoPlaylistOperationsA
