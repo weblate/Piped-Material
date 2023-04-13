@@ -47,7 +47,8 @@ export default new Vuetify({
 				success: '#efc3d2',
 
 				bgOne: '#FAFAFA',
-				bgTwo: '#ECEFF1'
+				bgTwo: '#ECEFF1',
+				appBarBG: '#efcac3'
 			},
 			dark: {
 				primary: '#9aa5ce',
@@ -59,7 +60,8 @@ export default new Vuetify({
 				success: '#9ece6a',
 
 				bgOne: '#212121',
-				bgTwo: '#424242'
+				bgTwo: '#424242',
+				appBarBG: '#24283b'
 			}
 		}
 	}
