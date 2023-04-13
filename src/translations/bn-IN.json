@@ -43,7 +43,8 @@
         "with_timestamps": "বর্তমান সময় সমেত।",
         "without_timestamps": "বর্তমান সময় ছারা।",
         "via_pm": "Piped Materialএর দ্বারা –",
-        "via_yt": "YouTubeএর দ্বারা –"
+        "via_yt": "YouTubeএর দ্বারা –",
+        "share_system": "আপনার computer দ্বারা।"
     },
     "auth_dialog": {
         "title": "আপনার নথি",
