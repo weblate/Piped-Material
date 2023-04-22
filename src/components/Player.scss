@@ -17,3 +17,11 @@
 		font-style: normal;
 	}
 }
+
+.pm-shaka-preview {
+    position: absolute;
+    z-index: 2000;
+    bottom: 0;
+    margin-bottom: 4.5%;
+    border-radius: 0.3rem;
+}

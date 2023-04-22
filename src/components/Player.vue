@@ -4,6 +4,7 @@
     style="width: 100%; height: calc(100vh - 48px); background: #000"
     ref="container"
   >
+    <canvas height="130" width="230" ref="preview" class="pm-shaka-preview" />
     <video
       data-shaka-player
       style="min-width: 100%;"
@@ -15,6 +16,7 @@
 </template>
 
 <script>
+import QuickLRU from 'quick-lru'
 import shaka from 'shaka-player/dist/shaka-player.ui.js'
 import 'shaka-player/dist/controls.css'
 import * as LocaleMatcher from '@formatjs/intl-localematcher'
@@ -33,6 +35,8 @@ if (!window.muxjs) {
 		window.muxjs = m
 	})
 }
+
+const ImageLRU = new QuickLRU({ maxSize: 8 })
 
 export default {
 	props: {
@@ -80,8 +84,91 @@ export default {
 			this.$refs.videoEl.currentTime = timeInSeconds
 		},
 
+		// Most of the below ‘Storyboard’ code is from Bnyro's PR 2559 in Piped, some minor algorithmic improvements have been added
+		// The ‘Storyboard’ setup – Start
+		setupSeekbarPreview () {
+			if (!this.video.previewFrames) return
+			const seekBar = document.querySelector('.shaka-seek-bar-container')
+			// load the thumbnail preview when the user moves over the seekbar
+			seekBar.addEventListener('mousemove', e => {
+				const position = (this.video.duration * e.clientX) / seekBar.clientWidth
+				this.showSeekbarPreview(position * 1000)
+			})
+			// hide the preview when the user stops hovering the seekbar
+			seekBar.addEventListener('mouseout', () => {
+				this.$refs.preview.style.display = 'none'
+			})
+		},
+
+		async showSeekbarPreview (position) {
+			const frame = this.getFrame(position)
+			const originalImage = await this.getOrLoadImage(frame.url)
+			const seekBar = document.querySelector('.shaka-seek-bar-container')
+			const canvas = this.$refs.preview
+			const ctx = canvas.getContext('2d')
+
+			// get the new sizes for the image to be drawn into the canvas
+			const originalWidth = originalImage.naturalWidth
+			const originalHeight = originalImage.naturalHeight
+			const offsetX = originalWidth * (frame.positionX / frame.framesPerPageX)
+			const offsetY = originalHeight * (frame.positionY / frame.framesPerPageY)
+			const newWidth = originalWidth / frame.framesPerPageX
+			const newHeight = originalHeight / frame.framesPerPageY
+
+			// draw the thumbnail preview into the canvas by cropping only the relevant part
+			ctx.drawImage(originalImage, offsetX, offsetY, newWidth, newHeight, 0, 0, canvas.width, canvas.height)
+
+			// calculate the thumbnail preview offset and display it
+			const centerOffset = position / this.video.duration / 10
+			const left = centerOffset - (canvas.width / seekBar.clientWidth / 1.3) * 100
+			canvas.style.left = `max(2%, min(${left}%, 90%))`
+			canvas.style.display = 'block'
+		},
+
+		// ineffective algorithm to find the thumbnail corresponding to the currently hovered position in the video
+		getFrame (position) {
+			let startPosition = 0
+			const framePage = this.video.previewFrames.at(-1)
+			for (let i = 0; i < framePage.urls.length; i++) {
+				for (let positionY = 0; positionY < framePage.framesPerPageY; positionY++) {
+					for (let positionX = 0; positionX < framePage.framesPerPageX; positionX++) {
+						const endPosition = startPosition + framePage.durationPerFrame
+						if (position >= startPosition && position <= endPosition) {
+							return {
+								url: framePage.urls[i],
+								positionX: positionX,
+								positionY: positionY,
+								framesPerPageX: framePage.framesPerPageX,
+								framesPerPageY: framePage.framesPerPageY
+							}
+						}
+						startPosition = endPosition
+					}
+				}
+			}
+			return null
+		},
+		// creates a new image from an URL
+		async loadImage (url) {
+			const i = new Image()
+			i.src = url
+			await i.decode()
+			return i
+		},
+
+		// The ‘Storyboard’ setup – End
+
+		async getOrLoadImage (url) {
+			let img = ImageLRU.get(url)
+			if (img == null) {
+				img = await this.loadImage(url)
+				ImageLRU.set(url, img)
+			}
+			return img
+		},
+
 		async loadVideo () {
-			console.log('PIPED | LOADING VIDEO')
+			console.log('PM | LOADING VIDEO')
 			const component = this
 			const videoEl = this.$refs.videoEl
 
@@ -243,6 +330,7 @@ export default {
 
 			const player = this.$ui.getControls().getPlayer()
 
+			this.setupSeekbarPreview()
 			this.$player = player
 
 			this.$player.configure({
