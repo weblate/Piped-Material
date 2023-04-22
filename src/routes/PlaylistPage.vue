@@ -13,13 +13,13 @@
                         <router-link v-if="playlist.uploaderUrl" :to="playlist.uploaderUrl" custom
                                      v-slot="{ navigate }">
                             <div style="justify-items: center; align-items: center; vertical-align: center; display: flex; cursor: pointer" @click="navigate" @keypress.enter="navigate" role="link">
-                                <v-img :src="playlist.uploaderAvatar" height="48" width="48" class="rounded-circle" />
+                                <img :src="playlist.uploaderAvatar" height="48" width="48" class="rounded-circle" />
                                 <div class="text-h5 ml-4">
                                     {{ playlist.uploader }}
                                 </div>
                             </div>
                         </router-link>
-                        <h5 class="text-h5 ml-16">{{ $tc('counts.videos', playlist.videos) }}</h5>
+                        <h5 class="text-h5 ml-16">{{ $tc('counts.videos', playlist.videos, { n: $store.getters['i18n/fmtFullNumber'](playlist.videos) }) }}</h5>
                     </v-card-text>
                     <v-card-actions>
                         <v-btn icon x-large link :href="getRssUrl">
