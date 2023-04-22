@@ -50,6 +50,7 @@ export default {
 		return {
 			$player: null,
 			$ui: null,
+			onTimeBar: false,
 			access: []
 		}
 	},
@@ -91,11 +92,13 @@ export default {
 			const seekBar = document.querySelector('.shaka-seek-bar-container')
 			// load the thumbnail preview when the user moves over the seekbar
 			seekBar.addEventListener('mousemove', e => {
+				this.onTimeBar = true
 				const position = (this.video.duration * e.clientX) / seekBar.clientWidth
 				this.showSeekbarPreview(position * 1000)
 			})
 			// hide the preview when the user stops hovering the seekbar
 			seekBar.addEventListener('mouseout', () => {
+				this.onTimeBar = false
 				this.$refs.preview.style.display = 'none'
 			})
 		},
@@ -119,9 +122,16 @@ export default {
 			ctx.drawImage(originalImage, offsetX, offsetY, newWidth, newHeight, 0, 0, canvas.width, canvas.height)
 
 			// calculate the thumbnail preview offset and display it
+			const seekbarPadding = 2 // percentage of seekbar padding
 			const centerOffset = position / this.video.duration / 10
-			const left = centerOffset - (canvas.width / seekBar.clientWidth / 1.3) * 100
-			canvas.style.left = `max(2%, min(${left}%, 90%))`
+			const left = centerOffset - ((0.5 * canvas.width) / seekBar.clientWidth) * 100
+			const maxLeft = ((seekBar.clientWidth - canvas.clientWidth) / seekBar.clientWidth) * 100 - seekbarPadding
+			canvas.style.left = `max(${seekbarPadding}%, min(${left}%, ${maxLeft}%))`
+
+			// If the user has navigated out of the time-bar by now (since the above operations are fairly expensive, exit)
+			if (this.onTimeBar === false) {
+				return
+			}
 			canvas.style.display = 'block'
 		},
 
