@@ -32,14 +32,14 @@
         "watchedAgo": "{t} দেখেছিলেন এই videoটি {p} অব্দি"
     },
     "channel_sharing_panel": {
-        "title": "এই channelটি অন্নদের দেখানোর জন্যে এই URLগুলি ব্যবহার করতে পারেন আপনি।",
-        "share": "অন্নদের এই channelটি দেখাতে চান?",
+        "title": "এই channelটি অন্যদের দেখানোর জন্যে এই URLগুলি ব্যবহার করতে পারেন আপনি।",
+        "share": "অন্যদের এই channelটি দেখাতে চান?",
         "via_pm": "Piped Materialএর দ্বারা –",
         "via_yt": "YouTubeএর দ্বারা –"
     },
     "video_sharing_panel": {
-        "title": "এই videoটি অন্নদের দেখানর জন্যে এই URL গুলি ব্যবহার করতে পারেন আপনি।",
-        "share": "অন্নদের এটা দেখাতে চান?",
+        "title": "এই videoটি অন্যদের দেখানর জন্যে এই URL গুলি ব্যবহার করতে পারেন আপনি।",
+        "share": "অন্যদের এটা দেখাতে চান?",
         "with_timestamps": "বর্তমান সময় সমেত।",
         "without_timestamps": "বর্তমান সময় ছারা।",
         "via_pm": "Piped Materialএর দ্বারা –",
@@ -94,8 +94,8 @@
         "delAccountMessage": "আপনি কি আপনার account (নথি) কে মুছে ফেলতে চান?",
         "logOutFromAllDevices": "সব যন্ত্র থেকে কি আপনি প্রস্থান করতে চান?",
         "confirmPWToDelAcc": "আপনার account মোছার জন্যে আপনার password টা আরেকবার দিন",
-        "related_videos": "অন্ন সম্পর্কিত video",
-        "related_comments": "অন্নদের মন্তব্য",
+        "related_videos": "অন্য সম্পর্কিত video",
+        "related_comments": "অন্যদের মন্তব্য",
         "autoplay_next_video": "এই videoটি শেষ হয়ে গেলে কি আপনি প্রথম সম্পর্কিত videoতে চলে যেতে চান?",
         "loop_this_video": "এই videoটি শেষ হয়ে গেলে, videoটি কে আবার সুরু থেকে চালাব? (loop করব?)",
         "unauthenticated_rss": "এই channelটির RSS বার্তা URL (আপনার নথির সঙ্গে অসম্পর্কিত)"
@@ -116,7 +116,7 @@
         "homepageButton": "আপনি কী গোড়া তে ফিরে যাওয়ার জন্য আরেকটা বোতাম চান?",
         "instance": "আমাদের প্রতিনিধি যে ইউটিউব এর সঙ্গে সব যোগাযোগ এর নিয়ন্ত্রণ আর দেখাশোনা করবে",
         "clickbaitThumbnailAvoidance": "videoএর যে thumbnail আছে সেটা কি একতা স্বয়ংক্রিয়ভাবে বানানো thumbnail দিয়ে প্রতিস্থাপন করে দেব?",
-        "showRelatedVideos": "আপনি কি videoর সঙ্গে অন্ন সম্পর্কিত বা প্রস্তাবিত video দেখতে চান?",
+        "showRelatedVideos": "আপনি কি videoর সঙ্গে অন্য সম্পর্কিত বা প্রস্তাবিত video দেখতে চান?",
         "showMarkers": "আপনি কি বিজ্ঞাপনের (ও অন্য বিভ্রান্তিকর জিনিসের) চিহ্নিতকারী দেখতে চান?",
         "bufferGoal": "কত সেকেন্ড এর data এনে রাখব যাতে আপানাকে অপেক্ষা না করতে হয়?",
         "disableCommentsByDefault": "মন্তব্য দেখানোর জন্য আপনার অনুমতি কি চাওয়া উচিত?",
