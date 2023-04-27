@@ -11,7 +11,7 @@ export default {
 			this.$router.replace('/')
 			return
 		}
-		this.$router.replace('/c/@' + channelId)
+		this.$router.replace('/@/' + channelId)
 	}
 }
 </script>

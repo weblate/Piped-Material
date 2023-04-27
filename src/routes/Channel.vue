@@ -155,7 +155,7 @@ export default {
 				this.error = null
 			} catch (e) {
 				if (e.isAxiosError) {
-					this.error = e.response.data
+					this.error = e.response.data != null ? e.response.data : e.toString()
 				} else {
 					throw e
 				}

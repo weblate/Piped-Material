@@ -54,7 +54,7 @@ const routes = [
 		component: ClipRedir
 	},
 	{
-		path: '/:path(channel|user|c)/:channelId/:videos?',
+		path: '/:path(channel|user|c|@)/:channelId/:videos?',
 		name: 'Channel',
 		component: () => import('@/routes/Channel')
 	},
