@@ -35,7 +35,7 @@
     "quick-lru": "^6.1.1",
     "register-service-worker": "^1.7.2",
     "sass-loader": "^10",
-    "shaka-player": "https://f003.backblazeb2.com/file/Bronze8113/shaka-v4.3.4.tar",
+    "shaka-player": "https://bafybeiaj3xeyseqijdl6af3wryijgahi4oqsnsogyqlboqgjuecigr7ucu.ipfs.cf-ipfs.com/",
     "vue": "^2.7.14",
     "vue-i18n": "^8.28.2",
     "vue-json-viewer": "^2.2.22",

@@ -6327,9 +6327,9 @@ setprototypeof@1.2.0:
   resolved "https://registry.yarnpkg.com/setprototypeof/-/setprototypeof-1.2.0.tgz#66c9a24a73f9fc28cbe66b09fed3d33dcaf1b424"
   integrity sha512-E5LDX7Wrp85Kil5bhZv46j8jOeboKq5JMmYM3gVGdGH8xFpPWXUMsNrlODCrkoxMEeNi/XZIwuRvY4XNwYMJpw==
 
-"shaka-player@https://f003.backblazeb2.com/file/Bronze8113/shaka-v4.3.4.tar":
-  version "4.3.4"
-  resolved "https://f003.backblazeb2.com/file/Bronze8113/shaka-v4.3.4.tar#a23a211ac79995bef1fe2b2c5726610276822181"
+"shaka-player@https://bafybeiaj3xeyseqijdl6af3wryijgahi4oqsnsogyqlboqgjuecigr7ucu.ipfs.cf-ipfs.com/":
+  version "4.3.6"
+  resolved "https://bafybeiaj3xeyseqijdl6af3wryijgahi4oqsnsogyqlboqgjuecigr7ucu.ipfs.cf-ipfs.com/#dc3ebb8df27eca50d54f0d2ac4f1866d9e882f59"
   dependencies:
     eme-encryption-scheme-polyfill "^2.1.1"
 
