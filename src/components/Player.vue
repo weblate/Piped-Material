@@ -4,7 +4,7 @@
     style="width: 100%; height: calc(100vh - 48px); background: #000"
     ref="container"
   >
-    <canvas height="130" width="230" ref="preview" class="pm-shaka-preview" />
+    <canvas ref="preview" class="pm-shaka-preview rounded" />
     <video
       data-shaka-player
       style="min-width: 100%;"
@@ -85,7 +85,7 @@ export default {
 			this.$refs.videoEl.currentTime = timeInSeconds
 		},
 
-		// Most of the below ‘Storyboard’ code is from Bnyro's PR 2559 in Piped, some minor algorithmic improvements have been added
+		// Most of the below ‘Storyboard’ code is from PR 2559 and PR 2355 in Piped, some minor algorithmic and seekbar positioning improvements have been added
 		// The ‘Storyboard’ setup – Start
 		setupSeekbarPreview () {
 			if (!this.video.previewFrames) return
@@ -94,7 +94,7 @@ export default {
 			seekBar.addEventListener('mousemove', e => {
 				this.onTimeBar = true
 				const position = (this.video.duration * e.clientX) / seekBar.clientWidth
-				this.showSeekbarPreview(position * 1000)
+				this.showSeekbarPreview(position * 1000, e.clientX)
 			})
 			// hide the preview when the user stops hovering the seekbar
 			seekBar.addEventListener('mouseout', () => {
@@ -103,7 +103,7 @@ export default {
 			})
 		},
 
-		async showSeekbarPreview (position) {
+		async showSeekbarPreview (position, psx) {
 			const frame = this.getFrame(position)
 			const originalImage = await this.getOrLoadImage(frame.url)
 			const seekBar = document.querySelector('.shaka-seek-bar-container')
@@ -113,20 +113,22 @@ export default {
 			// get the new sizes for the image to be drawn into the canvas
 			const originalWidth = originalImage.naturalWidth
 			const originalHeight = originalImage.naturalHeight
-			const offsetX = originalWidth * (frame.positionX / frame.framesPerPageX)
-			const offsetY = originalHeight * (frame.positionY / frame.framesPerPageY)
-			const newWidth = originalWidth / frame.framesPerPageX
-			const newHeight = originalHeight / frame.framesPerPageY
+			// the preview image can have less frames than server responded so we calculate them ourselves
+			const imageFramesPerPageX = originalImage.naturalWidth / frame.frameWidth
+			const imageFramesPerPageY = originalImage.naturalHeight / frame.frameHeight
+			const offsetX = originalWidth * (frame.positionX / imageFramesPerPageX)
+			const offsetY = originalHeight * (frame.positionY / imageFramesPerPageY)
 
 			// draw the thumbnail preview into the canvas by cropping only the relevant part
-			ctx.drawImage(originalImage, offsetX, offsetY, newWidth, newHeight, 0, 0, canvas.width, canvas.height)
+			canvas.width = frame.frameWidth > 100 ? frame.frameWidth : frame.frameWidth * 2
+			canvas.height = frame.frameWidth > 100 ? frame.frameHeight : frame.frameHeight * 2
+			ctx.drawImage(originalImage, offsetX, offsetY, frame.frameWidth, frame.frameHeight, 0, 0, canvas.width, canvas.height)
 
-			// calculate the thumbnail preview offset and display it
-			const seekbarPadding = 2 // percentage of seekbar padding
-			const centerOffset = position / this.video.duration / 10
-			const left = centerOffset - ((0.5 * canvas.width) / seekBar.clientWidth) * 100
-			const maxLeft = ((seekBar.clientWidth - canvas.clientWidth) / seekBar.clientWidth) * 100 - seekbarPadding
-			canvas.style.left = `max(${seekbarPadding}%, min(${left}%, ${maxLeft}%))`
+			const seekBarRect = seekBar.getBoundingClientRect()
+			const left = psx - (canvas.width / 2)
+			const seekbarRight = seekBarRect.right - canvas.width
+			const adjusted = left < seekBarRect.left ? seekBarRect.left : (left > seekbarRight ? seekbarRight : left)
+			canvas.style.left = adjusted.toString() + 'px'
 
 			// If the user has navigated out of the time-bar by now (since the above operations are fairly expensive, exit)
 			if (this.onTimeBar === false) {
@@ -148,8 +150,8 @@ export default {
 								url: framePage.urls[i],
 								positionX: positionX,
 								positionY: positionY,
-								framesPerPageX: framePage.framesPerPageX,
-								framesPerPageY: framePage.framesPerPageY
+								frameWidth: framePage.frameWidth,
+								frameHeight: framePage.frameHeight
 							}
 						}
 						startPosition = endPosition
