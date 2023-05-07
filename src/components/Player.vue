@@ -114,8 +114,8 @@ export default {
 			const originalWidth = originalImage.naturalWidth
 			const originalHeight = originalImage.naturalHeight
 			// the preview image can have less frames than server responded so we calculate them ourselves
-			const imageFramesPerPageX = originalImage.naturalWidth / frame.frameWidth
-			const imageFramesPerPageY = originalImage.naturalHeight / frame.frameHeight
+			const imageFramesPerPageX = originalWidth / frame.frameWidth
+			const imageFramesPerPageY = originalHeight / frame.frameHeight
 			const offsetX = originalWidth * (frame.positionX / imageFramesPerPageX)
 			const offsetY = originalHeight * (frame.positionY / imageFramesPerPageY)
 
