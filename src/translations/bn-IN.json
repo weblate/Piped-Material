@@ -98,7 +98,8 @@
         "related_comments": "অন্যদের মন্তব্য",
         "autoplay_next_video": "এই videoটি শেষ হয়ে গেলে কি আপনি প্রথম সম্পর্কিত videoতে চলে যেতে চান?",
         "loop_this_video": "এই videoটি শেষ হয়ে গেলে, videoটি কে আবার সুরু থেকে চালাব? (loop করব?)",
-        "unauthenticated_rss": "এই channelটির RSS বার্তা URL (আপনার নথির সঙ্গে অসম্পর্কিত)"
+        "unauthenticated_rss": "এই channelটির RSS বার্তা URL (আপনার নথির সঙ্গে অসম্পর্কিত)",
+        "enable_dark_mode": "কৃষ্ণাভ রূপে দেখবেন?"
     },
     "preferences": {
         "colorScheme": "কি রঙে আপনি দেখতে চান",
