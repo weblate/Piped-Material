@@ -203,6 +203,11 @@ export default {
 					default: true
 				},
 				{
+					id: 'disableDuplicateHistoryEntries',
+					type: 'bool',
+					default: false
+				},
+				{
 					id: 'selectedSkip',
 					type: 'select',
 					label: 'Selected Segments to Skip',

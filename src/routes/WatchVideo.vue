@@ -148,7 +148,7 @@
 import { debounce } from 'lodash-es'
 import { mdiThumbUp, mdiShareVariant, mdiLinkPlus } from '@mdi/js'
 
-import { addWatchedVideo, updateWatchedVideoProgress, findLastWatch } from '@/store/watched-videos-db'
+import { PMDB, addWatchedVideo, updateWatchedVideoProgress, findLastWatch } from '@/store/watched-videos-db'
 import { LibPiped } from '@/tools/libpiped'
 
 import Player from '@/components/Player.vue'
@@ -363,12 +363,6 @@ export default {
 		},
 
 		async getVideoData () {
-			try {
-				this.lastWatch = await findLastWatch(this.videoId)
-			} catch (e) {
-				console.error('Errored while finding last watched', e)
-			}
-
 			const video = await this.fetchVideo()
 			video.videoId = this.videoId
 			video.url = this.$route.fullPath
@@ -386,7 +380,25 @@ export default {
 					.replaceAll('https://www.youtube.com', '')
 					.replaceAll('\n', '<br>')
 			)
-			this.dbID = await addWatchedVideo(video)
+			try {
+				if (!this.$store.getters['prefs/getPreference']('disableDuplicateHistoryEntries', false)) {
+					this.dbID = await addWatchedVideo(video)
+					this.lastWatch = await findLastWatch(this.videoId)
+				} else {
+					const dbObj = await findLastWatch(this.videoId)
+					const ts = new Date()
+					await PMDB.watchedVideos.update(dbObj.id, {
+						timestamp: ts,
+						video: this.video
+					})
+					dbObj.timestamp = ts
+					dbObj.video = this.video
+					this.lastWatch = dbObj
+					this.dbID = dbObj.id
+				}
+			} catch (e) {
+				console.error('Errored while finding last watched', e)
+			}
 		},
 
 		onTimeUpdate: debounce(function onTimeUpdate (e) {

@@ -20,6 +20,7 @@ const PrefsStore = {
 			sponsorblock: true,
 			skipToLastPoint: true,
 			clickbaitThumbnailAvoidance: false,
+			disableDuplicateHistoryEntries: false,
 
 			disableCommentsByDefault: false,
 			showRelatedVideos: true,

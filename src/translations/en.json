@@ -141,6 +141,7 @@
         "disableCommentsByDefault": "Don't show comments by default",
         "showRelatedVideos": "Show Related Videos",
         "showMarkers": "Show SponsorBlock Markers",
+        "disableDuplicateHistoryEntries": "Disable creation of duplicate watch history entries",
         "quality_opts": {
             "auto": "Automatically determined",
             "144p": "144p",

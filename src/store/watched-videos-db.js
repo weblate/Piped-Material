@@ -24,7 +24,7 @@ export function updateWatchedVideoProgress (videoID, prog, dur) {
 }
 
 export async function findLastWatch (videoId) {
-	const v = await PMDB.watchedVideos.where('videoId').equals(videoId).reverse().sortBy('progressPcnt').limit(1)
+	const v = await PMDB.watchedVideos.where('videoId').equals(videoId).reverse().sortBy('progressPcnt')
 	return v[0]
 }
 
