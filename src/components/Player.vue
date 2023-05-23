@@ -4,7 +4,7 @@
     style="width: 100%; height: calc(100vh - 48px); background: #000"
     ref="container"
   >
-    <canvas ref="preview" class="pm-shaka-preview rounded" />
+    <canvas ref="preview" class="pm-shaka-preview rounded" style="display: none" />
     <video
       data-shaka-player
       style="min-width: 100%;"
