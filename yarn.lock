@@ -4868,9 +4868,9 @@ javascript-stringify@^2.0.1:
   resolved "https://registry.yarnpkg.com/javascript-stringify/-/javascript-stringify-2.1.0.tgz#27c76539be14d8bd128219a2d731b09337904e79"
   integrity sha512-JVAfqNPTvNq3sB/VHQJAFxN/sPgKnsKrCwyRt15zwNCdrMMJDdcEOdubuy+DuJYYdm0ox1J4uzEuYKkN+9yhVg==
 
-"javascript-time-ago@https://cf-ipfs.com/ipfs/Qma8j74yLZpemXNLVBKJVbwVmSnjde4UTQmjmq6pFBZY3V?filename=jta-2.5.9.tgz":
+"javascript-time-ago@https://cf-ipfs.com/ipfs/QmPfsnf4YYW63ddBUVXkT9BNQyuGKMnzyFVSV2dcx3dpz1?filename=jta-2.5.9.tgz":
   version "2.5.9"
-  resolved "https://cf-ipfs.com/ipfs/Qma8j74yLZpemXNLVBKJVbwVmSnjde4UTQmjmq6pFBZY3V?filename=jta-2.5.9.tgz#4f59eb43e3e76ac33ba24abca4ad8a5a49104261"
+  resolved "https://cf-ipfs.com/ipfs/QmPfsnf4YYW63ddBUVXkT9BNQyuGKMnzyFVSV2dcx3dpz1?filename=jta-2.5.9.tgz#ee531d77e6c8572248e14c2bf441e841391ecc90"
   dependencies:
     relative-time-format "^1.1.6"
 
