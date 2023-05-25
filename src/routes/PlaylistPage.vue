@@ -20,6 +20,8 @@
                             </div>
                         </router-link>
                         <h5 class="text-h5 ml-16">{{ $tc('counts.videos', playlist.videos, { n: $store.getters['i18n/fmtFullNumber'](playlist.videos) }) }}</h5>
+                        <br />
+                        <div v-html="renderedDescription" />
                     </v-card-text>
                     <v-card-actions>
                         <v-btn icon x-large link :href="getRssUrl">
@@ -67,6 +69,8 @@ import { mdiRssBox, mdiYoutube } from '@mdi/js'
 import ErrorHandler from '@/components/ErrorHandler.vue'
 import VideoItem from '@/components/Video/VideoItem.vue'
 
+import { LibPiped } from '@/tools/libpiped'
+
 export default {
 	data () {
 		return {
@@ -103,6 +107,9 @@ export default {
 		playlistID () {
 			return this.$route.query.list
 		},
+		renderedDescription () {
+			return LibPiped.purifyHTML(this.playlist.description ?? '')
+		},
 		youtubeURL () {
 			const url = new URL('https://youtube.com/playlist')
 			url.searchParams.set('list', this.playlistID)
@@ -118,8 +125,8 @@ export default {
 				path: '/playlists/' + this.playlistID
 			})
 		},
-		async getPlaylistData () {
-			this.fetchPlaylist()
+		getPlaylistData () {
+			return this.fetchPlaylist()
 				.then(data => (this.playlist = data))
 		},
 
