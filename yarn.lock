@@ -4868,11 +4868,11 @@ javascript-stringify@^2.0.1:
   resolved "https://registry.yarnpkg.com/javascript-stringify/-/javascript-stringify-2.1.0.tgz#27c76539be14d8bd128219a2d731b09337904e79"
   integrity sha512-JVAfqNPTvNq3sB/VHQJAFxN/sPgKnsKrCwyRt15zwNCdrMMJDdcEOdubuy+DuJYYdm0ox1J4uzEuYKkN+9yhVg==
 
-"javascript-time-ago@https://cf-ipfs.com/ipfs/QmSf7qn1E3GrBsriwrRCvJe9it45gPXGeyZ7N986ceoeAU?filename=jta.tar.gz":
-  version "2.5.4"
-  resolved "https://cf-ipfs.com/ipfs/QmSf7qn1E3GrBsriwrRCvJe9it45gPXGeyZ7N986ceoeAU?filename=jta.tar.gz#9d9f78298f93af907f552d19e33828be6a93f8a5"
+"javascript-time-ago@https://cf-ipfs.com/ipfs/Qma8j74yLZpemXNLVBKJVbwVmSnjde4UTQmjmq6pFBZY3V?filename=jta-2.5.9.tgz":
+  version "2.5.9"
+  resolved "https://cf-ipfs.com/ipfs/Qma8j74yLZpemXNLVBKJVbwVmSnjde4UTQmjmq6pFBZY3V?filename=jta-2.5.9.tgz#4f59eb43e3e76ac33ba24abca4ad8a5a49104261"
   dependencies:
-    relative-time-format "^1.1.4"
+    relative-time-format "^1.1.6"
 
 jest-worker@^26.2.1:
   version "26.6.2"
@@ -6479,7 +6479,7 @@ relateurl@^0.2.7:
   resolved "https://registry.yarnpkg.com/relateurl/-/relateurl-0.2.7.tgz#54dbf377e51440aca90a4cd274600d3ff2d888a9"
   integrity sha512-G08Dxvm4iDN3MLM0EsP62EDV9IuhXPR6blNz6Utcp7zyV3tr4HVNINt6MpaRWbxoOHT3Q7YN2P+jaHX8vUbgog==
 
-relative-time-format@^1.1.4:
+relative-time-format@^1.1.6:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/relative-time-format/-/relative-time-format-1.1.6.tgz#724a5fbc3794b8e0471b6b61419af2ce699eb9f1"
   integrity sha512-aCv3juQw4hT1/P/OrVltKWLlp15eW1GRcwP1XdxHrPdZE9MtgqFpegjnTjLhi2m2WI9MT/hQQtE+tjEWG1hgkQ==
