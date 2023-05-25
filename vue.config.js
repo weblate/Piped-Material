@@ -1,16 +1,9 @@
-const webpack = require('webpack')
+const NodePolyfillPlugin = require('node-polyfill-webpack-plugin')
 
 module.exports = {
 	configureWebpack: {
-		resolve: {
-			fallback: {
-				stream: require.resolve('stream-browserify')
-			}
-		},
 		plugins: [
-			new webpack.ProvidePlugin({
-				Buffer: ['buffer', 'Buffer']
-			})
+			new NodePolyfillPlugin()
 		]
 	},
 	transpileDependencies: [
