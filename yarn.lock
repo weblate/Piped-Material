@@ -2026,9 +2026,9 @@ ansi-styles@^4.0.0, ansi-styles@^4.1.0:
   dependencies:
     color-convert "^2.0.1"
 
-"antar-hinted@https://bafybeifmuaik6ozj65yoy443khijb6d5pqkmi4dwgykfzfvymtvc57mo6i.ipfs.cf-ipfs.com/?filename=hinted-antar-web.tar":
+"antar-hinted@https://cf-ipfs.com/ipfs/QmZxWPvQmFGZucKB2U1oChGpKYAAWdrbbSTj2RAQqL7gEd":
   version "0.0.0"
-  resolved "https://bafybeifmuaik6ozj65yoy443khijb6d5pqkmi4dwgykfzfvymtvc57mo6i.ipfs.cf-ipfs.com/?filename=hinted-antar-web.tar#817b3a0ed4504a6bdb079b66126e753c3005a855"
+  resolved "https://cf-ipfs.com/ipfs/QmZxWPvQmFGZucKB2U1oChGpKYAAWdrbbSTj2RAQqL7gEd#817b3a0ed4504a6bdb079b66126e753c3005a855"
 
 any-promise@^1.0.0:
   version "1.3.0"
@@ -3298,9 +3298,9 @@ escape-string-regexp@^4.0.0:
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-4.0.0.tgz#14ba83a5d373e3d311e5afca29cf5bfad965bf34"
   integrity sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==
 
-"eslint-config-mojee-vue@https://bafybeicmcey56ktfjkkfp2jayvbszdilqqg26t2ivmqnbfpwinpzerastq.ipfs.cf-ipfs.com/":
+"eslint-config-mojee-vue@https://cf-ipfs.com/ipfs/QmTTauFj8yy8brQQ6gghe2wYCVzkT3tensqLnWDy7oieno?filename=eslint-config-mojee-vue-0.0.2.tar.gz":
   version "0.0.0"
-  resolved "https://bafybeicmcey56ktfjkkfp2jayvbszdilqqg26t2ivmqnbfpwinpzerastq.ipfs.cf-ipfs.com/#96068faf9c2c2b743fcc2a14328aef4b55581a22"
+  resolved "https://cf-ipfs.com/ipfs/QmTTauFj8yy8brQQ6gghe2wYCVzkT3tensqLnWDy7oieno?filename=eslint-config-mojee-vue-0.0.2.tar.gz#96068faf9c2c2b743fcc2a14328aef4b55581a22"
 
 eslint-config-standard@^16.0.3:
   version "16.0.3"
@@ -4577,9 +4577,9 @@ javascript-stringify@^2.0.1:
   resolved "https://registry.yarnpkg.com/javascript-stringify/-/javascript-stringify-2.1.0.tgz#27c76539be14d8bd128219a2d731b09337904e79"
   integrity sha512-JVAfqNPTvNq3sB/VHQJAFxN/sPgKnsKrCwyRt15zwNCdrMMJDdcEOdubuy+DuJYYdm0ox1J4uzEuYKkN+9yhVg==
 
-"javascript-time-ago@https://bafybeicafhqxxnrmlt5fipy7zf46je4u6iwady7fiqrwcszhpk7ztno6pe.ipfs.cf-ipfs.com/?filename=jta.tar.gz":
+"javascript-time-ago@https://cf-ipfs.com/ipfs/QmSf7qn1E3GrBsriwrRCvJe9it45gPXGeyZ7N986ceoeAU?filename=jta.tar.gz":
   version "2.5.4"
-  resolved "https://bafybeicafhqxxnrmlt5fipy7zf46je4u6iwady7fiqrwcszhpk7ztno6pe.ipfs.cf-ipfs.com/?filename=jta.tar.gz#9d9f78298f93af907f552d19e33828be6a93f8a5"
+  resolved "https://cf-ipfs.com/ipfs/QmSf7qn1E3GrBsriwrRCvJe9it45gPXGeyZ7N986ceoeAU?filename=jta.tar.gz#9d9f78298f93af907f552d19e33828be6a93f8a5"
   dependencies:
     relative-time-format "^1.1.4"
 
@@ -5841,9 +5841,9 @@ pseudomap@^1.0.2:
   resolved "https://registry.yarnpkg.com/pseudomap/-/pseudomap-1.0.2.tgz#f052a28da70e618917ef0a8ac34c1ae5a68286b3"
   integrity sha512-b/YwNhb8lk1Zz2+bXXpS/LK9OisiZZ1SNsSLxN1x2OXVEhW2Ckr/7mWE5vrC1ZTiJlD9g19jWszTmJsB+oEpFQ==
 
-"psychic-tiny-keys@https://bafybeidtcftvyig2w34aodqfiqiige5zgwjntqtt6ofrqrydf3hydwgv4u.ipfs.cf-ipfs.com/?filename=psychic-tiny-keys-v0.0.1.tar.gz":
+"psychic-tiny-keys@https://cf-ipfs.com/ipfs/QmW5pzBfNdyUjcCpp6ZXMXVDf93pJDSAZwSEaMBAahNuTA?filename=psychic-tiny-keys-v0.0.1.tar.gz":
   version "0.0.0"
-  resolved "https://bafybeidtcftvyig2w34aodqfiqiige5zgwjntqtt6ofrqrydf3hydwgv4u.ipfs.cf-ipfs.com/?filename=psychic-tiny-keys-v0.0.1.tar.gz#53ded9a6f68e9425d8076058f401fda2412cf60c"
+  resolved "https://cf-ipfs.com/ipfs/QmW5pzBfNdyUjcCpp6ZXMXVDf93pJDSAZwSEaMBAahNuTA?filename=psychic-tiny-keys-v0.0.1.tar.gz#53ded9a6f68e9425d8076058f401fda2412cf60c"
   dependencies:
     tinykeys "^1.3.0"
 
@@ -6027,9 +6027,9 @@ relateurl@^0.2.7:
   integrity sha512-G08Dxvm4iDN3MLM0EsP62EDV9IuhXPR6blNz6Utcp7zyV3tr4HVNINt6MpaRWbxoOHT3Q7YN2P+jaHX8vUbgog==
 
 relative-time-format@^1.1.4:
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/relative-time-format/-/relative-time-format-1.1.4.tgz#50c308a482985333a13df119b1ff2763e3eb0685"
-  integrity sha512-WRWEDEZFTD/95oYMd58kzlYHI6QzexMpPkxvi4/P+NLdzli/tteNonmAa5jYLm8ehJVTGiM2siNg7i1Dkn/gDw==
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/relative-time-format/-/relative-time-format-1.1.6.tgz#724a5fbc3794b8e0471b6b61419af2ce699eb9f1"
+  integrity sha512-aCv3juQw4hT1/P/OrVltKWLlp15eW1GRcwP1XdxHrPdZE9MtgqFpegjnTjLhi2m2WI9MT/hQQtE+tjEWG1hgkQ==
 
 renderkid@^3.0.0:
   version "3.0.0"
@@ -6327,9 +6327,9 @@ setprototypeof@1.2.0:
   resolved "https://registry.yarnpkg.com/setprototypeof/-/setprototypeof-1.2.0.tgz#66c9a24a73f9fc28cbe66b09fed3d33dcaf1b424"
   integrity sha512-E5LDX7Wrp85Kil5bhZv46j8jOeboKq5JMmYM3gVGdGH8xFpPWXUMsNrlODCrkoxMEeNi/XZIwuRvY4XNwYMJpw==
 
-"shaka-player@https://bafybeiaj3xeyseqijdl6af3wryijgahi4oqsnsogyqlboqgjuecigr7ucu.ipfs.cf-ipfs.com/":
+"shaka-player@https://cf-ipfs.com/ipfs/QmP1AXcQiYrDAYNotXJweUBgd9Z2XtWxj7D7x3PkyV45M6?filename=shaka-v4.3.6.tar":
   version "4.3.6"
-  resolved "https://bafybeiaj3xeyseqijdl6af3wryijgahi4oqsnsogyqlboqgjuecigr7ucu.ipfs.cf-ipfs.com/#dc3ebb8df27eca50d54f0d2ac4f1866d9e882f59"
+  resolved "https://cf-ipfs.com/ipfs/QmP1AXcQiYrDAYNotXJweUBgd9Z2XtWxj7D7x3PkyV45M6?filename=shaka-v4.3.6.tar#dc3ebb8df27eca50d54f0d2ac4f1866d9e882f59"
   dependencies:
     eme-encryption-scheme-polyfill "^2.1.1"
 
