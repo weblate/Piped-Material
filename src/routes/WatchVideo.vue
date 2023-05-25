@@ -364,8 +364,10 @@ export default {
 
 		async getVideoData () {
 			const video = await this.fetchVideo()
+
 			video.videoId = this.videoId
 			video.url = this.$route.fullPath
+
 			this.video = video
 			this.loaded = true
 
@@ -385,9 +387,17 @@ export default {
 					this.dbID = await addWatchedVideo(video)
 					this.lastWatch = await findLastWatch(this.videoId)
 				} else {
-					const dbObj = await findLastWatch(this.videoId)
+					let dbObj = await findLastWatch(this.videoId)
+
+					if (dbObj == null) {
+						this.dbID = await addWatchedVideo(video)
+						dbObj = await findLastWatch(this.videoId)
+					} else {
+						this.dbID = dbObj.id
+					}
+
 					const ts = new Date()
-					await PMDB.watchedVideos.update(dbObj.id, {
+					await PMDB.watchedVideos.update(this.dbID, {
 						timestamp: ts,
 						video: this.video
 					})
