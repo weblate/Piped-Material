@@ -22,6 +22,7 @@ export const SUPPORTED_LANGUAGES = [
 	'el',
 	'es',
 	'id',
+	'it',
 	'zh-Hans',
 	'zh-Hant',
 	'cs',
@@ -101,6 +102,7 @@ async function syncStylesPerLanguage (locale) {
 		case 'bs':
 		case 'uk':
 		case 'ro':
+		case 'it':
 			// Don't need to import fonts because Inter supports Latin and Cyrillic and is always loaded
 			document.body.classList.remove(...document.body.classList)
 			document.body.classList.add('default-font')
