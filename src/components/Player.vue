@@ -186,10 +186,7 @@ export default {
 
 			videoEl.setAttribute('poster', this.video.thumbnailUrl)
 
-			if (this.initialSkip != null && Number.isFinite(this.initialSkip)) this.skipToTime(this.initialSkip)
-
 			const noPrevPlayer = !this.$player
-
 			const streams = []
 
 			streams.push(...this.video.audioStreams)
@@ -360,7 +357,8 @@ export default {
 			const qualityConds = quality > 0 && (this.video.audioStreams.length > 0 || this.video.livestream) && !this.audioOnly
 			if (qualityConds) this.$player.configure('abr.enabled', false)
 
-			player.load(uri, 0, mime).then(() => {
+			const startTime = this.initialSkip != null && Number.isFinite(this.initialSkip) ? this.initialSkip : 0
+			player.load(uri, startTime, mime).then(() => {
 				let bestFitLanguage
 				{
 					const langs = player.getAudioLanguages()

@@ -145,7 +145,7 @@
 </template>
 
 <script>
-import { debounce } from 'lodash-es'
+import { throttle } from 'lodash-es'
 import { mdiThumbUp, mdiShareVariant, mdiLinkPlus } from '@mdi/js'
 
 import { PMDB, addWatchedVideo, updateWatchedVideoProgress, findLastWatch } from '@/store/watched-videos-db'
@@ -411,12 +411,12 @@ export default {
 			}
 		},
 
-		onTimeUpdate: debounce(function onTimeUpdate (e) {
+		onTimeUpdate: throttle(function onTimeUpdate () {
 			if (this.dbID == null || !this.$refs.player) {
 				return
 			}
 			return updateWatchedVideoProgress(this.dbID, this.$refs.player.getCurrentTime(), this.video.duration)
-		}, 500)
+		}, 1000)
 	},
 	computed: {
 		isAutoplayEnabled () {
