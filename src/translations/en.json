@@ -119,7 +119,10 @@
         "related_comments": "Comments",
         "autoplay_next_video": "Proceed to the first related video once this video ends",
         "loop_this_video": "Loop this video",
-        "unauthenticated_rss": "RSS (unauthenticated)"
+        "unauthenticated_rss": "RSS (unauthenticated)",
+        "import_subscriptions": "Import Subscriptions",
+        "export_subscriptions": "Export Subscriptions",
+        "subscriptions_filename": "subs.pipedsubs.json"
     },
     "preferences": {
         "colorScheme": "Color Scheme",

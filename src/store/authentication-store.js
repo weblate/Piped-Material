@@ -40,12 +40,12 @@ const AuthenticationStore = {
 	},
 
 	getters: {
-		isCurrentlyAuthenticated (state, getters, rootState, rootGetters) {
+		isCurrentlyAuthenticated (state, _, _2, rootGetters) {
 			const s = state.authStateByInstance[rootGetters['prefs/apiUrl']]
 			return s ? (s.isAuthenticated === true) : false
 		},
 
-		authToken (state, getters, rootState, rootGetters) {
+		authToken (state, _, _2, rootGetters) {
 			const authState = state.authStateByInstance[rootGetters['prefs/apiUrl']] || {}
 			return authState.authToken
 		}
@@ -97,7 +97,6 @@ const AuthenticationStore = {
 		},
 
 		async makeRequest ({
-			commit,
 			state,
 			rootGetters
 		}, {

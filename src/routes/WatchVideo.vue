@@ -145,7 +145,7 @@
 </template>
 
 <script>
-import { throttle } from 'lodash-es'
+import throttle from 'lodash-es/throttle'
 import { mdiThumbUp, mdiShareVariant, mdiLinkPlus } from '@mdi/js'
 
 import { PMDB, addWatchedVideo, updateWatchedVideoProgress, findLastWatch } from '@/store/watched-videos-db'
