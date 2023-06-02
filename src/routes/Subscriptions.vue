@@ -36,8 +36,7 @@ export default {
 	data: () => ({
 		loaded: false,
 		data: null,
-		importDialogOpen: false,
-		importSubscriptions: []
+		importDialogOpen: false
 	}),
 	methods: {
 		async loadData () {
@@ -75,6 +74,7 @@ export default {
 		async importSubs () {
 			const file = await pickFile()
 			const data = await file.text()
+			const subs = []
 
 			// NewPipe
 			if (file.name?.endsWith('.pipedsubs.json') || data.indexOf('app_version') !== -1) {
@@ -84,7 +84,7 @@ export default {
 					.forEach(item => {
 						const url = item.url
 						const id = url.slice(-24)
-						this.importSubscriptions.push(id)
+						subs.push(id)
 					})
 			// Invidious
 			} else if (data.indexOf('opml') !== -1) {
@@ -93,24 +93,26 @@ export default {
 				xmlDoc.querySelectorAll('outline[xmlUrl]').forEach(item => {
 					const url = item.getAttribute('xmlUrl')
 					const id = url.slice(-24)
-					this.importSubscriptions.push(id)
+					subs.push(id)
 				})
 			// Invidious JSON
 			} else if (data.indexOf('thin_mode') !== -1) {
 				const json = JSON.parse(data)
-				this.importSubscriptions = json.subscriptions
+				for (const k of json.subscriptions) {
+					subs.push(k)
+				}
 			// FreeTube DB
 			} else if (data.indexOf('allChannels') !== -1) {
 				const json = JSON.parse(data)
 				json.subscriptions.forEach(item => {
-					this.importSubscriptions.push(item.id)
+					subs.push(item.id)
 				})
 			// Google Takeout JSON
 			} else if (data.indexOf('contentDetails') !== -1) {
 				const json = JSON.parse(data)
 				json.forEach(item => {
 					const id = item.snippet.resourceId.channelId
-					this.importSubscriptions.push(id)
+					subs.push(id)
 				})
 			// Google Takeout CSV
 			} else if (file.name.length >= 5 && file.name.slice(-4).toLowerCase() === '.csv') {
@@ -118,13 +120,13 @@ export default {
 				for (let i = 1; i < lines.length; i++) {
 					const line = lines[i]
 					const id = line.slice(0, line.indexOf(','))
-					if (id.length === 24) this.importSubscriptions.push(id)
+					if (id.length === 24) subs.push(id)
 				}
 			}
 			await this.$store.dispatch('auth/makeRequest', {
 				method: 'POST',
 				path: '/import',
-				data: this.importSubscriptions
+				data: subs
 			})
 		}
 	},
