@@ -368,20 +368,6 @@ export default {
 			video.videoId = this.videoId
 			video.url = this.$route.fullPath
 
-			this.video = video
-			this.loaded = true
-
-			if (this.video.error) {
-				return
-			}
-			this.channelId = this.video.uploaderUrl.split('/')[2]
-
-			this.video.description = LibPiped.purifyHTML(
-				this.video.description
-					.replaceAll('http://www.youtube.com', '')
-					.replaceAll('https://www.youtube.com', '')
-					.replaceAll('\n', '<br>')
-			)
 			try {
 				if (!this.$store.getters['prefs/getPreference']('disableDuplicateHistoryEntries', false)) {
 					this.dbID = await addWatchedVideo(video)
@@ -409,6 +395,21 @@ export default {
 			} catch (e) {
 				console.error('Errored while finding last watched', e)
 			}
+
+			this.video = video
+			this.loaded = true
+
+			if (this.video.error) {
+				return
+			}
+			this.channelId = this.video.uploaderUrl.split('/')[2]
+
+			this.video.description = LibPiped.purifyHTML(
+				this.video.description
+					.replaceAll('http://www.youtube.com', '')
+					.replaceAll('https://www.youtube.com', '')
+					.replaceAll('\n', '<br>')
+			)
 		},
 
 		onTimeUpdate: throttle(function onTimeUpdate () {

@@ -342,6 +342,9 @@ export default {
 			this.setupSeekbarPreview()
 			this.$player = player
 
+			const startTime = this.initialSkip != null && Number.isFinite(this.initialSkip) ? this.initialSkip : 0
+			this.skipToTime(startTime)
+
 			this.$player.configure({
 				preferredVideoCodecs: this.preferredVideoCodecs,
 				preferredAudioCodecs: ['opus', 'mp4a'],
@@ -357,7 +360,6 @@ export default {
 			const qualityConds = quality > 0 && (this.video.audioStreams.length > 0 || this.video.livestream) && !this.audioOnly
 			if (qualityConds) this.$player.configure('abr.enabled', false)
 
-			const startTime = this.initialSkip != null && Number.isFinite(this.initialSkip) ? this.initialSkip : 0
 			player.load(uri, startTime, mime).then(() => {
 				let bestFitLanguage
 				{
