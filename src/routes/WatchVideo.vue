@@ -35,7 +35,7 @@
                                 <ExpandableNumber :num="video.views" message-key="counts.views" />
                                 •
                                 {{ $store.getters['i18n/fmtDate'](new Date(video.uploadDate)) }}
-                                <span v-if="lastWatch">
+                                <span v-if="lastWatchFound">
                                     •
                                     {{ $t('misc.lastWatchedTill', { t: lastWatchDurationH }) }}
                                     <ExpandableDate :date="lastWatch.timestamp" />
