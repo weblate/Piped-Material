@@ -187,6 +187,7 @@ export default {
 
 			dbID: null,
 			lastWatch: null,
+			lastWatchFound: false,
 			currentTime: null,
 
 			mdiThumbUp,
@@ -235,25 +236,17 @@ export default {
 	},
 
 	mounted () {
-		this.initialize()
+		this.getVideoData()
 	},
 	watch: {
 		'$route.query.v': function (v) {
 			if (v) {
 				window.scrollTo(0, 0)
 			}
-			this.initialize()
+			this.getVideoData()
 		}
 	},
 	methods: {
-		initialize () {
-			this.getVideoData()
-			this.getSponsors()
-			if (!this.$store.getters['prefs/getPreferenceBoolean']('disableCommentsByDefault')) {
-				this.fetchComments()
-			}
-		},
-
 		videoEnded () {
 			if (!this.selectedAutoLoop && this.isAutoplayEnabled && this.video.relatedStreams[0]) {
 				this.$router.push({
@@ -363,15 +356,24 @@ export default {
 		},
 
 		async getVideoData () {
-			const video = await this.fetchVideo()
+			const [video] = await Promise.all([
+				this.fetchVideo(),
+				this.getSponsors(),
+				(!this.$store.getters['prefs/getPreferenceBoolean']('disableCommentsByDefault'))
+					? this.fetchComments()
+					: null
+			])
 
 			video.videoId = this.videoId
 			video.url = this.$route.fullPath
 
 			try {
 				if (!this.$store.getters['prefs/getPreference']('disableDuplicateHistoryEntries', false)) {
-					this.dbID = await addWatchedVideo(video)
 					this.lastWatch = await findLastWatch(this.videoId)
+					if (this.lastWatch != null) {
+						this.lastWatchFound = true
+					}
+					this.dbID = await addWatchedVideo(video)
 				} else {
 					let dbObj = await findLastWatch(this.videoId)
 
@@ -380,6 +382,7 @@ export default {
 						dbObj = await findLastWatch(this.videoId)
 					} else {
 						this.dbID = dbObj.id
+						this.lastWatchFound = true
 					}
 
 					const ts = new Date()
