@@ -368,6 +368,7 @@ export default {
 			video.url = this.$route.fullPath
 
 			try {
+				this.lastWatchFound = false
 				if (!this.$store.getters['prefs/getPreference']('disableDuplicateHistoryEntries', false)) {
 					this.lastWatch = await findLastWatch(this.videoId)
 					if (this.lastWatch != null) {
