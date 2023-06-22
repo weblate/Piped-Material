@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import { COUNTRY_I18N_EXCEPTIONS } from '@/plugins/i18n'
+import { loadCountries } from '@/plugins/i18n'
 import { COLOR_SCHEME_STATES } from '@/store/prefs-store'
 
 export default {
@@ -275,18 +275,15 @@ export default {
 	},
 	methods: {
 		async getCountries () {
-			const locale = COUNTRY_I18N_EXCEPTIONS[this.$i18n.locale] || this.$i18n.locale
-			const [Countries, LocalizedNames] = await Promise.all([
-				import('i18n-iso-countries'),
-				import(/* webpackChunkName: "countries-[request]" */ `i18n-iso-countries/langs/${locale}.json`)
-			])
+			const locale = this.$store.state.i18n.locale
+			const [Countries, LocalizedNames] = await loadCountries(locale)
 			Countries.registerLocale(LocalizedNames)
 			this.countryOptions = {
 				id: 'region',
 				type: 'select',
 				label: 'Country',
 				default: 'US',
-				options: Object.entries(Countries.getNames(locale, { select: 'official' }))
+				options: Object.entries(Countries.getNames(LocalizedNames.locale, { select: 'official' }))
 					.sort((a, b) => this.$store.getters['i18n/compare'](a[1], b[1]))
 					.map(([code, name]) => ({
 						text: name,

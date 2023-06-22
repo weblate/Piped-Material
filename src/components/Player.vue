@@ -1,7 +1,7 @@
 <template>
   <div
     data-shaka-player-container
-    style="width: 100%; height: calc(100vh - 48px); background: #000"
+    style="width: 100%; height: calc(100vh - 48px); background: #000; direction: ltr"
     ref="container"
   >
     <canvas ref="preview" class="pm-shaka-preview rounded-xl" style="display: none" />

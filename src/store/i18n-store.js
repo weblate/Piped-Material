@@ -3,6 +3,9 @@ import DurationUnitFormat from 'intl-unofficial-duration-unit-format'
 export const i18nStore = {
 	namespaced: true,
 	state: () => ({
+		locale: null,
+		parsed: null,
+
 		fullDateFormatter: null,
 		dateFormatter: null,
 		fullNumberFormatter: null,
@@ -15,39 +18,39 @@ export const i18nStore = {
 	}),
 
 	mutations: {
-		updateState (state, { intlLocale, timeAgo }) {
-			const DTFLocale = window.localStorage.getItem('DTF_OVERRIDE') ?? intlLocale
-			const NFLocale = window.localStorage.getItem('NF_OVERRIDE') ?? intlLocale
+		updateState (state, { locale, parsed, timeAgo }) {
+			state.locale = locale
+			state.parsed = parsed
 
-			state.fullDateFormatter = new Intl.DateTimeFormat(DTFLocale, {
+			state.fullDateFormatter = new Intl.DateTimeFormat(locale, {
 				dateStyle: 'full',
 				timeStyle: 'full'
 			})
-			state.dateFormatter = new Intl.DateTimeFormat(DTFLocale, {
+			state.dateFormatter = new Intl.DateTimeFormat(locale, {
 				dateStyle: 'long'
 			})
-			state.fullNumberFormatter = new Intl.NumberFormat(NFLocale, {
+			state.fullNumberFormatter = new Intl.NumberFormat(locale, {
 				notation: 'standard'
 			})
-			state.abbreviatedNumFormatter = new Intl.NumberFormat(NFLocale, {
+			state.abbreviatedNumFormatter = new Intl.NumberFormat(locale, {
 				notation: 'compact',
 				compactDisplay: 'long'
 			})
-			state.languageFormatter = new Intl.DisplayNames([intlLocale, 'en-US'], {
+			state.languageFormatter = new Intl.DisplayNames([locale, 'en-US'], {
 				type: 'language'
 			})
-			state.durationFormatter = new DurationUnitFormat(intlLocale, {
+			state.durationFormatter = new DurationUnitFormat(locale, {
 				style: DurationUnitFormat.styles.NARROW,
 				format: '{hours} {minutes} {seconds}'
 			})
-			state.collator = new Intl.Collator(intlLocale)
+			state.collator = new Intl.Collator(locale)
 			state.timeAgo = timeAgo
 
-			switch (intlLocale) {
-				case 'ar':
-				case 'ckb':
+			switch (parsed.textInfo) {
+				case 'rtl':
 					state.rtl = true
 					break
+				case 'ltr':
 				default:
 					state.rtl = false
 					break

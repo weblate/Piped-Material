@@ -988,50 +988,50 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@fontsource/baloo-da-2@^4.5.12":
-  version "4.5.12"
-  resolved "https://registry.yarnpkg.com/@fontsource/baloo-da-2/-/baloo-da-2-4.5.12.tgz#e15cd7f3e7fd2542106901da0fc72221e77313de"
-  integrity sha512-Z4rhfiXcgHFgOY+veB3ByWncWeV/r0xYKQ1fwgojh4A8qW+DZddFA9icIbcFs8a7FVcsWdMOH0t7uetG0hvqAg==
+"@fontsource/baloo-da-2@^5.0.3":
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/@fontsource/baloo-da-2/-/baloo-da-2-5.0.3.tgz#688aaaa92807e2ef5f2e5c714e230de00e97fe58"
+  integrity sha512-Vo8oqVzGqKYl6IW6DevY9IB1f8TPlCk2CUoOeQWlPvYnPMFVUvea8GcfYi7ARJdGieb6HPFzF/aSNpwY7eM4uA==
 
 "@fontsource/material-icons-rounded@^4.5.4":
   version "4.5.4"
   resolved "https://registry.yarnpkg.com/@fontsource/material-icons-rounded/-/material-icons-rounded-4.5.4.tgz#b2d62f8cca3fef9895b419b266f991993bb1a829"
   integrity sha512-zBrzaDzj//EJiuz9+yaL3uvYhqGcGXxewrwWy0fqHibOivNE9mlYtIjgibNRjEmS0eRXUu9h3TNmahlLwj3JvQ==
 
-"@fontsource/noto-naskh-arabic@^4.5.12":
-  version "4.5.12"
-  resolved "https://registry.yarnpkg.com/@fontsource/noto-naskh-arabic/-/noto-naskh-arabic-4.5.12.tgz#e7a7818d2140d19295d1d1a43ebaae0d0a39faaa"
-  integrity sha512-9gfdKf6Yo4I+zNQWOqH8pbUSkGN9SMAvuqgIdaI2x0qjQZCAgYJylrsGDB4pdbxpaoQZ6LCNcDUHMt7p5mMF/g==
+"@fontsource/noto-naskh-arabic@^5.0.3":
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/@fontsource/noto-naskh-arabic/-/noto-naskh-arabic-5.0.3.tgz#b2cbf45d71309820e9a6fcc3b9686f1a6374cce6"
+  integrity sha512-OPffWMdlx1A8ySKOWSbDFoTV1jK99RUaISZvtYZID/Po4mQMuZUKVt2RyUHOy9TEUu0Qe89t84ciyG7/7N0zpA==
 
-"@fontsource/noto-sans-jp@^4.5.12":
-  version "4.5.12"
-  resolved "https://registry.yarnpkg.com/@fontsource/noto-sans-jp/-/noto-sans-jp-4.5.12.tgz#e9cfbe3b62da8c656f464df86256d7852ae0faf8"
-  integrity sha512-tdJAUEyuyyCRD4Ot4ZE8+3uyGeSJQD/soSHr7LoltEQr22IotDDWOlqQKF7CpTaJPwt4iOBoXWtAoSN0huVW6A==
+"@fontsource/noto-sans-jp@^5.0.3":
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/@fontsource/noto-sans-jp/-/noto-sans-jp-5.0.3.tgz#34c36e536cf414ca3ca440fbb9b118e3dd10d11f"
+  integrity sha512-H4TWZWMWj3+1tqSoOeU9R5Z1IhrfSqUh7GL/q8/qO3Uby5H5JcLU9AXvYrLI0eEMLcHQ73up1Zi+RT59PFzizA==
 
-"@fontsource/noto-sans-kr@^4.5.12":
-  version "4.5.12"
-  resolved "https://registry.yarnpkg.com/@fontsource/noto-sans-kr/-/noto-sans-kr-4.5.12.tgz#382d6cdd1928943ca15e80ca013e3b6cf5809f50"
-  integrity sha512-6LBOzXw/V4guB/nATaiUjCcPxwJNGw+ky5DK7/wsgUZvfk8etH9IlKdvjFVidpeCuMVjOdlka2+MEw4hwEHaHA==
+"@fontsource/noto-sans-kr@^5.0.3":
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/@fontsource/noto-sans-kr/-/noto-sans-kr-5.0.3.tgz#8b6977440673252c81e98f587c825e9958d5f6ac"
+  integrity sha512-XOn7qnlpy1YK7fLE0jGrqZ6uOzf431R1M0wvQM/UYTThpsfQGcfoO1wICUpC4SvZsfdpZOgm1HfmO95n6/COHg==
 
-"@fontsource/noto-sans-sc@^4.5.12":
-  version "4.5.12"
-  resolved "https://registry.yarnpkg.com/@fontsource/noto-sans-sc/-/noto-sans-sc-4.5.12.tgz#e7e589455250cd63950337dbb7ac047ccb0e5bc0"
-  integrity sha512-KQ8Bn8KCGVS6RKrEw7fp65GJYpKyKEJ/TkePoKGxvNy7smSaHoKV7vrmpIiA46hkqQyYdENix/NKSprxs4Soyw==
+"@fontsource/noto-sans-sc@^5.0.3":
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/@fontsource/noto-sans-sc/-/noto-sans-sc-5.0.3.tgz#c4a58c6800101e2554ba719669b3995a58ec4c26"
+  integrity sha512-4ycUg4jaVWnzj+Mhe5fUwmYxHIbH3oDS5hGplnbKN+xv6j8gZbaUoFAQJFejbHYRFo2MZq36guan5L0YIIcC1g==
 
-"@fontsource/noto-sans-tc@^4.5.12":
-  version "4.5.12"
-  resolved "https://registry.yarnpkg.com/@fontsource/noto-sans-tc/-/noto-sans-tc-4.5.12.tgz#b404d9e4beaff90ed8d46e3eb6b9cef7e799dff0"
-  integrity sha512-c4OUY5Wq03ZLI4Ds9IEHEiPqpjmEXvDpANXufCTlk+bMb8MnweXPVWJSrSHydXnz7r+qstZl3HvWDl2RI5o/1A==
+"@fontsource/noto-sans-tc@^5.0.3":
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/@fontsource/noto-sans-tc/-/noto-sans-tc-5.0.3.tgz#ca990389cea2ac51804918717f29885788ebdbe8"
+  integrity sha512-rfYNruHG/AkEhRe8UEXppefJ43x65+M8y+iFHwALQIkCCPb27IC5SNKrYZZoXygEuoem8vXeyD5Ecd290hc9hA==
 
-"@fontsource/nunito-sans@^4.5.10":
-  version "4.5.10"
-  resolved "https://registry.yarnpkg.com/@fontsource/nunito-sans/-/nunito-sans-4.5.10.tgz#109c1e680a56e8c196dc834379c32d03b0614c53"
-  integrity sha512-GVKc3mEfnk3fLEuiQXNYhlP/Z9SrCgD831xZJ7J+6OgFzEf6LNnyHPiqWfjW671sAmOBQTLgm/21z78K/beWEw==
+"@fontsource/nunito-sans@^5.0.3":
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/@fontsource/nunito-sans/-/nunito-sans-5.0.3.tgz#155502a6ffc63760e8827f0cc2c43d9b9bd83e5f"
+  integrity sha512-QLjXBhP4lrZOpwbrOqqVUNGwiteBpEOzlyHczIpSJXI27bHwnFH7q15PhflvxnAfDBoTHf/L52I/ikkjYS35CQ==
 
-"@fontsource/roboto@^4.5.8":
-  version "4.5.8"
-  resolved "https://registry.yarnpkg.com/@fontsource/roboto/-/roboto-4.5.8.tgz#56347764786079838faf43f0eeda22dd7328437f"
-  integrity sha512-CnD7zLItIzt86q4Sj3kZUiLcBk1dSk81qcqgMGaZe7SQ1P8hFNxhMl5AZthK1zrDM5m74VVhaOpuMGIL4gagaA==
+"@fontsource/roboto@^5.0.3":
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/@fontsource/roboto/-/roboto-5.0.3.tgz#bff6ce627b8c537e8f56e6f2bba221f425bfdf78"
+  integrity sha512-jbZDFwEFARDlo8TqG7th/xjhuq87GYfFpFb+uxuy+0Ng1bhRVgBRWlLj8+WIKhCTOr+h4QXbjpybLWFLUirOwQ==
 
 "@formatjs/ecma402-abstract@1.15.0":
   version "1.15.0"
@@ -1039,6 +1039,14 @@
   integrity sha512-7bAYAv0w4AIao9DNg0avfOLTCPE9woAgs6SpXuMq11IN3A+l+cq8ghczwqSZBM11myvPSJA7vLn72q0rJ0QK6Q==
   dependencies:
     "@formatjs/intl-localematcher" "0.2.32"
+    tslib "^2.4.0"
+
+"@formatjs/ecma402-abstract@1.17.0":
+  version "1.17.0"
+  resolved "https://registry.yarnpkg.com/@formatjs/ecma402-abstract/-/ecma402-abstract-1.17.0.tgz#2ce191a3bde4c65c6684e03fa247062a4a294b9e"
+  integrity sha512-6ueQTeJZtwKjmh23bdkq/DMqH4l4bmfvtQH98blOSbiXv/OUiyijSW6jU22IT8BNM1ujCaEvJfTtyCYVH38EMQ==
+  dependencies:
+    "@formatjs/intl-localematcher" "0.4.0"
     tslib "^2.4.0"
 
 "@formatjs/fast-memoize@2.0.1":
@@ -1065,10 +1073,41 @@
     "@formatjs/ecma402-abstract" "1.15.0"
     tslib "^2.4.0"
 
+"@formatjs/intl-enumerator@1.3.2":
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/@formatjs/intl-enumerator/-/intl-enumerator-1.3.2.tgz#c26de2557ba733736aff4542df95f71236895f39"
+  integrity sha512-bG0XyG0rCTdmoZRJJXe0oF0PTK7PzJjlLM6PmRlnZs6K5DQYHk4D9TNCwtK2e6OxvBI5EFW4Iy3dhQf/UToxPQ==
+  dependencies:
+    tslib "^2.4.0"
+
+"@formatjs/intl-getcanonicallocales@2.2.1":
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/@formatjs/intl-getcanonicallocales/-/intl-getcanonicallocales-2.2.1.tgz#0d70251b16bec06c1c4a40b37892ea5b51e3a2bb"
+  integrity sha512-KooqmyY+Mhq3ioASPzoU6p6Cy9Mx+cWSVQSP6lF+vEW2tiaN90ti08cp82p1dzFschenduOYgPKrNcBpsDi6+g==
+  dependencies:
+    tslib "^2.4.0"
+
+"@formatjs/intl-locale@^3.3.2":
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/@formatjs/intl-locale/-/intl-locale-3.3.2.tgz#0a5aaafdabec1c5180064dee8e9cb8f0e7097d2d"
+  integrity sha512-RnL5Bzb1J3ggIOFEeVRAgBUjILHOkP5DX6iH4ALDywhJmT6fArTskPc+b0GreOQtqL6zOb8mU7HxbgRV+P2S5w==
+  dependencies:
+    "@formatjs/ecma402-abstract" "1.17.0"
+    "@formatjs/intl-enumerator" "1.3.2"
+    "@formatjs/intl-getcanonicallocales" "2.2.1"
+    tslib "^2.4.0"
+
 "@formatjs/intl-localematcher@0.2.32", "@formatjs/intl-localematcher@^0.2.32":
   version "0.2.32"
   resolved "https://registry.yarnpkg.com/@formatjs/intl-localematcher/-/intl-localematcher-0.2.32.tgz#00d4d307cd7d514b298e15a11a369b86c8933ec1"
   integrity sha512-k/MEBstff4sttohyEpXxCmC3MqbUn9VvHGlZ8fauLzkbwXmVrEeyzS+4uhrvAk9DWU9/7otYWxyDox4nT/KVLQ==
+  dependencies:
+    tslib "^2.4.0"
+
+"@formatjs/intl-localematcher@0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@formatjs/intl-localematcher/-/intl-localematcher-0.4.0.tgz#63bbc37a7c3545a1bf1686072e51d9a3aed98d6b"
+  integrity sha512-bRTd+rKomvfdS4QDlVJ6TA/Jx1F2h/TBVO5LjvhQ7QPPHp19oPNMIum7W2CMEReq/zPxpmCeB31F9+5gl/qtvw==
   dependencies:
     tslib "^2.4.0"
 
