@@ -46,7 +46,18 @@ export const i18nStore = {
 			state.collator = new Intl.Collator(locale)
 			state.timeAgo = timeAgo
 
-			switch (parsed.textInfo) {
+			switch (parsed.script) {
+				case 'Arab':
+				case 'Aran':
+					state.rtl = true
+					break
+				default:
+					state.rtl = false
+					break
+			}
+
+			/* Doesn't work right now for unknown reasons
+			 * switch (parsed.textInfo) {
 				case 'rtl':
 					state.rtl = true
 					break
@@ -54,7 +65,7 @@ export const i18nStore = {
 				default:
 					state.rtl = false
 					break
-			}
+			} */
 		}
 	},
 

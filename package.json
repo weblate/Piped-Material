@@ -17,7 +17,6 @@
     "@fontsource/noto-sans-tc": "^5.0.3",
     "@fontsource/nunito-sans": "^5.0.3",
     "@fontsource/roboto": "^5.0.3",
-    "@formatjs/intl-locale": "^3.3.2",
     "@formatjs/intl-localematcher": "^0.2.32",
     "@mdi/js": "^6.9.96",
     "@mojee/file-utils": "https://cf-ipfs.com/ipfs/QmYEtpbjQqWYJDbcoixZvcccXkRFKBcTuRw5aa3hb8BWt8?filename=js-file-utils.tgz",

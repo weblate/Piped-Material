@@ -2,7 +2,6 @@ import Vue from 'vue'
 import VueI18n from 'vue-i18n'
 import TimeAgo from 'javascript-time-ago'
 import * as LocaleMatcher from '@formatjs/intl-localematcher'
-import Locale from '@formatjs/intl-locale'
 
 import store from '@/store'
 import ENTranslations from '@/translations/en.json'
@@ -433,7 +432,7 @@ export const TIME_AGO_EXCEPTIONS = {}
 
 // Similar switches for RTL can be found in the i18n store
 async function syncStylesPerLanguage (locale) {
-	document.documentElement.setAttribute('lang', locale.baseName)
+	document.documentElement.setAttribute('lang', locale.toString())
 	switch (locale.script) {
 		// All the Inter-based languages
 		case 'Latn':
@@ -527,7 +526,7 @@ export async function changeLocale (lang) {
 		lang = DEPRECATED_LANGUAGES_MAP.get(lang)
 	}
 
-	const parsed = new Locale(lang).maximize()
+	const parsed = new Intl.Locale(lang).maximize()
 	await Promise.all([
 		loadLocale(lang),
 		syncStylesPerLanguage(parsed),
