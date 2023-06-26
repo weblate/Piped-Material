@@ -135,7 +135,7 @@ export default {
 					path,
 					signal: lastAbortController.signal,
 					params: {
-						region: region
+						region
 					},
 					tokenInParams: true
 				})

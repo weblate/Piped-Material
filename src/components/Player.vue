@@ -148,8 +148,8 @@ export default {
 						if (position >= startPosition && position <= endPosition) {
 							return {
 								url: framePage.urls[i],
-								positionX: positionX,
-								positionY: positionY,
+								positionX,
+								positionY,
 								frameWidth: framePage.frameWidth,
 								frameHeight: framePage.frameHeight
 							}

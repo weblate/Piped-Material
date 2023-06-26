@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import marked from 'marked'
+import { parseInline } from 'marked'
 import { mdiCheckCircleOutline } from '@mdi/js'
 
 import ExpandableNumber from '@/components/ExpandableNumber'
@@ -57,6 +57,7 @@ import ChannelSharingPanel from '@/components/ChannelSharingPanel'
 import { LibPiped } from '@/tools/libpiped'
 
 export default {
+	name: 'ChannelComponent',
 	data () {
 		return {
 			channel: null,
@@ -221,7 +222,7 @@ export default {
 	},
 	computed: {
 		renderedDescription () {
-			return LibPiped.purifyHTML(marked.parseInline(this.channel.description, {
+			return LibPiped.purifyHTML(parseInline(this.channel.description, {
 				breaks: true
 			}))
 		},

@@ -23,7 +23,15 @@
 }
 
 .bengali {
-  @include addFonts('Baloo Da 2');
+  @include addFonts('Baloo Da 2 Variable');
+}
+
+.arabic-script {
+  @include addFonts('Noto Naskh Arabic Variable');
+
+  .v-btn {
+    letter-spacing: 0 !important;
+  }
 }
 
 .traditional-chinese {
@@ -40,14 +48,6 @@
 
 .korean {
   @include addFonts('Noto Sans KR');
-}
-
-.arabic-script {
-  @include addFonts('Noto Naskh Arabic');
-
-  .v-btn {
-    letter-spacing: 0 !important;
-  }
 }
 
 .v-application {

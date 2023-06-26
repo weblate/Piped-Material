@@ -443,34 +443,34 @@ async function syncStylesPerLanguage (locale) {
 			break
 		// Bengali script
 		case 'Beng':
-			await import('@fontsource/baloo-da-2/bengali.css')
+			await import('@fontsource-variable/baloo-da-2/index.css')
 			document.body.classList.remove(...document.body.classList)
 			document.body.classList.add('bengali')
 			break
 		// Other languages
 		// NOTE: if you are a native speaker & want to see a different font, just email me or join the channel
 		case 'Arab':
-			await import('@fontsource/noto-naskh-arabic/arabic.css')
+			await import('@fontsource-variable/noto-naskh-arabic/index.css')
 			document.body.classList.remove(...document.body.classList)
 			document.body.classList.add('arabic-script')
 			break
 		case 'Hant':
-			await import('@fontsource/noto-sans-tc/chinese-traditional.css')
+			await import('@mojee/noto-sans-cjk-webfont/tc.css')
 			document.body.classList.remove(...document.body.classList)
 			document.body.classList.add('traditional-chinese')
 			break
 		case 'Hans':
-			await import('@fontsource/noto-sans-sc/chinese-simplified.css')
+			await import('@mojee/noto-sans-cjk-webfont/sc.css')
 			document.body.classList.remove(...document.body.classList)
 			document.body.classList.add('simplified-chinese')
 			break
 		case 'Jpan':
-			await import('@fontsource/noto-sans-jp/japanese.css')
+			await import('@mojee/noto-sans-cjk-webfont/jp.css')
 			document.body.classList.remove(...document.body.classList)
 			document.body.classList.add('japanese')
 			break
 		case 'Kore':
-			await import('@fontsource/noto-sans-kr/korean.css')
+			await import('@mojee/noto-sans-cjk-webfont/kr.css')
 			document.body.classList.remove(...document.body.classList)
 			document.body.classList.add('korean')
 			break
@@ -481,14 +481,13 @@ async function syncStylesPerLanguage (locale) {
 
 export async function loadLocale (locale) {
 	const lo = LocaleMatcher.match(locale, SUPPORTED_LANGUAGES, 'en')
-	if (i18n.availableLocales.includes(lo)) {
-		return
-	}
-	// load locale messages with dynamic import
-	const messages = await import(/* webpackChunkName: "translations-[request]" */ `@/translations/${lo}.json`)
+	if (!i18n.availableLocales.includes(lo)) {
+		// load locale messages with dynamic import
+		const messages = await import(/* webpackChunkName: "translations-[request]" */ `@/translations/${lo}.json`)
 
-	// set locale and locale message
-	i18n.setLocaleMessage(lo, messages.default)
+		// set locale and locale message
+		i18n.setLocaleMessage(lo, messages.default)
+	}
 	i18n.locale = lo
 	return Vue.nextTick()
 }

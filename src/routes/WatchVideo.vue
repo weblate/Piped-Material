@@ -389,7 +389,7 @@ export default {
 					const ts = new Date()
 					await PMDB.watchedVideos.update(this.dbID, {
 						timestamp: ts,
-						video: video
+						video
 					})
 					dbObj.timestamp = ts
 					dbObj.video = video
