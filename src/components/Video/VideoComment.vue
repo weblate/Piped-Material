@@ -47,7 +47,6 @@
 </template>
 
 <script>
-import { parseInline } from 'marked'
 import { mdiPin, mdiAccountCheck, mdiHeart, mdiThumbUp } from '@mdi/js'
 
 import { LibPiped } from '@/tools/libpiped'
@@ -92,7 +91,7 @@ export default {
 
 	computed: {
 		renderedCommentTxt () {
-			return LibPiped.purifyHTML(parseInline(this.comment.commentText, {
+			return LibPiped.purifyHTML(LibPiped.markdown2HTML(this.comment.commentText, {
 				breaks: true
 			}))
 		}

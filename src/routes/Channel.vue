@@ -42,7 +42,6 @@
 </template>
 
 <script>
-import { parseInline } from 'marked'
 import { mdiCheckCircleOutline } from '@mdi/js'
 
 import ExpandableNumber from '@/components/ExpandableNumber'
@@ -222,7 +221,7 @@ export default {
 	},
 	computed: {
 		renderedDescription () {
-			return LibPiped.purifyHTML(parseInline(this.channel.description, {
+			return LibPiped.purifyHTML(LibPiped.markdown2HTML(this.channel.description, {
 				breaks: true
 			}))
 		},

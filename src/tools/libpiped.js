@@ -1,4 +1,5 @@
 import DOMPurify from 'dompurify'
+import { parseInline } from 'marked'
 
 class LibPiped {
 	pad (num, size) {
@@ -17,6 +18,14 @@ class LibPiped {
 	determineVideoIdFromChannelURL (path) {
 		const pathParts = path.split('/')
 		return pathParts[2]
+	}
+
+	markdown2HTML (data) {
+		return parseInline(data, {
+			breaks: true,
+			mangle: false,
+			headerIds: false
+		})
 	}
 }
 
