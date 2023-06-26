@@ -421,7 +421,7 @@ export default {
 				return
 			}
 			return updateWatchedVideoProgress(this.dbID, this.$refs.player.getCurrentTime(), this.video.duration)
-		}, 1000)
+		}, 5000)
 	},
 	computed: {
 		isAutoplayEnabled () {
