@@ -10,7 +10,9 @@ There are a few things that PM does better, like watch history tracking, and com
 
 As a byproduct, the code is also much cleaner, dysfunctional patterns and paradigms have been replaced with clean, beautiful code :).
 
-There's an experimental branch implementing preferences & watch history syncing, alongside username and password generation using [EDS](https://git.maharshi.ninja/root/libeds) at the `feature-eds` branch. There are two deployments, one supporting authentication via Web3 wallets like MetaMask, Brave, etc. at [ng.piped.১.net](https://ng.piped.১.net) and with a standard username-password combination at [ngp.piped.১.net](https://ngp.piped.১.net), do note that accounts are not recoverable if you lose your password. Private keys are derived from your password via PBKDF with the username as the salt.
+There's an branch implementing preferences & watch history syncing, with PBKDF2-based or Web3 wallet-based key generation using [EDS](https://git.maharshi.ninja/root/libeds) at the `feature-eds_2` branch. This is deployed [at eds-v2.piped.১.net](https://eds-v2.piped.১.net).
+
+There are two deprecated deployments, that use a older version of EDS that is no longer supported and does not receive updates. It's still maintained to for users who still have not migrated, but will be deleted soon. The newer version is incompatible with the older version and generates entirely different keys.
 
 ## Links
 
@@ -18,15 +20,20 @@ There's an experimental branch implementing preferences & watch history syncing,
 |-------------------------------|-------------|----------------|------------------|
 | https://piped-material.১.net  | Production  |                | Kavin            |
 | https://piped-material.ftp.sh | Production  |                | Kavin            |
-| https://ngp.piped.১.net       | Production  | EDS-Password   | Kavin            |
+| https://eds-v2.piped.১.net    | Production  | EDS-V2         | Kavin            |
 | https://piped-staging.ftp.sh  | Staging     |                | Kavin            |
 | https://ui.piped.১.net        | Staging     | IPv6-only      | mmjee            |
-| https://ng.piped.১.net        | Staging     | IPv6-only, EDS | mmjee            |
+| https://ng.piped.১.net        | Deprecated  | IPv6-only, EDS | mmjee            |
+| https://ngp.piped.১.net       | Deprecated  | EDS-Password   | Kavin            |
 
 Production instances are updated infrequently, and do not include features that are introduced recently without extensive testing.
 
 Piped-Material's Production instance is also available via IPFS at IPNS key `k51qzi5uqu5dl0a18rats73hcc6d5dtvtz9pjbpgzj6hl66b9za5i5wn0yzgjv`.
 For example, it's available [via dweb.link](https://k51qzi5uqu5dl0a18rats73hcc6d5dtvtz9pjbpgzj6hl66b9za5i5wn0yzgjv.ipns.dweb.link) and [via cf-ipfs.com](https://k51qzi5uqu5dl0a18rats73hcc6d5dtvtz9pjbpgzj6hl66b9za5i5wn0yzgjv.ipns.cf-ipfs.com).
+
+## Self-hosting
+
+There's a Dockerfile to build a Piped-Material deployment (using a simple nginx server hosting the SPA files) [located here](https://github.com/mmjee/pm-docker). It can be customized with build arguments. Piped-Material is just a SPA so `yarn install; yarn run build` is enough to generate static files.
 
 ## Help
 
