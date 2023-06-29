@@ -437,6 +437,7 @@ async function syncStylesPerLanguage (locale) {
 		// All the Inter-based languages
 		case 'Latn':
 		case 'Cyrl':
+		case 'Grek':
 			// Don't need to import fonts because Inter supports Latin and Cyrillic and is always loaded
 			document.body.classList.remove(...document.body.classList)
 			document.body.classList.add('default-font')
