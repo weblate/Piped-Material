@@ -282,7 +282,7 @@ export default {
 				id: 'region',
 				type: 'select',
 				label: 'Country',
-				default: 'US',
+				default: this.$store.getters['prefs/getPreference']('region', this.$store.state.i18n.parsed.region ?? 'US'),
 				options: Object.entries(Countries.getNames(LocalizedNames.locale, { select: 'official' }))
 					.sort((a, b) => this.$store.getters['i18n/compare'](a[1], b[1]))
 					.map(([code, name]) => ({

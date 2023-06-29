@@ -56,12 +56,14 @@
                     </v-list-item>
                     <AuthenticationModal :list-mode="true" />
                 </v-list>
-                <v-switch
+                <v-select
                     dense
-                    class="mx-2 mt-0 pt-0"
-                    :input-value="$store.getters['prefs/getPreferenceBoolean']('darkMode', false)"
-                    @change="toggleDarkMode"
-                    :label="$t('actions.enable_dark_mode')"
+                    outlined
+                    class="mx-2 mt-2"
+                    :label="$t('preferences.colorScheme')"
+                    :value="$store.state.prefs.colorScheme"
+                    @input="$store.commit('prefs/setColorScheme', { colorScheme: $event })"
+                    :items="colorSchemeOptions"
                 />
                 <v-select
                     dense
@@ -177,6 +179,14 @@ export default {
 			}
 		},
 
+		colorSchemeOptions () {
+			return [
+				{ text: this.$t('actions.auto'), value: COLOR_SCHEME_STATES.SYSTEM },
+				{ text: this.$t('actions.light'), value: COLOR_SCHEME_STATES.LIGHT },
+				{ text: this.$t('actions.dark'), value: COLOR_SCHEME_STATES.DARK }
+			]
+		},
+
 		links () {
 			const links = [
 				{
@@ -229,8 +239,7 @@ export default {
 
 		toggleDarkMode () {
 			let colorSchemeState
-			const newDarkState = !this.$vuetify.theme.dark
-			this.$vuetify.theme.dark = newDarkState
+			const newDarkState = !this.$store.state.prefs.colorScheme
 
 			if (newDarkState) {
 				colorSchemeState = COLOR_SCHEME_STATES.DARK
@@ -243,7 +252,7 @@ export default {
 			})
 		},
 
-		syncDarkMode (newVal = this.$store.state.prefs.colorScheme) {
+		syncDarkMode (newVal) {
 			switch (newVal) {
 				case COLOR_SCHEME_STATES.SYSTEM:
 					this.$vuetify.theme.dark = window.matchMedia('(prefers-color-scheme: dark)').matches
@@ -259,15 +268,18 @@ export default {
 	},
 
 	watch: {
-		'$store.state.prefs.colorScheme': 'syncDarkMode',
-		'$store.state.i18n.rtl' (newVal) {
-			this.$vuetify.rtl = newVal
+		'$store.state.prefs.colorScheme': {
+			handler (v) {
+				return this.syncDarkMode(v)
+			},
+			immedate: true
+		},
+		'$store.state.i18n.rtl': {
+			handler (newVal) {
+				this.$vuetify.rtl = newVal
+			},
+			immediate: true
 		}
-	},
-
-	created () {
-		this.$vuetify.rtl = this.$store.state.i18n.rtl
-		this.syncDarkMode()
 	}
 }
 </script>
