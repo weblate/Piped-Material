@@ -1,5 +1,6 @@
 @mixin addFonts ($font-primary) {
   $font-line: Antar, $font-primary, sans-serif;
+  --shaka-text-family: Antar, #{'"' + $font-primary + '"'}, sans-serif;
 
   .v-application {
     [class*='text-'],[class*='body-'] {

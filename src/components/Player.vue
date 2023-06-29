@@ -25,8 +25,7 @@ import * as DashUtils from '@/tools/DashUtils'
 import '@/components/Player.scss'
 
 // Fonts for Shaka
-import '@fontsource/material-icons-rounded/index.css'
-import '@fontsource/roboto/latin.css'
+import '@fontsource/material-icons-round/index.css'
 
 import { setupKeybindings } from 'psychic-tiny-keys'
 
@@ -364,7 +363,7 @@ export default {
 				let bestFitLanguage
 				{
 					const langs = player.getAudioLanguages()
-					bestFitLanguage = LocaleMatcher.match([this.$i18n.locale], langs, 'en')
+					bestFitLanguage = LocaleMatcher.match(this.$store.state.i18n.locale, langs, 'en')
 					player.selectAudioLanguage(bestFitLanguage)
 				}
 

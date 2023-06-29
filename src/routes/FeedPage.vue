@@ -103,7 +103,7 @@ export default {
 	},
 	methods: {
 		async fetchData () {
-			const region = this.$route.query.region ?? this.$store.getters['prefs/getPreference']('region', 'US')
+			const region = this.$route.query.region ?? this.$store.getters['prefs/getPreference']('region', this.$store.state.i18n.parsed.region ?? 'US')
 			const selectedHomepage = this.$store.getters['prefs/getPreference']('homepage', 'trending')
 			let path
 

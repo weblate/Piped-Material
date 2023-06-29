@@ -1008,15 +1008,10 @@
   resolved "https://registry.yarnpkg.com/@fontsource-variable/noto-naskh-arabic/-/noto-naskh-arabic-5.0.3.tgz#c27be5d71d462ed6d07c5ce057d5e60d54cda8b3"
   integrity sha512-ICDuxFdV8P5hjRe3j8RCDEip9hqepb57F6mIXqlHzwA0LqOwMX5A6nS+lV3wdr4SdoF4vQP08A6rB8x9pumK3A==
 
-"@fontsource/material-icons-rounded@^4.5.4":
-  version "4.5.4"
-  resolved "https://registry.yarnpkg.com/@fontsource/material-icons-rounded/-/material-icons-rounded-4.5.4.tgz#b2d62f8cca3fef9895b419b266f991993bb1a829"
-  integrity sha512-zBrzaDzj//EJiuz9+yaL3uvYhqGcGXxewrwWy0fqHibOivNE9mlYtIjgibNRjEmS0eRXUu9h3TNmahlLwj3JvQ==
-
-"@fontsource/roboto@^5.0.3":
+"@fontsource/material-icons-round@^5.0.3":
   version "5.0.3"
-  resolved "https://registry.yarnpkg.com/@fontsource/roboto/-/roboto-5.0.3.tgz#bff6ce627b8c537e8f56e6f2bba221f425bfdf78"
-  integrity sha512-jbZDFwEFARDlo8TqG7th/xjhuq87GYfFpFb+uxuy+0Ng1bhRVgBRWlLj8+WIKhCTOr+h4QXbjpybLWFLUirOwQ==
+  resolved "https://registry.yarnpkg.com/@fontsource/material-icons-round/-/material-icons-round-5.0.3.tgz#fe13f9323209a452fd5f242d2ebacc71c764798e"
+  integrity sha512-LA7to/xg/LSatZVJLfgZnHsnWvrH0fCnhgFgPxUwDBdkGWUZnM51TUTvy2ongSxz3ckbzia+bjU87CarCP4csg==
 
 "@formatjs/ecma402-abstract@1.17.0":
   version "1.17.0"
@@ -6946,9 +6941,9 @@ sha.js@^2.4.0, sha.js@^2.4.8:
     inherits "^2.0.1"
     safe-buffer "^5.0.1"
 
-"shaka-player@https://cf-ipfs.com/ipfs/QmP1AXcQiYrDAYNotXJweUBgd9Z2XtWxj7D7x3PkyV45M6?filename=shaka-v4.3.6.tar":
-  version "4.3.6"
-  resolved "https://cf-ipfs.com/ipfs/QmP1AXcQiYrDAYNotXJweUBgd9Z2XtWxj7D7x3PkyV45M6?filename=shaka-v4.3.6.tar#dc3ebb8df27eca50d54f0d2ac4f1866d9e882f59"
+"shaka-player@https://cf-ipfs.com/ipfs/QmdvmorgTSt1uA9qyWNs3cf4bCqXUWYeRSGpuWmertWw83?filename=shaka-v4-3-7.tgz":
+  version "4.3.7"
+  resolved "https://cf-ipfs.com/ipfs/QmdvmorgTSt1uA9qyWNs3cf4bCqXUWYeRSGpuWmertWw83?filename=shaka-v4-3-7.tgz#309ab23397aefa80d4a88f04811f3f61a0c5aef3"
   dependencies:
     eme-encryption-scheme-polyfill "^2.1.1"
 

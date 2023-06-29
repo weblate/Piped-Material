@@ -9,8 +9,7 @@
   "dependencies": {
     "@fontsource-variable/baloo-da-2": "^5.0.3",
     "@fontsource-variable/noto-naskh-arabic": "^5.0.3",
-    "@fontsource/material-icons-rounded": "^4.5.4",
-    "@fontsource/roboto": "^5.0.3",
+    "@fontsource/material-icons-round": "^5.0.3",
     "@formatjs/intl-localematcher": "^0.4.0",
     "@mdi/js": "^7.2.96",
     "@mojee/file-utils": "https://cf-ipfs.com/ipfs/QmYEtpbjQqWYJDbcoixZvcccXkRFKBcTuRw5aa3hb8BWt8?filename=js-file-utils.tgz",
@@ -32,7 +31,7 @@
     "quick-lru": "^6.1.1",
     "register-service-worker": "^1.7.2",
     "sass-loader": "^10",
-    "shaka-player": "https://cf-ipfs.com/ipfs/QmP1AXcQiYrDAYNotXJweUBgd9Z2XtWxj7D7x3PkyV45M6?filename=shaka-v4.3.6.tar",
+    "shaka-player": "https://cf-ipfs.com/ipfs/QmdvmorgTSt1uA9qyWNs3cf4bCqXUWYeRSGpuWmertWw83?filename=shaka-v4-3-7.tgz",
     "vue": "^2.7.14",
     "vue-i18n": "^8.28.2",
     "vue-json-viewer": "^2.2.22",

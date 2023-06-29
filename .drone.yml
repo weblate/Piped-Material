@@ -19,7 +19,7 @@ steps:
         - yarn run build
         - mv dist dist2
 -   name: sync1
-    image: docker.io/thegeeklab/drone-s3-sync@sha256:e77b23d07b58b8a762e2d06b33dfd61f8e5dbe29db74c92891fddb6beddc730e
+    image: docker.io/thegeeklab/drone-s3-sync@sha256:f95c06f8091c88994ab5568eaa4f49ff0baf15f6c48d7b079e0d2f910d76c968
     settings:
         path_style: true
         delete: true
@@ -34,7 +34,7 @@ steps:
             from_secret: s3_secret_key
 
 -   name: sync2
-    image: docker.io/thegeeklab/drone-s3-sync@sha256:e77b23d07b58b8a762e2d06b33dfd61f8e5dbe29db74c92891fddb6beddc730e
+    image: docker.io/thegeeklab/drone-s3-sync@sha256:f95c06f8091c88994ab5568eaa4f49ff0baf15f6c48d7b079e0d2f910d76c968
     settings:
         path_style: true
         delete: true
