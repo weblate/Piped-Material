@@ -7,7 +7,6 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@babel/eslint-parser": "^7.22.5",
     "@fontsource-variable/baloo-da-2": "^5.0.3",
     "@fontsource-variable/noto-naskh-arabic": "^5.0.3",
     "@fontsource/material-icons-rounded": "^4.5.4",
@@ -44,6 +43,7 @@
     "xml-js": "^1.6.11"
   },
   "devDependencies": {
+    "@babel/eslint-parser": "^7.22.5",
     "@vue/cli-plugin-babel": "~5.0.8",
     "@vue/cli-plugin-eslint": "~5.0.8",
     "@vue/cli-plugin-pwa": "~5.0.8",
