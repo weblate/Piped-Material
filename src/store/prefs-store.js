@@ -116,7 +116,9 @@ function initializePrefEvents (store) {
 		if (storageEv.key === 'PREFERENCES') {
 			store.commit('prefs/replacePrefs', JSON.parse(storageEv.newValue))
 		} else if (storageEv.key === 'COLOR_SCHEME') {
-			store.commit('prefs/setColorScheme', JSON.parse(storageEv.newValue))
+			store.commit('prefs/setColorScheme', {
+				colorScheme: JSON.parse(storageEv.newValue)
+			})
 		}
 	})
 }
