@@ -37,7 +37,11 @@ export default {
 		}
 	},
 	watch: {
-		searchText: 'refreshSuggestions',
+		searchText (val) {
+			if (val && val !== this.select) {
+				this.refreshSuggestions()
+			}
+		},
 
 		async select (val) {
 			if (val === '') {
@@ -59,23 +63,16 @@ export default {
 	},
 	computed: {
 		searchSuggestions () {
-			/*
 			if (this.searchText.length === 0) {
 				return this.actualSuggestions
 			} else {
 				return [this.searchText].concat(this.actualSuggestions)
 			}
-			*/
-			return [this.searchText].concat(this.actualSuggestions)
 		}
 	},
 
 	methods: {
 		refreshSuggestions: _debounce(async function refreshSuggestions () {
-			if (this.searchText.length === 0) {
-				return
-			}
-
 			this.requestInProgress = true
 			const suggestions = await this.$store.dispatch('auth/makeRequest', {
 				path: '/suggestions',
