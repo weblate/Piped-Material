@@ -63,7 +63,7 @@ export default {
 	},
 	computed: {
 		searchSuggestions () {
-			if (this.searchText.length === 0) {
+			if (this.searchText?.length === 0) {
 				return this.actualSuggestions
 			} else {
 				return [this.searchText].concat(this.actualSuggestions)
