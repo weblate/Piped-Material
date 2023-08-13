@@ -31,7 +31,7 @@ export default {
 			select: '',
 			searchText: '',
 			requestInProgress: false,
-			actualSuggestions: [],
+			searchSuggestions: [],
 
 			mdiMagnify
 		}
@@ -61,15 +61,6 @@ export default {
 			}
 		}
 	},
-	computed: {
-		searchSuggestions () {
-			if (this.searchText.length === 0) {
-				return this.actualSuggestions
-			} else {
-				return [this.searchText].concat(this.actualSuggestions)
-			}
-		}
-	},
 
 	methods: {
 		refreshSuggestions: _debounce(async function refreshSuggestions () {
@@ -81,7 +72,15 @@ export default {
 				}
 			})
 
-			this.actualSuggestions = suggestions
+			{
+				const idx = suggestions.indexOf(this.searchText)
+				if (idx !== -1) {
+					suggestions.splice(idx, 1)
+				}
+			}
+			suggestions.unshift(this.searchText)
+
+			this.searchSuggestions = suggestions
 			this.requestInProgress = false
 		}, 500)
 	},
