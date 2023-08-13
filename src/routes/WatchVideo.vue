@@ -40,6 +40,7 @@
                                     {{ $t('misc.lastWatchedTill', { t: lastWatchDurationH }) }}
                                     <ExpandableDate :date="lastWatch.timestamp" />
                                 </span>
+                                <span v-if="video.visibility !== 'public'">• {{ $t('visibilities.' + video.visibility) }}</span>
                             </v-col>
                             <v-col cols="12" md="6" :style="$vuetify.breakpoint.mdAndUp ? { textAlign: 'right' } : {}">
                                 <span style="vertical-align: middle">

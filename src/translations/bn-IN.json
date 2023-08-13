@@ -8,6 +8,9 @@
         "history": "দেখার ইতিহাস",
         "playlists": "videoএর তালিকা"
     },
+    "visibilities": {
+        "unlisted": "অপ্রচারিত"
+    },
     "counts": {
         "subscribers": "কেউ এই channel এর সদস্যতা নায়নি | একজন মাত্র এই channel এর সদস্যতা নিয়েছেন | {n} জন সদস্যতা নিয়েছেন",
         "videos": "কোনো video নেই | একটি video | {n}টি video প্রকাশন করা হয়েছে",

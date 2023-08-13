@@ -8,6 +8,9 @@
         "history": "Watch History",
         "playlists": "Playlists"
     },
+    "visibilities": {
+        "unlisted": "Unlisted"
+    },
     "counts": {
         "subscribers": "No subscribers | One subscriber | {n} subscribers",
         "videos": "No videos | One Video | {n} Videos",
