@@ -448,6 +448,12 @@ async function syncStylesPerLanguage (locale) {
 			document.body.classList.remove(...document.body.classList)
 			document.body.classList.add('bengali')
 			break
+		// Malayalam script
+		case 'Mlym':
+			await import('@fontsource-variable/baloo-chettan-2/index.css')
+			document.body.classList.remove(...document.body.classList)
+			document.body.classList.add('malayalam')
+			break
 		// Other languages
 		// NOTE: if you are a native speaker & want to see a different font, just email me or join the channel
 		case 'Arab':

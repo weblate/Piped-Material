@@ -27,6 +27,10 @@
   @include addFonts('Baloo Da 2 Variable');
 }
 
+.malayalam {
+  @include addFonts('Baloo Chettan 2 Variable');
+}
+
 .arabic-script {
   @include addFonts('Noto Naskh Arabic Variable');
 
