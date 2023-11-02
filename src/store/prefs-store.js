@@ -29,7 +29,8 @@ const PrefsStore = {
 			proxyLBRY: true,
 			homepageButton: false,
 
-			selectedSkip: []
+			selectedSkip: [],
+			codecs: ['av01', 'avc1', 'vp9']
 		}
 	}),
 	mutations: {
@@ -47,7 +48,7 @@ const PrefsStore = {
 		},
 
 		replacePrefs (state, nextPrefs) {
-			state.prefs = nextPrefs
+			state.prefs = Object.assign({}, state.prefs, nextPrefs)
 		}
 	},
 	actions: {

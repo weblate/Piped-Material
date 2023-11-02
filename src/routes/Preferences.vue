@@ -129,7 +129,6 @@ export default {
 				{
 					id: 'homepage',
 					type: 'select',
-					label: 'Default Homepage',
 					default: 'trending',
 					options: [
 						{
@@ -145,7 +144,6 @@ export default {
 				{
 					id: 'feedColumns',
 					type: 'select',
-					label: 'Amount of Columns on Feed Pages',
 					default: 4,
 					options: [
 						{
@@ -210,7 +208,6 @@ export default {
 				{
 					id: 'selectedSkip',
 					type: 'select',
-					label: 'Selected Segments to Skip',
 					multi: true,
 					options: [
 						{
@@ -248,6 +245,28 @@ export default {
 						{
 							text: 'actions.skip_filler',
 							value: 'filler'
+						}
+					].map(o => {
+						o.text = this.$i18n.t(o.text)
+						return o
+					})
+				},
+				{
+					id: 'codecs',
+					type: 'select',
+					multi: true,
+					options: [
+						{
+							text: 'preferences.codec_options.av01',
+							value: 'av01'
+						},
+						{
+							text: 'preferences.codec_options.avc1',
+							value: 'avc1'
+						},
+						{
+							text: 'preferences.codec_options.vp9',
+							value: 'vp9'
 						}
 					].map(o => {
 						o.text = this.$i18n.t(o.text)

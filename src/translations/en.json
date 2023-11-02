@@ -164,6 +164,12 @@
             "4": "4 columns",
             "5": "5 columns",
             "6": "6 columns"
+        },
+        "codecs": "Codecs",
+        "codec_options": {
+            "av01": "AV1 (AOMedia Video 1)",
+            "avc1": "AVC (H.264/Advanced Video Coding)",
+            "vp9": "VP9"
         }
     },
     "footer": {

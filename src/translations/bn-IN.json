@@ -2,7 +2,7 @@
     "titles": {
         "homepage": "Homepage",
         "trending": "জনপ্রিয় video",
-        "register": "একাউন্ট বানাবেন?",
+        "register": "নতুন নথি বানাবেন?",
         "feed": "আপনার feed",
         "preferences": "পছন্দ অনুযায়ী মানিয়ে নিন",
         "history": "দেখার ইতিহাস",
@@ -12,25 +12,25 @@
         "unlisted": "অপ্রচারিত"
     },
     "counts": {
-        "subscribers": "কেউ এই channel এর সদস্যতা নায়নি | একজন মাত্র এই channel এর সদস্যতা নিয়েছেন | {n} জন সদস্যতা নিয়েছেন",
+        "subscribers": "কেউ এই channel এর সদস্যতা নেয়নি | একজন মাত্র এই channel এর সদস্যতা নিয়েছেন | {n} জন সদস্যতা নিয়েছেন",
         "videos": "কোনো video নেই | একটি video | {n}টি video প্রকাশন করা হয়েছে",
-        "views": "কেউ দেখে নি এখন পর্যন্ত | একবার মাত্র দেখা হয়েছে এই videoটি কে | {n} বার দেখা হয়েছে এই videoটি কে"
+        "views": "কেউ দেখেনি এখন পর্যন্ত | একবার মাত্র দেখা হয়েছে এই videoটি কে | {n} বার দেখা হয়েছে এই videoটি কে"
     },
     "errors": {
         "trendingFetchError": "জনপ্রিয় video খুঁজে পাওয়া যায়নি। দেখুন আপনার নির্বাচিত দেশ কে YouTube support করে কি না।"
     },
     "playlists": {
-        "add_to_playlist": "video টি কি তালিকা তে যোগ করবেন?",
+        "add_to_playlist": "videoটি কি তালিকাতে যোগ করবেন?",
         "confirm_addition": "ঠিক তো?",
         "create_playlist": "নতুন তালিকা বানাবেন?",
         "playlist_field_name": "তালিকার নাম",
         "remove_video": "আপনি কি এই videoটি এই তালিকা থেকে বাদ দিতে চান?",
-        "delete_self": "আপনি কি এই তালিকা কে মুছে দিতে চান?",
+        "delete_self": "আপনি কি এই তালিকা কে মুছে ফেলতে চান?",
         "rename_self": "আপনি কি এই তালিকা কে নতুন নাম দিতে চান?",
-        "new_name_msg": "তালিকার নতুন নাম কি হবে?"
+        "new_name_msg": "তালিকার নতুন নাম কী হবে?"
     },
     "misc": {
-        "searchBarLabel": "আপনি কী সন্ধান করছেন?",
+        "searchBarLabel": "আপনার কী সন্ধান?",
         "lastWatchedTill": "আপনি {t} পর্যন্ত দেখেছিলেন",
         "watchedAgo": "{t} দেখেছিলেন এই videoটি {p} অব্দি"
     },
@@ -58,11 +58,11 @@
     },
     "actions": {
         "loadComments": "মন্তব্য খুঁজে আনব?",
-        "logInSignUp": "বর্তমান account (নথি) এর ব্যবহার করবেন বা নতুন নথি খুলবেন?",
+        "logInSignUp": "বিদ্যমান নথি এর ব্যবহার করবেন বা নতুন নথি খুলবেন?",
         "logOut": "নথি থেকে প্রস্থান করবেন?",
-        "loadReplies": "মন্তব্য - খুঁজে আনবো?",
-        "hideReplies": "মন্তব্য - লোকাবো?",
-        "showReplies": "মন্তব্য - দেখাবো?",
+        "loadReplies": "মন্তব্য – খুঁজে আনবো?",
+        "hideReplies": "মন্তব্য – লোকাবো?",
+        "showReplies": "মন্তব্য – দেখাবো?",
         "subscribe": "সদস্যতা নেবেন?",
         "unsubscribe": "সদস্যতা পরিত্যাগ করবেন?",
         "view_subscriptions": "channel এ সদস্যতার তালিকা",
@@ -70,8 +70,8 @@
         "sort_by": "কোন ক্রমানুযায়ী video গুলো আসবে ",
         "most_recent": "সবচেয়ে নতুন আগে",
         "least_recent": "সবচেয়ে পুরোনো আগে",
-        "channel_name_asc": "চ্যানেলের নাম অনুসারে (A-Z)",
-        "channel_name_desc": "চ্যানেলের নাম অনুসারে (Z-A)",
+        "channel_name_asc": "channelএর নাম অনুসারে (A-Z)",
+        "channel_name_desc": "channelএর নাম অনুসারে (Z-A)",
         "back": "ফেরত যাবেন?",
         "uses_api_from": "এই পরিষেবাটি ব্যবহার করে : ",
         "enable_sponsorblock": "আপনি কি SponsorBlock সক্রিয় করতে চান ?",
@@ -93,8 +93,8 @@
         "language_selection": "আপনি কোন ভাষায় দেখতে চান ?",
         "instances_list": "এই প্রতিনিধির তালিকা",
         "enabled_codecs": "Enabled Codecs (Multiple)",
-        "accounts": "আপনার account (নথি)",
-        "delAccountMessage": "আপনি কি আপনার account (নথি) কে মুছে ফেলতে চান?",
+        "accounts": "আপনার নথি (account)",
+        "delAccountMessage": "আপনি কি আপনার নথি (account) কে মুছে ফেলতে চান?",
         "logOutFromAllDevices": "সব যন্ত্র থেকে কি আপনি প্রস্থান করতে চান?",
         "confirmPWToDelAcc": "আপনার account মোছার জন্যে আপনার গোপনশব্দটি আরেকবার দিন",
         "related_videos": "অন্য সম্পর্কিত video",
@@ -105,26 +105,26 @@
         "enable_dark_mode": "কৃষ্ণাভ রূপে দেখবেন?"
     },
     "preferences": {
-        "colorScheme": "কি রঙে আপনি দেখতে চান",
+        "colorScheme": "কী রঙে আপনি দেখতে চান",
         "feedColumns": "কোনো পাতা এ কটি করে স্তম্ভ দেখতে চান আপনি",
         "sponsorblock": "আপনি কি SponsorBlock সক্রিয় করতে চান ?",
         "selectedSkip": "কি কি ধরনের videoর অংশ এড়িয়ে যেতে চান আপনি ?",
         "skipToLastPoint": "পুরোনো video দেখার সময় আগে যতটি অব্দি দেখেছিলেন সেখানে চলে যাওয়া উচিত?",
         "disableLBRY": "যে video গুলি LBRY তে আছে সেগুলো কি সেখান থেকেই সরাসরি চালানো উচিত নয় ?",
-        "proxyLBRY": "LBRY থেকে যে video গুলি কে চালানো হচ্ছে সেগুলো কি আমাদের প্রতিনিধি দ্বারা চালানো হবে ?",
+        "proxyLBRY": "LBRY থেকে যে videoগুলি কে চালানো হচ্ছে সেগুলো কি আমাদের প্রতিনিধি দ্বারা চালানো হবে ?",
         "playerAutoplay": "video নিজে থেকে চলবে কি না",
         "listen": "শুধু আওয়াজ শুনবেন কি না",
-        "quality": "এই উৎকর্ষের videoটি লোড করা হবে যদি না আপনি অন্য কোনো পছন্দ করেন । ",
-        "region": "ইউটিউব ভাববে যে আপনি এই জায়গা তে আছেন",
+        "quality": "এই উৎকর্ষের videoটি কর্ষণ করা হবে যদি না আপনি অন্য কোনো পছন্দ করেন । ",
+        "region": "YouTube ভাববে যে আপনি এই জায়গা তে আছেন",
         "homepage": "website খোলার পর গতানুগতিক কী দেখবেন",
-        "homepageButton": "আপনি কী গোড়া তে ফিরে যাওয়ার জন্য আরেকটি বোতাম চান?",
-        "instance": "আমাদের প্রতিনিধি যে ইউটিউব এর সঙ্গে সব যোগাযোগ এর নিয়ন্ত্রণ আর দেখাশোনা করবে",
+        "homepageButton": "আপনি কী গোড়াতে ফিরে যাওয়ার জন্য আরেকটি বোতাম চান?",
+        "instance": "আমাদের প্রতিনিধি যে YouTube এর সঙ্গে সব যোগাযোগ এর নিয়ন্ত্রণ আর দেখাশোনা করবে",
         "clickbaitThumbnailAvoidance": "videoএর যে thumbnail আছে সেটি কি একতা স্বয়ংক্রিয়ভাবে বানানো thumbnail দিয়ে প্রতিস্থাপন করে দেব?",
         "showRelatedVideos": "আপনি কি videoর সঙ্গে অন্য সম্পর্কিত বা প্রস্তাবিত video দেখতে চান?",
         "showMarkers": "আপনি কি বিজ্ঞাপনের (ও অন্য বিভ্রান্তিকর জিনিসের) চিহ্নিতকারী দেখতে চান?",
-        "bufferGoal": "কত সেকেন্ড এর data এনে রাখব যাতে আপানাকে অপেক্ষা না করতে হয়?",
-        "disableCommentsByDefault": "মন্তব্য দেখানোর জন্য আপনার অনুমতি কি চাওয়া উচিত?",
-        "disableDuplicateHistoryEntries": "আপনি যদি একটা video অতীতে দেখে থাকেন তাহলে কি আর ইতিহাস এ অনুলিপি যোগ করব না, শুধু মাত্র কতটা আর কখন দেখেছেন সেটা নবীকরণ করব?",
+        "bufferGoal": "কত সেকেণ্ডের data এনে রাখব যাতে আপানাকে অপেক্ষা না করতে হয়?",
+        "disableCommentsByDefault": "মন্তব্য দেখানোর জন্য আপনার অনুমতি কি চাওয়া হবে?",
+        "disableDuplicateHistoryEntries": "আপনি যদি একটি video অতীতে দেখে থাকেন তাহলে কি আর ইতিহাস এ অনুলিপি যোগ করব না, শুধু মাত্র কতটা আর কখন দেখেছেন সেটা নবীকরণ করব?",
         "quality_opts": {
             "auto": "আপনার অন্তর্জালের গতি অনুযায়ী",
             "144p": "১৪৪ বিন্দু আরোহ",
@@ -138,15 +138,21 @@
             "4320p": "৪৩২০ বিন্দু আরোহ (এটি কে সাধারণ ভাবে 8K বলা হয়, ৭৬৮০×৪৩২০)"
         },
         "column_opts": {
-            "4": "৪টে করে স্তম্ভ",
+            "4": "৪টি করে স্তম্ভ",
             "5": "৫টি করে স্তম্ভ",
             "6": "৬টি করে স্তম্ভ"
+        },
+        "codecs": "কী কী ধরণের codec ব্যবহারিত করা উচিত",
+        "codec_options": {
+            "av01": "AV1 (AOMedia Video 1)",
+            "avc1": "AVC (H.264/Advanced Video Coding)",
+            "vp9": "VP9"
         }
     },
     "search_results": {
         "filterLabel": "ফলাফলগুলিকে পরিস্রুত করার জন্য উপলব্ধ বিকল্প",
         "result_types": {
-            "all": "সব ধরনের ফলাফল",
+            "all": "সব ধরণের ফলাফল",
             "videos": "সাধারণ video",
             "channels": "সুধু channel",
             "playlists": "সুধু videoএর তালিকা",

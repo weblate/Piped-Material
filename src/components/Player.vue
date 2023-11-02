@@ -59,10 +59,11 @@ export default {
 		},
 
 		preferredVideoCodecs () {
+			const enabledCodecs = new Set(this.$store.getters['prefs/getPreference']('codecs'))
 			const preferredVideoCodecs = []
-			if (this.$refs.videoEl.canPlayType('video/mp4; codecs="av01.0.08M.08"') !== '') { preferredVideoCodecs.push('av01') }
-			if (this.$refs.videoEl.canPlayType('video/webm; codecs="vp9"') !== '') preferredVideoCodecs.push('vp9')
-			if (this.$refs.videoEl.canPlayType('video/mp4; codecs="avc1.4d401f"') !== '') { preferredVideoCodecs.push('avc1') }
+			if (this.$refs.videoEl.canPlayType('video/mp4; codecs="av01.0.08M.08"') !== '' && enabledCodecs.has('av01')) { preferredVideoCodecs.push('av01') }
+			if (this.$refs.videoEl.canPlayType('video/webm; codecs="vp9"') !== '' && enabledCodecs.has('vp9')) preferredVideoCodecs.push('vp9')
+			if (this.$refs.videoEl.canPlayType('video/mp4; codecs="avc1.4d401f"') !== '' && enabledCodecs.has('avc1')) { preferredVideoCodecs.push('avc1') }
 			return preferredVideoCodecs
 		},
 
