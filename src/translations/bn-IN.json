@@ -142,7 +142,7 @@
             "5": "৫টি করে স্তম্ভ",
             "6": "৬টি করে স্তম্ভ"
         },
-        "codecs": "কী কী ধরণের codec ব্যবহারিত করা উচিত",
+        "codecs": "কী কী ধরণের codec ব্যবহার করা উচিত",
         "codec_options": {
             "av01": "AV1 (AOMedia Video 1)",
             "avc1": "AVC (H.264/Advanced Video Coding)",
