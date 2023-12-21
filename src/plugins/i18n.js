@@ -401,6 +401,7 @@ export const SUPPORTED_LANGUAGES = [
 	'ml',
 	'nb-NO',
 	'tr',
+	'pt',
 	'pt-BR',
 	'bn',
 	'bn-IN',
