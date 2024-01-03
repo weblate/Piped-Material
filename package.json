@@ -32,7 +32,7 @@
     "quick-lru": "^7.0.0",
     "register-service-worker": "^1.7.2",
     "sass-loader": "^10",
-    "shaka-player": "https://cf-ipfs.com/ipfs/QmdvmorgTSt1uA9qyWNs3cf4bCqXUWYeRSGpuWmertWw83?filename=shaka-v4-3-7.tgz",
+    "shaka-player": "https://cf-ipfs.com/ipfs/QmQnjRuMYefNF8fFRcp8BQ1YomDwJoc5k7RCw9UdZxQ9WL?filename=shaka-v4-7-1.tar",
     "vue": "^2.7.16",
     "vue-i18n": "^8.28.2",
     "vue-json-viewer": "^2.2.22",

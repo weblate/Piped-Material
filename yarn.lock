@@ -7329,9 +7329,9 @@ sha.js@^2.4.0, sha.js@^2.4.8:
     inherits "^2.0.1"
     safe-buffer "^5.0.1"
 
-"shaka-player@https://cf-ipfs.com/ipfs/QmdvmorgTSt1uA9qyWNs3cf4bCqXUWYeRSGpuWmertWw83?filename=shaka-v4-3-7.tgz":
-  version "4.3.7"
-  resolved "https://cf-ipfs.com/ipfs/QmdvmorgTSt1uA9qyWNs3cf4bCqXUWYeRSGpuWmertWw83?filename=shaka-v4-3-7.tgz#309ab23397aefa80d4a88f04811f3f61a0c5aef3"
+"shaka-player@https://cf-ipfs.com/ipfs/QmQnjRuMYefNF8fFRcp8BQ1YomDwJoc5k7RCw9UdZxQ9WL?filename=shaka-v4-7-1.tar":
+  version "4.7.1"
+  resolved "https://cf-ipfs.com/ipfs/QmQnjRuMYefNF8fFRcp8BQ1YomDwJoc5k7RCw9UdZxQ9WL?filename=shaka-v4-7-1.tar#c0123c0ecb9e25f097034dfd1d18e97568219df7"
   dependencies:
     eme-encryption-scheme-polyfill "^2.1.1"
 
