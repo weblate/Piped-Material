@@ -74,7 +74,7 @@ const AuthenticationStore = {
 				})
 				resp = data.data
 			} catch (e) {
-				if (e.response.status === 400) {
+				if (e.response.status === 400 || e.response.status === 401) {
 					const errorData = e.response.data
 					if ('error' in errorData) {
 						throw new AuthenticationError(errorData.error)
