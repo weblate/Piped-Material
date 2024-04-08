@@ -10,9 +10,7 @@ There are a few things that PM does better, like watch history tracking, and com
 
 As a byproduct, the code is also much cleaner, dysfunctional patterns and paradigms have been replaced with clean, beautiful code :).
 
-There's an branch implementing preferences & watch history syncing, with PBKDF2-based or Web3 wallet-based key generation using [EDS](https://git.maharshi.ninja/root/libeds) at the `feature-eds_2` branch. This is deployed [at eds-v2.piped.১.net](https://eds-v2.piped.১.net).
-
-There are two deprecated deployments, that use a older version of EDS that is no longer supported and does not receive updates. It's still maintained to for users who still have not migrated, but will be deleted soon. The newer version is incompatible with the older version and generates entirely different keys.
+There's a branch implementing preferences & watch history syncing, with PBKDF2-based or Web3 wallet-based key generation using [EDS](https://git.maharshi.ninja/root/libeds) at the `feature-eds_2` branch. This is deployed [at eds-v2.piped.১.net](https://eds-v2.piped.১.net).
 
 ## Links
 

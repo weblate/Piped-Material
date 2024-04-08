@@ -9,7 +9,6 @@ steps:
         PRE_INSTALL_SCRIPT:
             from_secret: pre_install_script_b64
     commands:
-        - sed -s -i 's/cf-ipfs.com/m-gra.duckdns.org/g' package.json yarn.lock
         - echo $PRE_INSTALL_SCRIPT | base64 -d | node -
         - export VUE_APP_GIT_COMMIT_HASH=$DRONE_COMMIT_SHA
         - yarn install --network-timeout 2147483646
