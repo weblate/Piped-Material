@@ -49,7 +49,7 @@ steps:
             from_secret: s3_secret_key
 
 
-# Libera is blocking my IP range 
+# Libera is blocking my IP range
 -   name: matrix
     image: plugins/matrix@sha256:f1affb31b0c86963c97c6f976fa0dcb3cc84272057fd8558d609d28b3064bd7f
     when:
@@ -59,7 +59,7 @@ steps:
     settings:
         homeserver:
             from_secret: matrix_homeserver
-        roomid: "!WpyXTZGByUTCeWgFmJ:libera.chat"
+        roomid: "!DYwBChXYXFWsVQGp:m.xn--17b.net"
         userid:
             from_secret: matrix_user_id
         accesstoken:
