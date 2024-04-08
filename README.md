@@ -23,13 +23,8 @@ There are two deprecated deployments, that use a older version of EDS that is no
 | https://eds-v2.piped.১.net    | Production  | EDS-V2         | Kavin            |
 | https://piped-staging.ftp.sh  | Staging     |                | Kavin            |
 | https://ui.piped.১.net        | Staging     | IPv6-only      | mmjee            |
-| https://ng.piped.১.net        | Deprecated  | IPv6-only, EDS | mmjee            |
-| https://ngp.piped.১.net       | Deprecated  | EDS-Password   | Kavin            |
 
 Production instances are updated infrequently, and do not include features that are introduced recently without extensive testing.
-
-Piped-Material's Production instance is also available via IPFS at IPNS key `k51qzi5uqu5dl0a18rats73hcc6d5dtvtz9pjbpgzj6hl66b9za5i5wn0yzgjv`.
-For example, it's available [via dweb.link](https://k51qzi5uqu5dl0a18rats73hcc6d5dtvtz9pjbpgzj6hl66b9za5i5wn0yzgjv.ipns.dweb.link) and [via cf-ipfs.com](https://k51qzi5uqu5dl0a18rats73hcc6d5dtvtz9pjbpgzj6hl66b9za5i5wn0yzgjv.ipns.cf-ipfs.com).
 
 ## Self-hosting
 
@@ -39,7 +34,7 @@ There's a Dockerfile to build a Piped-Material deployment (using a simple nginx 
 
 Join the Libera Chat channel [#piped-material via IRC](ircs://irc.libera.chat:6697/#piped-material).
 
-Or alternatively you [can join in via Matrix](https://matrix.to/#/#piped-material:libera.chat).
+Or alternatively you [can join in via Matrix](https://matrix.to/#/#piped-material-general:m.xn--17b.net).
 
 ## How to contribute
 

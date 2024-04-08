@@ -157,8 +157,8 @@
             "720p": "720p",
             "1080p": "1080p",
             "1440p": "1440p",
-            "2160p": "2160p (This is usually termed 4K, 3840x2160)",
-            "4320p": "4320p (This is usually termed 8K, 7680x4320)"
+            "2160p": "2160p (This is usually termed 4K, 3840×2160)",
+            "4320p": "4320p (This is usually termed 8K, 7680×4320)"
         },
         "column_opts": {
             "4": "4 columns",

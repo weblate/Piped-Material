@@ -2,10 +2,6 @@ import DOMPurify from 'dompurify'
 import { parseInline } from 'marked'
 
 class LibPiped {
-	pad (num, size) {
-		return ('000' + num).slice(size * -1)
-	}
-
 	purifyHTML (original) {
 		return DOMPurify.sanitize(original)
 	}
