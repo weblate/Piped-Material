@@ -17,6 +17,9 @@ class LibPiped {
 	}
 
 	markdown2HTML (data) {
+		if (data == null) {
+			return ''
+		}
 		return parseInline(data, {
 			breaks: true,
 			mangle: false,
