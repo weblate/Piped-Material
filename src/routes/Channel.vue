@@ -138,15 +138,19 @@ export default {
 					tab.originalName = tab.name
 					switch (tab.name) {
 						case 'Livestreams':
+						case 'livestreams':
 							tab.name = this.$t('channel_tabs.livestreams')
 							break
 						case 'Playlists':
+						case 'playlists':
 							tab.name = this.$t('channel_tabs.playlists')
 							break
 						case 'Channels':
+						case 'channels':
 							tab.name = this.$t('channel_tabs.channels')
 							break
 						case 'Shorts':
+						case 'shorts':
 							tab.name = this.$t('channel_tabs.shorts')
 							break
 					}

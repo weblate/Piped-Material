@@ -12,9 +12,9 @@
         />
         <v-divider class="my-4" />
 
-        <div v-if="results && results.items">
+        <div v-if="filteredResults.length !== 0">
             <GridRow>
-                <GridCol v-for="(video, videoId) in results.items" :key="videoId">
+                <GridCol v-for="(video, videoId) in filteredResults" :key="videoId">
                     <VideoItem :height="270" :width="480" :video="video" max-height v-if="video.type === 'stream'" />
                     <GenericDisplayItem :height="270" :width="480" :item="video" v-else />
                 </GridCol>
@@ -51,7 +51,7 @@ export default {
 	},
 
 	mounted () {
-		this.updateResults()
+		this.fetchResults()
 	},
 
 	computed: {
@@ -73,31 +73,41 @@ export default {
 				text: this.$t('search_results.result_types.' + name),
 				value: name
 			}))
+		},
+
+		filteredResults () {
+			let out = this.results?.items
+			if (out == null) {
+				return []
+			}
+
+			const isShortsFilterEnabled = this.$store.getters['prefs/getPreferenceBoolean']('filterOutShortsInSearchResults', false)
+			if (isShortsFilterEnabled) {
+				out = out.filter(v => v.isShort === false)
+			}
+
+			return out.map(sr => ({
+				title: sr.name,
+				uploaderName: sr.uploader,
+				uploadedDate: sr.uploadDate,
+				...sr
+			}))
 		}
 	},
 
 	watch: {
 		// For history navigation
 		'$route.query.search_query' () {
-			this.updateResults()
+			this.fetchResults()
 		},
 		'$route.query.filter' () {
-			this.updateResults()
+			this.fetchResults()
 		}
 	},
 
 	methods: {
-		rationalizeSearchResult (sr) {
-			return {
-				title: sr.name,
-				uploaderName: sr.uploader,
-				uploadedDate: sr.uploadDate,
-				...sr
-			}
-		},
-
 		async fetchResults () {
-			return this.$store.dispatch('auth/makeRequest', {
+			this.results = await this.$store.dispatch('auth/makeRequest', {
 				path: 'search',
 				params: {
 					q: this.$route.query.search_query,
@@ -106,12 +116,6 @@ export default {
 			})
 		},
 
-		async updateResults () {
-			this.results = this.fetchResults().then(json => {
-				json.items = json.items.map(this.rationalizeSearchResult)
-				this.results = json
-			})
-		},
 		onSearchResultsEndIntersect (entries) {
 			if (entries[0].isIntersecting) {
 				this.fetchMoreResults()
@@ -129,7 +133,7 @@ export default {
 			}).then(json => {
 				this.results.nextpage = json.nextpage
 				this.results.id = json.id
-				this.results.items = this.results.items.concat(json.items.map(this.rationalizeSearchResult))
+				this.results.items = this.results.items.concat(json.items)
 			})
 		}
 	}

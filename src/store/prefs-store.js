@@ -22,6 +22,8 @@ const PrefsStore = {
 			clickbaitThumbnailAvoidance: false,
 			disableDuplicateHistoryEntries: false,
 
+			filterOutShortsInFeedPage: false,
+			filterOutShortsInSearchResults: false,
 			disableCommentsByDefault: false,
 			showRelatedVideos: true,
 			showMarkers: true,

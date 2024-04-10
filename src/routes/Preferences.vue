@@ -191,6 +191,16 @@ export default {
 					default: false
 				},
 				{
+					id: 'filterOutShortsInFeedPage',
+					type: 'bool',
+					default: false
+				},
+				{
+					id: 'filterOutShortsInSearchResults',
+					type: 'bool',
+					default: false
+				},
+				{
 					id: 'showRelatedVideos',
 					type: 'bool',
 					default: true

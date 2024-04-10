@@ -148,6 +148,8 @@
         "showRelatedVideos": "Show Related Videos",
         "showMarkers": "Show SponsorBlock Markers",
         "disableDuplicateHistoryEntries": "Disable creation of duplicate watch history entries",
+        "filterOutShortsInFeedPage": "Filter out YT shorts in the feed pages (trending, feed, etc.)",
+        "filterOutShortsInSearchResults": "Filter out YT shorts in the search result pages",
         "quality_opts": {
             "auto": "Automatically determined",
             "144p": "144p",

@@ -6,7 +6,7 @@
         "feed": "আপনার feed",
         "preferences": "পছন্দ অনুযায়ী মানিয়ে নিন",
         "history": "দেখার ইতিহাস",
-        "playlists": "videoএর তালিকা"
+        "playlists": "videoর তালিকা"
     },
     "visibilities": {
         "unlisted": "অপ্রচারিত"
@@ -119,12 +119,14 @@
         "homepage": "website খোলার পর গতানুগতিক কী দেখবেন",
         "homepageButton": "আপনি কী গোড়াতে ফিরে যাওয়ার জন্য আরেকটি বোতাম চান?",
         "instance": "আমাদের প্রতিনিধি যে YouTube এর সঙ্গে সব যোগাযোগ এর নিয়ন্ত্রণ আর দেখাশোনা করবে",
-        "clickbaitThumbnailAvoidance": "videoএর যে thumbnail আছে সেটি কি একতা স্বয়ংক্রিয়ভাবে বানানো thumbnail দিয়ে প্রতিস্থাপন করে দেব?",
+        "clickbaitThumbnailAvoidance": "videoর যে thumbnail আছে সেটি কি একতা স্বয়ংক্রিয়ভাবে বানানো thumbnail দিয়ে প্রতিস্থাপন করে দেব?",
         "showRelatedVideos": "আপনি কি videoর সঙ্গে অন্য সম্পর্কিত বা প্রস্তাবিত video দেখতে চান?",
         "showMarkers": "আপনি কি বিজ্ঞাপনের (ও অন্য বিভ্রান্তিকর জিনিসের) চিহ্নিতকারী দেখতে চান?",
         "bufferGoal": "কত সেকেণ্ডের data এনে রাখব যাতে আপানাকে অপেক্ষা না করতে হয়?",
         "disableCommentsByDefault": "মন্তব্য দেখানোর জন্য আপনার অনুমতি কি চাওয়া হবে?",
         "disableDuplicateHistoryEntries": "আপনি যদি একটি video অতীতে দেখে থাকেন তাহলে কি আর ইতিহাস এ অনুলিপি যোগ করব না, শুধু মাত্র কতটা আর কখন দেখেছেন সেটা নবীকরণ করব?",
+        "filterOutShortsInFeedPage": "আপনি কি সব YouTube Shorts (ছোট video) গুলো কে আপনার feed (সদস্যিত channelদের videoর তালিকা) থেকে পরিস্রুত করাতে চান?",
+        "filterOutShortsInSearchResults": "আপনি কি সব YouTube Shorts (ছোট video) গুলো কে আপনার search results (খোঁজ করা videoর ফলাফল) থেকে পরিস্রুত করাতে চান?",
         "quality_opts": {
             "auto": "আপনার অন্তর্জালের গতি অনুযায়ী",
             "144p": "১৪৪ বিন্দু আরোহ",
@@ -155,7 +157,7 @@
             "all": "সব ধরণের ফলাফল",
             "videos": "সাধারণ video",
             "channels": "সুধু channel",
-            "playlists": "সুধু videoএর তালিকা",
+            "playlists": "সুধু videoর তালিকা",
             "music_songs": "সুধু গান (YouTube Music থেকে)",
             "music_videos": "সুধু গানের video (YouTube Music)",
             "music_albums": "সুধু গানের পঞ্জি (album) (YouTube Music থেকে)",
@@ -163,7 +165,7 @@
         }
     },
     "channel_tabs": {
-        "playlists": "videoএর তালিকা",
+        "playlists": "videoর তালিকা",
         "shorts": "ছোট video",
         "videos": "সাধারণ video",
         "livestreams": "সরাসরি সম্প্রচারিত video",

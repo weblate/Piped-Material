@@ -159,7 +159,14 @@ export default {
 	computed: {
 		currentVideos () {
 			const start = (this.currentPage - 1) * PAGE_SIZE
-			return this.videos.slice(start, start + PAGE_SIZE)
+			let out = this.videos.slice(start, start + PAGE_SIZE)
+
+			const isShortsFilterEnabled = this.$store.getters['prefs/getPreferenceBoolean']('filterOutShortsInFeedPage', false)
+			if (isShortsFilterEnabled) {
+				out = out.filter(v => v.isShort === false)
+			}
+
+			return out
 		}
 	},
 	components: {
