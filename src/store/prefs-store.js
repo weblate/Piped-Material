@@ -31,6 +31,7 @@ const PrefsStore = {
 			proxyLBRY: true,
 			homepageButton: false,
 			enableCustomInstance: false,
+			custom_instance_v1: '',
 
 			selectedSkip: [],
 			codecs: ['av01', 'avc1', 'vp9']
