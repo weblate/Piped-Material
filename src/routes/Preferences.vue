@@ -340,7 +340,7 @@ export default {
 			}
 
 			const vapu = process.env.VUE_APP_PIPED_URL
-			if (vapu.length !== 0 && !instanceURLSet.has(vapu)) {
+			if (vapu != null && vapu.length !== 0 && !instanceURLSet.has(vapu)) {
 				const u = new URL(vapu)
 
 				instances.push({
