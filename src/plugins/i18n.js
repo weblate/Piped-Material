@@ -413,7 +413,8 @@ export const SUPPORTED_LANGUAGES = [
 	'bs',
 	'uk',
 	'ro',
-	'pl'
+	'pl',
+	'fi'
 ]
 
 export const i18n = new VueI18n({
