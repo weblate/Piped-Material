@@ -1,11 +1,12 @@
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
 import TimeAgo from 'javascript-time-ago'
+import ENTimeAgo from 'javascript-time-ago/locale/en.json'
 import * as LocaleMatcher from '@formatjs/intl-localematcher'
 
 import store from '@/store'
 import ENTranslations from '@/translations/en.json'
-import ENTimeAgo from 'javascript-time-ago/locale/en.json'
+import vuetify from '@/plugins/vuetify'
 
 Vue.use(VueI18n)
 TimeAgo.addLocale(ENTimeAgo)
@@ -417,6 +418,50 @@ export const SUPPORTED_LANGUAGES = [
 	'fi'
 ]
 
+export const VUETIFY_SUPPORTED_LANGUAGES = `af
+ar
+az
+bg
+ca
+ckb
+cs
+da
+de
+el
+en
+es
+et
+fa
+fi
+fr
+he
+hr
+hu
+id
+it
+ja
+km
+ko
+lt
+lv
+nl
+no
+pl
+pt
+ro
+ru
+sk
+sl
+sr-Cyrl
+sr-Latn
+sv
+th
+tr
+uk
+vi
+zh-Hans
+zh-Hant`.split('\n')
+
 export const i18n = new VueI18n({
 	locale: 'en', // set default locale
 	fallbackLocale: 'en',
@@ -489,7 +534,7 @@ async function syncStylesPerLanguage (locale) {
 	}
 }
 
-export async function loadLocale (locale) {
+async function loadLocale (locale) {
 	const lo = LocaleMatcher.match(locale, SUPPORTED_LANGUAGES, 'en')
 	if (!i18n.availableLocales.includes(lo)) {
 		// load locale messages with dynamic import
@@ -499,7 +544,6 @@ export async function loadLocale (locale) {
 		i18n.setLocaleMessage(lo, messages.default)
 	}
 	i18n.locale = lo
-	return Vue.nextTick()
 }
 
 async function loadFormatting (locale, parsed) {
@@ -521,6 +565,16 @@ async function loadFormatting (locale, parsed) {
 	})
 }
 
+async function loadVuetify (locale) {
+	const vuetifyLocale = LocaleMatcher.match(locale, VUETIFY_SUPPORTED_LANGUAGES, 'en')
+
+	if (!(vuetifyLocale in vuetify.framework.lang.locales)) {
+		const data = await import(/* webpackChunkName: "vuetify-[request]" */ `vuetify/lib/locale/${vuetifyLocale}.js`)
+		vuetify.framework.lang.locales[vuetifyLocale] = data.default
+	}
+	vuetify.framework.lang.current = vuetifyLocale
+}
+
 export async function loadCountries (locale) {
 	locale = COUNTRY_I18N_EXCEPTIONS[locale] ?? locale
 	locale = LocaleMatcher.match(locale, COUNTRY_I18N_SUPPORTED_LANGUAGES, 'en')
@@ -539,7 +593,8 @@ export async function changeLocale (lang) {
 	await Promise.all([
 		loadLocale(lang),
 		syncStylesPerLanguage(parsed),
-		loadFormatting(lang, parsed)
+		loadFormatting(lang, parsed),
+		loadVuetify(lang)
 	])
 	window.localStorage.setItem('LOCALE', lang)
 }
